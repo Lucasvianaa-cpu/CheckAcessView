@@ -131,6 +131,26 @@ class UsersController extends AppController
         }
     }
 
+    public function editarPerfil () {
+
+        /* $user = $this->Users->get($id, [
+            'contain' => [],
+        ]); */
+
+        $user = 3;
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $user = $this->Users->patchEntity($user, $this->request->getData());
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Salvo!.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
+        }
+        $roles = $this->Users->Roles->find('list', ['limit' => 200]);
+        $this->set(compact('user', 'roles'));
+    }
+ 
     public function sair () {
         return $this->redirect($this->Auth->logout());
     }
