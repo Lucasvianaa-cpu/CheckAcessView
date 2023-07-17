@@ -143,7 +143,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link  " href="../pages/perfil.html">
+                    <!--Modifiquei o link da navegação ao novo padrão-->
+                    <a class="nav-link  " href="../users/editar_perfil">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
