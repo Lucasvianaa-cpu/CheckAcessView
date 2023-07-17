@@ -146,13 +146,15 @@
       <div class="container pb-3 pt-3">
         <ul class="navbar-nav d-none d-lg-flex">
           <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-            <a href="../pages/perfil.html" class="nav-link text-white p-0">
+          <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">
               Meu Perfil
             </a>
+          </li>
             <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-              <a href="../pages/editar-perfil.html" class="nav-link text-white p-0">
+            <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">
                 Editar Perfil
             </a>
+            </li>
         </ul>
         <div class="ms-md-auto p-0 d-flex align-items-center w-sm-20">
           <div class="input-group border-dark">
@@ -199,6 +201,7 @@
                   <p class="text-sm mb-1">Insira seus dados para alteração</p>
                 </div>
                 <div class="">
+                  <?= $this->Form->create($user, ['class'=> 'row g-3']) ?>
                   <form class="row g-3">
                     <div class="col-12">
                       <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
@@ -346,10 +349,11 @@
                       </div>
                     </div>
                     <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
-                      <a href="javascript:;" class="btn btn-sm btn-white">Cancelar</a>
-                      <a href="javascript:;" class="btn btn-sm btn-dark">Salvar</a>
+                      
+                      <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>
+                      <a class="btn btn-sm btn-white" href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
                     </div>
-                  </form>
+                  <?= $this->Form->end() ?>
                 </div>
                 
               </div>

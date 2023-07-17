@@ -27,6 +27,8 @@ class User extends Entity
         'role_id' => true,
         'uid_rfid' => true,
         'email_empresarial' => true,
+        'n_carteira_trabalho' => true,
+        'realiza_plantao' => true,
         'role' => true,
         'veiculos' => true,
     ];
