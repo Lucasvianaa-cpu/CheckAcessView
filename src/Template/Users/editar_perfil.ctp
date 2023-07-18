@@ -220,25 +220,18 @@
                     </div>
 
                     <div class="col-md-4">
-                      <?= $this->Form->control('cep', ['type' => 'text','label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cep' ]); ?>  
+                      <?= $this->Form->control('cep', ['type' => 'text','label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cep']); ?>  
                     </div>
                     <div class="col-md-6">
-                      <?= $this->Form->control('cidade', ['type' => 'text','label' => 'Cidade', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a cidade' ]); ?>  
+                      <?= $this->Form->control('cidade_id', ['type' => 'select','label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade' ]); ?>  
           
                     </div>
                     <div class="col-md-2">
-                      <label for="inputEstado" class="form-label">Estado</label>
-                      <select id="inputEstado" class="form-select"> 
-                        <option selected>Selecione</option>
-                        <option>SP</option>
-                        <option>RJ</option>
-                        <option>MG</option>
-                        <option>...</option>
-                      </select>
+                    <?= $this->Form->control('estado_id', ['type' => 'select','label' => 'Estado', 'empty' => 'Selecione', 'options' => $estados, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade' ]); ?>  
                     </div>
       
                     <div class="col-md-6">
-                      <?= $this->Form->control('endereco', ['type' => 'text','label' => 'Endereço', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o endereço' ]); ?>  
+                      <?= $this->Form->control('rua', ['type' => 'text','label' => 'Endereço', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o endereço' ]); ?>  
                     </div>
                     <div class="col-md-4">
                       <?= $this->Form->control('bairro', ['type' => 'text','label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro' ]); ?>  

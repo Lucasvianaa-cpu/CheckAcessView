@@ -132,11 +132,33 @@ class UsersController extends AppController
     }
 
     public function editarPerfil ($id = null) {
+        $this->loadModel('Estados');
+        $this->loadModel('Cidades');
+        $this->loadModel('Enderecos');
+
         $user = $this->Users->get($id, [
-            'contain' => [],
+            'contain' => ['Enderecos'],
+            // Colocar conditions aqui para filtrar somente o que é do usuário.
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
+
+            
+            $endereco = $this->Enderecos->newEntity();
+            $endereco->rua = $this->request->getData('rua');
+            $endereco->numero = $this->request->getData('numero');
+            $endereco->bairro = $this->request->getData('bairro');
+            $endereco->cep = $this->request->getData('cep');
+            $endereco->user_id = $this->Auth->user('id');
+            $endereco->cidade_id = $this->request->getData('cidade_id');
+            
+            if ($this->Enderecos->save($endereco)) {
+                $this->Flash->success(__('Foi salvo o seu Endereço'));
+                return $this->redirect(['action' => 'visualizarPerfil', $this->Auth->user('id')]);
+            }
+
+            
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
@@ -145,7 +167,9 @@ class UsersController extends AppController
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
-        $this->set(compact('user', 'roles'));
+        $estados = $this->Estados->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $cidades = $this->Cidades->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $this->set(compact('user', 'roles', 'estados', 'cidades'));
         
     }
 
