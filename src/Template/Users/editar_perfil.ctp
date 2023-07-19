@@ -220,24 +220,24 @@
                     </div>
 
                     <div class="col-md-4">
-                      <?= $this->Form->control('cep', ['type' => 'text','label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cep']); ?>  
+                      <?= $this->Form->control('cep', ['type' => 'text','label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cep', 'default' => $endereco_perfil ? $endereco_perfil->cep : '']); ?>  
                     </div>
                     <div class="col-md-6">
-                      <?= $this->Form->control('cidade_id', ['type' => 'select','label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade' ]); ?>  
+                      <?= $this->Form->control('cidade_id', ['type' => 'select','label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade', 'empty' => 'Selecione', 'default' => $endereco_perfil ? $endereco_perfil->cidade->id : '' ]); ?>  
           
                     </div>
                     <div class="col-md-2">
-                    <?= $this->Form->control('estado_id', ['type' => 'select','label' => 'Estado', 'empty' => 'Selecione', 'options' => $estados, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade' ]); ?>  
+                    <?= $this->Form->control('estado_id', ['type' => 'select','label' => 'Estado', 'empty' => 'Selecione', 'options' => $estados, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite o Estado', 'default' => $endereco_perfil ? $endereco_perfil->cidade->estado->id : '']); ?>  
                     </div>
       
                     <div class="col-md-6">
-                      <?= $this->Form->control('rua', ['type' => 'text','label' => 'Endereço', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o endereço' ]); ?>  
+                      <?= $this->Form->control('rua', ['type' => 'text','label' => 'Endereço', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o endereço','default'=> $endereco_perfil ? $endereco_perfil->rua : '' ]); ?>  
                     </div>
                     <div class="col-md-4">
-                      <?= $this->Form->control('bairro', ['type' => 'text','label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro' ]); ?>  
+                      <?= $this->Form->control('bairro', ['type' => 'text','label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro', 'default'=> $endereco_perfil ? $endereco_perfil->bairro : '' ]); ?>  
                     </div>
                     <div class="col-md-2">
-                      <?= $this->Form->control('numero', ['type' => 'text','label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número' ]); ?>  
+                      <?= $this->Form->control('numero', ['type' => 'text','label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número', 'default'=> $endereco_perfil ? $endereco_perfil->numero : '']); ?>  
                     </div>
 
                     <div class="col-md-6">

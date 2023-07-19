@@ -79,7 +79,7 @@
                     <div class="card-footer text-center pt-0 px-lg-2 px-1">
                       <p class="mb-4 text-xs mx-auto">
                         Não tem uma conta ainda?
-                        <a href="pages/registre-se.html" class="text-dark font-weight-bold">Registre-se</a>
+                        <a href="<?= $this->Url->build(['action' => 'adicionar']);?>" class="text-dark font-weight-bold">Registre-se</a>
                       </p>
                       <h6 class="text-dark text-sm mt-5">Copyright © 2023 Jaine Oliveira e Lucas Viana</h6>
                     </div>
