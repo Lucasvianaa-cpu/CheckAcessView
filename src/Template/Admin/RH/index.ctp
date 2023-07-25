@@ -27,11 +27,10 @@
                 <table class="table align-items-center mb-0">
                   <thead class="bg-gray-100">
                     <tr>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7">Holerite</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Mês</th>
-                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Enviado</th>
-                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Download</th>
-                      <th class="text-secondary opacity-7"></th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data Cadastro</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Permissão</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Confirma?</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -47,27 +46,14 @@
                           </div>
                         </div>
                       </td>
-                      <td>
-                        <p class="text-sm text-dark font-weight-semibold mb-0">06/2023</p>
-                      </td>
                       <td class="align-middle text-center text-sm">
                         <p class="text-sm text-dark font-weight-semibold mb-0">05/07/2023</p>
                       </td>
                       <td class="align-middle text-center">
-                        <button type="button" class="btn btn-dark mt-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-download" viewBox="0 0 16 16">
-                            <path d="M.5 9.9a.5.5 0 0 1 .5.5v2.5a1 1 0 0 0 1 1h12a1 1 0 0 0 1-1v-2.5a.5.5 0 0 1 1 0v2.5a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2v-2.5a.5.5 0 0 1 .5-.5z"/>
-                            <path d="M7.646 11.854a.5.5 0 0 0 .708 0l3-3a.5.5 0 0 0-.708-.708L8.5 10.293V1.5a.5.5 0 0 0-1 0v8.793L5.354 8.146a.5.5 0 1 0-.708.708l3 3z"/>
-                          </svg>
-                        </button>
+                        <?= $this->Form->control('roles_id', ['options' => $roles, 'label' => false, 'class' => 'form-select', 'empty' => 'Selecione', 'value' => $user->role_id]) ?>
                       </td>
-                      <td class="align-middle">
-                        <button type="button" class="btn btn-dark mt-3">
-                          <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-                            <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-                            <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-                          </svg>
-                        </button>
+                      <td class="align-middle text-center">
+                          <button type="button" class="btn btn-primary btn-sm">Sim</button>
                       </td>
                     </tr>
                     <?php endforeach;?>

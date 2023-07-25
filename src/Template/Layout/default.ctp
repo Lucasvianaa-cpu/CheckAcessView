@@ -38,7 +38,7 @@
                 <span class="font-weight-bold text-lg">CheckAcessView</span>
             </a>
         </div>
-        <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
+        <div class=" px-4  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link  active" href="../">
@@ -141,6 +141,197 @@
                         <span class="nav-link-text ms-1">Escala de Plantões</span>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Lançamento de Holerite</title>
+                                <g id="Lançamento de Holerite" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Lançamento de Holerite</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Relatórios</title>
+                                <g id="Relatórios" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Relatórios</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Categorias</title>
+                                <g id="Categorias" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Categorias</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Cargos</title>
+                                <g id="Cargos" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Cargos</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Veículos</title>
+                                <g id="Veículos" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Veículos</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Equipamentos</title>
+                                <g id="Equipamentos" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Equipamentos</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Plano de Saude</title>
+                                <g id="Plano_De_Saude" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Plano de Saude</span>
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link  " href="../Holerite/add">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
+                                xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+                                <title>Endereço</title>
+                                <g id="Endereco" stroke="none" stroke-width="1" fill="none"
+                                    fill-rule="evenodd">
+                                    <g id="credit-card" transform="translate(12.000000, 15.000000)" fill="#FFFFFF">
+                                        <path class="color-background"
+                                            d="M3,0 C1.343145,0 0,1.343145 0,3 L0,4.5 L24,4.5 L24,3 C24,1.343145 22.6569,0 21,0 L3,0 Z"
+                                            id="Path" fill-rule="nonzero"></path>
+                                        <path class="color-foreground"
+                                            d="M24,7.5 L0,7.5 L0,15 C0,16.6569 1.343145,18 3,18 L21,18 C22.6569,18 24,16.6569 24,15 L24,7.5 Z M3,13.5 C3,12.67155 3.67158,12 4.5,12 L6,12 C6.82842,12 7.5,12.67155 7.5,13.5 C7.5,14.32845 6.82842,15 6,15 L4.5,15 C3.67158,15 3,14.32845 3,13.5 Z M10.5,12 C9.67158,12 9,12.67155 9,13.5 C9,14.32845 9.67158,15 10.5,15 L12,15 C12.82845,15 13.5,14.32845 13.5,13.5 C13.5,12.67155 12.82845,12 12,12 L10.5,12 Z"
+                                            id="Shape"></path>
+                                    </g>
+                                </g>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Endereço</span>
+                    </a>
+                </li>
                
                 <li class="nav-item">
                     <!--Modifiquei o link da navegação ao novo padrão-->
@@ -178,20 +369,12 @@
                 <nav aria-label="breadcrumb">
                 <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
                     <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="javascript:;">Dashboard</a></li>
-                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Holerite</li>
+                    <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Dashboard</li>
                 </ol>
-                <h6 class="font-weight-bold mb-0">Holerite</h6>
+                <h6 class="font-weight-bold mb-0">Dashboard</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                <div class="ms-md-auto pe-md-3 d-flex align-items-center">
-                    <div class="input-group">
-                    <span class="input-group-text text-body bg-white  border-end-0 ">
-                        <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-                        </svg>
-                    </span>
-                    <input type="text" class="form-control ps-0" placeholder="Buscar">
-                    </div>
+                
                 </div>
                 <ul class="navbar-nav  justify-content-end">
                     <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

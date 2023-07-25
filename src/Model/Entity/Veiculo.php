@@ -32,7 +32,6 @@ class Veiculo extends Entity
         'placa' => true,
         'modelo' => true,
         'cor' => true,
-        'veiculoscol' => true,
         'created' => true,
         'is_active' => true,
         'user_id' => true,

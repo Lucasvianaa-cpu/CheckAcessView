@@ -193,10 +193,10 @@
                     <div class="col-auto my-auto">
                         <div class="h-100">
                             <h3 class="mb-0 font-weight-bold">
-                                Jaine e Lucas
+                                <?= $user->nome ?>
                             </h3>
                             <p class="mb-0">
-                                lucas1042@live.com
+                                <?= $user->email ?>
                             </p>
                         </div>
                     </div>
