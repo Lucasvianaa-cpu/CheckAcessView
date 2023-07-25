@@ -6,7 +6,7 @@
               <div class="d-sm-flex align-items-center">
                 <div>
                   <h6 class="font-weight-semibold text-lg mb-0">Usuários Pendentes de Permissão</h6>
-                  <p class="text-sm">Visualize ou faça o download de seus holerites</p>
+                  <p class="text-sm">Olá, estes são os novos registros de logins, dê as permissões para cada um deles:</p>
                 </div>
                 
               </div>
