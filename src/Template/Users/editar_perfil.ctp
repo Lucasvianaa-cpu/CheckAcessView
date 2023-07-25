@@ -144,27 +144,19 @@
       </div>
       <hr class="horizontal w-100 my-0 dark">
       <div class="container pb-3 pt-3">
-        <ul class="navbar-nav d-none d-lg-flex">
-          <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-          <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">
-              Meu Perfil
-            </a>
-          </li>
-            <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-            <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">
-                Editar Perfil
-            </a>
-            </li>
-        </ul>
-        <div class="ms-md-auto p-0 d-flex align-items-center w-sm-20">
-          <div class="input-group border-dark">
-            <span class="input-group-text border-dark bg-dark text-white">
-              <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="opacity-8">
-                <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z" />
-              </svg>
-            </span>
-            <input type="text" class="form-control border-dark bg-dark" placeholder="Buscar" onfocus="focused(this)" onfocusout="defocused(this)">
-          </div>
+        <div class="p-0 d-flex">
+            <ul class="navbar-nav list-group-horizontal">
+              <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
+                <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">
+                  Meu Perfil
+                </a>
+              </li>
+                <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
+                  <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">
+                      Editar Perfil
+                  </a>
+                </li>
+            </ul>
         </div>
       </div>
     </nav>

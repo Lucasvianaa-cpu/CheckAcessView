@@ -41,7 +41,7 @@
         <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
-                    <a class="nav-link  active" href="../pages/dashboard.html">
+                    <a class="nav-link  active" href="../">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
@@ -141,7 +141,7 @@
                         <span class="nav-link-text ms-1">Escala de Plantões</span>
                     </a>
                 </li>
-
+               
                 <li class="nav-item">
                     <!--Modifiquei o link da navegação ao novo padrão-->
                   
