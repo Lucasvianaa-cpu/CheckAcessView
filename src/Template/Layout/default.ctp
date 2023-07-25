@@ -141,6 +141,7 @@
                         <span class="nav-link-text ms-1">Escala de Plantões</span>
                     </a>
                 </li>
+                <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
                     <a class="nav-link  " href="../Holerite/add">
                         <div
@@ -164,6 +165,7 @@
                         <span class="nav-link-text ms-1">Lançamento de Holerite</span>
                     </a>
                 </li>
+                <?php endif;?>
 
                 <li class="nav-item">
                     <a class="nav-link  " href="../Holerite/add">
