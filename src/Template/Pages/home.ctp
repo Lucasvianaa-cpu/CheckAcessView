@@ -6,9 +6,12 @@ use Cake\Core\Plugin;
 use Cake\Datasource\ConnectionManager;
 use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
+use Cake\View\Helper\HtmlHelper;
 
 $this->layout = false;
 ?>
+
+<?php if($current_user['role_id'] == 4) : ?>
 
 <!DOCTYPE html>
 <html>
@@ -32,7 +35,12 @@ $this->layout = false;
     <div class="header-title">
         <h1>Aguarde o RH definir suas permissões...</h1>
     </div>
+     
 </header>
-
+    <div>
+        <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">Sair</a>
+    </div>
+    
 </body>
 </html>
+<?php endif;?>

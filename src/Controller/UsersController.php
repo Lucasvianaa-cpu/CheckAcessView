@@ -125,8 +125,10 @@ class UsersController extends AppController
 
             if ($user) {
                 $this->Auth->setUser($user);
-                return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
-                // return $this->redirect(['controller' => 'Dashboard' ,'action' => 'index']);
+                //Se for ROLE 4 fazer isso:
+                 return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
+                //se não... fazer isso mas com \users
+                //return $this->redirect(['controller' => 'UsersController' ,'action' => 'index']);
             }
         }
     }
