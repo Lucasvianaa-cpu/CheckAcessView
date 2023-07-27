@@ -125,10 +125,15 @@ class UsersController extends AppController
 
             if ($user) {
                 $this->Auth->setUser($user);
+             //debug($user);exit;
                 //Se for ROLE 4 fazer isso:
-                 return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
-                //se não... fazer isso mas com \users
-                //return $this->redirect(['controller' => 'UsersController' ,'action' => 'index']);
+                if($user['role_id'] == 4){
+                    return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
+                }
+                    
+                else{
+                    return $this->redirect(['controller' => 'Users' ,'action' => 'index']);
+                }        
             }
         }
     }

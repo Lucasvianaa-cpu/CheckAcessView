@@ -47,19 +47,32 @@
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm text-dark font-weight-semibold mb-0">05/07/2023</p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->created->format('d/m/Y') ?></p>
                       </td>
                       <td class="align-middle text-center">
-                        <?= $this->Form->control('roles_id', ['options' => $roles, 'label' => false, 'class' => 'form-select', 'empty' => 'Selecione', 'value' => $user->role_id]) ?>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->role->descricao ?></p>
                       </td>
                       <td class="align-middle text-center">
-                          <button type="button" class="btn btn-primary btn-sm">Sim</button>
+
+                        <?= $this->Html->link(__('Editar'),['action' => 'permissions', $user->id], ['class' => 'btn btn-primary btn-sm']) ?>
+
+                          <!-- <button type="button" class="btn btn-primary btn-sm" id="<?= $user->id ?>">Sim</button> -->
                       </td>
                     </tr>
                     <?php endforeach;?>
                   </tbody>
                 </table>
               </div>
+
+              <div class="paginator">
+        <ul class="pagination">
+            <?= $this->Paginator->first('<' . __('Primeira')) ?>
+            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
+            <?= $this->Paginator->next(__('Próxima') . ' >') ?>
+            <?= $this->Paginator->last(__('Última') . ' >>') ?>
+        </ul>
+        <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
+    </div>
               <div class="border-top py-3 px-3 d-flex align-items-center">
                 <p class="font-weight-semibold mb-0 text-dark text-sm">Página 1 de 10</p>
                 <div class="ms-auto">
