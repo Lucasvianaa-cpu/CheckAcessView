@@ -72,7 +72,7 @@
                 <div class="card-footer text-center pt-0 px-lg-2 px-1">
                   <p class="mb-4 text-xs mx-auto">
                     Já possui uma conta?
-                    <a href="../index.html" class="text-dark font-weight-bold">Entrar</a>
+                    <a href="<?= $this->Url->build(['action' => 'login']);?>" class="text-dark font-weight-bold">Entrar</a>
                   </p>
                   <h6 class="text-dark text-sm mt-5">Copyright © 2023 Jaine Oliveira e Lucas Viana</h6>
                 </div>
