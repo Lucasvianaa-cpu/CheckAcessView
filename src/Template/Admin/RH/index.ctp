@@ -39,10 +39,14 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex align-items-center">
-                            <img src="../assets/img/team-2.jpg" class="avatar avatar-sm rounded-circle me-2" alt="user1">
+                          <?= $this->Html->image('perfil.png', [
+                                'url' => ['controller' => 'img', 'action' => 'perfil.png'],
+                                'width' => '40px', 
+                                'height' => 'auto', 
+                            ]); ?>
                           </div>
                           <div class="d-flex flex-column justify-content-center ms-1">
-                            <h6 class="mb-0 text-sm font-weight-semibold"><?= $user->nome ?></h6>
+                            <h6 class="mb-0 text-sm font-weight-semibold">  <?= $user->nome ?></h6>
                           </div>
                         </div>
                       </td>
