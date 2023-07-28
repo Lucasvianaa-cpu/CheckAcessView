@@ -282,8 +282,25 @@
                         </div>
                         <span class="nav-link-text ms-1">Endereço</span>
                     </a>
-                </li>
-                <?php endif;?>
+                    <ul class="submenu">
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'index']); ?>">
+                            <!-- Ícone da Cidade -->
+                            <!-- Coloque o ícone apropriado aqui -->
+                            <span class="nav-link-text ms-1">Cidade</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Estados', 'action' => 'index']); ?>">
+                            <!-- Ícone do Estado -->
+                            <!-- Coloque o ícone apropriado aqui -->
+                            <span class="nav-link-text ms-1">Estado</span>
+                            </a>
+                        </li>
+                        </ul>
+                    </li>
+                    <?php endif; ?>
+                
                
                 <li class="nav-item">
                     <!--Modifiquei o link da navegação ao novo padrão-->
@@ -400,19 +417,5 @@
     </footer>
 </body>
 
-<script>
-  const menuToggle = document.getElementById('menuToggle');
-  const sidebar = document.getElementById('sidebar');
-
-  menuToggle.addEventListener('click', () => {
-    if (sidebar.style.left === '-250px') {
-      // Se o menu estiver fechado, abrir
-      sidebar.style.left = '0';
-    } else {
-      // Se o menu estiver aberto, fechar
-      sidebar.style.left = '-250px';
-    }
-  });
-</script>
 
 </html>
