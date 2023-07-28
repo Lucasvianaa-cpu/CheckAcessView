@@ -352,18 +352,16 @@
                 </div>
                 <ul class="navbar-nav  justify-content-end">
                 
-                <!-- Botão não funciona -->
-                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                    <!-- Correção do atributo href -->
-                    <a href="javascript:void(0);" onclick="toggleSidenav();" class="nav-link text-body p-0" id="iconNavbarSidenav">
-                        <div class="sidenav-toggler-inner">
-                        <i class="sidenav-toggler-line"></i>
-                        <i class="sidenav-toggler-line"></i>
-                        <i class="sidenav-toggler-line"></i>
-                        </div>
-                    </a>
-                </li>
-
+                        <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                            <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                                <div class="sidenav-toggler-inner">
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                <i class="sidenav-toggler-line"></i>
+                                </div>
+                            </a>
+                        </li>
+                        
                     <li class="nav-item ps-2 d-flex align-items-center">
                         <a>
                             <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
@@ -412,6 +410,7 @@
     <footer>
         <?= $this->Html->script('popper.min.js'); ?>
         <?= $this->Html->script('bootstrap.min.js'); ?>
+        <!--PerfectScrollbar é o botão oculto do menu ao diminuir a tela-->
         <?= $this->Html->script('perfect-scrollbar.min.js'); ?>
         <?= $this->Html->script('smooth-scrollbar.min.js'); ?>
         <?= $this->Html->script('chartjs.min.js'); ?>
@@ -420,22 +419,4 @@
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
     </footer>
 </body>
-
-<!-- Adicione o script JavaScript -->
-<script>
-  // Função para mostrar ou ocultar o elemento <aside> com a classe "sidenav"
-  function toggleSidenav() {
-    var sidenavElement = document.getElementById("sidenav-main");
-    if (sidenavElement.style.display === "none") {
-      sidenavElement.style.display = "block";
-    } else {
-      sidenavElement.style.display = "none";
-    }
-  }
-
-  // Associe um evento de clique ao elemento com ID "iconNavbarSidenav"
-  document.getElementById("iconNavbarSidenav").addEventListener("click", toggleSidenav);
-</script>
-
-
 </html>
