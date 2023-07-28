@@ -63,22 +63,16 @@
                   </tbody>
                 </table>
               </div>
-
-              <div class="paginator">
-        <ul class="pagination">
-            <?= $this->Paginator->first('<' . __('Primeira')) ?>
-            <?= $this->Paginator->prev('< ' . __('Anterior')) ?>
-            <?= $this->Paginator->next(__('Próxima') . ' >') ?>
-            <?= $this->Paginator->last(__('Última') . ' >>') ?>
-        </ul>
-        <p><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
-    </div>
+            
               <div class="border-top py-3 px-3 d-flex align-items-center">
-                <p class="font-weight-semibold mb-0 text-dark text-sm">Página 1 de 10</p>
-                <div class="ms-auto">
-                  <button class="btn btn-sm btn-white mb-0">Anterior</button>
-                  <button class="btn btn-sm btn-white mb-0">Próximo</button>
+                <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
+                <div class="ms-auto"> 
+                  <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->first(' ' . __('Primeira')) ?></button>
+                  <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->prev(' ' . __('Anterior')) ?></button>
+                  <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->next(__('Próxima') . ' ') ?></button>
+                  <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->last(' ' . __('Última')) ?></button>
                 </div>
+                
               </div>
             </div>
           </div>
