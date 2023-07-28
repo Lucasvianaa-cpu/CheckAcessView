@@ -345,7 +345,7 @@
 
                     <li class="nav-item ps-2 d-flex align-items-center">
                         <a>
-                            <span class="nav-link-text ms-1">$user</span>
+                            <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
                         </a>
                     </li>
                    
