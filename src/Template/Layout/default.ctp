@@ -351,7 +351,7 @@
                 
                 </div>
                 <ul class="navbar-nav  justify-content-end">
-                
+                <!--botão que chama menu-->
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
                                 <div class="sidenav-toggler-inner">
@@ -361,7 +361,7 @@
                                 </div>
                             </a>
                         </li>
-                        
+
                     <li class="nav-item ps-2 d-flex align-items-center">
                         <a>
                             <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
@@ -418,5 +418,6 @@
         <?= $this->Html->script('buttons.js'); ?>
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
     </footer>
+
 </body>
 </html>
