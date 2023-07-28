@@ -37,7 +37,7 @@
                 <span class="font-weight-bold text-lg">CheckAcessView</span>
             </a>
         </div>
-        <div class=" px-4  w-auto d-flex flex-column " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <?php if($current_user['role_id'] == 2) : ?>
@@ -348,8 +348,9 @@
                 <h6 class="font-weight-bold mb-0">Dashboard</h6>
                 </nav>
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                
-                </div>
+          		<div class="ms-md-auto pe-md-3 d-flex align-items-center">
+            			
+          		</div>
                 <ul class="navbar-nav  justify-content-end">
                 <!--botão que chama menu-->
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
@@ -362,11 +363,7 @@
                             </a>
                         </li>
 
-                    <li class="nav-item ps-2 d-flex align-items-center">
-                        <a>
-                            <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
-                        </a>
-                    </li>
+                    
                    
                     <li class="nav-item ps-2 d-flex align-items-center">
                         <a href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>" class="nav-link text-body p-0">
@@ -380,15 +377,18 @@
                     </li>
 
                     <li class="nav-item ps-2 d-flex align-items-center">
-                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">
-                                <div
-                                    class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                                    </svg>
-                                </div>
-                        <span class="nav-link-text ms-1">Sair</span>
+                        <a>
+                            <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item ps-2 d-flex d-flex align-items-center  bg-gray-100 bg-gradient border rounded-2 px-2 ms-4">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>" role="button">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                            </svg>
+                            <span class="nav-link-text ms-1">Sair</span>
                         </a>
                     </li>
                     
