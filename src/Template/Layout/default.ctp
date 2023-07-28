@@ -28,6 +28,7 @@
 
 <body class="g-sidenav-show  bg-gray-100">
 
+<!-- MENU LATERAL FIXO -->
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
         <div class="sidenav-header">
             <i class="fas fa-times p-3 cursor-pointer text-secondary opacity-5 position-absolute end-0 top-0 d-none d-xl-none"
@@ -350,15 +351,18 @@
                 
                 </div>
                 <ul class="navbar-nav  justify-content-end">
-                    <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
-                    <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
+                
+                <!-- Botão não funciona -->
+                <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
+                    <!-- Correção do atributo href -->
+                    <a href="javascript:void(0);" onclick="toggleSidenav();" class="nav-link text-body p-0" id="iconNavbarSidenav">
                         <div class="sidenav-toggler-inner">
                         <i class="sidenav-toggler-line"></i>
                         <i class="sidenav-toggler-line"></i>
                         <i class="sidenav-toggler-line"></i>
                         </div>
                     </a>
-                    </li>
+                </li>
 
                     <li class="nav-item ps-2 d-flex align-items-center">
                         <a>
@@ -416,6 +420,22 @@
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
     </footer>
 </body>
+
+<!-- Adicione o script JavaScript -->
+<script>
+  // Função para mostrar ou ocultar o elemento <aside> com a classe "sidenav"
+  function toggleSidenav() {
+    var sidenavElement = document.getElementById("sidenav-main");
+    if (sidenavElement.style.display === "none") {
+      sidenavElement.style.display = "block";
+    } else {
+      sidenavElement.style.display = "none";
+    }
+  }
+
+  // Associe um evento de clique ao elemento com ID "iconNavbarSidenav"
+  document.getElementById("iconNavbarSidenav").addEventListener("click", toggleSidenav);
+</script>
 
 
 </html>
