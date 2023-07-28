@@ -40,7 +40,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <?php if($current_user['role_id'] == 2) : ?>
-                    <a class="nav-link  active" href="/users">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
@@ -67,7 +67,7 @@
                     <?php endif; ?>
 
                     <?php if ($current_user['role_id'] != 2): ?>
-                        <a class="nav-link  active" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
@@ -97,7 +97,7 @@
 
                 <?php if($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../holerites/">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="21.5px" height="21.5px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -119,7 +119,7 @@
                 <!-- qnd tem mais que um id -->
                 <?php if($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../PontosHoras">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
@@ -133,7 +133,7 @@
 
                 <?php if($current_user['role_id'] == 3) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Plantoes/">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Plantoes', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar2-date-fill" viewBox="0 0 16 16">
@@ -162,7 +162,7 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'add']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg height="20px" version="1.1" viewBox="0 0 32 32" width="20px" xmlns="http://www.w3.org/2000/svg">
@@ -178,7 +178,7 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                    <a class="nav-link  active" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             
@@ -195,7 +195,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Categorias', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="22" height="22" viewBox="0 0 40 40" enable-background="new 0 0 40 40" xml:space="preserve" fill="#ffffff" stroke="#ffffff">
@@ -211,7 +211,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cargos', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg fill="#ffffff" width="18" height="18" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
@@ -227,7 +227,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Veiculos', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
@@ -243,7 +243,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Equipamentos', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
@@ -257,7 +257,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'PlanosSaudes', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
@@ -273,7 +273,7 @@
                 <!-- Criar SUBMENUS de CIDADE, ESTADO ... -->
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../Holerite/add">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Enderecos', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -342,15 +342,34 @@
                         </div>
                     </a>
                     </li>
+
+                    <li class="nav-item ps-2 d-flex align-items-center">
+                        <a>
+                            <span class="nav-link-text ms-1">$user</span>
+                        </a>
+                    </li>
                    
                     <li class="nav-item ps-2 d-flex align-items-center">
-                        <a href="javascript:;" class="nav-link text-body p-0">
+                        <a href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>" class="nav-link text-body p-0">
                         <?= $this->Html->image('perfil.png', [
                                 'url' => ['controller' => 'img', 'action' => 'perfil.png'],
                                 'width' => '40px', 
                                 'height' => 'auto', 
                             ]); ?>
                             
+                        </a>
+                    </li>
+
+                    <li class="nav-item ps-2 d-flex align-items-center">
+                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">
+                                <div
+                                    class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
+                                        <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
+                                        <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
+                                    </svg>
+                                </div>
+                        <span class="nav-link-text ms-1">Sair</span>
                         </a>
                     </li>
                     
