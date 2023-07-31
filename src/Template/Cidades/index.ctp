@@ -42,6 +42,13 @@
             <?php endforeach; ?>
         </tbody>
     </table>
+
+    <!-- Botão de adicionar-->
+    <div> 
+        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'add']); ?> "?>
+        <span class="nav-link-text ms-1">Adicionar Cidades</span> 
+    </div>
+
     <div class="paginator">
         <ul class="pagination">
             <?= $this->Paginator->first('<< ' . __('first')) ?>
