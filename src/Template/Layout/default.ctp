@@ -67,6 +67,7 @@
                     </a>
                     <?php endif; ?>
 
+                    <!-- MUDAR ROTA AO CLICAR EM DASHBOARD, FAZER UMA TELA DE BEM VINDO AO SISTEMA AO INVÉS DISTO-->
                     <?php if ($current_user['role_id'] != 2): ?>
                         <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
                         <div
@@ -313,6 +314,21 @@
                         <span class="nav-link-text ms-1">Meu Perfil</span>
                     </a>
                 </li>
+
+                <?php if($current_user['role_id'] == 1) : ?>
+                <li class="nav-item">
+                  
+                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Usuários Cadastrados</span>
+                    </a>
+                </li>
+                <?php endif; ?>
 
                 <li class="nav-item">
                     <!--Modifiquei o link da navegação ao novo padrão-->
