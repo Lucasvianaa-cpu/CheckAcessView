@@ -274,32 +274,29 @@
                 <!-- Criar SUBMENUS de CIDADE, ESTADO ... -->
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Enderecos', 'action' => 'index']); ?>">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                                 <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
                             </svg>
                         </div>
-                        <span class="nav-link-text ms-1">Endereço</span>
+                        <span class="nav-link-text ms-1">Cidades</span>
                     </a>
-                    <ul class="submenu">
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'index']); ?>">
-                            <!-- Ícone da Cidade -->
-                            <!-- Coloque o ícone apropriado aqui -->
-                            <span class="nav-link-text ms-1">Cidade</span>
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Estados', 'action' => 'index']); ?>">
-                            <!-- Ícone do Estado -->
-                            <!-- Coloque o ícone apropriado aqui -->
-                            <span class="nav-link-text ms-1">Estado</span>
-                            </a>
-                        </li>
-                        </ul>
-                    </li>
+                </li>
+                <?php endif; ?>
+                <?php if($current_user['role_id'] == 1) : ?>
+                <li class="nav-item">
+                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Estados', 'action' => 'index']); ?>">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
+                                <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Estados</span>
+                    </a>
+                </li>
                     <?php endif; ?>
                 
                
