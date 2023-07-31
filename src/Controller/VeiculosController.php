@@ -60,7 +60,7 @@ class VeiculosController extends AppController
             }
             $this->Flash->error(__('The veiculo could not be saved. Please, try again.'));
         }
-        $users = $this->Veiculos->Users->find('list', ['limit' => 200]);
+        $users = $this->Veiculos->Users->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $this->set(compact('veiculo', 'users'));
     }
 

@@ -35,7 +35,7 @@ class EquipamentosTable extends Table
         parent::initialize($config);
 
         $this->setTable('equipamentos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('num_patrimonio');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

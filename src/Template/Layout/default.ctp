@@ -300,7 +300,7 @@
                 </li>
                     <?php endif; ?>
                 
-               
+                <?php if ($current_user['role_id'] != 1): ?>
                 <li class="nav-item">
                     <!--Modifiquei o link da navegação ao novo padrão-->
                   
@@ -314,6 +314,38 @@
                         <span class="nav-link-text ms-1">Meu Perfil</span>
                     </a>
                 </li>
+                <?php endif; ?>
+
+                <?php if ($current_user['role_id'] == 1): ?>
+                <li class="nav-item">
+                    <!--Modifiquei o link da navegação ao novo padrão-->
+                  
+                    <a class="nav-link " href="<?= $this->Url->build(['controller'=>'Empresas','action' => 'editarEmpresa']); ?>">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Minha Empresa</span>
+                    </a>
+                </li>
+                <?php endif; ?>
+
+                <?php if($current_user['role_id'] == 1 || $current_user['role_id'] == 2) : ?>
+                <li class="nav-item">
+                  
+                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Funcionarios', 'action' => 'index']); ?>">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
+                                <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z"/>
+                            </svg>
+                        </div>
+                        <span class="nav-link-text ms-1">Funcionários</span>
+                    </a>
+                </li>
+                <?php endif; ?>
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
@@ -329,6 +361,7 @@
                     </a>
                 </li>
                 <?php endif; ?>
+            
 
                 <li class="nav-item">
                     <!--Modifiquei o link da navegação ao novo padrão-->
@@ -395,7 +428,7 @@
                         </a>
                     </li>
 
-                    <li class="nav-item ps-2 d-flex d-flex align-items-center  bg-gray-100 bg-gradient border rounded-2 px-2 ms-4">
+                    <li class="nav-item ps-2 d-flex d-flex align-items-center bg-gray-100 bg-gradient border rounded-2 px-2 ms-4">
                         <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>" role="button">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>

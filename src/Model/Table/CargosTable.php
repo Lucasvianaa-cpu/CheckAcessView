@@ -34,7 +34,7 @@ class CargosTable extends Table
         parent::initialize($config);
 
         $this->setTable('cargos');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Categorias', [

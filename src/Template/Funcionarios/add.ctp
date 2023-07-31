@@ -4,42 +4,58 @@
  * @var \App\Model\Entity\Funcionario $funcionario
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Cargos'), ['controller' => 'Cargos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Cargo'), ['controller' => 'Cargos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Planos Saudes'), ['controller' => 'PlanosSaudes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Planos Saude'), ['controller' => 'PlanosSaudes', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Equipamentos'), ['controller' => 'Equipamentos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Equipamento'), ['controller' => 'Equipamentos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Historicos Pontos'), ['controller' => 'HistoricosPontos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Historicos Ponto'), ['controller' => 'HistoricosPontos', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Holerites'), ['controller' => 'Holerites', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Holerite'), ['controller' => 'Holerites', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Plantoes'), ['controller' => 'Plantoes', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Planto'), ['controller' => 'Plantoes', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="funcionarios form large-9 medium-8 columns content">
-    <?= $this->Form->create($funcionario) ?>
-    <fieldset>
-        <legend><?= __('Add Funcionario') ?></legend>
-        <?php
-            echo $this->Form->control('salario');
-            echo $this->Form->control('cargo_id', ['options' => $cargos]);
-            echo $this->Form->control('is_active');
-            echo $this->Form->control('plano_saude_id', ['options' => $planosSaudes, 'empty' => true]);
-            echo $this->Form->control('empresa_id', ['options' => $empresas]);
-            echo $this->Form->control('user_id', ['options' => $users]);
-            echo $this->Form->control('plantoes._ids', ['options' => $plantoes]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+
+<div class="container-fluid my-2 py-3">
+    <div class="col-12 mb-4">
+        <div class="card border shadow-xs h-100">
+            <div class="card-header pb-0 p-3">
+                <div class="row">
+                    <div class="col-md-8 col-9">
+                        <h6 class="mb-0 font-weight-semibold text-lg">Vincular Funcionário</h6>
+                        <p class="text-sm mb-1">Preencha os campos abaixo</p>
+                    </div>
+                    <div class="">
+                        <?= $this->Form->create($funcionario, ['class'=> 'row g-3']) ?>
+                        
+                        <form class="row g-3">
+                            <div class="col-md-8 pb-3">
+                                <?= $this->Form->control('user_id', ['type' => 'select','label' => 'Funcionário', 'options' => $users, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o usuário', 'empty' => 'Selecione'  ]); ?>           
+                            </div>
+                            <div class="col-4">
+                                <?= $this->Form->control('salario', ['type' => 'text', 'label' => 'Salário', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário']); ?>
+                            </div>
+                            <div class="col-6">
+                                <?= $this->Form->control('cargo_id', ['type' => 'select','label' => 'Cargo', 'options' => $cargos, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o cargo', 'empty' => 'Selecione'  ]); ?>           
+                            </div>
+                            <div class="col-6">
+                                <?= $this->Form->control('plano_saude_id', ['type' => 'select','label' => 'Plano de Saúde', 'options' => $planosSaudes, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o plano', 'empty' => 'Selecione'  ]); ?>           
+                            </div>
+                            <div class="col-10">
+                                <?= $this->Form->control('empresa_id', ['type' => 'select','label' => 'Empresa', 'options' => $empresas, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione a empresa', 'empty' => 'Selecione'  ]); ?>           
+                            </div>
+
+                            <div class="col-2">
+                                <label for="" class="form-label"></label>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" id="gridCheck">
+                                    <label class="form-check-label" for="gridCheck">
+                                        Ativo
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+                                <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>
+                                <a class="btn btn-sm btn-white"
+                                    href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
+                            </div>
+                            <?= $this->Form->end() ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+

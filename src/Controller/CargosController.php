@@ -60,7 +60,7 @@ class CargosController extends AppController
             }
             $this->Flash->error(__('The cargo could not be saved. Please, try again.'));
         }
-        $categorias = $this->Cargos->Categorias->find('list', ['limit' => 200]);
+        $categorias = $this->Cargos->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $this->set(compact('cargo', 'categorias'));
     }
 

@@ -50,7 +50,9 @@ class EquipamentosController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Users');
         $equipamento = $this->Equipamentos->newEntity();
+
         if ($this->request->is('post')) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
             if ($this->Equipamentos->save($equipamento)) {
@@ -60,7 +62,8 @@ class EquipamentosController extends AppController
             }
             $this->Flash->error(__('The equipamento could not be saved. Please, try again.'));
         }
-        $funcionarios = $this->Equipamentos->Funcionarios->find('list', ['limit' => 200]);
+        
+        $funcionarios = $this->Users->find('list', ['limit' => 200]);
         $this->set(compact('equipamento', 'funcionarios'));
     }
 

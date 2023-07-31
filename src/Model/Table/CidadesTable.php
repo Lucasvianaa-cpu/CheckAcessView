@@ -34,7 +34,7 @@ class CidadesTable extends Table
         parent::initialize($config);
 
         $this->setTable('cidades');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->belongsTo('Estados', [

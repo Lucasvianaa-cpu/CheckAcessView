@@ -35,7 +35,7 @@ class EmpresasTable extends Table
         parent::initialize($config);
 
         $this->setTable('empresas');
-        $this->setDisplayField('id');
+        $this->setDisplayField('razao_social');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');

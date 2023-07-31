@@ -33,7 +33,7 @@ class PlanosSaudesTable extends Table
         parent::initialize($config);
 
         $this->setTable('planos_saudes');
-        $this->setDisplayField('id');
+        $this->setDisplayField('nome');
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
