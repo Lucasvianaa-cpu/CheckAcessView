@@ -11,6 +11,27 @@ class RhController extends AppController
     public function index()
     {
         $this->loadModel('Users');
+        $this->loadModel('Roles');
+        
+
+        $this->paginate = [
+            'contain' => ['Roles'],
+            'conditions' => ['Users.role_id' => 4],
+            'limit'=> 3
+        ];
+    
+        $users = $this->paginate($this->Users);
+
+        
+
+        $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
+        $this->set(compact('users', 'roles'));
+        
+    }
+
+    public function alterarPermissao()
+    {
+        $this->loadModel('Users');
 
         $this->paginate = [
             'contain' => ['Roles'],
@@ -21,6 +42,7 @@ class RhController extends AppController
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
         $this->set(compact('users', 'roles'));
     }
+
 
     public function permissions($id = null) {
 

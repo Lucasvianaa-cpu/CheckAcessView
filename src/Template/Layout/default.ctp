@@ -157,6 +157,20 @@
                                 <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2z"/>
                             </svg>
                         </div>
+                        <span class="nav-link-text ms-1">Usuários Pendentes</span>
+                    </a>
+                </li>
+                <?php endif;?>
+
+                <?php if($current_user['role_id'] == 2) : ?>
+                <li class="nav-item">
+                    <a class="nav-link  " href="../../admin/rh/alterar_permissao">
+                        <div
+                            class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
+                                <path d="M11 1a2 2 0 0 0-2 2v4a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V9a2 2 0 0 1 2-2h5V3a3 3 0 0 1 6 0v4a.5.5 0 0 1-1 0V3a2 2 0 0 0-2-2z"/>
+                            </svg>
+                        </div>
                         <span class="nav-link-text ms-1">Permissões</span>
                     </a>
                 </li>

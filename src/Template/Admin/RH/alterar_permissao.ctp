@@ -5,8 +5,8 @@
             <div class="card-header border-bottom pb-0">
               <div class="d-sm-flex align-items-center">
                 <div>
-                  <h6 class="font-weight-semibold text-lg mb-0">Usuários Pendentes de Permissão</h6>
-                  <p class="text-sm">Olá, estes são os novos registros de logins, dê as permissões para cada um deles:</p>
+                  <h6 class="font-weight-semibold text-lg mb-0">Permissões</h6>
+                  <p class="text-sm">Visualize ou altere as permissões de todos os usuários:</p>
                 </div>
                 
               </div>
@@ -30,41 +30,39 @@
                       <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data Cadastro</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Permissão</th>
-                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Alterar</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Confirma?</th>
                     </tr>
                   </thead>
                   <tbody>
                     <?php foreach($users as $user): ?>
-                      
-                        <tr>
-                          <td>
-                            <div class="d-flex px-2 py-1">
-                              <div class="d-flex align-items-center">
-                              <?= $this->Html->image('perfil.png', [
-                                    'url' => ['controller' => 'img', 'action' => 'perfil.png'],
-                                    'width' => '40px', 
-                                    'height' => 'auto', 
-                                ]); ?>
-                              </div>
-                              <div class="d-flex flex-column justify-content-center ms-1">
-                                <h6 class="mb-0 text-sm font-weight-semibold">  <?= $user->nome ?></h6>
-                              </div>
-                            </div>
-                          </td>
-                          <td class="align-middle text-center text-sm">
-                            <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->created->format('d/m/Y') ?></p>
-                          </td>
-                          <td class="align-middle text-center">
-                            <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->role->descricao ?></p>
-                          </td>
-                          <td class="align-middle text-center">
+                    <tr>
+                      <td>
+                        <div class="d-flex px-2 py-1">
+                          <div class="d-flex align-items-center">
+                          <?= $this->Html->image('perfil.png', [
+                                'url' => ['controller' => 'img', 'action' => 'perfil.png'],
+                                'width' => '40px', 
+                                'height' => 'auto', 
+                            ]); ?>
+                          </div>
+                          <div class="d-flex flex-column justify-content-center ms-1">
+                            <h6 class="mb-0 text-sm font-weight-semibold">  <?= $user->nome ?></h6>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="align-middle text-center text-sm">
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->created->format('d/m/Y') ?></p>
+                      </td>
+                      <td class="align-middle text-center">
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->role->descricao ?></p>
+                      </td>
+                      <td class="align-middle text-center">
 
-                            <?= $this->Html->link(__('Definir'),['action' => 'permissions', $user->id], ['class' => 'btn btn-dark btn-sm']) ?>
+                        <?= $this->Html->link(__('Editar'),['action' => 'permissions', $user->id], ['class' => 'btn btn-dark btn-sm']) ?>
 
-                              <!-- <button type="button" class="btn btn-primary btn-sm" id="<?= $user->id ?>">Sim</button> -->
-                          </td>
-                        </tr>
-                      
+                          <!-- <button type="button" class="btn btn-primary btn-sm" id="<?= $user->id ?>">Sim</button> -->
+                      </td>
+                    </tr>
                     <?php endforeach;?>
                   </tbody>
                 </table>
