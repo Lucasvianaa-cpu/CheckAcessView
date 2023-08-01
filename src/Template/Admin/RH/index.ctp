@@ -30,7 +30,7 @@
                       <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data Cadastro</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Permissão</th>
-                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Alterar</th>
+                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
                     </tr>
                   </thead>
                   <tbody>
