@@ -56,7 +56,7 @@
                         <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cargo->descricao ?></p>
                       </td>
                       <td class="align-middle text-center">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cargo->categoria_id ?></p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cargo->categoria->nome ?></p>
                       </td>
                       <td class="align-middle text-center">
                         <a class="nav-link " href="<?= $this->Html->link(__('View'), ['action' => 'view', $cargo->id]) ?>"> </a>
