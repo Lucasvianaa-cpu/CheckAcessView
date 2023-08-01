@@ -11,7 +11,7 @@
             <div class="card-header pb-0 p-3">
                 <div class="row">
                     <div class="col-md-8 col-9">
-                        <h6 class="mb-0 font-weight-semibold text-lg">Adicionar Veículo</h6>
+                        <h6 class="mb-0 font-weight-semibold text-lg">Adicionar Equipamento</h6>
                         <p class="text-sm mb-1">Preencha os campos abaixo</p>
                     </div>
                     <div class="">
