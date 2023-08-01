@@ -150,7 +150,7 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../../admin/rh/">
+                <a class="nav-link  " href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index']); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
@@ -164,7 +164,8 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="../../admin/rh/alterar_permissao">
+                    <a class="nav-link  " href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'alterarPermissao']); ?>">
+                    
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
