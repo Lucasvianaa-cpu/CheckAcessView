@@ -10,11 +10,22 @@
         <div class="col-12">
           <div class="card border shadow-xs mb-4">
             <div class="card-header border-bottom pb-0">
-              <div class="d-sm-flex align-items-center">
+              <div class="d-sm-flex align-items-center justify-content-between">
                 <div>
                   <h6 class="font-weight-semibold text-lg mb-0">Cargos</h6>
                   <p class="text-sm">Estes são os cargos registrados em sua empresa...</p>
                 </div>
+                <!-- Botão de adicionar-->
+                <div style="text-align: right;">  <!-- quero deixar a direita-->
+                  <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cargos','action' => 'add']) ?>" role="button">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ionicon" viewBox="0 0 512 512">
+                      <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32"/>
+                      <path fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M256 176v160M336 256H176"/>
+                    </svg>
+                    <span class="nav-link-text ms-1">Adicionar Cargo</span>
+                  </a>
+                </div>
+
                 
               </div>
             </div>
@@ -68,20 +79,15 @@
                   </tbody>
                 </table>
 
-                 <!-- Botão de adicionar-->
-                <div> 
-                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cargos', 'action' => 'add']); ?> "?>
-                    <span class="nav-link-text ms-1">Adicionar Cargo</span> 
-                </div>
-              </div>
             
               <div class="border-top py-3 px-3 d-flex align-items-center">
                 <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
                 <div class="ms-auto"> 
-                  <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->first(' ' . __('Primeira')) ?></button>
+                  <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->first(' ' . __('Primeira')) ?></button> 
                   <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->prev(' ' . __('Anterior')) ?></button>
                   <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->next(__('Próxima') . ' ') ?></button>
                   <button class="btn btn-sm btn-white mb-0"><?= $this->Paginator->last(' ' . __('Última')) ?></button>
+                 
                 </div>
                 
               </div>
