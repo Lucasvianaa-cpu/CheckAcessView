@@ -8,7 +8,7 @@
             <div class="col-xs-12 col-md-6">
                 <?= $this->Form->control('roles_id', ['label' => 'Permissão', 'class' => 'form-select', 'default' => $user->role_id, 'options' => $roles, 'empty' => 'Selecione', 'required' => 'required']); ?>
             </div>
-            <?= $this->Form->button(__('Confirmar Alteração'), ['class' => 'btn btn-primary mt-3']) ?>
+            <?= $this->Form->button(__('Confirmar Alteração'), ['class' => 'btn btn-dark mt-3']) ?>
         </div>
     </div>
 
