@@ -63,12 +63,12 @@
         <div class="p-0 d-flex">
             <ul class="navbar-nav list-group-horizontal">
               <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarEmpresa', $current_user['id']]); ?>">
+                <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller'=>'Empresas','action' => 'visualizarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
                   Minha Empresa
                 </a>
               </li>
                 <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                  <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarEmpresa', $current_user['id']]); ?>">
+                  <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller'=>'Empresas','action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
                       Editar Dados Empresa
                   </a>
                 </li>
@@ -77,7 +77,7 @@
       </div>
     </nav>
     <!-- End Sidenav Top -->
-    <div class="pt-7 pb-6 bg-cover" style="background-image: url('<?= $this->Url->image('header-orange-purple.jpg', ['controller' => 'img', 'action' => 'header-orange-purple.jpg']); ?>'); background-position: bottom;"></div>
+    <div class="pt-7 pb-6 bg-cover" style="background-image: url('<?= $this->Url->image('header.png', ['controller' => 'img', 'action' => 'header.png']); ?>'); background-position: bottom;"></div>
     <div class="container">
       <div class="card card-body py-2 bg-transparent shadow-none">
         <div class="row">
@@ -99,4 +99,82 @@
         </div>
       </div>
     </div>
+
+    <div class="container my-2 py-3">
+        <div class="col-12 mb-4">
+          <div class="card border shadow-xs h-100">
+            <div class="card-header pb-0 p-3">
+              <div class="row">
+                <div class="col-md-8 col-9">
+                  <h6 class="mb-0 font-weight-semibold text-lg">Editar Empresa</h6>
+                  <p class="text-sm mb-1">Insira os dados para alteração</p>
+                </div>
+                <div class="">
+                  <?= $this->Form->create($empresa, ['class'=> 'row g-3']) ?>
+                  <form class="row g-3">
+                    <div class="col-12">
+                      <?= $this->Form->control('razao_social', ['type' => 'text', 'label' => 'Razão Social', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Razão Social']); ?>
+                    </div>
+                    <div class="col-md-12">
+                      <?= $this->Form->control('nome_fantasia', ['type' => 'text', 'label' => 'Nome Fantasia', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o Nome Fantasia']); ?>
+                    </div>
+                    <div class="col-md-6">
+                      <?= $this->Form->control('cnpj', ['type' => 'text', 'label' => 'CNPJ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CNPJ']); ?>
+                    </div>
+                    <div class="col-6">
+                      <?= $this->Form->control('ie', ['type' => 'email','label' => 'IE', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Inscrição Estadual' ]); ?>  
+                    </div>
+
+                    <div class="col-md-3">
+                      <?= $this->Form->control('cep', ['type' => 'text','label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cep' ]); ?>  
+                    </div>
+                    <div class="col-md-9">
+                      <?= $this->Form->control('endereco', ['type' => 'text','label' => 'Rua', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a rua' ]); ?>
+                    </div>
+      
+                    <div class="col-md-4">
+                      <?= $this->Form->control('bairro', ['type' => 'text','label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro' ]); ?>
+                    </div>
+                    <div class="col-md-2">
+                      <?= $this->Form->control('numero', ['type' => 'text','label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número' ]); ?>  
+                    </div>
+
+                    <div class="col-md-6">
+                      <?= $this->Form->control('telefone', ['type' => 'text','label' => 'Telefone', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o telefone' ]); ?>  
+                    </div>
+
+                    <div class="col-md-4 mb-2">
+                      <?= $this->Form->control('qtd_funcionarios', ['type' => 'text','label' => 'Qtd. Funcionários', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Quantidade' ]); ?>  
+                    </div>
+
+                    <div class="col-md-8">
+                      <?= $this->Form->control('desc_empresa', ['type' => 'text','label' => 'Descrição', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Me conte mais sobre essa empresa...' ]); ?>                        
+                    </div>
+
+                    <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+                      
+                      <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>
+                      <a class="btn btn-sm btn-white" href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
+                    </div>
+                  <?= $this->Form->end() ?>
+                </div>
+                
+              </div>
+            </div>     
+       </div>
+      <footer class="footer pt-3  ">
+        <div class="container-fluid">
+          <div class="row align-items-center justify-content-lg-between">
+            <div class="col-lg-6 mb-lg-0 mb-4">
+              <div class="copyright text-center text-xs text-muted text-lg-start">
+                Copyright
+                © <script>
+                  document.write(new Date().getFullYear())
+                </script>
+                Jaine Oliveira e Lucas Viana
+              </div>
+            </div>
+        </footer>
+   
+  </div>
     

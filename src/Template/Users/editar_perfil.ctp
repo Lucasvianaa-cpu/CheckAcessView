@@ -77,7 +77,7 @@
       </div>
     </nav>
     <!-- End Sidenav Top -->
-    <div class="pt-7 pb-6 bg-cover" style="background-image: url('<?= $this->Url->image('header-orange-purple.jpg', ['controller' => 'img', 'action' => 'header-orange-purple.jpg']); ?>'); background-position: bottom;"></div>
+    <div class="pt-7 pb-6 bg-cover" style="background-image: url('<?= $this->Url->image('header.png', ['controller' => 'img', 'action' => 'header.png']); ?>'); background-position: bottom;"></div>
     <div class="container">
       <div class="card card-body py-2 bg-transparent shadow-none">
         <div class="row">
