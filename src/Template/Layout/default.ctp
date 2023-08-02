@@ -37,11 +37,11 @@
                 <span class="font-weight-bold text-lg">CheckAcessView</span>
             </a>
         </div>
-        <div class="collapse navbar-collapse px-4  w-auto " id="sidenav-collapse-main">
+        <div class="collapse navbar-collapse px-4  w-auto vh-100" id="sidenav-collapse-main">
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <?php if($current_user['role_id'] == 2) : ?>
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"

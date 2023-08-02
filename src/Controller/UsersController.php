@@ -132,7 +132,7 @@ class UsersController extends AppController
                 }
                     
                 else{
-                    return $this->redirect(['controller' => 'Users' ,'action' => 'index']);
+                    return $this->redirect(['controller' => 'Users' ,'action' => 'dashboard']);
                 }        
             }
         }
@@ -185,6 +185,17 @@ class UsersController extends AppController
             'contain' => [],
         ]);
         $this->set(compact('user'));
+    }
+
+    public function dashboard (){
+
+        
+        $this->paginate = [
+            'contain' => ['Roles'],
+        ];
+        $users = $this->paginate($this->Users);
+
+        $this->set(compact('users'));
     }
  
     public function sair () {
