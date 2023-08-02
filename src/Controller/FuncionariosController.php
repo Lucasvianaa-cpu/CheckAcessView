@@ -19,8 +19,11 @@ class FuncionariosController extends AppController
      */
     public function index()
     {
+
+        $this->loadModel('PlanosSaudes');
+
         $this->paginate = [
-            'contain' => ['Cargos', 'PlanosSaudes', 'Empresas', 'Users'],
+            'contain' => ['Cargos', 'Empresas', 'Users', 'PlanosSaudes'],
         ];
         $funcionarios = $this->paginate($this->Funcionarios);
 
