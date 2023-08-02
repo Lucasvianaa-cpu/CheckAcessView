@@ -19,8 +19,11 @@ class EquipamentosController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Users');
+        $this->loadModel('Funcionarios');
+
         $this->paginate = [
-            'contain' => ['Funcionarios'],
+            'contain' => ['Funcionarios.Users'],
         ];
         $equipamentos = $this->paginate($this->Equipamentos);
 
@@ -51,10 +54,13 @@ class EquipamentosController extends AppController
     public function add()
     {
         $this->loadModel('Users');
+        $this->loadModel('Funcionarios');
         $equipamento = $this->Equipamentos->newEntity();
 
         if ($this->request->is('post')) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
+
+            // debug($equipamento); exit;
             if ($this->Equipamentos->save($equipamento)) {
                 $this->Flash->success(__('The equipamento has been saved.'));
 
@@ -63,7 +69,18 @@ class EquipamentosController extends AppController
             $this->Flash->error(__('The equipamento could not be saved. Please, try again.'));
         }
         
-        $funcionarios = $this->Users->find('list', ['limit' => 200]);
+        // Cria uma nova consulta para buscar os funcionários e incluir os usuários associados
+        $func = $this->Funcionarios->find('all', [
+            'limit' => 200,
+            'contain' => ['Users'] // Aqui você especifica as associações que deseja buscar
+        ]);
+
+        // No seu controller, onde você busca os funcionários ajustados
+        $funcionarios = [];
+        foreach ($func as $funcionario) {
+            $funcionarios[$funcionario->id] = $funcionario->user->nome;
+        }     
+        
         $this->set(compact('equipamento', 'funcionarios'));
     }
 

@@ -5,6 +5,14 @@
  */
 ?>
 
+<style>
+    .checkbox-input label {
+        font-size: 0.875rem;
+        font-weight: 400;
+        cursor: pointer;
+    }
+</style>
+
 <div class="container-fluid my-2 py-3">
     <div class="col-12 mb-4">
         <div class="card border shadow-xs h-100">
@@ -18,25 +26,23 @@
                         <?= $this->Form->create($equipamento, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-4">
-                                <?= $this->Form->control('num_patrimonio ', ['type' => 'text', 'label' => 'Nº Patrimônio', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número de registro']); ?>
+                                <?= $this->Form->control('num_patrimonio', ['type' => 'text', 'label' => 'Nº Patrimônio', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número de registro']); ?>
                             </div>
                             <div class="col-md-8">
                                 <?= $this->Form->control('descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a descrição do equipamento']); ?>
                             </div>
                             <div class="col-md-10 pb-3">
-                                <?= $this->Form->control('user_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
+                                <?= $this->Form->control('funcionario_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
                             </div>
 
 
-                            <div class="col-2">
+                            <div class="col-2 checkbox-input">
                                 <label for="" class="form-label"></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Ativo
-                                    </label>
+                                <div class="form-check mt-2">
+                                    <?= $this->Form->control('is_active', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
                                 </div>
                             </div>
+
                             <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
 
                                 <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>

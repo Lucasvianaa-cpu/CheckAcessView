@@ -67,7 +67,7 @@
                         <p class="text-sm text-dark font-weight-semibold mb-0"><?= $categoria->descricao ?></p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $categoria->is_active ?></p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $categoria->is_active == 1 ? 'Sim' : 'Não' ?></p>
                       </td>
                       <td class="align-middle text-center">
                         <a class="nav-link " href="<?= $this->Html->link(__('View'), ['action' => 'view', $categoria->id]) ?>"> </a>

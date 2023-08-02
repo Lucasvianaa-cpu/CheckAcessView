@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use Cake\Controller\Controller;
 use Cake\Event\Event;
+use Cake\ORM\Query;
 
 class AppController extends Controller
 {
@@ -60,5 +61,28 @@ class AppController extends Controller
     {
         $current_user = $this->Auth->user();
         $this->set('current_user', $current_user);
+
+        $funcionario_empresa = $this->Auth->user();
+        $funcionario_empresa = $this->Auth->user();
+
+        if ($funcionario_empresa) {
+            // Carrega o modelo User
+            $this->loadModel('Users');
+
+            // Cria uma nova query contendo os dados do usuário e a tabela funcionarios
+            $query = $this->Users->find('all')
+                ->where(['Users.id' => $funcionario_empresa['id']])
+                ->contain(['Funcionarios']); // Aqui você especifica o nome da associação com a tabela funcionarios
+
+            // Executa a consulta e obtém os dados do usuário e a tabela funcionarios
+            $userWithFuncionarios = $query->first();
+
+            // Define o resultado na view para acessá-lo na view
+            $this->set('funcionario_empresa', $userWithFuncionarios);
+        } else {
+            // Se não houver usuário autenticado, define o valor como null na view
+            $this->set('funcionario_empresa', null);
+        }
+       
     }
 }

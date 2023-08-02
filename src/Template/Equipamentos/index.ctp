@@ -73,12 +73,12 @@
                       <p class="text-sm text-dark font-weight-semibold mb-0"><?= $equipamento->is_active == 1 ? 'Sim' : 'Não' ?></p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $equipamento->funcionario->nome ?></p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $equipamento->funcionario->user->nome ?></p>
                       </td>
                       <td class="align-middle text-center">
                         <a class="nav-link " href="<?= $this->Html->link(__('View'), ['action' => 'view', $equipamento->id]) ?>"> </a>
                         <a class="nav-link " href=" <?= $this->Html->link(__('Edi'), ['action' => 'edit', $equipamento->id]) ?> "> </a>
-                        <a class="nav-link " href=" <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $equipamento->id], ['confirm' => __('Are you sure you want to delete # {0}?', $veiculo->id)]) ?>"> </a>
+                        <a class="nav-link " href=" <?= $this->Form->postLink(__('Delete'), ['action' => 'delete', $equipamento->id], ['confirm' => __('Are you sure you want to delete # {0}?', $equipamento->id)]) ?>"> </a>
                       </td>
                     </tr>
                     <?php endforeach;?>
