@@ -32,7 +32,7 @@
 
   <body>
 
-    <body class="">
+    <body class="bg-gray-100">
       <div class="container position-sticky z-index-sticky top-0">
         <div class="row">
           <div class="col-12">
@@ -43,45 +43,48 @@
       <main class="main-content  mt-0">
         <section>
           <div class="page-header min-vh-100">
-            <div class="container">
+            <div class="container-fluid">
               <div class="row">
                 <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
-                  <div class="card card-plain">
-                    <img src="../img/logo/3.png" class="img-fluid" alt="...">
-                    <div class="card-header pb-0 text-left bg-transparent">
-                      <h3 class="font-weight-black text-dark">Login</h3>
-                      <p class="mb-0">Seja bem-vindo(a) ao CheckAcessView</p>
-                    </div>
-                    <div class="card-body">
+                  <div class="card d-flex d-flex flex-column justify-content-center " style="padding-left: 60px; padding-right: 60px;">
+                    
+                      <img src="../img/logo/3.png" class="d-flex  justify-content" alt="...">
+                    
+                    
+                      <div class="card-header pb-0 text-left bg-transparent">
+                        <h3 class="font-weight-black text-dark">Login</h3>
+                        <p class="mb-0">Seja bem-vindo(a) ao CheckAcessView</p>
+                      </div>
+                      <div class="card-body">
 
-                        <?= $this->Form->create('', ['class' => '']) ?>
+                          <?= $this->Form->create('', ['class' => '']) ?>
 
-                        <div class="mb-3">
-                            <?= $this->Form->control('email', ['label' => 'E-mail', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu E-mail']); ?>
-                        </div>
-                        <div class="mb-3">
-                            <?= $this->Form->control('password', ['type' => 'password','label' => 'Senha', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
-                        </div>
-                        <div class="d-flex align-items-center">
-                          <div class="form-check form-check-info text-left mb-0">
-                            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                            <label class="font-weight-normal text-dark mb-0" for="flexCheckDefault">
-                              Lembrar-me
-                            </label>
+                          <div class="mb-3">
+                              <?= $this->Form->control('email', ['label' => 'E-mail', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu E-mail']); ?>
                           </div>
-                          <a href="javascript:;" class="text-xs font-weight-bold ms-auto">Esqueceu a senha?</a>
-                        </div>
-                        <div class="text-center">
-                          <?= $this->Form->button(__('Entrar'), ['class' => 'btn btn-dark w-100 mt-4 mb-3']) ?>
-                        </div>
-                    <?= $this->Form->end(); ?>
-                    </div>
+                          <div class="mb-3">
+                              <?= $this->Form->control('password', ['type' => 'password','label' => 'Senha', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
+                          </div>
+                          <div class="d-flex align-items-center">
+                            <div class="form-check form-check-info text-left mb-0">
+                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                              <label class="font-weight-normal text-dark mb-0" for="flexCheckDefault">
+                                Lembrar-me
+                              </label>
+                            </div>
+                            <a href="javascript:;" class="text-xs font-weight-bold ms-auto">Esqueceu a senha?</a>
+                          </div>
+                          <div class="text-center">
+                            <?= $this->Form->button(__('Entrar'), ['class' => 'btn btn-dark w-100 mt-4 mb-3']) ?>
+                          </div>
+                        <?= $this->Form->end(); ?>
+                      </div>
+                    
                     <div class="card-footer text-center pt-0 px-lg-2 px-1">
                       <p class="mb-4 text-xs mx-auto">
                         Não tem uma conta ainda?
                         <a href="<?= $this->Url->build(['action' => 'adicionar']);?>" class="text-dark font-weight-bold">Registre-se</a>
                       </p>
-                      <h6 class="text-dark text-sm mt-5">Copyright © 2023 Jaine Oliveira e Lucas Viana</h6>
                     </div>
                   </div>
                 </div>
