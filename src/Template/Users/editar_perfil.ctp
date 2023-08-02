@@ -240,15 +240,14 @@
                       <?= $this->Form->control('uid_rfid', ['type' => 'text','label' => 'Tag RFID', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a tag RFID' ]); ?>   
                     </div>
 
-                    <div class="col-2">
-                      <label for="inputRFID" class="form-label"></label>
-                      <div class="form-check">
-                        <input class="form-check-input" type="checkbox" id="gridCheck">
-                        <label class="form-check-label" for="gridCheck">
-                          Realiza Plantão?
-                        </label>
-                      </div>
-                    </div>
+                    <div class="col-2 checkbox-input">
+                                <label for="" class="form-label"></label>
+                                <div class="form-check mt-2">
+                                    <?= $this->Form->control('realiza_plantao', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
+                                </div>
+                            </div>
+
+                  
                     <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
                       
                       <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>

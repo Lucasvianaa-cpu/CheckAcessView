@@ -35,13 +35,10 @@
                                 <?= $this->Form->control('empresa_id', ['type' => 'select','label' => 'Empresa', 'options' => $empresas, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione a empresa', 'empty' => 'Selecione'  ]); ?>           
                             </div>
 
-                            <div class="col-2">
+                            <div class="col-2 checkbox-input">
                                 <label for="" class="form-label"></label>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="gridCheck">
-                                    <label class="form-check-label" for="gridCheck">
-                                        Ativo
-                                    </label>
+                                <div class="form-check mt-2">
+                                    <?= $this->Form->control('is_active', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
                                 </div>
                             </div>
                             <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
