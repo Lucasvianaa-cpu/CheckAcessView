@@ -91,7 +91,87 @@
                       <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
                     </svg>
                   </span>
-                  <input type="text" class="form-control" placeholder="Search">
+                  <input type="text" class="form-control" placeholder="Buscar">
+                </div>
+              </div>
+            </div>
+            <div class="card-body px-0 py-0">
+              <div class="table-responsive p-0">
+                <table class="table align-items-center justify-content-center mb-0">
+                  <thead class="bg-gray-100">
+                    <tr>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Data Cadastro</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Permissão</th>
+                      
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <?php foreach($users as $user): ?>
+                      <tr>
+                        <td>
+                          <div class="d-flex px-2">
+                            <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
+                              <?= $this->Html->image('perfil.png', [
+                                    'url' => ['controller' => 'img', 'action' => 'perfil.png'],
+                                    'width' => '40px', 
+                                    'height' => 'auto', 
+                                ]); ?>
+                            </div>
+                            <div class="my-auto">
+                              <h6 class="mb-0 text-sm font-weight-semibold">  <?= $user->nome ?></h6>
+                            </div>
+                          </div>
+                        </td>
+                        <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->created->format('d/m/Y') ?></p>
+                        </td>
+                        <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->role->descricao ?></p>
+                        </td>
+                        
+                      </tr>
+                    <?php endforeach;?>
+                  </tbody>
+                </table>
+                <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
+                    <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
+                    <ul class="pagination d-flex align-items-center">
+                        <span aria-hidden="true" class="border rounded-2 p-2 mx-1 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->prev('' . __('<span class="text-white" style="font-size: 20px">&laquo;</span>'), ['escape' => false, 'class' => 'prev']) ?></span>
+                        <span aria-hidden="true" class="border rounded-2 p-2 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->next(__('<span class="text-white" style="font-size: 20px">&raquo;</span>') . ' ', ['escape' => false, 'class' => 'next']) ?></span>             
+                    </ul>
+                  </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
+    <!-- SOMENTE ADMIN-->
+    <?php if($current_user['role_id'] == 1) : ?>
+        <div class="col-lg-8 col-md-6">
+          <div class="card shadow-xs border">
+            <div class="card-header border-bottom pb-0">
+              <div class="d-sm-flex align-items-center mb-3">
+                <div>
+                  <h6 class="font-weight-semibold text-lg mb-0">Usuários Cadastrados</h6>
+                  <p class="text-sm mb-sm-0 mb-2">Estes são os usuários cadastrados</p>
+                </div>
+                <div class="ms-auto d-flex">
+                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
+                    <span class="btn-inner--text">Visualizar usuários</span>
+                  </button>
+                </div>
+              </div>
+              <div class="pb-3 d-sm-flex align-items-center">
+                
+                <div class="input-group  ms-auto">
+                  <span class="input-group-text text-body">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
+                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
+                    </svg>
+                  </span>
+                  <input type="text" class="form-control" placeholder="Buscar">
                 </div>
               </div>
             </div>
