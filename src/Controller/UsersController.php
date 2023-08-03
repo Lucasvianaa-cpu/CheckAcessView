@@ -202,9 +202,22 @@ class UsersController extends AppController
         $this->set(compact('user', 'cargo', 'cargos', 'categoria'));
     }
 
-    public function dashboard (){
-        $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
+    public function dashboard ($id = null){
         
+        $this->loadModel('Empresas');
+        $this->loadModel('Equipamentos');
+        $this->loadModel('Categorias');
+        $this->loadModel('Cargos');
+        $this->loadModel('Funcionarios');
+
+        $empresa = $this->Empresas->get($id, [
+            'contain' => [],
+        ]);
+
+        $quantidadeEquipamentos = $this->Equipamentos->find()->count();
+        $quantidadeCategorias= $this->Categorias->find()->count();
+        $quantidadeCargos = $this->Cargos->find()->count();
+        $quantidadeFuncionarios = $this->Funcionarios->find()->count();
         
         $this->paginate = [
             'contain' => ['Roles'],
@@ -213,7 +226,7 @@ class UsersController extends AppController
         
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
-        $this->set(compact('users','roles'));
+        $this->set(compact('users','roles', 'empresa', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios'));
     }
  
     public function sair () {

@@ -33,7 +33,7 @@
           <div class="d-md-flex align-items-center mb-3 mx-2">
             <div class="mb-md-0 mb-3">
               <h3 class="font-weight-bold mb-0">Bem-vindo(a), <?= $current_user['nome'] ?>!</h3>
-              <p class="mb-0">Apps you might like!</p>
+              <p class="mb-0">CheckAcessView</p>
             </div>
             
           </div>
@@ -47,23 +47,31 @@
         <div class="col-lg-4 col-md-6 mb-md-0 mb-4">
           <div class="card shadow-xs border h-100">
             <div class="card-header pb-0">
-              <h6 class="font-weight-semibold text-lg mb-0">Balances over time</h6>
-              <p class="text-sm">Here you have details about the balance.</p>
-              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                <label class="btn btn-white px-3 mb-0" for="btnradio1">12 months</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off">
-                <label class="btn btn-white px-3 mb-0" for="btnradio2">30 days</label>
-                <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off">
-                <label class="btn btn-white px-3 mb-0" for="btnradio3">7 days</label>
-              </div>
+              <h6 class="font-weight-semibold text-lg mb-2">Minha Empresa</h6>
+              <hr class="my-0 mb-3">
+              <ul class="list-group">
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm">
+                    <span class="text-secondary">Razão Social:</span> &nbsp; <?= $empresa->razao_social ?> </li>
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
+                        class="text-secondary">Nome Fantasia:</span> &nbsp; <?= $empresa->nome_fantasia ?></li>
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
+                    class="text-secondary">CNPJ:</span> &nbsp; <?= $empresa->cnpj ?>
+                </li>
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
+                    class="text-secondary">IE:</span> &nbsp;
+                <?= $empresa->ie ?></li>
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
+                    class="text-secondary">Descrição da Empresa:</span> &nbsp;
+                <?= $empresa->desc_empresa ?></li>
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
+                        class="text-secondary">Telefone:</span> &nbsp; <?= $empresa->telefone ?></li>
+                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
+                    class="text-secondary">Quantidade de Funcionários:</span> &nbsp; <?= $empresa->qtd_funcionarios ?>
+                </li>
+              </ul>
+              
             </div>
-            <div class="card-body py-3">
-              <div class="chart mb-2">
-                <canvas id="chart-bars" class="chart-canvas" height="240"></canvas>
-              </div>
-              <button class="btn btn-white mb-0 ms-auto">View report</button>
-            </div>
+          
           </div>
         </div>
 
@@ -78,9 +86,7 @@
                   <p class="text-sm mb-sm-0 mb-2">Estes são os novos registros, defina as permissões para cada um deles</p>
                 </div>
                 <div class="ms-auto d-flex">
-                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
-                    <span class="btn-inner--text">Definir Permissões</span>
-                  </button>
+                  <a class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index']); ?>">Definir Permissões</a>
                 </div>
               </div>
               <div class="pb-3 d-sm-flex align-items-center">
@@ -158,9 +164,7 @@
                   <p class="text-sm mb-sm-0 mb-2">Estes são os usuários cadastrados</p>
                 </div>
                 <div class="ms-auto d-flex">
-                  <button type="button" class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0">
-                    <span class="btn-inner--text">Visualizar usuários</span>
-                  </button>
+                <a class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">Visualizar Usuários</a>
                 </div>
               </div>
               <div class="pb-3 d-sm-flex align-items-center">
@@ -181,9 +185,9 @@
                   <thead class="bg-gray-100">
                     <tr>
                       <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
-                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Data Cadastro</th>
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">CPF</th>
                       <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Permissão</th>
-                      
+                      <th class="text-secondary text-xs font-weight-semibold opacity-7 ps-2">Ativo?</th>
                     </tr>
                   </thead>
                   <tbody>
@@ -204,12 +208,14 @@
                           </div>
                         </td>
                         <td>
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->created->format('d/m/Y') ?></p>
+                          <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->cpf == '' ? '--' : $user->cpf ?></p>
                         </td>
                         <td>
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->role->descricao ?></p>
+                          <p class="text-sm text-dark font-weight-semibold mb-0"><?=$user->role->descricao ?></p>
                         </td>
-                        
+                        <td>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->is_active == 1 ? 'Sim' : 'Não' ?></p>
+                        </td>
                       </tr>
                     <?php endforeach;?>
                   </tbody>
@@ -240,13 +246,13 @@
               <div class="row">
                 <div class="col-12">
                   <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Revenue</p>
-                    <h4 class="mb-2 font-weight-bold">$99,118.5</h4>
+                    <p class="text-sm text-secondary mb-1">Equipamentos</p>
+                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeEquipamentos ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>10.5%
+                        <i class="fa fa-chevron-up text-xs me-1"></i>
                       </span>
-                      <span class="text-sm ms-1">from $89,740.00</span>
+                      <span class="text-sm ms-1">Equipamentos Cadastrados</span>
                     </div>
                   </div>
                 </div>
@@ -266,13 +272,13 @@
               <div class="row">
                 <div class="col-12">
                   <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Transactions</p>
-                    <h4 class="mb-2 font-weight-bold">376</h4>
+                    <p class="text-sm text-secondary mb-1">Categorias</p>
+                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeCategorias ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>55%
+                        <i class="fa fa-chevron-up text-xs me-1"></i>
                       </span>
-                      <span class="text-sm ms-1">from 243</span>
+                      <span class="text-sm ms-1">Categorias Cadastradas</span>
                     </div>
                   </div>
                 </div>
@@ -291,13 +297,13 @@
               <div class="row">
                 <div class="col-12">
                   <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Avg. Transaction</p>
-                    <h4 class="mb-2 font-weight-bold">$450.53</h4>
+                    <p class="text-sm text-secondary mb-1">Cargos</p>
+                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeCargos ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>22%
+                        <i class="fa fa-chevron-up text-xs me-1"></i>
                       </span>
-                      <span class="text-sm ms-1">from $369.30</span>
+                      <span class="text-sm ms-1">Cargos Cadastrados</span>
                     </div>
                   </div>
                 </div>
@@ -316,13 +322,13 @@
               <div class="row">
                 <div class="col-12">
                   <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Coupon Sales</p>
-                    <h4 class="mb-2 font-weight-bold">$23,364.55</h4>
+                    <p class="text-sm text-secondary mb-1">Funcionários</p>
+                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeFuncionarios ?></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>18%
+                        <i class="fa fa-chevron-up text-xs me-1"></i>
                       </span>
-                      <span class="text-sm ms-1">from $19,800.40</span>
+                      <span class="text-sm ms-1">Funcionários da Empresa</span>
                     </div>
                   </div>
                 </div>
@@ -376,92 +382,12 @@
                 Jaine Oliveira e Lucas Viana.
               </div>
             </div>
-            <div class="col-lg-6">
-              <ul class="nav nav-footer justify-content-center justify-content-lg-end">
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com" class="nav-link text-xs text-muted" target="_blank">Creative Tim</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/presentation" class="nav-link text-xs text-muted" target="_blank">About Us</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/blog" class="nav-link text-xs text-muted" target="_blank">Blog</a>
-                </li>
-                <li class="nav-item">
-                  <a href="https://www.creative-tim.com/license" class="nav-link text-xs pe-0 text-muted" target="_blank">License</a>
-                </li>
-              </ul>
-            </div>
           </div>
         </div>
       </footer>
     </div>
   </main>
-  <div class="fixed-plugin">
-    <a class="fixed-plugin-button text-dark position-fixed px-3 py-2">
-      <i class="fa fa-cog py-2"></i>
-    </a>
-    <div class="card shadow-lg ">
-      <div class="card-header pb-0 pt-3 ">
-        <div class="float-start">
-          <h5 class="mt-3 mb-0">Corporate UI Configurator</h5>
-          <p>See our dashboard options.</p>
-        </div>
-        <div class="float-end mt-4">
-          <button class="btn btn-link text-dark p-0 fixed-plugin-close-button">
-            <i class="fa fa-close"></i>
-          </button>
-        </div>
-        <!-- End Toggle Button -->
-      </div>
-      <hr class="horizontal dark my-1">
-      <div class="card-body pt-sm-3 pt-0">
-        <!-- Sidebar Backgrounds -->
-        <div>
-          <h6 class="mb-0">Sidebar Colors</h6>
-        </div>
-        <a href="javascript:void(0)" class="switch-trigger background-color">
-          <div class="badge-colors my-2 text-start">
-            <span class="badge filter bg-gradient-primary active" data-color="primary" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-info" data-color="info" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-success" data-color="success" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-warning" data-color="warning" onclick="sidebarColor(this)"></span>
-            <span class="badge filter bg-gradient-danger" data-color="danger" onclick="sidebarColor(this)"></span>
-          </div>
-        </a>
-        <!-- Sidenav Type -->
-        <div class="mt-3">
-          <h6 class="mb-0">Sidenav Type</h6>
-          <p class="text-sm">Choose between 2 different sidenav types.</p>
-        </div>
-        <div class="d-flex">
-          <button class="btn bg-gradient-primary w-100 px-3 mb-2 active" data-class="bg-slate-900" onclick="sidebarType(this)">Dark</button>
-          <button class="btn bg-gradient-primary w-100 px-3 mb-2 ms-2" data-class="bg-white" onclick="sidebarType(this)">White</button>
-        </div>
-        <p class="text-sm d-xl-none d-block mt-2">You can change the sidenav type just on desktop view.</p>
-        <!-- Navbar Fixed -->
-        <div class="mt-3">
-          <h6 class="mb-0">Navbar Fixed</h6>
-        </div>
-        <div class="form-check form-switch ps-0">
-          <input class="form-check-input mt-1 ms-auto" type="checkbox" id="navbarFixed" onclick="navbarFixed(this)">
-        </div>
-        <hr class="horizontal dark my-sm-4">
-        <a class="btn bg-gradient-dark w-100" href="https://www.creative-tim.com/product/corporate-ui-dashboard">Free Download</a>
-        <a class="btn btn-outline-dark w-100" href="https://www.creative-tim.com/learning-lab/bootstrap/license/corporate-ui-dashboard">View documentation</a>
-        <div class="w-100 text-center">
-          <a class="github-button" href="https://github.com/creativetimofficial/corporate-ui-dashboard" data-icon="octicon-star" data-size="large" data-show-count="true" aria-label="Star creativetimofficial/corporate-ui-dashboard on GitHub">Star</a>
-          <h6 class="mt-3">Thank you for sharing!</h6>
-          <a href="https://twitter.com/intent/tweet?text=Check%20Corporate%20UI%20Dashboard%20made%20by%20%40CreativeTim%20%23webdesign%20%23dashboard%20%23bootstrap5&amp;url=https%3A%2F%2Fwww.creative-tim.com%2Fproduct%2Fcorporate-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-            <i class="fab fa-twitter me-1" aria-hidden="true"></i> Tweet
-          </a>
-          <a href="https://www.facebook.com/sharer/sharer.php?u=https://www.creative-tim.com/product/corporate-ui-dashboard" class="btn btn-dark mb-0 me-2" target="_blank">
-            <i class="fab fa-facebook-square me-1" aria-hidden="true"></i> Share
-          </a>
-        </div>
-      </div>
-    </div>
-  </div>
+
 
   <?= $this->Flash->render() ?>
     <div>

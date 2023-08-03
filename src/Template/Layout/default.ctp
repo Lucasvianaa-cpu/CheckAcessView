@@ -42,7 +42,7 @@
                     <?php if ($current_user['role_id'] != 4): ?>
                         <li class="nav-item">
                         
-                            <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard'])); ?>">
+                            <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
                             <div
                                 class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1"
