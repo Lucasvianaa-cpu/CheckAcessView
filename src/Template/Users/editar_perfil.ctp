@@ -38,7 +38,7 @@
         </nav>
         <ul class="navbar-nav d-none d-lg-flex">
           <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
-            <a href="../" class="nav-link text-white p-0">
+            <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard'])); ?>" class="nav-link text-white p-0">
               Dashboard
             </a>
           </li>

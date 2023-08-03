@@ -36,13 +36,21 @@
                         <span class="px-3 font-weight-bold text-lg text-white me-4">CheckAcessView</span>
                     </div>
                 </nav>
-                <ul class="navbar-nav d-none d-lg-flex">
-                    <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
-                        <a href="../" class="nav-link text-white p-0">
+                    <ul class="navbar-nav d-none d-lg-flex">
+                        <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
+                            <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard'])); ?>" class="nav-link text-white p-0">
                             Dashboard
-                        </a>
-                    </li>
+                            </a>
+                        </li>
+                        <?php if($current_user['role_id'] == 4) : ?>
+                                    <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
+                                    <a href="<?= str_replace('/admin', '', $this->Url->build(['action' => 'dashboard'])); ?>" class="nav-link text-white p-0">
+                                    Dashboard
+                                    </a>
+                                </li>
+                        <?php endif; ?>
                 </ul>
+                
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <ul class="navbar-nav ms-md-auto  justify-content-end">
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">

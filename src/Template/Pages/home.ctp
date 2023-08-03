@@ -8,13 +8,13 @@ use Cake\Error\Debugger;
 use Cake\Http\Exception\NotFoundException;
 use Cake\View\Helper\HtmlHelper;
 
-$this->layout = false;
+
 ?>
 
 <?php if($current_user['role_id'] == 4) : ?>
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
+
 <head>
 <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -34,25 +34,40 @@ $this->layout = false;
     400,600,700|Noto+Sans:300,400,500,600,700,800|PT+Mono:300,400,500,600,700" rel="stylesheet" />
     <script src="https://kit.fontawesome.com/349ee9c857.js" crossorigin="anonymous"></script>
 
-    <?= $this->Html->meta('icon') ?>
-    <?= $this->Html->css('base.css') ?>
-    <?= $this->Html->css('style.css') ?>
-    <?= $this->Html->css('home.css') ?>
-    <link href="https://fonts.googleapis.com/css?family=Raleway:500i|Roboto:300,400,700|Roboto+Mono" rel="stylesheet">
+    <?= $this->fetch('meta') ?>
+    <?= $this->fetch('css') ?>
+    <?= $this->fetch('script') ?>
 </head>
-<body class="home">
 
-<header class="row">
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end mt-2">  
-        <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">Sair</a>
+<body class="g-sidenav-show  bg-gray-100">
+
+    <div class="container-fluid py-4 px-5">
+      <div class="row">
+        <div class="col-md-12">
+          <div class="d-md-flex align-items-center mb-3 mx-2">
+            <div class="mb-md-0 mb-3">
+              <h3 class="font-weight-bold mb-0">Bem-vindo(a), <?= $current_user['nome'] ?>!</h3>
+              <p class="mb-0">CheckAcessView</p>
+            </div>
+            
+          </div>
+        </div>
+      </div>
+      <hr class="my-0 mb-2">
+      
+        <div class="card border shadow-xs h-1000 p-3 ">
+            <p class="mb-0">Aguarde o RH definir suas permissões de acesso...</p>
+        </div>
+      
+      
+  </div>
+
+  <?= $this->Flash->render() ?>
+    <div>
+        <?= $this->fetch('content') ?>
     </div>
-    <div class="header-image"><?= $this->Html->image('logo/3.png') ?></div>
-    <div class="header-title">
-        <h1>Aguarde o RH definir suas permissões...</h1>
-    </div>
-     
-</header>
-    
+
+
     <footer>
         <?= $this->Html->script('popper.min.js'); ?>
         <?= $this->Html->script('bootstrap.min.js'); ?>
@@ -63,7 +78,9 @@ $this->layout = false;
         <?= $this->Html->script('buttons.js'); ?>
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
     </footer>
+
     
 </body>
+
 </html>
 <?php endif;?>
