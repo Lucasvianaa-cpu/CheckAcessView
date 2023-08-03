@@ -177,53 +177,7 @@
                       <?= $this->Form->control('tipo_sanguineo', ['type' => 'text','label' => 'Tipo Sanguíneo', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ex: O+' ]); ?>  
                     </div>
 
-  
-             
-                    <div class="col-md-4">
-                      <label for="inputCategoria" class="form-label">Categoria</label>
-                      <select id="inputCategoria" class="form-select"> 
-                        <option selected>Selecione</option>
-                        <option>Gerente</option>
-                        <option>.</option>
-                        <option>..</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-
-                    <div class="col-md-4">
-                      <label for="inputCargo" class="form-label">Cargo</label>
-                      <select id="inputCargo" class="form-select"> 
-                        <option selected>Selecione</option>
-                        <option>T.I.</option>
-                        <option>.</option>
-                        <option>..</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-
-                    <div class="col-md-4">
-                      <label for="inputEquipamentos" class="form-label">Equipamentos</label>
-                      <select id="inputEquipamentos" class="form-select"> 
-                        <option selected>Selecione</option>
-                        <option>Notebook</option>
-                        <option>.</option>
-                        <option>..</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-
-                    <div class="col-md-4">
-                      <label for="inputVeiculos" class="form-label">Veículos</label>
-                      <select id="inputVeiculos" class="form-select"> 
-                        <option selected>Selecione</option>
-                        <option>PLACA XXXS</option>
-                        <option>.</option>
-                        <option>..</option>
-                        <option>...</option>
-                      </select>
-                    </div>
-
-                    <div class="col-md-8">
+                    <div class="col-md-12">
                       <?= $this->Form->control('exp_profissional', ['type' => 'text','label' => 'Experiência profissional', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Faça um resumo de suas experiências profissionais...' ]); ?>                        
                     </div>
 

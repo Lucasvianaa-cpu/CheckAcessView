@@ -142,6 +142,9 @@ class UsersController extends AppController
         $this->loadModel('Estados');
         $this->loadModel('Cidades');
         $this->loadModel('Enderecos');
+        $this->loadModel('Categorias');
+        $this->loadModel('Cargos');
+        $this->loadModel('Veiculos');
 
         $user = $this->Users->get($id, [
             'contain' => ['Enderecos'],
@@ -175,27 +178,42 @@ class UsersController extends AppController
         $estados = $this->Estados->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $cidades = $this->Cidades->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $endereco_perfil = $this->Enderecos->find('all', ['contain' => ['Cidades.Estados'], 'order' => ['Enderecos.id' => 'DESC'], 'limit' => 1])->where(['Enderecos.user_id' => $this->Auth->User('id')])->first();
+        $categorias = $this->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $cargos = $this->Cargos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $veiculos = $this->Veiculos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
 
-        $this->set(compact('user', 'roles', 'estados', 'cidades', 'endereco_perfil'));
+        $this->set(compact('user', 'roles', 'estados', 'cidades', 'endereco_perfil', 'categorias', 'cargos', 'veiculos'));
         
     }
 
     public function visualizarPerfil ($id = null){
+
+        $this->loadModel('Cargos');
+        
         $user = $this->Users->get($id, [
-            'contain' => [],
+            'contain' => ['Funcionarios.Cargos.Categorias']
         ]);
-        $this->set(compact('user'));
+
+        $cargo = $user->funcionarios[0]->cargo;
+        $categoria = $cargo->categoria;
+
+        $cargos = $this->Cargos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+
+        $this->set(compact('user', 'cargo', 'cargos', 'categoria'));
     }
 
     public function dashboard (){
-
+        $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
+        
         
         $this->paginate = [
             'contain' => ['Roles'],
+            'limit'=> 3
         ];
+        
         $users = $this->paginate($this->Users);
-
-        $this->set(compact('users'));
+        $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
+        $this->set(compact('users','roles'));
     }
  
     public function sair () {

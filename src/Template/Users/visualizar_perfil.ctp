@@ -142,9 +142,9 @@
                                     class="text-secondary">E-mail Empresarial:</span> &nbsp;
                                 <?= $user->email_empresarial ?></li>
                             <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Categoria:</span> &nbsp; <?= $user->categoria ?></li>
+                                    class="text-secondary">Categoria:</span> &nbsp; <?= $categoria->nome ?></li>
                             <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Cargo:</span> &nbsp; <?= $user->cargo ?></li>
+                                    class="text-secondary">Cargo:</span> &nbsp; <?= $cargo->nome ?></li>
                             <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
                                     class="text-secondary">Realiza Plantão?:</span> &nbsp; <?= $user->realiza_plantao ?>
                             </li>
