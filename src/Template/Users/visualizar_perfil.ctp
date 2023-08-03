@@ -36,19 +36,22 @@
                         <span class="px-3 font-weight-bold text-lg text-white me-4">CheckAcessView</span>
                     </div>
                 </nav>
+                <?php if ($current_user['role_id'] != 4): ?>
                     <ul class="navbar-nav d-none d-lg-flex">
                         <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
                             <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard'])); ?>" class="nav-link text-white p-0">
                             Dashboard
                             </a>
                         </li>
-                        <?php if($current_user['role_id'] == 4) : ?>
-                                    <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
-                                    <a href="<?= str_replace('/admin', '', $this->Url->build(['action' => 'dashboard'])); ?>" class="nav-link text-white p-0">
-                                    Dashboard
-                                    </a>
-                                </li>
-                        <?php endif; ?>
+                <?php endif;?>
+                        <!--CONVIDADO-->
+                    <?php if($current_user['role_id'] == 4) : ?>
+                        <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
+                            <a href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home'])); ?>" class="nav-link text-white p-0">
+                                Dashboard
+                            </a>
+                        </li>
+                    <?php endif;?>
                 </ul>
                 
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
