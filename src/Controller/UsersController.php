@@ -119,34 +119,36 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function login ($id = 1) {
-
-            //verificar como trazer id da empresa de forma dinamica
-            $this->loadModel('Empresas');
-
-            $empresa = $this->Empresas->get($id, [
-                'contain' => [],
-            ]);
-            
-            if ($this->request->is('post')) {
-                $user = $this->Auth->identify();
+    public function login() {
+        $this->loadModel('Empresas');
     
-                if ($user) {
-                    $this->Auth->setUser($user);
-                 //debug($user);exit;
-                    //Se for ROLE 4 fazer isso:
-                    if($user['role_id'] == 4){
-                        return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
+        if ($this->request->is('post')) {
+            $user = $this->Auth->identify();
+            
+            if ($user) {
+                // Carregar o usuário junto com os funcionários e empresas associados
+                $user = $this->Users->get($user['id'], [
+                    'contain' => ['Funcionarios.Empresas']
+                ]);
+                $this->Auth->setUser($user);
+                
+                // Se for ROLE 4, redirecionar para a página inicial
+                if ($user['role_id'] == 4) {
+                    return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+                } else {
+                    // Verificar se há funcionários associados
+                    if (!empty($user['funcionarios'])) {
+                        // Recuperar a empresa associada ao primeiro funcionário do usuário autenticado
+                        $empresa_id = $user['funcionarios'][0]['empresa']['id'];
+                        // Redirecionar para a dashboard passando o ID da empresa buscada
+                        return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+                    } else {
+                        // Caso não haja funcionários associados, redirecionar para uma página de erro ou página inicial
+                        return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'no_funcionarios']);
                     }
-                        
-                    else{
-                        //buscar código da empresa
-                        return $this->redirect(['controller' => 'Users' ,'action' => 'dashboard', $id]);
-                    }        
                 }
             }
-        
-        
+        }
     }
 
     public function editarPerfil ($id = null) {
