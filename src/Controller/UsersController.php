@@ -119,23 +119,34 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function login () {
-        if ($this->request->is('post')) {
-            $user = $this->Auth->identify();
+    public function login ($id = 1) {
 
-            if ($user) {
-                $this->Auth->setUser($user);
-             //debug($user);exit;
-                //Se for ROLE 4 fazer isso:
-                if($user['role_id'] == 4){
-                    return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
+            //verificar como trazer id da empresa de forma dinamica
+            $this->loadModel('Empresas');
+
+            $empresa = $this->Empresas->get($id, [
+                'contain' => [],
+            ]);
+            
+            if ($this->request->is('post')) {
+                $user = $this->Auth->identify();
+    
+                if ($user) {
+                    $this->Auth->setUser($user);
+                 //debug($user);exit;
+                    //Se for ROLE 4 fazer isso:
+                    if($user['role_id'] == 4){
+                        return $this->redirect(['controller' => 'Pages' ,'action' => 'display', 'home']);
+                    }
+                        
+                    else{
+                        //buscar código da empresa
+                        return $this->redirect(['controller' => 'Users' ,'action' => 'dashboard', $id]);
+                    }        
                 }
-                    
-                else{
-                    return $this->redirect(['controller' => 'Users' ,'action' => 'dashboard']);
-                }        
             }
-        }
+        
+        
     }
 
     public function editarPerfil ($id = null) {
