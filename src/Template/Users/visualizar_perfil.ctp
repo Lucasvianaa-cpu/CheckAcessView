@@ -64,7 +64,18 @@
                             <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <div class="avatar avatar-sm position-relative">
-                            <?= $this->Html->image('perfil.png', ['url' => ['controller' => 'img', 'action' => 'perfil.png']]); ?>
+                                <?php if (!empty($user->caminho_foto)): ?>
+                                <?= $this->Html->image($user->caminho_foto, [
+                                    'width' => '40px', 
+                                    'height' => 'auto', 
+                                    'style' => 'border-radius: 20px;'
+                                ]); ?>
+                                <?php else: ?>
+                                    <?= $this->Html->image('perfil.png', [
+                                        'width' => '40px', 
+                                        'height' => 'auto', 
+                                    ]); ?>
+                                <?php endif;?>
                             </div>
                         </li>
                         </a>
@@ -98,7 +109,18 @@
                     <div class="col-auto">
                         <div
                             class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-                            <?= $this->Html->image('perfil.png', ['url' => ['controller' => 'img', 'action' => 'perfil.png']]); ?>
+                            <?php if (!empty($user->caminho_foto)): ?>
+                              <?= $this->Html->image($user->caminho_foto, [
+                                  'width' => '40px', 
+                                  'height' => 'auto', 
+                                  'style' => 'min-height: 155px;'
+                              ]); ?>
+                            <?php else: ?>
+                                <?= $this->Html->image('perfil.png', [
+                                    'width' => '40px', 
+                                    'height' => 'auto', 
+                                ]); ?>
+                            <?php endif;?>
                         </div>
                     </div>
                     <div class="col-auto my-auto">

@@ -118,11 +118,17 @@
                         <td>
                           <div class="d-flex px-2">
                             <div class="avatar avatar-sm rounded-circle bg-gray-100 me-2 my-2">
-                              <?= $this->Html->image('perfil.png', [
-                                    'url' => ['controller' => 'img', 'action' => 'perfil.png'],
+                              <?php if (!empty($user->caminho_foto)): ?>
+                                <?= $this->Html->image($user->caminho_foto, [
                                     'width' => '40px', 
                                     'height' => 'auto', 
                                 ]); ?>
+                              <?php else: ?>
+                                <?= $this->Html->image('perfil.png', [
+                                    'width' => '40px', 
+                                    'height' => 'auto', 
+                                ]); ?>
+                              <?php endif;?>
                             </div>
                             <div class="my-auto">
                               <h6 class="mb-0 text-sm font-weight-semibold">  <?= $user->nome ?></h6>

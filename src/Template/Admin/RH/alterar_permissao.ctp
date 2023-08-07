@@ -39,11 +39,18 @@
                       <td>
                         <div class="d-flex px-2 py-1">
                           <div class="d-flex align-items-center">
-                          <?= $this->Html->image('perfil.png', [
-                                'url' => ['controller' => 'img', 'action' => 'perfil.png'],
-                                'width' => '40px', 
-                                'height' => 'auto', 
-                            ]); ?>
+                            <?php if (!empty($user->caminho_foto)): ?>
+                              <?= $this->Html->image($user->caminho_foto, [
+                                  'width' => '40px', 
+                                  'height' => 'auto', 
+                                  'style' => 'border-radius: 20px;'
+                              ]); ?>
+                            <?php else: ?>
+                                <?= $this->Html->image('perfil.png', [
+                                    'width' => '40px', 
+                                    'height' => 'auto', 
+                                ]); ?>
+                            <?php endif;?>
                           </div>
                           <div class="d-flex flex-column justify-content-center ms-1">
                             <h6 class="mb-0 text-sm font-weight-semibold">  <?= $user->nome ?></h6>
