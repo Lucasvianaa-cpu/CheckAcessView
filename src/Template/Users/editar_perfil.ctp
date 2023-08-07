@@ -61,7 +61,7 @@
               <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
             <li class="nav-item dropdown pe-2 d-flex align-items-center">
               <div class="avatar avatar-sm position-relative">
-                <?= $this->Html->image('perfil.png', ['url' => ['controller' => 'img', 'action' => 'perfil.png']]); ?>
+                <?= $this->Html->image($user->caminho_foto, ['style' => 'border-radius: 15px;']); ?>
               </div>
             </li>
             </a>
@@ -94,7 +94,7 @@
         <div class="row">
           <div class="col-auto">
             <div class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-              <?= $this->Html->image('perfil.png', ['url' => ['controller' => 'img', 'action' => 'perfil.png']]); ?>
+            <?= $this->Html->image($user->caminho_foto, ['style' => 'min-height: 155px;']); ?>
             </div>
           </div>
           <div class="col-auto my-auto">
@@ -120,10 +120,12 @@
                   <p class="text-sm mb-1">Insira seus dados para alteração</p>
                 </div>
                 <div class="">
-                  <?= $this->Form->create($user, ['class'=> 'row g-3']) ?>
-                  <form class="row g-3">
-                    <div class="col-12">
+                  <?= $this->Form->create($user, ['class'=> 'row g-3', 'type' => 'file']) ?>
+                    <div class="col-8">
                       <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
+                    </div>
+                    <div class="col-lg-4">
+                      <?= $this->Form->control('caminho_foto', ['type' => 'file', 'class' => 'form-control']) ?>
                     </div>
                     <div class="col-md-6">
                       <?= $this->Form->control('cpf', ['type' => 'text', 'label' => 'CPF', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cpf']); ?>

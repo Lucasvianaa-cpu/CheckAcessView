@@ -151,7 +151,7 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                <a class="nav-link  " href="<?=  $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index']); ?>">
+                <a class="nav-link  " href="<?= str_replace('/admin/admin', '/admin',   $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
@@ -165,7 +165,7 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                    <a class="nav-link  " href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'alterarPermissao']); ?>">
+                    <a class="nav-link  " href="<?= str_replace('/admin/admin', '/admin', $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'alterarPermissao'])); ?>">
                     
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
@@ -445,11 +445,18 @@
                    
                     <li class="nav-item ps-2 d-flex align-items-center">
                         <a href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>" class="nav-link text-body p-0">
-                        <?= $this->Html->image('perfil.png', [
-                                'url' => ['controller' => 'img', 'action' => 'perfil.png'],
+                        
+                        <?php if (!empty($user->caminho_foto)): ?>
+                            <?= $this->Html->image($user->caminho_foto, [
                                 'width' => '40px', 
                                 'height' => 'auto', 
                             ]); ?>
+                        <?php else: ?>
+                            <?= $this->Html->image('perfil.png', [
+                                'width' => '40px', 
+                                'height' => 'auto', 
+                            ]); ?>
+                        <?php endif;?>
                             
                         </a>
                     </li>

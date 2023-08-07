@@ -59,11 +59,16 @@ class AppController extends Controller
     //! Usuário faz login é capturado os dados do usuário e atribuito a váriavel $current_user
     public function beforeFilter(Event $event)
     {
+        $this->loadModel('Users');
+        
         $current_user = $this->Auth->user();
         $this->set('current_user', $current_user);
 
         $funcionario_empresa = $this->Auth->user();
-        $funcionario_empresa = $this->Auth->user();
+
+        $user = $this->Users->find('all', ['conditions' => ['id' => '3']]);
+        $this->set('user', $user);
+
 
         if ($funcionario_empresa) {
             // Carrega o modelo User

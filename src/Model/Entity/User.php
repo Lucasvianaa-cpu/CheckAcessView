@@ -29,6 +29,7 @@ class User extends Entity
         'email_empresarial' => true,
         'n_carteira_trabalho' => true,
         'realiza_plantao' => true,
+        'caminho_foto' => true,
         'role' => true,
         'veiculos' => true,
     ];

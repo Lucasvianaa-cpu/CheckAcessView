@@ -68,6 +68,10 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
+    $routes->connect('/admin/alterar-permissao', ['controller' => 'Rh', 'action' => 'alterarPermissao']);
+    $routes->connect('/admin/pendentes', ['controller' => 'Rh', 'action' => 'index']);
+
+
 
 
     /*

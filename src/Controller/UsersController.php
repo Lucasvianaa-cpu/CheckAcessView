@@ -179,6 +179,20 @@ class UsersController extends AppController
 
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
+            if (!empty($this->request->getData()['caminho_foto']['name'])) {
+                $file = $this->request->getData()['caminho_foto'];
+                $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+                $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+                if (in_array($ext, $arr_ext)) {
+                    $numeros = rand();
+                    $filename = $user->nome . '-' . $user->sobrenome . '-' . $numeros . '-perfil' . '.' . $ext;
+                    move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
+                    $user->caminho_foto = 'fotos/' . $filename;
+                } else {
+                    $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
+                }
+            }
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
