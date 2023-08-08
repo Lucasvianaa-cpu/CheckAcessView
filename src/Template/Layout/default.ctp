@@ -444,8 +444,6 @@
                     
                    
                     <li class="nav-item ps-2 d-flex align-items-center">
-                        <a href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>" class="nav-link text-body p-0">
-                        
                         <?php if (!empty($user->caminho_foto)): ?>
                             <?= $this->Html->image($user->caminho_foto, [
                                 'width' => '40px', 
