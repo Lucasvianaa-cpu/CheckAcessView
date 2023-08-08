@@ -46,6 +46,7 @@ class Empresa extends Entity
         'telefone' => true,
         'qtd_funcionarios' => true,
         'desc_empresa' => true,
+        'caminho_foto' => true,
         'created' => true,
         'is_active' => true,
         'funcionarios' => true,
