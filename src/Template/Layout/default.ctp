@@ -444,19 +444,19 @@
                     
                    
                     <li class="nav-item ps-2 d-flex align-items-center">
-                        <?php if (!empty($user->caminho_foto)): ?>
-                            <?= $this->Html->image($user->caminho_foto, [
-                                'width' => '40px', 
+                        <?php if (!empty($current_user->caminho_foto)): ?>
+                            <?= $this->Html->image($current_user->caminho_foto, [
+                                'width' => '50px', 
                                 'height' => 'auto', 
                             ]); ?>
+
+                            
                         <?php else: ?>
                             <?= $this->Html->image('perfil.png', [
                                 'width' => '40px', 
                                 'height' => 'auto', 
                             ]); ?>
-                        <?php endif;?>
-                            
-                        </a>
+                        <?php endif; ?>
                     </li>
 
                     <li class="nav-item ps-2 d-flex align-items-center">
