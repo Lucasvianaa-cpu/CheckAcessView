@@ -508,8 +508,21 @@
                                 <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
                             </button>
                             <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                <li><a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller'=> 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a></li>
-                                <li><a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">Sair</a></li>
+                                <?php if ($current_user['role_id'] != 1): ?>
+                                    <li>
+                                        <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller'=> 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a>
+                                    </li>
+                                <?php endif; ?>
+
+                                <?php if($current_user['role_id'] == 1) : ?>
+                                    <li>
+                                        <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller'=> 'Users', 'action' => 'editarEmpresa', $current_user['id']])); ?>">Meu Perfil</a>
+                                    </li>
+                                <?php endif; ?>
+
+                                <li>
+                                    <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">Sair</a>
+                                </li>
                             </ul>
                         </div>
                     </li>
