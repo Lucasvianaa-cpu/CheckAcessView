@@ -145,7 +145,6 @@
                     </div>
                     <div class="col-md-6">
                       <?= $this->Form->control('cidade_id', ['type' => 'select','label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade', 'empty' => 'Selecione', 'default' => $endereco_perfil ? $endereco_perfil->cidade->id : '' ]); ?>  
-          
                     </div>
                     <div class="col-md-2">
                     <?= $this->Form->control('estado_id', ['type' => 'select','label' => 'Estado', 'empty' => 'Selecione', 'options' => $estados, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite o Estado', 'default' => $endereco_perfil ? $endereco_perfil->cidade->estado->id : '']); ?>  

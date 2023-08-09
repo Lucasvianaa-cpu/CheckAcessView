@@ -124,7 +124,7 @@
                       <?= $this->Form->control('cnpj', ['type' => 'text', 'label' => 'CNPJ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CNPJ']); ?>
                     </div>
                     <div class="col-6">
-                      <?= $this->Form->control('ie', ['type' => 'email','label' => 'IE', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Inscrição Estadual' ]); ?>  
+                      <?= $this->Form->control('ie', ['type' => 'text','label' => 'IE', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Inscrição Estadual' ]); ?>  
                     </div>
 
                     <div class="col-md-3">
