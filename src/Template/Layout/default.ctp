@@ -521,7 +521,7 @@
                                 <?php endif; ?>
 
                                 <li>
-                                    <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">Sair</a>
+                                    <a class="dropdown-item" href="<?= str_replace('/admin', '',$this->Url->build(['controller' => 'Users','action' => 'sair'])) ?>">Sair</a>
                                 </li>
                             </ul>
                         </div>

@@ -167,18 +167,11 @@
                       <label for="inputDataNascimento" class="form-label">Data de Nascimento</label>
                       <input type="date" class="form-control" id="inputDataNascimento" placeholder="DD/MM/YYYY">
                     </div>
-
-                    <div class="col-md-8">
-                      <?= $this->Form->control('plano_saude', ['type' => 'text','label' => 'Plano de Saúde', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o plano de saúde' ]); ?>  
-                    </div>
-                    <div class="col-md-2">
-                      <?= $this->Form->control('salario', ['type' => 'text','label' => 'Salário', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ex: R$1.320,00' ]); ?>  
-                    </div>
                     <div class="col-md-2">
                       <?= $this->Form->control('tipo_sanguineo', ['type' => 'text','label' => 'Tipo Sanguíneo', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ex: O+' ]); ?>  
                     </div>
 
-                    <div class="col-md-12">
+                    <div class="col-md-10">
                       <?= $this->Form->control('exp_profissional', ['type' => 'text','label' => 'Experiência profissional', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Faça um resumo de suas experiências profissionais...' ]); ?>                        
                     </div>
 
