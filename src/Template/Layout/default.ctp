@@ -24,6 +24,28 @@
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+    <style>
+    /* Estilize o botão de dropdown quando o mouse passar sobre ele */
+    .dropdown-toggle:hover {
+        box-shadow: none; /* Remove a sombra */
+        border: none;
+        /* Adicione mais estilos aqui, se necessário */
+    }
+    .dropdown-toggle:not(:focus) {
+        outline: none; /* Remove o destaque */
+        border: none;
+    }
+    .dropdown-toggle:not(:hover) {
+        outline: none; /* Remove o destaque */
+        border: none;
+    }
+    .dropdown-toggle:focus {
+        box-shadow: none; /* Remove a sombra */
+        border: none;
+    }
+  
+</style>
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
@@ -429,7 +451,7 @@
           		<div class="ms-md-auto pe-md-3 d-flex align-items-center">
             			
           		</div>
-                <ul class="navbar-nav  justify-content-end">
+                <ul class="navbar-nav ">
                 <!--botão que chama menu-->
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
                             <a href="javascript:;" class="nav-link text-body p-0" id="iconNavbarSidenav">
@@ -443,11 +465,12 @@
 
                     
                    
-                    <li class="nav-item ps-2 d-flex align-items-center">
+                    <!-- <li class="nav-item ps-2 d-flex align-items-center"> 
                         <?php if (!empty($current_user->caminho_foto)): ?>
                             <?= $this->Html->image($current_user->caminho_foto, [
                                 'width' => '50px', 
                                 'height' => 'auto', 
+                                'style' => 'border-radius: 25px;'
                             ]); ?>
 
                             
@@ -463,16 +486,32 @@
                         <a>
                             <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
                         </a>
-                    </li>
+                    </li>-->
+                    
+                    <li class="nav-item ps-2 d-flex align-items-center">
+                        <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                <?php if (!empty($current_user->caminho_foto)): ?>
+                                <?= $this->Html->image($current_user->caminho_foto, [
+                                    'width' => '50px', 
+                                    'height' => 'auto', 
+                                    'style' => 'border-radius: 25px;'
+                                ]); ?>
 
-                    <li class="nav-item ps-2 d-flex d-flex align-items-center bg-gray-100 bg-gradient border rounded-2 px-2 ms-4">
-                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>" role="button">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
-                                <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z"/>
-                                <path fill-rule="evenodd" d="M.146 8.354a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L1.707 7.5H10.5a.5.5 0 0 1 0 1H1.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3z"/>
-                            </svg>
-                            <span class="nav-link-text ms-1">Sair</span>
-                        </a>
+                                
+                                <?php else: ?>
+                                    <?= $this->Html->image('perfil.png', [
+                                        'width' => '40px', 
+                                        'height' => 'auto', 
+                                    ]); ?>
+                                <?php endif; ?>
+                                <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
+                            </button>
+                            <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                <li><a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller'=> 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a></li>
+                                <li><a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users','action' => 'sair']) ?>">Sair</a></li>
+                            </ul>
+                        </div>
                     </li>
                     
                 </ul>
