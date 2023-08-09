@@ -113,6 +113,21 @@ class EmpresasController extends AppController
 
             if ($this->request->is(['patch', 'post', 'put'])) {
                 $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
+
+                if (!empty($this->request->getData()['caminho_foto']['name'])) {
+                    $file = $this->request->getData()['caminho_foto'];
+                    $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+                    $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+                    if (in_array($ext, $arr_ext)) {
+                        $numeros = rand();
+                        $filename = $empresa->razao_social . '-' . $numeros . '-perfil' . '.' . $ext;
+                        move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
+                        $empresa->caminho_foto = 'fotos/' . $filename;
+                    } else {
+                        $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
+                    }
+                }
+                
                 if ($this->Empresas->save($empresa)) {
                     $this->Flash->success(__('The empresa has been saved.'));
     
@@ -123,19 +138,7 @@ class EmpresasController extends AppController
 
             $this->set(compact('empresa'));
 
-            if (!empty($this->request->getData()['caminho_foto']['name'])) {
-                $file = $this->request->getData()['caminho_foto'];
-                $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-                $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
-                if (in_array($ext, $arr_ext)) {
-                    $numeros = rand();
-                    $filename = $empresa->razao_social . '-' . $numeros . '-perfil' . '.' . $ext;
-                    move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
-                    $empresa->caminho_foto = 'fotos/' . $filename;
-                } else {
-                    $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
-                }
-            }
+            
             
         }
 

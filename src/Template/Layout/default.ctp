@@ -44,7 +44,17 @@
         box-shadow: none; /* Remove a sombra */
         border: none;
     }
-  
+    @media (max-width: 992px){
+        .dropdown.dropdown-hover:hover>.dropdown-menu, .dropdown .dropdown-menu.show {
+            position: absolute;
+        }
+    }
+    @media (min-width: 992px){
+        .dropdown.dropdown-hover:hover>.dropdown-menu, .dropdown .dropdown-menu.show {
+            position: absolute;
+            top: 40px;
+        }
+    }
 </style>
 </head>
 
@@ -495,7 +505,7 @@
                                 <?= $this->Html->image($current_user->caminho_foto, [
                                     'width' => '50px', 
                                     'height' => 'auto', 
-                                    'style' => 'border-radius: 25px;'
+                                    'style' => 'border-radius: 25px; min-height: 50px; max-height: 50px'
                                 ]); ?>
 
                                 

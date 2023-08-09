@@ -94,7 +94,7 @@
         <div class="row">
           <div class="col-auto">
             <div class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-            <?= $this->Html->image($user->caminho_foto, ['style' => 'min-height: 155px;']); ?>
+            <?= $this->Html->image($user->caminho_foto, ['style' => 'min-height: 155px; max-height: 155px;' ]); ?>
             </div>
           </div>
           <div class="col-auto my-auto">
