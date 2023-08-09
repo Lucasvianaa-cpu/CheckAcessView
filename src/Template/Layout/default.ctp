@@ -171,7 +171,7 @@
                 </li>
                 <?php endif;?>
 
-                <?php if($current_user['role_id'] == 2) : ?>
+                <?php if($current_user['role_id'] == 1 || $current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
                 <a class="nav-link  " href="<?= str_replace('/admin/admin', '/admin',   $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index'])); ?>">
                         <div
@@ -185,7 +185,7 @@
                 </li>
                 <?php endif;?>
 
-                <?php if($current_user['role_id'] == 2) : ?>
+                <?php if($current_user['role_id'] == 1 || $current_user['role_id'] == 2 ) : ?>
                 <li class="nav-item">
                     <a class="nav-link  " href="<?= str_replace('/admin/admin', '/admin', $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'alterarPermissao'])); ?>">
                     
@@ -253,7 +253,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cargos', 'action' => 'index']); ?>">
+                <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Cargos', 'action' => 'index'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg fill="#ffffff" width="18" height="18" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
@@ -269,7 +269,7 @@
 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Veiculos', 'action' => 'index']); ?>">
+                <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Veiculos', 'action' => 'index'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
@@ -315,7 +315,7 @@
                 
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'index']); ?>">
+                <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Cidades', 'action' => 'index'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
@@ -328,7 +328,7 @@
                 <?php endif; ?>
                 <?php if($current_user['role_id'] == 1) : ?>
                 <li class="nav-item">
-                <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Estados', 'action' => 'index']); ?>">
+                <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Estados', 'action' => 'index'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
