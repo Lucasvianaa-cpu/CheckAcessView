@@ -20,7 +20,8 @@
                         
                         <form class="row g-3">
                             <div class="col-md-8 pb-3">
-                                <?= $this->Form->control('user_id', ['type' => 'select','label' => 'Funcionário', 'options' => $users, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o usuário', 'empty' => 'Selecione'  ]); ?>           
+
+                                <?= $this->Form->control('user_id', ['type' => 'text', 'label' => 'Usuário', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a razão social', 'readonly' => true, 'default' => $user->nome]); ?>
                             </div>
                             <div class="col-4">
                                 <?= $this->Form->control('salario', ['type' => 'text', 'label' => 'Salário', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário']); ?>

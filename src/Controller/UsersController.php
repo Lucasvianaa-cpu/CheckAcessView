@@ -66,7 +66,14 @@ class UsersController extends AppController
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('The user has been saved.'));
 
-                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+                $user = $this->Auth->identify();
+                if($user){
+                    $user = $this->Users->get($user['id'], [
+                        'contain' => ['Funcionarios.Empresas']
+                    ]);
+                    $this->Auth->setUser($user);
+                    return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+                }
             }
             $this->Flash->error(__('The user could not be saved. Please, try again.'));
         }

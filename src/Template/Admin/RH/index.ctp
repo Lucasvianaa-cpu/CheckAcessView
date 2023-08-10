@@ -67,7 +67,7 @@
                           <td class="align-middle text-center">
 
                             <?php
-                              $url = $this->Url->build(['controller' => 'Funcionarios', 'action' => 'vincularUsuario']);
+                              $url = $this->Url->build(['controller' => 'Funcionarios', 'action' => 'vincularUsuario',  $user->id]);
 
                               // Aplicar o str_replace para modificar a URL
                               $url = str_replace('/admin', '', $url);

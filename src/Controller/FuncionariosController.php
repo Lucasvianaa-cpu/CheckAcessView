@@ -71,24 +71,36 @@ class FuncionariosController extends AppController
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
     }
 
-    public function vincularUsuario()
+    public function vincularUsuario($id = null)
     {
+        $this->loadModel('Users');
+
+        $user = $this->Users->get($id, [
+            'contain' => [],
+        ]);
+
         $funcionario = $this->Funcionarios->newEntity();
+
         if ($this->request->is('post')) {
-            $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
+            $data = $this->request->getData();
+
+            // Passo 1: Associar o usuário ao funcionário
+            $funcionario = $this->Funcionarios->patchEntity($funcionario, $data);
+            $funcionario->user = $user;  // Associa o objeto de usuário
+
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('The funcionario has been saved.'));
-
                 return $this->redirect(['controller' => 'Admin/Rh', 'action' => 'index']);
             }
             $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
         }
+
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
         $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
-        $users = $this->Funcionarios->Users->find('list', ['limit' => 200]);
         $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
-        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
+
+        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'plantoes', 'user'));
     }
 
     /**
