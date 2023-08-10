@@ -270,6 +270,7 @@ class UsersController extends AppController
         
         $this->paginate = [
             'contain' => ['Roles'],
+            'conditions' => ['Users.role_id' => 4],
             'limit'=> 3
         ];
         
