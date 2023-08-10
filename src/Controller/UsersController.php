@@ -24,6 +24,8 @@ class UsersController extends AppController
 
         //! Ação de registro permitida sem autenticação
         $this->Auth->allow(['adicionar']);
+        $this->Auth->allow(['esqueciSenha']);
+        $this->Auth->allow(['RedefinirSenha']);
     }
 
     public function index()
@@ -235,6 +237,19 @@ class UsersController extends AppController
 
         $this->set(compact('user', 'cargo', 'cargos', 'categoria'));
     }
+
+    //--Alterar
+
+    public function esqueciSenha() {
+        $this->loadModel('Users');
+    }
+
+    public function redefinirSenha() {
+        $this->loadModel('Users');
+    }
+    
+
+    
 
     public function dashboard ($id = null){
         

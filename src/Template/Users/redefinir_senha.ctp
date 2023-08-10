@@ -52,41 +52,26 @@
                     
                     
                       <div class="card-header pb-0 text-left bg-transparent">
-                        <h3 class="font-weight-black text-dark">Login</h3>
-                        <p class="mb-0">Seja bem-vindo(a) ao CheckAcessView</p>
+                        <h4 class="font-weight-black text-dark">Redefina sua senha</h4>
                       </div>
                       <div class="card-body">
 
                           <?= $this->Form->create('', ['class' => '']) ?>
 
                           <div class="mb-3">
-                              <?= $this->Form->control('email', ['label' => 'E-mail', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu E-mail']); ?>
+                              <?= $this->Form->control('password', ['type' => 'password','label' => 'Nova senha:', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
                           </div>
                           <div class="mb-3">
-                              <?= $this->Form->control('password', ['type' => 'password','label' => 'Senha', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
+                              <?= $this->Form->control('password', ['type' => 'password','label' => 'Confirme sua senha:', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
                           </div>
-                          <div class="d-flex align-items-center">
-                            <div class="form-check form-check-info text-left mb-0">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                              <label class="font-weight-normal text-dark mb-0" for="flexCheckDefault">
-                                Lembrar-me
-                              </label>
-                            </div>
-                           
-                                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'esqueciSenha']);?>" class="text-xs font-weight-bold ms-auto">Esqueceu a senha?</a>
-                          </div>
+                        
                           <div class="text-center">
-                            <?= $this->Form->button(__('Entrar'), ['class' => 'btn btn-dark w-100 mt-4 mb-3']) ?>
+                                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']); ?>" class="btn btn-dark w-100 mt-4 mb-3">
+                                    <?= __('Confirmar') ?>
+                                </a>
                           </div>
                         <?= $this->Form->end(); ?>
                       </div>
-                    
-                    <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                      <p class="mb-4 text-xs mx-auto">
-                        Não tem uma conta ainda?
-                        <a href="<?= $this->Url->build(['action' => 'adicionar']);?>" class="text-dark font-weight-bold">Registre-se</a>
-                      </p>
-                    </div>
                   </div>
                 </div>
               </div>
