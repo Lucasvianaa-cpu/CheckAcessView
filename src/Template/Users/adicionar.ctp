@@ -35,30 +35,36 @@
     </div>
   </div>
   <main class="main-content  mt-0">
-    <section>
-      <div class="page-header min-vh-100">
-        <div class="container">
-          <div class="row">
-            <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
-              <div class="card card-plain">
-                <img src="../img/logo/3.png" class="img-fluid" alt="...">
-                <div class="card-header pb-0 text-left bg-transparent">
-                  <h3 class="font-weight-black text-dark">Registre-se</h3>
-                </div>
+        <section>
+          <div class="page-header min-vh-100">
+            <div class="container-fluid">
+              <div class="row">
+                <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
+                  <div class="card d-flex d-flex flex-column justify-content-center " style="padding-left: 60px; padding-right: 60px;">
+                    
+                      <img src="../img/logo/3.png" class="d-flex  justify-content" alt="...">
+                    
+                    
+                      <div class="card-header pb-0 text-left bg-transparent">
+                        <h3 class="font-weight-black text-dark">Registre-se</h3>
+                      </div>
+                      <div class="card-body">
 
-                <div class="card-body">
-                    <?= $this->Form->create($user) ?>
+                      <?= $this->Form->create($user) ?>
 
                         
                         <div class="mb-3">
-                        <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
+                          <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
                         </div>
-                        
+                        <div class="mb-3">
+                          <?= $this->Form->control('sobrenome', ['type' => 'text', 'label' => 'Sobrenome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu sobrenome']); ?>
+                        </div>
+
                         <div class="mb-3">
                         <?= $this->Form->control('email', ['type' => 'email','label' => 'E-mail', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu e-mail' ]); ?>  
-                        
+
                         </div>
-                       
+
                         <div class="mb-3">
                         <?= $this->Form->control('password', ['type' => 'password','label' => 'Senha', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>                            
 
@@ -67,22 +73,22 @@
                         <?= $this->Form->button(__('Registrar'),['class'=>'btn btn-dark w-100 mt-4 mb-3']) ?>
                         </div>
 
-                    <?= $this->Form->end() ?>
-                </div>
-                <div class="card-footer text-center pt-0 px-lg-2 px-1">
-                  <p class="mb-4 text-xs mx-auto">
-                    Já possui uma conta?
-                    <a href="<?= $this->Url->build(['action' => 'login']);?>" class="text-dark font-weight-bold">Entrar</a>
-                  </p>
-                  <h6 class="text-dark text-sm mt-5">Copyright © 2023 Jaine Oliveira e Lucas Viana</h6>
+                      <?= $this->Form->end() ?>
+                      </div>
+                    
+                    <div class="card-footer text-center pt-0 px-lg-2 px-1">
+                      <p class="mb-4 text-xs mx-auto">
+                        Já possui uma conta?
+                        <a href="<?= $this->Url->build(['action' => 'login']);?>" class="text-dark font-weight-bold">Entrar</a>
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
           </div>
-        </div>
-      </div>
-    </section>
-  </main>
+        </section>
+      </main>
 
   <?= $this->Flash->render() ?>
     <div>

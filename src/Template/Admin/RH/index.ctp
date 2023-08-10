@@ -66,6 +66,14 @@
                           </td>
                           <td class="align-middle text-center">
 
+                            <?php
+                              $url = $this->Url->build(['controller' => 'Funcionarios', 'action' => 'vincularUsuario']);
+
+                              // Aplicar o str_replace para modificar a URL
+                              $url = str_replace('/admin', '', $url);
+                            ?>
+                           
+                            <?= $this->Html->link(__('Vincular Funcionário'), $url, ['class' => 'btn btn-dark btn-sm']) ?>
                             <?= $this->Html->link(__('Definir'),['action' => 'permissions', $user->id], ['class' => 'btn btn-dark btn-sm']) ?>
 
                               <!-- <button type="button" class="btn btn-primary btn-sm" id="<?= $user->id ?>">Sim</button> -->

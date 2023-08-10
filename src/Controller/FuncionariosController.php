@@ -71,6 +71,26 @@ class FuncionariosController extends AppController
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
     }
 
+    public function vincularUsuario()
+    {
+        $funcionario = $this->Funcionarios->newEntity();
+        if ($this->request->is('post')) {
+            $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
+            if ($this->Funcionarios->save($funcionario)) {
+                $this->Flash->success(__('The funcionario has been saved.'));
+
+                return $this->redirect(['controller' => 'Admin/Rh', 'action' => 'index']);
+            }
+            $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+        }
+        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
+        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
+        $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
+        $users = $this->Funcionarios->Users->find('list', ['limit' => 200]);
+        $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
+        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
+    }
+
     /**
      * Edit method
      *
