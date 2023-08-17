@@ -38,10 +38,10 @@
                         <?= $this->Form->create($estado, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-8">
-                                <?= $this->Form->control('nome ', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o estado']); ?>
+                                <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o estado']); ?>
                             </div>
                             <div class="col-md-4 pb-3">
-                            <?= $this->Form->control('sigla ', ['type' => 'text', 'label' => 'Sigla', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a sigla']); ?>
+                            <?= $this->Form->control('sigla', ['type' => 'text', 'label' => 'Sigla', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a sigla']); ?>
                             </div>                                                
 
                             <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">

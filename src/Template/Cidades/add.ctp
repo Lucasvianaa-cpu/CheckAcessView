@@ -18,7 +18,7 @@
                         <?= $this->Form->create($cidade, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-8">
-                                <?= $this->Form->control('nome ', ['type' => 'text', 'label' => 'Nome da Cidade', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número de registro']); ?>
+                                <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome da Cidade', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número de registro']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('estado_id', ['type' => 'select','label' => 'Estado', 'options' => $estados, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o estado', 'empty' => 'Selecione'  ]); ?>           
