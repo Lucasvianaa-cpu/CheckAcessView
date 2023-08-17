@@ -51,11 +51,11 @@ class EmpresasController extends AppController
         if ($this->request->is('post')) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('The empresa has been saved.'));
+                $this->Flash->success(__('Empresa salva.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
+            $this->Flash->error(__('A empresa não pôde ser salva. Por favor, tente novamente.'));
         }
         $this->set(compact('empresa'));
     }
@@ -75,11 +75,11 @@ class EmpresasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('The empresa has been saved.'));
+                $this->Flash->success(__('Empresa atualizada.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
+            $this->Flash->error(__('A empresa não pode ser atualizada. Por favor, tente novamente.'));
         }
         $this->set(compact('empresa'));
     }
@@ -96,51 +96,50 @@ class EmpresasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $empresa = $this->Empresas->get($id);
         if ($this->Empresas->delete($empresa)) {
-            $this->Flash->success(__('The empresa has been deleted.'));
+            $this->Flash->success(__('Empresa deletada'));
         } else {
-            $this->Flash->error(__('The empresa could not be deleted. Please, try again.'));
+            $this->Flash->error(__('A empresa não pôde ser deletada. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
     }
 
+    public function editarEmpresa ($id = null) 
+    {
+        $empresa = $this->Empresas->get($id, [
+            'contain' => [],
+        ]);
 
-        public function editarEmpresa ($id = null) 
-        {
-            $empresa = $this->Empresas->get($id, [
-                'contain' => [],
-            ]);
+        if ($this->request->is(['patch', 'post', 'put'])) {
+            $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
 
-            if ($this->request->is(['patch', 'post', 'put'])) {
-                $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
-
-                if (!empty($this->request->getData()['caminho_foto']['name'])) {
-                    $file = $this->request->getData()['caminho_foto'];
-                    $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-                    $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
-                    if (in_array($ext, $arr_ext)) {
-                        $numeros = rand();
-                        $filename = $empresa->razao_social . '-' . $numeros . '-perfil' . '.' . $ext;
-                        move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
-                        $empresa->caminho_foto = 'fotos/' . $filename;
-                    } else {
-                        $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
-                    }
+            if (!empty($this->request->getData()['caminho_foto']['name'])) {
+                $file = $this->request->getData()['caminho_foto'];
+                $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+                $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+                if (in_array($ext, $arr_ext)) {
+                    $numeros = rand();
+                    $filename = $empresa->razao_social . '-' . $numeros . '-perfil' . '.' . $ext;
+                    move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
+                    $empresa->caminho_foto = 'fotos/' . $filename;
+                } else {
+                    $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
                 }
-                
-                if ($this->Empresas->save($empresa)) {
-                    $this->Flash->success(__('The empresa has been saved.'));
-    
-                    return $this->redirect(['action' => 'index']);
-                }
-                $this->Flash->error(__('The empresa could not be saved. Please, try again.'));
             }
-
-            $this->set(compact('empresa'));
-
             
-            
+            if ($this->Empresas->save($empresa)) {
+                $this->Flash->success(__('Empresa atualizada.'));
+
+                return $this->redirect(['action' => 'index']);
+            }
+            $this->Flash->error(__('A empresa não pôde ser atualizada. Por favor, tente novamente.'));
         }
+
+        $this->set(compact('empresa'));
+
+        
+        
+    }
 
         public function visualizarEmpresa ($id = null){
             $empresa = $this->Empresas->get($id, [

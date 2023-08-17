@@ -54,11 +54,11 @@ class PontosHorasController extends AppController
         if ($this->request->is('post')) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
             if ($this->PontosHoras->save($pontosHora)) {
-                $this->Flash->success(__('The pontos hora has been saved.'));
+                $this->Flash->success(__('Ponto salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The pontos hora could not be saved. Please, try again.'));
+            $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
         $historicosPontos = $this->PontosHoras->HistoricosPontos->find('list', ['limit' => 200]);
         $this->set(compact('pontosHora', 'historicosPontos'));
@@ -79,11 +79,11 @@ class PontosHorasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
             if ($this->PontosHoras->save($pontosHora)) {
-                $this->Flash->success(__('The pontos hora has been saved.'));
+                $this->Flash->success(__('Ponto atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The pontos hora could not be saved. Please, try again.'));
+            $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
         $historicosPontos = $this->PontosHoras->HistoricosPontos->find('list', ['limit' => 200]);
         $this->set(compact('pontosHora', 'historicosPontos'));
@@ -101,9 +101,9 @@ class PontosHorasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $pontosHora = $this->PontosHoras->get($id);
         if ($this->PontosHoras->delete($pontosHora)) {
-            $this->Flash->success(__('The pontos hora has been deleted.'));
+            $this->Flash->success(__('Ponto deletado.'));
         } else {
-            $this->Flash->error(__('The pontos hora could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O ponto não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

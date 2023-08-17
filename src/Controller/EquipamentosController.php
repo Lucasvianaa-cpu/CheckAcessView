@@ -62,11 +62,11 @@ class EquipamentosController extends AppController
 
             // debug($equipamento); exit;
             if ($this->Equipamentos->save($equipamento)) {
-                $this->Flash->success(__('The equipamento has been saved.'));
+                $this->Flash->success(__('Equipamento salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The equipamento could not be saved. Please, try again.'));
+            $this->Flash->error(__('O equipamento não pôde ser salvo. Por favor, tente novamente.'));
         }
         
         // Cria uma nova consulta para buscar os funcionários e incluir os usuários associados
@@ -99,11 +99,11 @@ class EquipamentosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
             if ($this->Equipamentos->save($equipamento)) {
-                $this->Flash->success(__('The equipamento has been saved.'));
+                $this->Flash->success(__('Equipamento atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The equipamento could not be saved. Please, try again.'));
+            $this->Flash->error(__('O equipamento não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Equipamentos->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('equipamento', 'funcionarios'));
@@ -121,9 +121,9 @@ class EquipamentosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $equipamento = $this->Equipamentos->get($id);
         if ($this->Equipamentos->delete($equipamento)) {
-            $this->Flash->success(__('The equipamento has been deleted.'));
+            $this->Flash->success(__('Equipamento deletado.'));
         } else {
-            $this->Flash->error(__('The equipamento could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O equipamento não pôde ser deletado. Por favor, tente novamente'));
         }
 
         return $this->redirect(['action' => 'index']);

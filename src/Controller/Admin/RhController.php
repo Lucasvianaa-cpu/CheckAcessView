@@ -57,11 +57,11 @@ class RhController extends AppController
             $user->role_id = $this->request->getData('roles_id');
 
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('The user has been saved.'));
+                $this->Flash->success(__('Permissão definida.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The user could not be saved. Please, try again.'));
+            $this->Flash->error(__('A permissão não pôde ser definida. Por favor, tente novamente.'));
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200, 'keyField' => 'id', 'valueField' => 'descricao']);
         $this->set(compact('user', 'roles'));

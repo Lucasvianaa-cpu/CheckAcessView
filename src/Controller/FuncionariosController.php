@@ -57,11 +57,11 @@ class FuncionariosController extends AppController
         if ($this->request->is('post')) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('Funcionário salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser salvo. Por favor, tente novamente.'));
         }
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
@@ -89,10 +89,10 @@ class FuncionariosController extends AppController
             $funcionario->user = $user;  // Associa o objeto de usuário
 
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('Funcionário vinculado.'));
                 return $this->redirect(['controller' => 'Admin/Rh', 'action' => 'index']);
             }
-            $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser vinculado. Por favor, tente novamente.'));
         }
 
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
@@ -118,11 +118,11 @@ class FuncionariosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
             if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('The funcionario has been saved.'));
+                $this->Flash->success(__('Funcionário atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The funcionario could not be saved. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
@@ -144,9 +144,9 @@ class FuncionariosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $funcionario = $this->Funcionarios->get($id);
         if ($this->Funcionarios->delete($funcionario)) {
-            $this->Flash->success(__('The funcionario has been deleted.'));
+            $this->Flash->success(__('Funcionário deletado.'));
         } else {
-            $this->Flash->error(__('The funcionario could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O funcionário não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -54,11 +54,11 @@ class EnderecosController extends AppController
         if ($this->request->is('post')) {
             $endereco = $this->Enderecos->patchEntity($endereco, $this->request->getData());
             if ($this->Enderecos->save($endereco)) {
-                $this->Flash->success(__('The endereco has been saved.'));
+                $this->Flash->success(__('Endereço salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The endereco could not be saved. Please, try again.'));
+            $this->Flash->error(__('O endereço não pôde ser salvo. Por favor, tente novamente.'));
         }
         $cidades = $this->Enderecos->Cidades->find('list', ['limit' => 200]);
         $users = $this->Enderecos->Users->find('list', ['limit' => 200]);
@@ -80,11 +80,11 @@ class EnderecosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $endereco = $this->Enderecos->patchEntity($endereco, $this->request->getData());
             if ($this->Enderecos->save($endereco)) {
-                $this->Flash->success(__('The endereco has been saved.'));
+                $this->Flash->success(__('Endereço atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The endereco could not be saved. Please, try again.'));
+            $this->Flash->error(__('O endereço não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $cidades = $this->Enderecos->Cidades->find('list', ['limit' => 200]);
         $users = $this->Enderecos->Users->find('list', ['limit' => 200]);
@@ -103,9 +103,9 @@ class EnderecosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $endereco = $this->Enderecos->get($id);
         if ($this->Enderecos->delete($endereco)) {
-            $this->Flash->success(__('The endereco has been deleted.'));
+            $this->Flash->success(__('Endereço deletado.'));
         } else {
-            $this->Flash->error(__('The endereco could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O endereço não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

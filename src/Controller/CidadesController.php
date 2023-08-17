@@ -54,11 +54,11 @@ class CidadesController extends AppController
         if ($this->request->is('post')) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
             if ($this->Cidades->save($cidade)) {
-                $this->Flash->success(__('The cidade has been saved.'));
+                $this->Flash->success(__('Cidade salva.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cidade could not be saved. Please, try again.'));
+            $this->Flash->error(__('A cidade não pôde ser salva. Por favor, tente novamente.'));
         }
         $estados = $this->Cidades->Estados->find('list', ['limit' => 200]);
         $this->set(compact('cidade', 'estados'));
@@ -79,11 +79,11 @@ class CidadesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
             if ($this->Cidades->save($cidade)) {
-                $this->Flash->success(__('The cidade has been saved.'));
+                $this->Flash->success(__('Cidade atualizada'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cidade could not be saved. Please, try again.'));
+            $this->Flash->error(__('A cidade não pôde ser atualizada. Por favor, tente novamente.'));
         }
         $estados = $this->Cidades->Estados->find('list', ['limit' => 200]);
         $this->set(compact('cidade', 'estados'));
@@ -101,9 +101,9 @@ class CidadesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cidade = $this->Cidades->get($id);
         if ($this->Cidades->delete($cidade)) {
-            $this->Flash->success(__('The cidade has been deleted.'));
+            $this->Flash->success(__('Cidade deletada.'));
         } else {
-            $this->Flash->error(__('The cidade could not be deleted. Please, try again.'));
+            $this->Flash->error(__('A cidade não pôde ser deletada. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

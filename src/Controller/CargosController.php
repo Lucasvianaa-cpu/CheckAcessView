@@ -54,11 +54,11 @@ class CargosController extends AppController
         if ($this->request->is('post')) {
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
             if ($this->Cargos->save($cargo)) {
-                $this->Flash->success(__('O cargo foi salvo.'));
+                $this->Flash->success(__('Cargo salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cargo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O cargo não pôde ser salvo. Por favor, tente novamente.'));
         }
         $categorias = $this->Cargos->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $this->set(compact('cargo', 'categorias'));
@@ -79,11 +79,11 @@ class CargosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
             if ($this->Cargos->save($cargo)) {
-                $this->Flash->success(__('The cargo has been saved.'));
+                $this->Flash->success(__('Cargo atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The cargo could not be saved. Please, try again.'));
+            $this->Flash->error(__('O cargo não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $categorias = $this->Cargos->Categorias->find('list', ['limit' => 200]);
         $this->set(compact('cargo', 'categorias'));
@@ -101,9 +101,9 @@ class CargosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cargo = $this->Cargos->get($id);
         if ($this->Cargos->delete($cargo)) {
-            $this->Flash->success(__('The cargo has been deleted.'));
+            $this->Flash->success(__('Cargo deletado.'));
         } else {
-            $this->Flash->error(__('The cargo could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O cargo não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

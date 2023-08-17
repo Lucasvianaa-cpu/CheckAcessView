@@ -51,11 +51,11 @@ class PlanosSaudesController extends AppController
         if ($this->request->is('post')) {
             $planosSaude = $this->PlanosSaudes->patchEntity($planosSaude, $this->request->getData());
             if ($this->PlanosSaudes->save($planosSaude)) {
-                $this->Flash->success(__('The planos saude has been saved.'));
+                $this->Flash->success(__('Plano de saúde salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The planos saude could not be saved. Please, try again.'));
+            $this->Flash->error(__('O plano de saúde não pôde ser salvo. Por favor, tente novamente.'));
         }
         $this->set(compact('planosSaude'));
     }
@@ -75,11 +75,11 @@ class PlanosSaudesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $planosSaude = $this->PlanosSaudes->patchEntity($planosSaude, $this->request->getData());
             if ($this->PlanosSaudes->save($planosSaude)) {
-                $this->Flash->success(__('The planos saude has been saved.'));
+                $this->Flash->success(__('Plano de saúde atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The planos saude could not be saved. Please, try again.'));
+            $this->Flash->error(__('O plano de saúde não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $this->set(compact('planosSaude'));
     }
@@ -96,9 +96,9 @@ class PlanosSaudesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $planosSaude = $this->PlanosSaudes->get($id);
         if ($this->PlanosSaudes->delete($planosSaude)) {
-            $this->Flash->success(__('The planos saude has been deleted.'));
+            $this->Flash->success(__('Plano de saúde deletado.'));
         } else {
-            $this->Flash->error(__('The planos saude could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O plano de saúde não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

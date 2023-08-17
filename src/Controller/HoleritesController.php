@@ -54,11 +54,11 @@ class HoleritesController extends AppController
         if ($this->request->is('post')) {
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
             if ($this->Holerites->save($holerite)) {
-                $this->Flash->success(__('The holerite has been saved.'));
+                $this->Flash->success(__('Holetite salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The holerite could not be saved. Please, try again.'));
+            $this->Flash->error(__('O holerite não pôde ser salvo. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Holerites->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('holerite', 'funcionarios'));
@@ -79,11 +79,11 @@ class HoleritesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
             if ($this->Holerites->save($holerite)) {
-                $this->Flash->success(__('The holerite has been saved.'));
+                $this->Flash->success(__('Holerite atualizado'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The holerite could not be saved. Please, try again.'));
+            $this->Flash->error(__('O holerite não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Holerites->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('holerite', 'funcionarios'));
@@ -101,9 +101,9 @@ class HoleritesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $holerite = $this->Holerites->get($id);
         if ($this->Holerites->delete($holerite)) {
-            $this->Flash->success(__('The holerite has been deleted.'));
+            $this->Flash->success(__('Holerite deletado.'));
         } else {
-            $this->Flash->error(__('The holerite could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O holerite não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -51,11 +51,11 @@ class EstadosController extends AppController
         if ($this->request->is('post')) {
             $estado = $this->Estados->patchEntity($estado, $this->request->getData());
             if ($this->Estados->save($estado)) {
-                $this->Flash->success(__('The estado has been saved.'));
+                $this->Flash->success(__('Estado salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The estado could not be saved. Please, try again.'));
+            $this->Flash->error(__('O estado não pôde ser salvo. Por favor, tente novamente.'));
         }
         $this->set(compact('estado'));
     }
@@ -75,11 +75,11 @@ class EstadosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $estado = $this->Estados->patchEntity($estado, $this->request->getData());
             if ($this->Estados->save($estado)) {
-                $this->Flash->success(__('The estado has been saved.'));
+                $this->Flash->success(__('Estado atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The estado could not be saved. Please, try again.'));
+            $this->Flash->error(__('O estado não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $this->set(compact('estado'));
     }
@@ -96,9 +96,9 @@ class EstadosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $estado = $this->Estados->get($id);
         if ($this->Estados->delete($estado)) {
-            $this->Flash->success(__('The estado has been deleted.'));
+            $this->Flash->success(__('Estado deletado.'));
         } else {
-            $this->Flash->error(__('The estado could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O estado não pode ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

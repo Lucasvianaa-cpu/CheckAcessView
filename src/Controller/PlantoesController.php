@@ -51,11 +51,11 @@ class PlantoesController extends AppController
         if ($this->request->is('post')) {
             $planto = $this->Plantoes->patchEntity($planto, $this->request->getData());
             if ($this->Plantoes->save($planto)) {
-                $this->Flash->success(__('The planto has been saved.'));
+                $this->Flash->success(__('Plantão salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The planto could not be saved. Please, try again.'));
+            $this->Flash->error(__('O plantão não pôde ser salvo. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Plantoes->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('planto', 'funcionarios'));
@@ -76,11 +76,11 @@ class PlantoesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $planto = $this->Plantoes->patchEntity($planto, $this->request->getData());
             if ($this->Plantoes->save($planto)) {
-                $this->Flash->success(__('The planto has been saved.'));
+                $this->Flash->success(__('Plantão atualizado.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('The planto could not be saved. Please, try again.'));
+            $this->Flash->error(__('O plantão não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Plantoes->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('planto', 'funcionarios'));
@@ -98,9 +98,9 @@ class PlantoesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $planto = $this->Plantoes->get($id);
         if ($this->Plantoes->delete($planto)) {
-            $this->Flash->success(__('The planto has been deleted.'));
+            $this->Flash->success(__('Plantão deletado.'));
         } else {
-            $this->Flash->error(__('The planto could not be deleted. Please, try again.'));
+            $this->Flash->error(__('O plantão não pôde ser deletado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
