@@ -54,11 +54,11 @@ class EnderecosController extends AppController
         if ($this->request->is('post')) {
             $endereco = $this->Enderecos->patchEntity($endereco, $this->request->getData());
             if ($this->Enderecos->save($endereco)) {
-                $this->Flash->success(__('Endereço salvo.'));
+                $this->Flash->success(__('Endereço adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O endereço não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O endereço não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $cidades = $this->Enderecos->Cidades->find('list', ['limit' => 200]);
         $users = $this->Enderecos->Users->find('list', ['limit' => 200]);
@@ -80,7 +80,7 @@ class EnderecosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $endereco = $this->Enderecos->patchEntity($endereco, $this->request->getData());
             if ($this->Enderecos->save($endereco)) {
-                $this->Flash->success(__('Endereço atualizado.'));
+                $this->Flash->success(__('Endereço atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -103,7 +103,7 @@ class EnderecosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $endereco = $this->Enderecos->get($id);
         if ($this->Enderecos->delete($endereco)) {
-            $this->Flash->success(__('Endereço deletado.'));
+            $this->Flash->success(__('Endereço deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O endereço não pôde ser deletado. Por favor, tente novamente.'));
         }

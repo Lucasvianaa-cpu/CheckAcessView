@@ -54,7 +54,7 @@ class PontosHorasController extends AppController
         if ($this->request->is('post')) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
             if ($this->PontosHoras->save($pontosHora)) {
-                $this->Flash->success(__('Ponto salvo.'));
+                $this->Flash->success(__('Ponto adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -79,7 +79,7 @@ class PontosHorasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
             if ($this->PontosHoras->save($pontosHora)) {
-                $this->Flash->success(__('Ponto atualizado.'));
+                $this->Flash->success(__('Ponto atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -101,7 +101,7 @@ class PontosHorasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $pontosHora = $this->PontosHoras->get($id);
         if ($this->PontosHoras->delete($pontosHora)) {
-            $this->Flash->success(__('Ponto deletado.'));
+            $this->Flash->success(__('Ponto deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O ponto não pôde ser deletado. Por favor, tente novamente.'));
         }

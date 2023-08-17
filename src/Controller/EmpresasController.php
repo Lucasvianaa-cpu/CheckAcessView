@@ -51,11 +51,11 @@ class EmpresasController extends AppController
         if ($this->request->is('post')) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('Empresa salva.'));
+                $this->Flash->success(__('Empresa adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('A empresa não pôde ser salva. Por favor, tente novamente.'));
+            $this->Flash->error(__('A empresa não pôde ser adicionada. Por favor, tente novamente.'));
         }
         $this->set(compact('empresa'));
     }
@@ -75,7 +75,7 @@ class EmpresasController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('Empresa atualizada.'));
+                $this->Flash->success(__('Empresa atualizada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -96,7 +96,7 @@ class EmpresasController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $empresa = $this->Empresas->get($id);
         if ($this->Empresas->delete($empresa)) {
-            $this->Flash->success(__('Empresa deletada'));
+            $this->Flash->success(__('Empresa deletada com sucesso.'));
         } else {
             $this->Flash->error(__('A empresa não pôde ser deletada. Por favor, tente novamente.'));
         }
@@ -128,7 +128,7 @@ class EmpresasController extends AppController
             }
             
             if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('Empresa atualizada.'));
+                $this->Flash->success(__('Empresa atualizada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }

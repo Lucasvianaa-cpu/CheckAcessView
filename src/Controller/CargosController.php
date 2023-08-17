@@ -54,11 +54,11 @@ class CargosController extends AppController
         if ($this->request->is('post')) {
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
             if ($this->Cargos->save($cargo)) {
-                $this->Flash->success(__('Cargo salvo.'));
+                $this->Flash->success(__('Cargo adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O cargo não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O cargo não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $categorias = $this->Cargos->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $this->set(compact('cargo', 'categorias'));
@@ -79,7 +79,7 @@ class CargosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
             if ($this->Cargos->save($cargo)) {
-                $this->Flash->success(__('Cargo atualizado.'));
+                $this->Flash->success(__('Cargo atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -101,7 +101,7 @@ class CargosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cargo = $this->Cargos->get($id);
         if ($this->Cargos->delete($cargo)) {
-            $this->Flash->success(__('Cargo deletado.'));
+            $this->Flash->success(__('Cargo deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O cargo não pôde ser deletado. Por favor, tente novamente.'));
         }

@@ -51,11 +51,11 @@ class EstadosController extends AppController
         if ($this->request->is('post')) {
             $estado = $this->Estados->patchEntity($estado, $this->request->getData());
             if ($this->Estados->save($estado)) {
-                $this->Flash->success(__('Estado salvo.'));
+                $this->Flash->success(__('Estado adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O estado não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O estado não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $this->set(compact('estado'));
     }
@@ -75,7 +75,7 @@ class EstadosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $estado = $this->Estados->patchEntity($estado, $this->request->getData());
             if ($this->Estados->save($estado)) {
-                $this->Flash->success(__('Estado atualizado.'));
+                $this->Flash->success(__('Estado atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -96,7 +96,7 @@ class EstadosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $estado = $this->Estados->get($id);
         if ($this->Estados->delete($estado)) {
-            $this->Flash->success(__('Estado deletado.'));
+            $this->Flash->success(__('Estado deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O estado não pode ser deletado. Por favor, tente novamente.'));
         }

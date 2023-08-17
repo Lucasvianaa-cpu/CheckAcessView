@@ -51,7 +51,7 @@ class RolesController extends AppController
         if ($this->request->is('post')) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
             if ($this->Roles->save($role)) {
-                $this->Flash->success(__('Permissão definida.'));
+                $this->Flash->success(__('Permissão definida com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -75,7 +75,7 @@ class RolesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $role = $this->Roles->patchEntity($role, $this->request->getData());
             if ($this->Roles->save($role)) {
-                $this->Flash->success(__('Permissão atualizada.'));
+                $this->Flash->success(__('Permissão atualizada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -96,7 +96,7 @@ class RolesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $role = $this->Roles->get($id);
         if ($this->Roles->delete($role)) {
-            $this->Flash->success(__('Permissão deletada.'));
+            $this->Flash->success(__('Permissão deletada com sucesso.'));
         } else {
             $this->Flash->error(__('A permissão não pôde ser deletada. Por favor, tente novamente.'));
         }

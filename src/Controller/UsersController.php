@@ -70,7 +70,7 @@ class UsersController extends AppController
             $user->role_id = 4;
             if ($this->Users->save($user)) {
                 $this->getMailer('User')->send('welcome', [$user]);
-                $this->Flash->success(__('Usuário salvo.'));
+                $this->Flash->success(__('Usuário adicionado com sucesso.'));
 
                 $user = $this->Auth->identify();
                 if($user){
@@ -81,7 +81,7 @@ class UsersController extends AppController
                     return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
                 }
             }
-            $this->Flash->error(__('O usuário não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O usuário não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
@@ -102,7 +102,7 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuário atualizado.'));
+                $this->Flash->success(__('Usuário atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -124,7 +124,7 @@ class UsersController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
         if ($this->Users->delete($user)) {
-            $this->Flash->success(__('Usuário deletado.'));
+            $this->Flash->success(__('Usuário deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O usuário não pôde ser deletado. Por favor, tente novamente.'));
         }
@@ -207,7 +207,7 @@ class UsersController extends AppController
             }
 
             if ($this->Users->save($user)) {
-                $this->Flash->success(__('Perfil atualizado.'));
+                $this->Flash->success(__('Perfil atualizado com sucesso.'));
 
                 return $this->redirect($this->referer());
 

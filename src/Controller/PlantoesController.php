@@ -51,11 +51,11 @@ class PlantoesController extends AppController
         if ($this->request->is('post')) {
             $planto = $this->Plantoes->patchEntity($planto, $this->request->getData());
             if ($this->Plantoes->save($planto)) {
-                $this->Flash->success(__('Plantão salvo.'));
+                $this->Flash->success(__('Plantão adiconado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O plantão não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O plantão não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Plantoes->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('planto', 'funcionarios'));
@@ -76,7 +76,7 @@ class PlantoesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $planto = $this->Plantoes->patchEntity($planto, $this->request->getData());
             if ($this->Plantoes->save($planto)) {
-                $this->Flash->success(__('Plantão atualizado.'));
+                $this->Flash->success(__('Plantão atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -98,7 +98,7 @@ class PlantoesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $planto = $this->Plantoes->get($id);
         if ($this->Plantoes->delete($planto)) {
-            $this->Flash->success(__('Plantão deletado.'));
+            $this->Flash->success(__('Plantão deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O plantão não pôde ser deletado. Por favor, tente novamente.'));
         }

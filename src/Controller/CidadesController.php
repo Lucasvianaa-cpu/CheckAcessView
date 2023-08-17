@@ -54,11 +54,11 @@ class CidadesController extends AppController
         if ($this->request->is('post')) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
             if ($this->Cidades->save($cidade)) {
-                $this->Flash->success(__('Cidade salva.'));
+                $this->Flash->success(__('Cidade adicionada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('A cidade não pôde ser salva. Por favor, tente novamente.'));
+            $this->Flash->error(__('A cidade não pôde ser adicionada. Por favor, tente novamente.'));
         }
         $estados = $this->Cidades->Estados->find('list', ['limit' => 200]);
         $this->set(compact('cidade', 'estados'));
@@ -79,7 +79,7 @@ class CidadesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
             if ($this->Cidades->save($cidade)) {
-                $this->Flash->success(__('Cidade atualizada'));
+                $this->Flash->success(__('Cidade atualizada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -101,7 +101,7 @@ class CidadesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $cidade = $this->Cidades->get($id);
         if ($this->Cidades->delete($cidade)) {
-            $this->Flash->success(__('Cidade deletada.'));
+            $this->Flash->success(__('Cidade deletada com sucesso.'));
         } else {
             $this->Flash->error(__('A cidade não pôde ser deletada. Por favor, tente novamente.'));
         }

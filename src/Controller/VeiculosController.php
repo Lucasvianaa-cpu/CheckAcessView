@@ -54,11 +54,11 @@ class VeiculosController extends AppController
         if ($this->request->is('post')) {
             $veiculo = $this->Veiculos->patchEntity($veiculo, $this->request->getData());
             if ($this->Veiculos->save($veiculo)) {
-                $this->Flash->success(__('Veículo salvo.'));
+                $this->Flash->success(__('Veículo adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O veículo não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O veículo não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $users = $this->Veiculos->Users->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $this->set(compact('veiculo', 'users'));
@@ -79,7 +79,7 @@ class VeiculosController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $veiculo = $this->Veiculos->patchEntity($veiculo, $this->request->getData());
             if ($this->Veiculos->save($veiculo)) {
-                $this->Flash->success(__('Veículo atualizado.'));
+                $this->Flash->success(__('Veículo atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -101,7 +101,7 @@ class VeiculosController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $veiculo = $this->Veiculos->get($id);
         if ($this->Veiculos->delete($veiculo)) {
-            $this->Flash->success(__('Veículo deletado.'));
+            $this->Flash->success(__('Veículo deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O veículo não pôde ser deletado. Por favor, tente novamente.'));
         }

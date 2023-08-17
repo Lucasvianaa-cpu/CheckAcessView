@@ -54,11 +54,11 @@ class HoleritesController extends AppController
         if ($this->request->is('post')) {
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
             if ($this->Holerites->save($holerite)) {
-                $this->Flash->success(__('Holetite salvo.'));
+                $this->Flash->success(__('Holetite adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
-            $this->Flash->error(__('O holerite não pôde ser salvo. Por favor, tente novamente.'));
+            $this->Flash->error(__('O holerite não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Holerites->Funcionarios->find('list', ['limit' => 200]);
         $this->set(compact('holerite', 'funcionarios'));
@@ -79,7 +79,7 @@ class HoleritesController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
             if ($this->Holerites->save($holerite)) {
-                $this->Flash->success(__('Holerite atualizado'));
+                $this->Flash->success(__('Holerite atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
@@ -101,7 +101,7 @@ class HoleritesController extends AppController
         $this->request->allowMethod(['post', 'delete']);
         $holerite = $this->Holerites->get($id);
         if ($this->Holerites->delete($holerite)) {
-            $this->Flash->success(__('Holerite deletado.'));
+            $this->Flash->success(__('Holerite deletado com sucesso.'));
         } else {
             $this->Flash->error(__('O holerite não pôde ser deletado. Por favor, tente novamente.'));
         }
