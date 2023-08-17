@@ -553,6 +553,7 @@
    
 
     <footer>
+        <?= $this->Html->script('jquery.js'); ?>
         <?= $this->Html->script('popper.min.js'); ?>
         <?= $this->Html->script('bootstrap.min.js'); ?>
         <!--PerfectScrollbar é o botão oculto do menu ao diminuir a tela-->
@@ -562,6 +563,11 @@
         <?= $this->Html->script('swiper-bundle.min.js'); ?>
         <?= $this->Html->script('buttons.js'); ?>
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
+
+        <?= $this->Html->script('sweetalert2.all.min.js'); ?>
+
+        <!-- Mensagens de Sucesso/Erro -->
+        <?= $this->element('alertas/mensagem'); ?>
     </footer>
 
 </body>

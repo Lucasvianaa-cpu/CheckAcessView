@@ -15,7 +15,7 @@ class RhController extends AppController
         
 
         $this->paginate = [
-            'contain' => ['Roles'],
+            'contain' => ['Roles', 'Funcionarios'],
             'conditions' => ['Users.role_id' => 4],
             'limit'=> 3
         ];

@@ -8,4 +8,7 @@ if (!isset($params['escape']) || $params['escape'] !== false) {
     $message = h($message);
 }
 ?>
-<div class="message success" onclick="this.classList.add('hidden')"><?= $message ?></div>
+
+<div class="message success" style="display: none!important;">
+    <input id="success-sweet" value="<?= $message ?>">
+</div>

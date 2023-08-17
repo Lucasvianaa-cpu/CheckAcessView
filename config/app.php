@@ -206,20 +206,25 @@ return [
     'EmailTransport' => [
         'default' => [
             'className' => MailTransport::class,
-            /*
-             * The keys host, port, timeout, username, password, client and tls
-             * are used in SMTP transports
-             */
             'host' => 'localhost',
             'port' => 25,
             'timeout' => 30,
-            /*
-             * It is recommended to set these options through your environment or app_local.php
-             */
-            //'username' => null,
-            //'password' => null,
+            'username' => null,
+            'password' => null,
             'client' => null,
             'tls' => false,
+            'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
+        ],
+
+        'gmail' => [
+            'className' => 'Smtp',
+            'host' => 'ssl://smtp.gmail.com',
+            'port' => 465,
+            'timeout' => 30,
+            'username' => 'suporteadm.pontoeletronico@gmail.com',
+            'password' => 'gnrqhvdyledzfwmn',
+            'client' => null,
+            'tls' => null,
             'url' => env('EMAIL_TRANSPORT_DEFAULT_URL', null),
         ],
     ],
@@ -242,6 +247,10 @@ return [
              */
             //'charset' => 'utf-8',
             //'headerCharset' => 'utf-8',
+        ],
+        'checkAcessViewEmail' => [
+            'transport' => 'gmail',
+            'from' => ['suporteadm.pontoeletronico@gmail.com' => 'CheckAcessView - Controle de Ponto Eletrônico Inteligente'],
         ],
     ],
 

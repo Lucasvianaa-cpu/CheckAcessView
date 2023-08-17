@@ -54,7 +54,7 @@ class CargosController extends AppController
         if ($this->request->is('post')) {
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
             if ($this->Cargos->save($cargo)) {
-                $this->Flash->success(__('The cargo has been saved.'));
+                $this->Flash->success(__('O cargo foi salvo.'));
 
                 return $this->redirect(['action' => 'index']);
             }

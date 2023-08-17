@@ -2,6 +2,7 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\Mailer\MailerAwareTrait;
 
 /**
  * Users Controller
@@ -17,6 +18,8 @@ class UsersController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+
+    use MailerAwareTrait;
 
     public function initialize()
     {
@@ -66,6 +69,7 @@ class UsersController extends AppController
             $user = $this->Users->patchEntity($user, $this->request->getData());
             $user->role_id = 4;
             if ($this->Users->save($user)) {
+                $this->getMailer('User')->send('welcome', [$user]);
                 $this->Flash->success(__('The user has been saved.'));
 
                 $user = $this->Auth->identify();
@@ -240,12 +244,23 @@ class UsersController extends AppController
 
     //--Alterar
 
-    public function esqueciSenha() {
+    public function esqueciSenha()
+    {
         $this->loadModel('Users');
-    }
+        $user = $this->Users->newEntity();
+        if (!empty($this->request->data)) {
 
-    public function redefinirSenha() {
-        $this->loadModel('Users');
+            if ($this->request->is('post')) {
+                $user = $this->Users->patchEntity($user, $this->request->data);
+                if ($user = $this->Users->findByEmail($this->request->data['email'])->toArray()) {
+                    $this->getMailer('User')->send('recovery', [$user]);
+                    $this->Flash->success(__('Enviamos um e-mail de recuperação. Acesse sua caixa de mensagens e clique no link de recuperação.'));
+                } else {
+                    $this->Flash->error(__('Este e-mail não possui cadastro.'));
+                }
+            }
+        }
+        $this->set(compact('user'));
     }
     
 
@@ -281,5 +296,38 @@ class UsersController extends AppController
  
     public function sair () {
         return $this->redirect($this->Auth->logout());
+    }
+
+    public function redefinirSenha()
+    {
+        $q_hash = $this->request->query('h');
+        $q_email = $this->request->query('email');
+
+        $user = $this->Users->newEntity();
+        if ($this->request->is(['post', 'put'])) {
+            $user = $this->Users->get($this->request->data['id']);
+            $user = $this->Users->patchEntity($user, $this->request->data);
+
+            if ($this->Users->save($user)) {
+                $this->Flash->success(__('Senha alterada com sucesso!'));
+                return $this->redirect(['action' => 'login']);
+            }
+            
+            $this->Flash->error(__('Não foi possivel alterar sua senha, tente novamente!'));
+        } else {
+            if ($user = $this->Users->findByEmail($q_email)->toArray()) {
+                $hash = substr($user[0]['password'], 0, 25);
+                if ($hash == $q_hash) {
+                    $msg = 'Alterar senha do email: ' . $q_email;
+                    $this->Flash->set($msg);
+                } else {
+                    $msg = 'Você não tem permissão para alterar essa senha!';
+                    $this->Flash->set($msg);
+                    $this->redirect(array('action' => 'rememberPassword'));
+                }
+            }
+        }
+        $this->set('id', $user[0]['id']);
+        $this->set(compact('user'));
     }
 }

@@ -56,9 +56,10 @@
                       </div>
                       <div class="card-body">
 
-                          <?= $this->Form->create('', ['class' => '']) ?>
+                          <?= $this->Form->create($user, ['class' => '']) ?>
 
                           <div class="mb-3">
+                              <?php echo $this->Form->control('id', ['type' => 'hidden', 'value' => $id]); ?>
                               <?= $this->Form->control('password', ['type' => 'password','label' => 'Nova senha:', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
                           </div>
                           <div class="mb-3">
@@ -66,9 +67,7 @@
                           </div>
                         
                           <div class="text-center">
-                                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'login']); ?>" class="btn btn-dark w-100 mt-4 mb-3">
-                                    <?= __('Confirmar') ?>
-                                </a>
+                                <?= $this->Form->button(__('Confirmar'), ['class' => 'btn btn-dark w-100 mt-4 mb-3']) ?>
                           </div>
                         <?= $this->Form->end(); ?>
                       </div>
