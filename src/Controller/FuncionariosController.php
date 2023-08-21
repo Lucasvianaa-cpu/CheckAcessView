@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -74,15 +75,29 @@ class FuncionariosController extends AppController
     public function vincularUsuario($id = null)
     {
         $this->loadModel('Users');
+        $this->loadModel('Roles');
+        $this->loadModel('Funcionarios');
 
         $user = $this->Users->get($id, [
-            'contain' => [],
+            'contain' => ['Roles'],
         ]);
 
+        $funcionario_role = $this->Users->get($id, [
+            'contain' => ['Roles'],
+        ]);
+
+        // Inicializa a variável $funcionario
         $funcionario = $this->Funcionarios->newEntity();
+        $data = $this->request->getData();
 
         if ($this->request->is('post')) {
-            $data = $this->request->getData();
+            $permissao = $_POST['permissao'];
+            $data2 = [
+                'role_id' => $permissao
+            ];
+
+            $funcionario_role = $this->Users->patchEntity($funcionario_role, $data2);
+            $this->Users->save($funcionario_role);
 
             // Passo 1: Associar o usuário ao funcionário
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $data);
@@ -91,17 +106,20 @@ class FuncionariosController extends AppController
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('Funcionário vinculado com sucesso.'));
                 return $this->redirect(['controller' => 'Admin/Rh', 'action' => 'index']);
+            } else {
+                $this->Flash->error(__('O funcionário não pôde ser vinculado. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('O funcionário não pôde ser vinculado. Por favor, tente novamente.'));
         }
 
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
+        $roles = $this->Roles->find('list');
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
         $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
         $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
 
-        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'plantoes', 'user'));
+        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'plantoes', 'user', 'roles'));
     }
+
 
     /**
      * Edit method

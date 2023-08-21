@@ -36,8 +36,9 @@ class CargosController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('Users');
         $cargo = $this->Cargos->get($id, [
-            'contain' => ['Categorias', 'Funcionarios'],
+            'contain' => ['Categorias', 'Funcionarios.Empresas', 'Funcionarios.Users'],
         ]);
 
         $this->set('cargo', $cargo);

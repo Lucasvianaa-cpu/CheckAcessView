@@ -102,15 +102,15 @@
                           <div class="d-flex align-items-center">
                           </div>
                           <div class="d-flex flex-column justify-content-center ms-1">
-                            <h6 class="mb-0 text-sm font-weight-semibold">  <?= $cargo->nome ?></h6>
+                            <h6 class="mb-0 text-sm font-weight-semibold">  <?= $funcionarios->user->nome ?></h6>
                           </div>
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->salario ?></p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->user->salario  ?></p>
                       </td>
                       <td class="align-middle text-center">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->salario ?></p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->empresa->razao_social ?></p>
                       </td>
 
                       <td class="align-middle text-center">

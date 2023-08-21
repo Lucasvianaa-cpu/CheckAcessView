@@ -32,8 +32,11 @@
                             <div class="col-6">
                                 <?= $this->Form->control('plano_saude_id', ['type' => 'select','label' => 'Plano de Saúde', 'options' => $planosSaudes, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o plano', 'empty' => 'Selecione'  ]); ?>           
                             </div>
-                            <div class="col-10">
+                            <div class="col-5">
                                 <?= $this->Form->control('empresa_id', ['type' => 'select','label' => 'Empresa', 'options' => $empresas, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione a empresa', 'empty' => 'Selecione'  ]); ?>           
+                            </div>
+                            <div class="col-5">
+                                <?= $this->Form->control('permissao', ['type' => 'select','label' => 'Permissão', 'options' => $roles, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione a permissão', 'empty' => 'Selecione'  ]); ?>           
                             </div>
 
                             <div class="col-2 checkbox-input">
