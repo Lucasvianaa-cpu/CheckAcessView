@@ -74,7 +74,6 @@
                             ?>
                            
                             <?= $this->Html->link(__('Vincular Funcionário'), $url, ['class' => 'btn btn-dark btn-sm']) ?>
-                            <?= $this->Html->link(__('Definir'),['action' => 'permissions', $user->id], ['class' => 'btn btn-dark btn-sm']) ?>
 
                               <!-- <button type="button" class="btn btn-primary btn-sm" id="<?= $user->id ?>">Sim</button> -->
                           </td>
