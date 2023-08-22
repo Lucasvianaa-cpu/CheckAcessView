@@ -289,7 +289,7 @@ return [
              * You do not need to set this flag to use full utf-8 encoding (internal default since CakePHP 3.6).
              */
             //'encoding' => 'utf8mb4',
-            'timezone' => '-03:00',
+            'timezone' => '',
             'flags' => [],
             'cacheMetadata' => true,
             'log' => false,

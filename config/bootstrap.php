@@ -98,7 +98,8 @@ if (Configure::read('debug')) {
  * Set the default server timezone. Using UTC makes time calculations / conversions easier.
  * Check http://php.net/manual/en/timezones.php for list of valid timezone strings.
  */
-date_default_timezone_set(Configure::read('App.defaultTimezone'));
+// date_default_timezone_set(Configure::read('App.defaultTimezone'));
+date_default_timezone_set('America/Sao_Paulo');
 
 /*
  * Configure the mbstring extension to use the correct encoding.

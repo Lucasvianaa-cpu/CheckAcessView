@@ -20,13 +20,26 @@ class FuncionariosController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Users');
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        if ($this->request->getQuery('cargo') != '') {
+            $cargo = $this->request->getQuery('cargo');
+            $conditions['LOWER(Cargos.nome) LIKE'] = '%' . strtolower($cargo) . '%';
+        }
 
         $this->loadModel('PlanosSaudes');
 
         $this->paginate = [
             'contain' => ['Cargos', 'Empresas', 'Users', 'PlanosSaudes'],
         ];
-        $funcionarios = $this->paginate($this->Funcionarios);
+        $funcionarios = $this->paginate($this->Funcionarios, ['conditions' => $conditions]);
 
         $this->set(compact('funcionarios'));
     }
