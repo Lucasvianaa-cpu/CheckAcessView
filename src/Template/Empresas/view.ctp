@@ -4,108 +4,143 @@
  * @var \App\Model\Entity\Empresa $empresa
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Empresa'), ['action' => 'edit', $empresa->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Empresa'), ['action' => 'delete', $empresa->id], ['confirm' => __('Are you sure you want to delete # {0}?', $empresa->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Empresas'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Empresa'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['controller' => 'Funcionarios', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['controller' => 'Funcionarios', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="empresas view large-9 medium-8 columns content">
-    <h3><?= h($empresa->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Razao Social') ?></th>
-            <td><?= h($empresa->razao_social) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Nome Fantasia') ?></th>
-            <td><?= h($empresa->nome_fantasia) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Cnpj') ?></th>
-            <td><?= h($empresa->cnpj) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Ie') ?></th>
-            <td><?= h($empresa->ie) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Cep') ?></th>
-            <td><?= h($empresa->cep) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Endereco') ?></th>
-            <td><?= h($empresa->endereco) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Bairro') ?></th>
-            <td><?= h($empresa->bairro) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Numero') ?></th>
-            <td><?= h($empresa->numero) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Telefone') ?></th>
-            <td><?= h($empresa->telefone) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Desc Empresa') ?></th>
-            <td><?= h($empresa->desc_empresa) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($empresa->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Qtd Funcionarios') ?></th>
-            <td><?= $this->Number->format($empresa->qtd_funcionarios) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Is Active') ?></th>
-            <td><?= $this->Number->format($empresa->is_active) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($empresa->created) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Funcionarios') ?></h4>
-        <?php if (!empty($empresa->funcionarios)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Salario') ?></th>
-                <th scope="col"><?= __('Cargo Id') ?></th>
-                <th scope="col"><?= __('Is Active') ?></th>
-                <th scope="col"><?= __('Plano Saude Id') ?></th>
-                <th scope="col"><?= __('Empresa Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($empresa->funcionarios as $funcionarios): ?>
-            <tr>
-                <td><?= h($funcionarios->id) ?></td>
-                <td><?= h($funcionarios->salario) ?></td>
-                <td><?= h($funcionarios->cargo_id) ?></td>
-                <td><?= h($funcionarios->is_active) ?></td>
-                <td><?= h($funcionarios->plano_saude_id) ?></td>
-                <td><?= h($funcionarios->empresa_id) ?></td>
-                <td><?= h($funcionarios->user_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Funcionarios', 'action' => 'view', $funcionarios->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Funcionarios', 'action' => 'edit', $funcionarios->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Funcionarios', 'action' => 'delete', $funcionarios->id], ['confirm' => __('Are you sure you want to delete # {0}?', $funcionarios->id)]) ?>
+
+<div class="container-fluid py-2 px-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Empresa selecionada</h6>
+              <p class="text-sm">Esta é uma empresa registrada...</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+              <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="text-secondary text-xs font-weight-semibold opacity-7">Razão Social</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nome Fantasia</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">CNPJ</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Ativo?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex align-items-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center ms-1">
+                      <h6 class="mb-0 text-sm font-weight-semibold"> <?= $empresa->razao_social ?></h6>
+                    </div>
+                  </div>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $empresa->nome_fantasia ?></p>
+                </td>
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $empresa->cnpj?></p>
+                </td>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $empresa->is_active == 1 ? 'Sim' : 'Não' ?></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+
+
+  
+  </div>
+
+  <div class="container-fluid py-2 px-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Funcionários Vinculados a Empresa</h6>
+                <p class="text-sm">Estes são os funcionários vinculados a empresa...</p>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead class="bg-gray-100">
+
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Cargo</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Salário</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">É Ativo?</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($empresa->funcionarios as $funcionarios) : ?>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex align-items-center">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center ms-1">
+                          <h6 class="mb-0 text-sm font-weight-semibold"> <?= $funcionarios->user->nome ?></h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->cargo->nome  ?></p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->salario ?></p>
+                    </td>
+
+                    <td class="align-middle text-center">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionarios->is_active == 1 ? 'Sim' : 'Não' ?></p>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-xs text-muted text-lg-start">
+              Copyright
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              Jaine Oliveira e Lucas Viana
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>

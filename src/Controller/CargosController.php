@@ -41,6 +41,12 @@ class CargosController extends AppController
             'contain' => ['Categorias', 'Funcionarios.Empresas', 'Funcionarios.Users'],
         ]);
 
+        $this->paginate = [
+            'contain' => ['Categorias', 'Funcionarios.Empresas', 'Funcionarios.Users'],
+            'limit' => 3
+        ];
+        $cargos = $this->paginate($this->Cargos);
+
         $this->set('cargo', $cargo);
     }
 

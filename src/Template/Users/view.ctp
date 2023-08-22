@@ -4,140 +4,148 @@
  * @var \App\Model\Entity\User $user
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit User'), ['action' => 'edit', $user->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete User'), ['action' => 'delete', $user->id], ['confirm' => __('Are you sure you want to delete # {0}?', $user->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Roles'), ['controller' => 'Roles', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Role'), ['controller' => 'Roles', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Veiculos'), ['controller' => 'Veiculos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Veiculo'), ['controller' => 'Veiculos', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="users view large-9 medium-8 columns content">
-    <h3><?= h($user->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($user->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Password') ?></th>
-            <td><?= h($user->password) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Sobrenome') ?></th>
-            <td><?= h($user->sobrenome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Cpf') ?></th>
-            <td><?= h($user->cpf) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Rg') ?></th>
-            <td><?= h($user->rg) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Email') ?></th>
-            <td><?= h($user->email) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Telefone') ?></th>
-            <td><?= h($user->telefone) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Tipo Sanguineo') ?></th>
-            <td><?= h($user->tipo_sanguineo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Exp Profissional') ?></th>
-            <td><?= h($user->exp_profissional) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Agencia') ?></th>
-            <td><?= h($user->agencia) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Conta') ?></th>
-            <td><?= h($user->conta) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Codigo Banco') ?></th>
-            <td><?= h($user->codigo_banco) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Pix') ?></th>
-            <td><?= h($user->pix) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Role') ?></th>
-            <td><?= $user->has('role') ? $this->Html->link($user->role->id, ['controller' => 'Roles', 'action' => 'view', $user->role->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Uid Rfid') ?></th>
-            <td><?= h($user->uid_rfid) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Email Empresarial') ?></th>
-            <td><?= h($user->email_empresarial) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($user->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Is Active') ?></th>
-            <td><?= $this->Number->format($user->is_active) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Salario') ?></th>
-            <td><?= $this->Number->format($user->salario) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($user->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Data Nascimento') ?></th>
-            <td><?= h($user->data_nascimento) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Veiculos') ?></h4>
-        <?php if (!empty($user->veiculos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Placa') ?></th>
-                <th scope="col"><?= __('Modelo') ?></th>
-                <th scope="col"><?= __('Cor') ?></th>
-                <th scope="col"><?= __('Veiculoscol') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Is Active') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($user->veiculos as $veiculos): ?>
-            <tr>
-                <td><?= h($veiculos->id) ?></td>
-                <td><?= h($veiculos->placa) ?></td>
-                <td><?= h($veiculos->modelo) ?></td>
-                <td><?= h($veiculos->cor) ?></td>
-                <td><?= h($veiculos->veiculoscol) ?></td>
-                <td><?= h($veiculos->created) ?></td>
-                <td><?= h($veiculos->is_active) ?></td>
-                <td><?= h($veiculos->user_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Veiculos', 'action' => 'view', $veiculos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Veiculos', 'action' => 'edit', $veiculos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Veiculos', 'action' => 'delete', $veiculos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $veiculos->id)]) ?>
+
+
+
+
+<div class="container-fluid py-2 px-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Usuário selecionado</h6>
+              <p class="text-sm">Este é um usuário que foi registrado...</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+              <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="text-secondary text-xs font-weight-semibold opacity-7">ID</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">CPF</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Email</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">RFID</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">É Ativo?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex align-items-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center ms-1">
+                      <h6 class="mb-0 text-sm font-weight-semibold"> <?= $user->id ?></h6>
+                    </div>
+                  </div>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->nome ?></p>
+                </td>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->cpf ?></p>
+                </td>
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->email ?></p>
+                </td>
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->uid_rfid ?></p>
+                </td>
+    
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->is_active == 1 ? 'Sim' : 'Não'  ?></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  </div>
+
+  <div class="container-fluid py-2 px-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Veículos Vinculados ao Usário</h6>
+                <p class="text-sm">Estes são os veículos vinculados ao usuário...</p>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead class="bg-gray-100">
+
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Placa</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Modelo</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Cor</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($user->veiculos as $veiculos) : ?>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex align-items-center">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center ms-1">
+                          <h6 class="mb-0 text-sm font-weight-semibold"> <?= $veiculos->placa ?></h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $veiculos->modelo  ?></p>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $veiculos->cor  ?></p>
+                    </td>
+                    
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-xs text-muted text-lg-start">
+              Copyright
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              Jaine Oliveira e Lucas Viana
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>

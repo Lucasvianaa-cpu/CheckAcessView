@@ -4,51 +4,86 @@
  * @var \App\Model\Entity\Veiculo $veiculo
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Veiculo'), ['action' => 'edit', $veiculo->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Veiculo'), ['action' => 'delete', $veiculo->id], ['confirm' => __('Are you sure you want to delete # {0}?', $veiculo->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Veiculos'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Veiculo'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="veiculos view large-9 medium-8 columns content">
-    <h3><?= h($veiculo->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Placa') ?></th>
-            <td><?= h($veiculo->placa) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Modelo') ?></th>
-            <td><?= h($veiculo->modelo) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Cor') ?></th>
-            <td><?= h($veiculo->cor) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Veiculoscol') ?></th>
-            <td><?= h($veiculo->veiculoscol) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Created') ?></th>
-            <td><?= h($veiculo->created) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $veiculo->has('user') ? $this->Html->link($veiculo->user->id, ['controller' => 'Users', 'action' => 'view', $veiculo->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($veiculo->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Is Active') ?></th>
-            <td><?= $this->Number->format($veiculo->is_active) ?></td>
-        </tr>
-    </table>
-</div>
+
+<div class="container-fluid py-2 px-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Veículo selecionado</h6>
+              <p class="text-sm">Este é o veículo que foi registrado...</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+              <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="text-secondary text-xs font-weight-semibold opacity-7">Modelo</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Cor</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Placa</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Proprietário</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">É Ativo?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex align-items-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center ms-1">
+                      <h6 class="mb-0 text-sm font-weight-semibold"> <?= $veiculo->modelo ?></h6>
+                    </div>
+                  </div>
+                </td>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $veiculo->cor ?></p>
+                </td>
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $veiculo->placa ?></p>
+                </td>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $veiculo->user->nome ?></p>
+                </td>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $veiculo->is_active == 1 ? 'Sim' : 'Não' ?></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-xs text-muted text-lg-start">
+              Copyright
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              Jaine Oliveira e Lucas Viana
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+

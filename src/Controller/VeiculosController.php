@@ -36,6 +36,7 @@ class VeiculosController extends AppController
      */
     public function view($id = null)
     {
+
         $veiculo = $this->Veiculos->get($id, [
             'contain' => ['Users'],
         ]);

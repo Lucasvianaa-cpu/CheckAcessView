@@ -4,32 +4,41 @@
  * @var \App\Model\Entity\Cidade $cidade
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $cidade->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $cidade->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Cidades'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Estados'), ['controller' => 'Estados', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Estado'), ['controller' => 'Estados', 'action' => 'add']) ?></li>
-        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="cidades form large-9 medium-8 columns content">
-    <?= $this->Form->create($cidade) ?>
-    <fieldset>
-        <legend><?= __('Edit Cidade') ?></legend>
-        <?php
-            echo $this->Form->control('nome');
-            echo $this->Form->control('cod_ibge');
-            echo $this->Form->control('estado_id', ['options' => $estados]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+
+<div class="container-fluid my-2 py-3">
+    <div class="col-12 mb-4">
+        <div class="card border shadow-xs h-100">
+            <div class="card-header pb-0 p-3">
+                <div class="row">
+                    <div class="col-md-8 col-9">
+                        <h6 class="mb-0 font-weight-semibold text-lg">Editar Cidade</h6>
+                        <p class="text-sm mb-1">Edite os campos da cidade selecionada</p>
+                    </div>
+                    <div class="">
+                        <?= $this->Form->create($cidade, ['class'=> 'row g-3']) ?>
+                        <form class="row g-3">
+                            <div class="col-12">
+                                <?php echo $this->Form->control('nome',['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required']);?>
+                            </div>
+                            <div class="col-8">
+                                <?php echo $this->Form->control('cod_ibge',['type' => 'text', 'label' => 'Código IBGE', 'class' => 'form-control', 'required' => 'required', 'placeholder']);?>
+                            </div>
+                            <div class="col-md-4 pb-3">
+                                <?php echo $this->Form->control('estado_id',['type' => 'select','label' => 'Estado', 'options' => $estados, 'class' => 'form-select', 'required']);?>
+                            </div>
+                            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+                                <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>
+                                <a class="btn btn-sm btn-white"
+                                    href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
+                            </div>
+
+                            <?= $this->Form->end() ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

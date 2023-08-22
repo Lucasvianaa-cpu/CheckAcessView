@@ -4,33 +4,49 @@
  * @var \App\Model\Entity\Veiculo $veiculo
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Form->postLink(
-                __('Delete'),
-                ['action' => 'delete', $veiculo->id],
-                ['confirm' => __('Are you sure you want to delete # {0}?', $veiculo->id)]
-            )
-        ?></li>
-        <li><?= $this->Html->link(__('List Veiculos'), ['action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?></li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?></li>
-    </ul>
-</nav>
-<div class="veiculos form large-9 medium-8 columns content">
-    <?= $this->Form->create($veiculo) ?>
-    <fieldset>
-        <legend><?= __('Edit Veiculo') ?></legend>
-        <?php
-            echo $this->Form->control('placa');
-            echo $this->Form->control('modelo');
-            echo $this->Form->control('cor');
-            echo $this->Form->control('veiculoscol');
-            echo $this->Form->control('is_active');
-            echo $this->Form->control('user_id', ['options' => $users]);
-        ?>
-    </fieldset>
-    <?= $this->Form->button(__('Submit')) ?>
-    <?= $this->Form->end() ?>
+
+<div class="container-fluid my-2 py-3">
+    <div class="col-12 mb-4">
+        <div class="card border shadow-xs h-100">
+            <div class="card-header pb-0 p-3">
+                <div class="row">
+                    <div class="col-md-8 col-9">
+                        <h6 class="mb-0 font-weight-semibold text-lg">Editar Veículo</h6>
+                        <p class="text-sm mb-1">Edite os campos do veículo selecionado</p>
+                    </div>
+                    <div class="">
+                        <?= $this->Form->create($veiculo, ['class'=> 'row g-3']) ?>
+                        <form class="row g-3">
+                            <div class="col-6">
+                                <?php echo $this->Form->control('modelo',['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required']);?>
+                            </div>
+                            <div class="col-6">
+                                <?php echo $this->Form->control('cor',['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control', 'required' => 'required', 'placeholder']);?>
+                            </div>
+                            <div class="col-5">
+                                <?php echo $this->Form->control('placa',['type' => 'text', 'label' => 'Placa', 'class' => 'form-control', 'required' => 'required', 'placeholder']);?>
+                            </div>
+                            <div class="col-md-5 pb-3">
+                                <?php echo $this->Form->control('user_id',['type' => 'select','label' => 'Proprietário', 'options' => $users, 'class' => 'form-select', 'required']);?>
+                            </div>
+                            <div class="col-2 checkbox-input">
+                                <label for="" class="form-label"></label>
+                                <div class="form-check mt-2">
+                                    <?= $this->Form->control('is_active', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+                                <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>
+                                <a class="btn btn-sm btn-white"
+                                    href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
+                            </div>
+                            <?= $this->Form->end() ?>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

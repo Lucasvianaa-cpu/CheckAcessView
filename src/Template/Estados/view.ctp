@@ -4,58 +4,133 @@
  * @var \App\Model\Entity\Estado $estado
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Estado'), ['action' => 'edit', $estado->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Estado'), ['action' => 'delete', $estado->id], ['confirm' => __('Are you sure you want to delete # {0}?', $estado->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Estados'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Estado'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Cidades'), ['controller' => 'Cidades', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Cidade'), ['controller' => 'Cidades', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="estados view large-9 medium-8 columns content">
-    <h3><?= h($estado->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Sigla') ?></th>
-            <td><?= h($estado->sigla) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($estado->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($estado->id) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Cidades') ?></h4>
-        <?php if (!empty($estado->cidades)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Nome') ?></th>
-                <th scope="col"><?= __('Cod Ibge') ?></th>
-                <th scope="col"><?= __('Estado Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($estado->cidades as $cidades): ?>
-            <tr>
-                <td><?= h($cidades->id) ?></td>
-                <td><?= h($cidades->nome) ?></td>
-                <td><?= h($cidades->cod_ibge) ?></td>
-                <td><?= h($cidades->estado_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Cidades', 'action' => 'view', $cidades->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Cidades', 'action' => 'edit', $cidades->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Cidades', 'action' => 'delete', $cidades->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cidades->id)]) ?>
+
+
+
+<div class="container-fluid py-2 px-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Estado selecionado</h6>
+              <p class="text-sm">Este é um estado que foi registrado...</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+              <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Sigla</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex align-items-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center ms-1">
+                      <h6 class="mb-0 text-sm font-weight-semibold"> <?= $estado->nome ?></h6>
+                    </div>
+                  </div>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $estado->sigla ?></p>
+                </td>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $estado->id ?></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+
+
+  
+  </div>
+
+  <div class="container-fluid py-2 px-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Cidades Vinculados ao Estado</h6>
+                <p class="text-sm">Estes são as cidades vinculados ao estado...</p>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead class="bg-gray-100">
+
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Código IBGE</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($estado->cidades as $cidades) : ?>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex align-items-center">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center ms-1">
+                          <h6 class="mb-0 text-sm font-weight-semibold"> <?= $cidades->nome ?></h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cidades->cod_ibge  ?></p>
+                    </td>
+                    
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+            </table>
+
+
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-xs text-muted text-lg-start">
+              Copyright
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              Jaine Oliveira e Lucas Viana
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>

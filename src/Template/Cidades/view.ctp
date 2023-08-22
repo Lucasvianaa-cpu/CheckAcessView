@@ -3,71 +3,163 @@
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Cidade $cidade
  */
-?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Cidade'), ['action' => 'edit', $cidade->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Cidade'), ['action' => 'delete', $cidade->id], ['confirm' => __('Are you sure you want to delete # {0}?', $cidade->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Cidades'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Cidade'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Estados'), ['controller' => 'Estados', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Estado'), ['controller' => 'Estados', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Enderecos'), ['controller' => 'Enderecos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Endereco'), ['controller' => 'Enderecos', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="cidades view large-9 medium-8 columns content">
-    <h3><?= h($cidade->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Nome') ?></th>
-            <td><?= h($cidade->nome) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Estado') ?></th>
-            <td><?= $cidade->has('estado') ? $this->Html->link($cidade->estado->id, ['controller' => 'Estados', 'action' => 'view', $cidade->estado->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($cidade->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Cod Ibge') ?></th>
-            <td><?= $this->Number->format($cidade->cod_ibge) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Enderecos') ?></h4>
-        <?php if (!empty($cidade->enderecos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Rua') ?></th>
-                <th scope="col"><?= __('Bairro') ?></th>
-                <th scope="col"><?= __('Numero') ?></th>
-                <th scope="col"><?= __('Cep') ?></th>
-                <th scope="col"><?= __('Cidade Id') ?></th>
-                <th scope="col"><?= __('User Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($cidade->enderecos as $enderecos): ?>
-            <tr>
-                <td><?= h($enderecos->id) ?></td>
-                <td><?= h($enderecos->rua) ?></td>
-                <td><?= h($enderecos->bairro) ?></td>
-                <td><?= h($enderecos->numero) ?></td>
-                <td><?= h($enderecos->cep) ?></td>
-                <td><?= h($enderecos->cidade_id) ?></td>
-                <td><?= h($enderecos->user_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Enderecos', 'action' => 'view', $enderecos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Enderecos', 'action' => 'edit', $enderecos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Enderecos', 'action' => 'delete', $enderecos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $enderecos->id)]) ?>
+?><div class="container-fluid py-2 px-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Cidade selecionada</h6>
+              <p class="text-sm">Esta é uma cidade que foi registrada...</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+              <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="text-secondary text-xs font-weight-semibold opacity-7">Código IBGE</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Estado</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">ID</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex align-items-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center ms-1">
+                      <h6 class="mb-0 text-sm font-weight-semibold"> <?= $cidade->cod_ibge ?></h6>
+                    </div>
+                  </div>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cidade->nome ?></p>
+                </td>
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cidade->estado->sigla ?></p>
+                </td>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cidade->id ?></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
 </div>
+  
+
+
+  <div class="container-fluid py-2 px-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Endereços Vinculados à Cidade</h6>
+                <p class="text-sm">Estes são os endereços vinculados à cidade...</p>
+              </div>
+
+
+            </div>
+          </div>
+
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead class="bg-gray-100">
+
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Rua</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Bairro</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Número</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">CEP</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Residente</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Ações</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($cidade->enderecos as $enderecos) : ?>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex align-items-center">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center ms-1">
+                          <h6 class="mb-0 text-sm font-weight-semibold"> <?= $enderecos->rua ?></h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $enderecos->bairro ?></p>
+                    </td>
+                    <td class="align-middle text-center">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $enderecos->numero ?></p>
+                    </td>
+
+                    <td class="align-middle text-center">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $enderecos->cep ?></p>
+                    </td>
+
+                    <td class="align-middle text-center">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $enderecos->user->nome ?></p>
+                    </td>
+
+                    <td class="align-middle text-center">
+                      <?= $this->Form->postLink(
+                                '<button type="button" class="btn btn-sm btn-dark">
+                                  <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
+                                    <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
+                                  </svg>
+                              </button>',
+                                ['action' => 'delete', $endereco->rua],
+                                [
+                                    'confirm' => __('Tem certeza que deseja deletar o endereço: {0}?', $endereco->rua),
+                                    'escapeTitle' => false,
+                                    'escape' => false,
+                                    'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
+                                ]
+                            ) ?>
+                    </td>
+                  </tr>
+                <?php endforeach; ?>
+              </tbody>
+
+              
+            </table>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-xs text-muted text-lg-start">
+              Copyright
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              Jaine Oliveira e Lucas Viana
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
