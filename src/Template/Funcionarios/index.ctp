@@ -31,24 +31,29 @@
           </div>
         </div>
         <div class="card-body px-0 py-0">
-          <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
+          <div class="border-bottom py-3 px-3 align-items-center">
 
             <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3','filtro']); ?>
               
                 <div class="col-5">
-                    <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Buscar']); ?>
+                    <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
                 </div>
                 <div class="col-5">
-                    <?= $this->Form->control('cargo', ['class' => 'form-control', 'label' => 'Busque pelo cargo:', 'default' => $this->request->getQuery('cargo'), 'placeholder' => 'Buscar']); ?>
+                    <?= $this->Form->control('cargo', ['class' => 'form-control', 'label' => 'Busque pelo cargo:', 'default' => $this->request->getQuery('cargo'), 'placeholder' => 'Digite o cargo']); ?>
                 </div>
-               
-                  <button type="submit" class="btn btn-sm btn-dark col-5" style="margin-top: 35px;">
-                    <b>Filtrar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
+
+                
+                  <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
+                    <b>Buscar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
                   </button>
+                
+               
+                  
                
              
-            </div>
+            
             <?php echo $this->Form->end(); ?>
+            </div>
 
           </div>
           <div class="table-responsive p-0">
