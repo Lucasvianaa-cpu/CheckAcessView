@@ -19,10 +19,23 @@ class VeiculosController extends AppController
      */
     public function index()
     {
+
+        $conditions = [];
+
+        if ($this->request->getQuery('modelo') != '') {
+            $modelo = $this->request->getQuery('modelo');
+            $conditions['LOWER(Veiculos.modelo) LIKE'] = '%' . strtolower($modelo) . '%';
+        }
+
+        if ($this->request->getQuery('placa') != '') {
+            $placa = $this->request->getQuery('placa');
+            $conditions['LOWER(Veiculos.placa) LIKE'] = '%' . strtolower($placa) . '%';
+        }
+
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $veiculos = $this->paginate($this->Veiculos);
+        $veiculos = $this->paginate($this->Veiculos, ['conditions' => $conditions]);
 
         $this->set(compact('veiculos'));
     }

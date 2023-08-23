@@ -19,7 +19,15 @@ class PlanosSaudesController extends AppController
      */
     public function index()
     {
-        $planosSaudes = $this->paginate($this->PlanosSaudes);
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(PlanosSaudes.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        $planosSaudes = $this->paginate($this->PlanosSaudes, ['conditions' => $conditions]);
 
         $this->set(compact('planosSaudes'));
     }

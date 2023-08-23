@@ -19,10 +19,18 @@ class CidadesController extends AppController
      */
     public function index()
     {
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Cidades.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
         $this->paginate = [
             'contain' => ['Estados'],
         ];
-        $cidades = $this->paginate($this->Cidades);
+        $cidades = $this->paginate($this->Cidades, ['conditions' => $conditions]);
 
         $this->set(compact('cidades'));
     }

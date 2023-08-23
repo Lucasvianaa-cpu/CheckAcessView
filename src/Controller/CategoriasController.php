@@ -19,7 +19,15 @@ class CategoriasController extends AppController
      */
     public function index()
     {
-        $categorias = $this->paginate($this->Categorias);
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Categorias.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        $categorias = $this->paginate($this->Categorias, ['conditions' => $conditions]);
 
         $this->set(compact('categorias'));
     }

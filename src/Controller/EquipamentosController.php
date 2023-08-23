@@ -22,10 +22,22 @@ class EquipamentosController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Funcionarios');
 
+        $conditions = [];
+
+        if ($this->request->getQuery('num_patrimonio') != '') {
+            $num_patrimonio = $this->request->getQuery('num_patrimonio');
+            $conditions['LOWER(Equipamentos.num_patrimonio) LIKE'] = '%' . strtolower($num_patrimonio) . '%';
+        }
+
+        if ($this->request->getQuery('descricao') != '') {
+            $descricao = $this->request->getQuery('descricao');
+            $conditions['LOWER(Equipamentos.descricao) LIKE'] = '%' . strtolower($descricao) . '%';
+        }
+
         $this->paginate = [
             'contain' => ['Funcionarios.Users'],
         ];
-        $equipamentos = $this->paginate($this->Equipamentos);
+        $equipamentos = $this->paginate($this->Equipamentos, ['conditions' => $conditions]);
 
         $this->set(compact('equipamentos'));
     }
@@ -39,6 +51,7 @@ class EquipamentosController extends AppController
      */
     public function view($id = null)
     {
+        
         $equipamento = $this->Equipamentos->get($id, [
             'contain' => ['Funcionarios.Users'],
         ]);

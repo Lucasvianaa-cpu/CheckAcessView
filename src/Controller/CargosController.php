@@ -19,10 +19,18 @@ class CargosController extends AppController
      */
     public function index()
     {
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Cargos.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
         $this->paginate = [
             'contain' => ['Categorias'],
         ];
-        $cargos = $this->paginate($this->Cargos);
+        $cargos = $this->paginate($this->Cargos, ['conditions' => $conditions]);
 
         $this->set(compact('cargos'));
     }

@@ -33,10 +33,22 @@ class UsersController extends AppController
 
     public function index()
     {
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        } 
+
+        if ($this->request->getQuery('cpf') != '') {
+            $cpf = $this->request->getQuery('cpf');
+            $conditions['LOWER(Users.cpf) LIKE'] = '%' . strtolower($cpf) . '%';
+        }
         $this->paginate = [
             'contain' => ['Roles'],
         ];
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users,['conditions' => $conditions]);
 
         $this->set(compact('users'));
     }

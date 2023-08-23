@@ -19,7 +19,20 @@ class EmpresasController extends AppController
      */
     public function index()
     {
-        $empresas = $this->paginate($this->Empresas);
+
+        $conditions = [];
+
+        if ($this->request->getQuery('razao_social') != '') {
+            $razao_social = $this->request->getQuery('razao_social');
+            $conditions['LOWER(Empresas.razao_social) LIKE'] = '%' . strtolower($razao_social) . '%';
+        }
+
+        if ($this->request->getQuery('cnpj') != '') {
+            $cnpj = $this->request->getQuery('cnpj');
+            $conditions['LOWER(Empresas.cnpj) LIKE'] = '%' . strtolower($cnpj) . '%';
+        }
+
+        $empresas = $this->paginate($this->Empresas, ['conditions' => $conditions]);
 
         $this->set(compact('empresas'));
     }

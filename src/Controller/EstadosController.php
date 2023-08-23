@@ -19,7 +19,15 @@ class EstadosController extends AppController
      */
     public function index()
     {
-        $estados = $this->paginate($this->Estados);
+
+        $conditions = [];
+
+        if ($this->request->getQuery('sigla') != '') {
+            $sigla = $this->request->getQuery('sigla');
+            $conditions['LOWER(Estados.sigla) LIKE'] = '%' . strtolower($sigla) . '%';
+        }
+
+        $estados = $this->paginate($this->Estados, ['conditions' => $conditions]);
 
         $this->set(compact('estados'));
     }
