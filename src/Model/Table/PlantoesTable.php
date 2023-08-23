@@ -42,7 +42,7 @@ class PlantoesTable extends Table
             'joinType' => 'INNER',
         ]);
         $this->belongsToMany('Funcionarios', [
-            'foreignKey' => 'planto_id',
+            'foreignKey' => 'plantao_id',
             'targetForeignKey' => 'funcionario_id',
             'joinTable' => 'funcionarios_plantoes',
         ]);

@@ -73,7 +73,7 @@ class FuncionariosTable extends Table
         ]);
         $this->belongsToMany('Plantoes', [
             'foreignKey' => 'funcionario_id',
-            'targetForeignKey' => 'planto_id',
+            'targetForeignKey' => 'plantao_id',
             'joinTable' => 'funcionarios_plantoes',
         ]);
     }
