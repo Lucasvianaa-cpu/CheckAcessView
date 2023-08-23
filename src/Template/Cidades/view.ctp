@@ -120,20 +120,30 @@
                     </td>
 
                     <td class="align-middle text-center">
+                    <?php foreach ($cidade->enderecos as $endereco): ?>
                       <?= $this->Form->postLink(
                                 '<button type="button" class="btn btn-sm btn-dark">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                   </svg>
                               </button>',
-                                ['action' => 'delete', $endereco->rua],
+                                ['controller'=>'Enderecos', 'action' => 'delete', $endereco->id],
                                 [
-                                    'confirm' => __('Tem certeza que deseja deletar o endereço: {0}?', $endereco->rua),
+                                    'confirm' => __('Tem certeza que deseja deletar o endereço: {0}?', $enderecos->rua),
                                     'escapeTitle' => false,
                                     'escape' => false,
                                     'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
                                 ]
                             ) ?>
+                            <?php endforeach; ?>
+
+<?php foreach ($cidade->enderecos as $endereco): ?>
+    <?= $this->Form->postLink(
+        '<button type="button" class="btn btn-sm btn-dark">...',
+        ['action' => 'delete', $endereco->id], // Certifique-se de que $endereco tenha uma propriedade 'id'
+        ['confirm' => __('Tem certeza que deseja deletar o endereço: {0}?', $endereco->rua), 'escapeTitle' => false, 'escape' => false, 'form' => ['style' => 'display:inline']]
+    ) ?>
+<?php endforeach; ?>
                     </td>
                   </tr>
                 <?php endforeach; ?>

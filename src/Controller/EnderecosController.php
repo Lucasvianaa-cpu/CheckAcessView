@@ -107,7 +107,5 @@ class EnderecosController extends AppController
         } else {
             $this->Flash->error(__('O endereço não pôde ser deletado. Por favor, tente novamente.'));
         }
-
-        return $this->redirect(['action' => 'index']);
     }
 }

@@ -40,7 +40,7 @@ class EquipamentosController extends AppController
     public function view($id = null)
     {
         $equipamento = $this->Equipamentos->get($id, [
-            'contain' => ['Funcionarios'],
+            'contain' => ['Funcionarios.Users'],
         ]);
 
         $this->set('equipamento', $equipamento);
@@ -93,8 +93,11 @@ class EquipamentosController extends AppController
      */
     public function edit($id = null)
     {
+
+        $this->loadModel('Users');
+        $this->loadModel('Funcionarios');
         $equipamento = $this->Equipamentos->get($id, [
-            'contain' => [],
+            'contain' => ['Funcionarios.Users'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
@@ -105,7 +108,17 @@ class EquipamentosController extends AppController
             }
             $this->Flash->error(__('O equipamento não pôde ser atualizado. Por favor, tente novamente.'));
         }
-        $funcionarios = $this->Equipamentos->Funcionarios->find('list', ['limit' => 200]);
+        $func = $this->Funcionarios->find('all', [
+            'limit' => 200,
+            'contain' => ['Users'] // Aqui você especifica as associações que deseja buscar
+        ]);
+
+        // No seu controller, onde você busca os funcionários ajustados
+        $funcionarios = [];
+        foreach ($func as $funcionario) {
+            $funcionarios[$funcionario->id] = $funcionario->user->nome;
+        } 
+        
         $this->set(compact('equipamento', 'funcionarios'));
     }
 
