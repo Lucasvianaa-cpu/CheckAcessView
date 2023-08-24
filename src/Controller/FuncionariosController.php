@@ -53,9 +53,20 @@ class FuncionariosController extends AppController
      */
     public function view($id = null)
     {
+        $this->loadModel('Funcionarios');
+        $this->loadModel('Equipamentos');
+        $this->loadModel('PlanosSaudes');
+
         $funcionario = $this->Funcionarios->get($id, [
-            'contain' => ['Cargos', 'PlanosSaudes', 'Empresas', 'Users', 'Plantoes', 'Equipamentos', 'HistoricosPontos', 'Holerites'],
+            'contain' => ['Cargos', 'PlanosSaudes', 'Empresas', 'Users', 'Plantoes', 'Equipamentos', 'HistoricosPontos', 'Holerites', 'Equipamentos.Funcionarios'],
         ]);
+
+        $this->paginate = [
+            'contain' => ['Cargos', 'PlanosSaudes', 'Empresas', 'Users', 'Plantoes', 'Equipamentos', 'HistoricosPontos', 'Holerites', 'Equipamentos.Funcionarios'],
+            'limit' => 5
+        ];
+        $funcionarios = $this->paginate($this->Funcionarios);
+       
 
         $this->set('funcionario', $funcionario);
     }

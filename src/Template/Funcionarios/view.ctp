@@ -4,205 +4,137 @@
  * @var \App\Model\Entity\Funcionario $funcionario
  */
 ?>
-<nav class="large-3 medium-4 columns" id="actions-sidebar">
-    <ul class="side-nav">
-        <li class="heading"><?= __('Actions') ?></li>
-        <li><?= $this->Html->link(__('Edit Funcionario'), ['action' => 'edit', $funcionario->id]) ?> </li>
-        <li><?= $this->Form->postLink(__('Delete Funcionario'), ['action' => 'delete', $funcionario->id], ['confirm' => __('Are you sure you want to delete # {0}?', $funcionario->id)]) ?> </li>
-        <li><?= $this->Html->link(__('List Funcionarios'), ['action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Funcionario'), ['action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Cargos'), ['controller' => 'Cargos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Cargo'), ['controller' => 'Cargos', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Planos Saudes'), ['controller' => 'PlanosSaudes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Planos Saude'), ['controller' => 'PlanosSaudes', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Empresas'), ['controller' => 'Empresas', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Empresa'), ['controller' => 'Empresas', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Users'), ['controller' => 'Users', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New User'), ['controller' => 'Users', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Equipamentos'), ['controller' => 'Equipamentos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Equipamento'), ['controller' => 'Equipamentos', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Historicos Pontos'), ['controller' => 'HistoricosPontos', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Historicos Ponto'), ['controller' => 'HistoricosPontos', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Holerites'), ['controller' => 'Holerites', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Holerite'), ['controller' => 'Holerites', 'action' => 'add']) ?> </li>
-        <li><?= $this->Html->link(__('List Plantoes'), ['controller' => 'Plantoes', 'action' => 'index']) ?> </li>
-        <li><?= $this->Html->link(__('New Planto'), ['controller' => 'Plantoes', 'action' => 'add']) ?> </li>
-    </ul>
-</nav>
-<div class="funcionarios view large-9 medium-8 columns content">
-    <h3><?= h($funcionario->id) ?></h3>
-    <table class="vertical-table">
-        <tr>
-            <th scope="row"><?= __('Cargo') ?></th>
-            <td><?= $funcionario->has('cargo') ? $this->Html->link($funcionario->cargo->id, ['controller' => 'Cargos', 'action' => 'view', $funcionario->cargo->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Planos Saude') ?></th>
-            <td><?= $funcionario->has('planos_saude') ? $this->Html->link($funcionario->planos_saude->id, ['controller' => 'PlanosSaudes', 'action' => 'view', $funcionario->planos_saude->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Empresa') ?></th>
-            <td><?= $funcionario->has('empresa') ? $this->Html->link($funcionario->empresa->id, ['controller' => 'Empresas', 'action' => 'view', $funcionario->empresa->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('User') ?></th>
-            <td><?= $funcionario->has('user') ? $this->Html->link($funcionario->user->id, ['controller' => 'Users', 'action' => 'view', $funcionario->user->id]) : '' ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Id') ?></th>
-            <td><?= $this->Number->format($funcionario->id) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Salario') ?></th>
-            <td><?= $this->Number->format($funcionario->salario) ?></td>
-        </tr>
-        <tr>
-            <th scope="row"><?= __('Is Active') ?></th>
-            <td><?= $this->Number->format($funcionario->is_active) ?></td>
-        </tr>
-    </table>
-    <div class="related">
-        <h4><?= __('Related Plantoes') ?></h4>
-        <?php if (!empty($funcionario->plantoes)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Data') ?></th>
-                <th scope="col"><?= __('Hora Total') ?></th>
-                <th scope="col"><?= __('Hora Inicio') ?></th>
-                <th scope="col"><?= __('Hora Termino') ?></th>
-                <th scope="col"><?= __('Funcionario Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($funcionario->plantoes as $plantoes): ?>
-            <tr>
-                <td><?= h($plantoes->id) ?></td>
-                <td><?= h($plantoes->data) ?></td>
-                <td><?= h($plantoes->hora_total) ?></td>
-                <td><?= h($plantoes->hora_inicio) ?></td>
-                <td><?= h($plantoes->hora_termino) ?></td>
-                <td><?= h($plantoes->funcionario_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Plantoes', 'action' => 'view', $plantoes->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Plantoes', 'action' => 'edit', $plantoes->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Plantoes', 'action' => 'delete', $plantoes->id], ['confirm' => __('Are you sure you want to delete # {0}?', $plantoes->id)]) ?>
+  
+<div class="container-fluid py-2 px-5">
+  <div class="row">
+    <div class="col-12">
+      <div class="card border shadow-xs mb-4">
+        <div class="card-header border-bottom pb-0">
+          <div class="d-sm-flex align-items-center justify-content-between">
+            <div>
+              <h6 class="font-weight-semibold text-lg mb-0">Funcionário selecionado</h6>
+              <p class="text-sm">Este é um funcionário que foi registrado...</p>
+            </div>
+
+            <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
+
+              <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
+
+            </div>
+
+          </div>
+        </div>
+
+        <div class="table-responsive p-0">
+          <table class="table align-items-center mb-0">
+            <thead class="bg-gray-100">
+              <tr>
+                <th class="text-secondary text-xs font-weight-semibold opacity-7">Nome</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Cargo</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Salário</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Empresa</th>
+                <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">É Ativo?</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <div class="d-flex px-2 py-1">
+                    <div class="d-flex align-items-center">
+                    </div>
+                    <div class="d-flex flex-column justify-content-center ms-1">
+                      <h6 class="mb-0 text-sm font-weight-semibold"> <?= $funcionario->user->nome ?></h6>
+                    </div>
+                  </div>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Equipamentos') ?></h4>
-        <?php if (!empty($funcionario->equipamentos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Num Patrimonio') ?></th>
-                <th scope="col"><?= __('Descricao') ?></th>
-                <th scope="col"><?= __('Is Active') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Funcionario Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($funcionario->equipamentos as $equipamentos): ?>
-            <tr>
-                <td><?= h($equipamentos->id) ?></td>
-                <td><?= h($equipamentos->num_patrimonio) ?></td>
-                <td><?= h($equipamentos->descricao) ?></td>
-                <td><?= h($equipamentos->is_active) ?></td>
-                <td><?= h($equipamentos->created) ?></td>
-                <td><?= h($equipamentos->funcionario_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Equipamentos', 'action' => 'view', $equipamentos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Equipamentos', 'action' => 'edit', $equipamentos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Equipamentos', 'action' => 'delete', $equipamentos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $equipamentos->id)]) ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionario->cargo->nome ?></p>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Historicos Pontos') ?></h4>
-        <?php if (!empty($funcionario->historicos_pontos)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col"><?= __('Funcionario Id') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($funcionario->historicos_pontos as $historicosPontos): ?>
-            <tr>
-                <td><?= h($historicosPontos->id) ?></td>
-                <td><?= h($historicosPontos->created) ?></td>
-                <td><?= h($historicosPontos->funcionario_id) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'HistoricosPontos', 'action' => 'view', $historicosPontos->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'HistoricosPontos', 'action' => 'edit', $historicosPontos->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'HistoricosPontos', 'action' => 'delete', $historicosPontos->id], ['confirm' => __('Are you sure you want to delete # {0}?', $historicosPontos->id)]) ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionario->salario ?></p>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
-    </div>
-    <div class="related">
-        <h4><?= __('Related Holerites') ?></h4>
-        <?php if (!empty($funcionario->holerites)): ?>
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th scope="col"><?= __('Id') ?></th>
-                <th scope="col"><?= __('Data') ?></th>
-                <th scope="col"><?= __('Descricao') ?></th>
-                <th scope="col"><?= __('Data Admissao') ?></th>
-                <th scope="col"><?= __('Salario') ?></th>
-                <th scope="col"><?= __('Adicional Noturno') ?></th>
-                <th scope="col"><?= __('Hora Extra') ?></th>
-                <th scope="col"><?= __('Inss') ?></th>
-                <th scope="col"><?= __('Fgts') ?></th>
-                <th scope="col"><?= __('Ir') ?></th>
-                <th scope="col"><?= __('Ferias') ?></th>
-                <th scope="col"><?= __('Vale Alimentacao') ?></th>
-                <th scope="col"><?= __('Horas Trabalhadas') ?></th>
-                <th scope="col"><?= __('Base Fgts') ?></th>
-                <th scope="col"><?= __('Base Inss') ?></th>
-                <th scope="col"><?= __('Liquido') ?></th>
-                <th scope="col"><?= __('Bruto') ?></th>
-                <th scope="col"><?= __('Funcionario Id') ?></th>
-                <th scope="col"><?= __('Created') ?></th>
-                <th scope="col" class="actions"><?= __('Actions') ?></th>
-            </tr>
-            <?php foreach ($funcionario->holerites as $holerites): ?>
-            <tr>
-                <td><?= h($holerites->id) ?></td>
-                <td><?= h($holerites->data) ?></td>
-                <td><?= h($holerites->descricao) ?></td>
-                <td><?= h($holerites->data_admissao) ?></td>
-                <td><?= h($holerites->salario) ?></td>
-                <td><?= h($holerites->adicional_noturno) ?></td>
-                <td><?= h($holerites->hora_extra) ?></td>
-                <td><?= h($holerites->inss) ?></td>
-                <td><?= h($holerites->fgts) ?></td>
-                <td><?= h($holerites->ir) ?></td>
-                <td><?= h($holerites->ferias) ?></td>
-                <td><?= h($holerites->vale_alimentacao) ?></td>
-                <td><?= h($holerites->horas_trabalhadas) ?></td>
-                <td><?= h($holerites->base_fgts) ?></td>
-                <td><?= h($holerites->base_inss) ?></td>
-                <td><?= h($holerites->liquido) ?></td>
-                <td><?= h($holerites->bruto) ?></td>
-                <td><?= h($holerites->funcionario_id) ?></td>
-                <td><?= h($holerites->created) ?></td>
-                <td class="actions">
-                    <?= $this->Html->link(__('View'), ['controller' => 'Holerites', 'action' => 'view', $holerites->id]) ?>
-                    <?= $this->Html->link(__('Edit'), ['controller' => 'Holerites', 'action' => 'edit', $holerites->id]) ?>
-                    <?= $this->Form->postLink(__('Delete'), ['controller' => 'Holerites', 'action' => 'delete', $holerites->id], ['confirm' => __('Are you sure you want to delete # {0}?', $holerites->id)]) ?>
+                <td class="align-middle text-center text-sm">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionario->empresa->razao_social ?></p>
                 </td>
-            </tr>
-            <?php endforeach; ?>
-        </table>
-        <?php endif; ?>
+
+                <td class="align-middle text-center">
+                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionario->is_active == 1 ? 'Sim' : 'Não' ?></p>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
     </div>
-</div>
+  </div>
+  </div>
+
+  <div class="container-fluid py-2 px-5">
+    <div class="row">
+      <div class="col-12">
+        <div class="card border shadow-xs mb-4">
+          <div class="card-header border-bottom pb-0">
+            <div class="d-sm-flex align-items-center justify-content-between">
+              <div>
+                <h6 class="font-weight-semibold text-lg mb-0">Equipamentos Vinculados ao Funcionário</h6>
+                <p class="text-sm">Estes são os equipamentos vinculados ao funcionário...</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="table-responsive p-0">
+            <table class="table align-items-center mb-0">
+              <thead class="bg-gray-100">
+
+                <tr>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Descrição</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Nº Patrimônio</th>
+                </tr>
+              </thead>
+              <tbody>
+                <?php foreach ($funcionario->equipamentos as $equipamentos) : ?>
+                  <tr>
+                    <td>
+                      <div class="d-flex px-2 py-1">
+                        <div class="d-flex align-items-center">
+                        </div>
+                        <div class="d-flex flex-column justify-content-center ms-1">
+                          <h6 class="mb-0 text-sm font-weight-semibold"> <?= $equipamentos->descricao ?></h6>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="align-middle text-center text-sm">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $equipamentos->num_patrimonio  ?></p>
+                  </tr>
+                
+              </tbody>
+            </table>
+            <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
+            <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
+            <ul class="pagination d-flex align-items-center">
+              <span aria-hidden="true" class="border rounded-2 p-2 mx-1 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->prev('' . __('<span class="text-white" style="font-size: 20px">&laquo;</span>'), ['escape' => false, 'class' => 'prev']) ?></span>
+              <span aria-hidden="true" class="border rounded-2 p-2 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->next(__('<span class="text-white" style="font-size: 20px">&raquo;</span>') . ' ', ['escape' => false, 'class' => 'next']) ?></span>
+            </ul>
+          </div>
+            
+          <?php endforeach; ?>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer pt-3  ">
+      <div class="container-fluid">
+        <div class="row align-items-center justify-content-lg-between">
+          <div class="col-lg-6 mb-lg-0 mb-4">
+            <div class="copyright text-center text-xs text-muted text-lg-start">
+              Copyright
+              © <script>
+                document.write(new Date().getFullYear())
+              </script>
+              Jaine Oliveira e Lucas Viana
+            </div>
+          </div>
+        </div>
+      </div>
+    </footer>
