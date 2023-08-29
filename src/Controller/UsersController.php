@@ -29,6 +29,9 @@ class UsersController extends AppController
         $this->Auth->allow(['adicionar']);
         $this->Auth->allow(['esqueciSenha']);
         $this->Auth->allow(['RedefinirSenha']);
+
+        $this->current_user = $this->Auth->user();
+
     }
 
     public function index()
@@ -295,11 +298,19 @@ class UsersController extends AppController
         $quantidadeCargos = $this->Cargos->find()->count();
         $quantidadeFuncionarios = $this->Funcionarios->find()->count();
         
-        $this->paginate = [
-            'contain' => ['Roles'],
-            'conditions' => ['Users.role_id' => 4],
-            'limit'=> 3
-        ];
+        if($this->current_user['role_id'] == 2){
+            $this->paginate = [
+                'contain' => ['Roles'],
+                'conditions' => ['Users.role_id' => 4],
+                'limit'=> 3
+            ];
+        } else {
+            $this->paginate = [
+                'contain' => ['Roles'],
+                'limit'=> 3
+            ];
+        }
+        
         
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
