@@ -264,11 +264,17 @@
         <?= $this->Html->script('buttons.js'); ?>
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
 
-        <?php $data_teste = $user->data_nascimento->format('d/m/Y');?>
+        <?php 
+          $timestamp = strtotime($user->data_nascimento);
+          if ($timestamp !== false) {
+              $data_formatada = date('Y-m-d', $timestamp);
+          }
+        ?>
+
         <script>
           document.addEventListener("DOMContentLoaded", function() {
             var inputElement = document.getElementById("data-nascimento");
-            inputElement.value = "<?php $data_teste ?>";
+            inputElement.value = "<?php echo $data_formatada ?>";
           });
         </script>
 
