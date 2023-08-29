@@ -12,17 +12,19 @@
               </div>
             </div>
             <div class="card-body px-0 py-0">
-              <div class="border-bottom py-3 px-3 d-sm-flex align-items-center">
+            <div class="border-bottom py-3 px-3 align-items-center">
+              <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3','filtro']); ?>
                 
-                <div class="input-group ms-auto">
-                  <span class="input-group-text text-body">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor">
-                      <path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-5.197-5.197m0 0A7.5 7.5 0 105.196 5.196a7.5 7.5 0 0010.607 10.607z"></path>
-                    </svg>
-                  </span>
-                  <input type="text" class="form-control" placeholder="Buscar">
-                </div>
-              </div>
+                  <div class="col-10">
+                      <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
+                  </div>
+ 
+                  <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
+                    <b>Buscar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
+                  </button>
+                  
+              <?php echo $this->Form->end(); ?>
+            </div>
               <div class="table-responsive p-0">
                 <table class="table align-items-center mb-0">
                   <thead class="bg-gray-100">

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller\Admin;
 
 use App\Controller\AppController;
@@ -10,40 +11,56 @@ class RhController extends AppController
 
     public function index()
     {
+        $conditions = [];
+
         $this->loadModel('Users');
         $this->loadModel('Roles');
-        
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        // Condição para filtrar usuários com role_id = 4
+        $conditions['Users.role_id'] = 4;
 
         $this->paginate = [
             'contain' => ['Roles', 'Funcionarios'],
-            'conditions' => ['Users.role_id' => 4],
-            'limit'=> 3
+            'limit' => 3
         ];
-    
-        $users = $this->paginate($this->Users);
 
+        // Passar as condições diretamente no método paginate
+        $users = $this->paginate($this->Users, ['conditions' => $conditions]);
 
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
         $this->set(compact('users', 'roles'));
-        
     }
-
     public function alterarPermissao()
     {
+
         $this->loadModel('Users');
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+
 
         $this->paginate = [
             'contain' => ['Roles'],
-            'limit'=> 3
+            'limit' => 3
         ];
-        $users = $this->paginate($this->Users);
+        $users = $this->paginate($this->Users, ['conditions' => $conditions]);
 
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
         $this->set(compact('users', 'roles'));
     }
 
 
-    public function permissions($id = null) {
+    public function permissions($id = null)
+    {
 
         $this->loadModel('Users');
         $this->loadModel('Roles');
