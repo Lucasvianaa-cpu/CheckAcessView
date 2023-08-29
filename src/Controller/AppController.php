@@ -9,6 +9,12 @@ use Cake\ORM\Query;
 class AppController extends Controller
 {
 
+    // Chama os Helpers Criados
+    public $helpers = [
+        'Form' => [
+            'className' => 'Form2'
+        ]
+    ];
     
     public function initialize()
     {

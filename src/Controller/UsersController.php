@@ -204,7 +204,7 @@ class UsersController extends AppController
             if ($this->Enderecos->save($endereco)) {
                 $this->Flash->success(__('Foi salvo o seu Endereço'));
             }
-
+            
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
             if (!empty($this->request->getData()['caminho_foto']['name'])) {
@@ -220,7 +220,7 @@ class UsersController extends AppController
                     $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
                 }
             }
-
+            
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Perfil atualizado com sucesso.'));
 
