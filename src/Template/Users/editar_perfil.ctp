@@ -210,14 +210,21 @@
                   <?= $this->Form->control('pix', ['type' => 'text', 'label' => 'PIX', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a sua chave PIX']); ?>
                 </div>
 
-                <div class="col-md-6">
+                <div class="col-md-4">
                   <?= $this->Form->control('uid_rfid', ['type' => 'text', 'label' => 'Tag RFID', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a tag RFID']); ?>
                 </div>
 
                 <div class="col-2 checkbox-input">
                   <label for="" class="form-label"></label>
                   <div class="form-check mt-2">
-                    <?= $this->Form->control('realiza_plantao', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
+                    <?= $this->Form->control('is_active', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
+                  </div>
+                </div>
+
+                <div class="col-2 checkbox-input">
+                  <label for="" class="form-label"></label>
+                  <div class="form-check mt-2">
+                    <?= $this->Form->control('realiza_plantao', ['type' => 'checkbox', 'label' => 'Realiza Plantão?', 'class' => 'form-check-input']); ?>
                   </div>
                 </div>
 

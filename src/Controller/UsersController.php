@@ -353,4 +353,28 @@ class UsersController extends AppController
         $this->set('id', $user[0]['id']);
         $this->set(compact('user'));
     }
+
+
+    private function getFuncionariosPorMes($ano)
+    {
+        $meses = [];
+
+        for ($mes = 1; $mes <= 12; $mes++) {
+            $data_inicial = date("$ano-" . sprintf('%02d', $mes) . "-01");
+            $data_final = date('Y-m-t', strtotime($data_inicial));
+
+            $meses[$ano][$mes] = $this->Funcionarios->find()
+            ->select(['total_funcionarios' => 'count(*)'])
+            ->where([
+                'funcionarios_id' => $this->funcionario_id,
+                'created BETWEEN' => $data_inicial and $data_final
+            ])
+            
+            ->first();
+        }
+
+        return $meses;
+    }
+
+
 }
