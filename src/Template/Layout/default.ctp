@@ -26,6 +26,24 @@
     <?= $this->fetch('script') ?>
 
     <style>
+
+    #preload-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white; /* Fundo branco */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 99999;
+    }
+
+    .spinner-container {
+    text-align: center;
+    }
+
     /* Estilize o botão de dropdown quando o mouse passar sobre ele */
     .dropdown-toggle:hover {
         box-shadow: none; /* Remove a sombra */
@@ -59,6 +77,14 @@
 </head>
 
 <body class="g-sidenav-show  bg-gray-100">
+
+<div id="preload-overlay">
+  <div class="spinner-container">
+    <div class="spinner-border text-primary" role="status">
+    </div>
+  </div>
+</div>
+
 
 <!-- MENU LATERAL FIXO -->
     <aside class="sidenav navbar navbar-vertical navbar-expand-xs border-0 bg-slate-900 fixed-start " id="sidenav-main">
@@ -569,6 +595,14 @@
 
         <!-- Mensagens de Sucesso/Erro -->
         <?= $this->element('alertas/mensagem'); ?>
+
+        <script>
+            $(window).on('load', function() {
+            $('#preload-overlay').fadeOut('slow', function() {
+                $(this).remove();
+            });
+            });
+        </script>
     </footer>
 
 </body>

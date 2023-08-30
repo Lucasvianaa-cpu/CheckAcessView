@@ -386,24 +386,28 @@
     var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
     var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
-    // Mapear os dados para o formato esperado pelo ApexCharts
-    var chartData = months.map((month, index) => ({
-      x: month,
-      y: funcionariosData[index]
-    }));
-
     // Configurações do gráfico
     var options = {
       chart: {
-        type: 'line',
-        height: 450
+        type: 'bar',
+        height: 250
+      },
+      xaxis: {
+        categories: months
+      },
+      plotOptions: {
+        bar: {
+          horizontal: false
+        }
       },
       series: [{
         name: 'Funcionários',
-        data: chartData
+        data: funcionariosData
       }],
-      xaxis: {
-        categories: months
+      yaxis: {
+        title: {
+          text: 'Quantidade'
+        }
       }
     };
 
