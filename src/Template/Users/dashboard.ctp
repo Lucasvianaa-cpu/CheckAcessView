@@ -219,10 +219,11 @@
           </div>
         </div>
       </div>
+
     <?php endif; ?>
       <div class="row">
-        <div class="col-xl-3 col-sm-6 mb-xl-0">
-          <div class="card border shadow-xs mb-4">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
+          <div class="card border shadow-xs mb-4 border-top-5">
             <div class="card-body text-start p-3 w-100">
               <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
                 <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -247,7 +248,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
           <div class="card border shadow-xs mb-4">
             <div class="card-body text-start p-3 w-100">
               <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
@@ -273,7 +274,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
           <div class="card border shadow-xs mb-4">
             <div class="card-body text-start p-3 w-100">
               <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
@@ -298,7 +299,7 @@
             </div>
           </div>
         </div>
-        <div class="col-xl-3 col-sm-6">
+        <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
           <div class="card border shadow-xs mb-4">
             <div class="card-body text-start p-3 w-100">
               <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
@@ -382,10 +383,10 @@
     <script>
       var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
 
-/* large line chart */
+/* Gráfico */
 var chLine = document.getElementById("chLine");
 var chartData = {
-  labels: ["S", "M", "T", "W", "T", "F", "S"],
+  labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
   datasets: [{
     data: [589, 445, 483, 503, 689, 692, 634],
     backgroundColor: 'transparent',
@@ -393,13 +394,6 @@ var chartData = {
     borderWidth: 4,
     pointBackgroundColor: colors[0]
   }
-//   {
-//     data: [639, 465, 493, 478, 589, 632, 674],
-//     backgroundColor: colors[3],
-//     borderColor: colors[1],
-//     borderWidth: 4,
-//     pointBackgroundColor: colors[1]
-//   }
   ]
 };
 if (chLine) {
@@ -421,74 +415,6 @@ if (chLine) {
   }
   });
 }
-
-/* large pie/donut chart */
-var chPie = document.getElementById("chPie");
-if (chPie) {
-  new Chart(chPie, {
-    type: 'pie',
-    data: {
-      labels: ['Desktop', 'Phone', 'Tablet', 'Unknown'],
-      datasets: [
-        {
-          backgroundColor: [colors[1],colors[0],colors[2],colors[5]],
-          borderWidth: 0,
-          data: [50, 40, 15, 5]
-        }
-      ]
-    },
-    plugins: [{
-      beforeDraw: function(chart) {
-        var width = chart.chart.width,
-            height = chart.chart.height,
-            ctx = chart.chart.ctx;
-        ctx.restore();
-        var fontSize = (height / 70).toFixed(2);
-        ctx.font = fontSize + "em sans-serif";
-        ctx.textBaseline = "middle";
-        var text = chart.config.data.datasets[0].data[0] + "%",
-            textX = Math.round((width - ctx.measureText(text).width) / 2),
-            textY = height / 2;
-        ctx.fillText(text, textX, textY);
-        ctx.save();
-      }
-    }],
-    options: {layout:{padding:0}, legend:{display:false}, cutoutPercentage: 80}
-  });
-}
-
-
-/* 3 line charts */
-var lineOptions = {
-    legend:{display:false},
-    tooltips:{interest:false,bodyFontSize:11,titleFontSize:11},
-    scales:{
-        xAxes:[
-            {
-                ticks:{
-                    display:false
-                },
-                gridLines: {
-                    display:false,
-                    drawBorder:false
-                }
-            }
-        ],
-        yAxes:[{display:false}]
-    },
-    layout: {
-        padding: {
-            left: 6,
-            right: 6,
-            top: 4,
-            bottom: 6
-        }
-    }
-};
-
-
-
-
 
     </script>
     
