@@ -64,9 +64,8 @@ class CategoriasTable extends Table
             ->maxLength('descricao', 100)
             ->allowEmptyString('descricao');
 
-        $validator
-            ->notEmptyString('is_active');
-
+        //$validator
+        //    ->notEmptyString('is_active');
         return $validator;
     }
 }

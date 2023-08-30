@@ -57,9 +57,9 @@ class RolesTable extends Table
             ->integer('id')
             ->allowEmptyString('id', null, 'create');
 
-        $validator
-            ->notEmptyString('is_active');
-
+        //$validator
+        //    ->notEmptyString('is_active');
+        
         $validator
             ->scalar('descricao')
             ->maxLength('descricao', 60)

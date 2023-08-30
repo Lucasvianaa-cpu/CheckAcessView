@@ -79,8 +79,8 @@ class PlanosSaudesTable extends Table
             ->maxLength('celular', 30)
             ->allowEmptyString('celular');
 
-        $validator
-            ->notEmptyString('is_active');
+          //$validator
+        //    ->notEmptyString('is_active');
 
         return $validator;
     }

@@ -94,9 +94,9 @@ class FuncionariosTable extends Table
             ->decimal('salario')
             ->requirePresence('salario', 'create')
             ->notEmptyString('salario');
-
-        $validator
-            ->notEmptyString('is_active');
+            
+        //$validator
+        //    ->notEmptyString('is_active');
 
         return $validator;
     }

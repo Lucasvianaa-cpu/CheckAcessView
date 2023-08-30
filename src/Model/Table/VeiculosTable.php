@@ -81,9 +81,9 @@ class VeiculosTable extends Table
             ->maxLength('veiculoscol', 45)
             ->allowEmptyString('veiculoscol');
 
-        $validator
-            ->notEmptyString('is_active');
-
+        //$validator
+        //    ->notEmptyString('is_active');
+        
         return $validator;
     }
 

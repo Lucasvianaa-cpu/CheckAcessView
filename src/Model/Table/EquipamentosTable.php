@@ -69,9 +69,9 @@ class EquipamentosTable extends Table
             ->maxLength('descricao', 100)
             ->requirePresence('descricao', 'create')
             ->notEmptyString('descricao');
-
-        $validator
-            ->notEmptyString('is_active');
+            
+        //$validator
+        //    ->notEmptyString('is_active');
 
         return $validator;
     }

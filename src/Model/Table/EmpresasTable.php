@@ -121,9 +121,8 @@ class EmpresasTable extends Table
             ->maxLength('desc_empresa', 200)
             ->allowEmptyString('desc_empresa');
 
-        $validator
-            ->notEmptyString('is_active');
-
+         //$validator
+        //    ->notEmptyString('is_active');
         return $validator;
     }
 }
