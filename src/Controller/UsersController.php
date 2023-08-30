@@ -29,6 +29,7 @@ class UsersController extends AppController
         $this->Auth->allow(['adicionar']);
         $this->Auth->allow(['esqueciSenha']);
         $this->Auth->allow(['RedefinirSenha']);
+        $this->loadComponent('ListaFuncionarios');
 
         $this->current_user = $this->Auth->user();
 
@@ -297,6 +298,9 @@ class UsersController extends AppController
         $quantidadeCategorias= $this->Categorias->find()->count();
         $quantidadeCargos = $this->Cargos->find()->count();
         $quantidadeFuncionarios = $this->Funcionarios->find()->count();
+
+        $funcionarios_grafico = $this->ListaFuncionarios->ListaFuncionariosGrafico($id);
+
         
         if($this->current_user['role_id'] == 2){
             $this->paginate = [
@@ -314,7 +318,7 @@ class UsersController extends AppController
         
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
-        $this->set(compact('users','roles', 'empresa', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios'));
+        $this->set(compact('users','roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios'));
     }
  
     public function sair () {
@@ -353,28 +357,4 @@ class UsersController extends AppController
         $this->set('id', $user[0]['id']);
         $this->set(compact('user'));
     }
-
-
-    private function getFuncionariosPorMes($ano)
-    {
-        $meses = [];
-
-        for ($mes = 1; $mes <= 12; $mes++) {
-            $data_inicial = date("$ano-" . sprintf('%02d', $mes) . "-01");
-            $data_final = date('Y-m-t', strtotime($data_inicial));
-
-            $meses[$ano][$mes] = $this->Funcionarios->find()
-            ->select(['total_funcionarios' => 'count(*)'])
-            ->where([
-                'funcionarios_id' => $this->funcionario_id,
-                'created BETWEEN' => $data_inicial and $data_final
-            ])
-            
-            ->first();
-        }
-
-        return $meses;
-    }
-
-
 }

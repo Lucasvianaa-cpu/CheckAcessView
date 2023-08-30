@@ -8,6 +8,9 @@
         CheckAcessView
     </title>
 
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.28.3/dist/apexcharts.min.js"></script>
+
+
     <!-- Favicon -->
     <?= $this->Html->meta('icon') ?>
 
@@ -329,14 +332,14 @@
                 <div class="container">
     <div class="row my-3">
         <div class="col">
-            <h4>Qtd de funcionários registrados por período:</h4>
+            <h4>Funcionários registrados por mês:</h4>
         </div>
     </div>
     <div class=" my-2">
         <div class="col-md-12 py-1">
             <div class="card">
                 <div class="card-body">
-                    <canvas id="chLine"></canvas>
+                <div id="chart"></div>
                 </div>
             </div>
         </div>
@@ -362,12 +365,10 @@
     </div>
   </main>
 
-
   <?= $this->Flash->render() ?>
     <div>
         <?= $this->fetch('content') ?>
     </div>
-
 
     <footer>
         <?= $this->Html->script('popper.min.js'); ?>
@@ -381,42 +382,36 @@
     </footer>
 
     <script>
-      var colors = ['#007bff','#28a745','#333333','#c3e6cb','#dc3545','#6c757d'];
+    // Dados do gráfico
+    var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
+    var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
-/* Gráfico */
-var chLine = document.getElementById("chLine");
-var chartData = {
-  labels: ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"],
-  datasets: [{
-    data: [589, 445, 483, 503, 689, 692, 634],
-    backgroundColor: 'transparent',
-    borderColor: colors[0],
-    borderWidth: 4,
-    pointBackgroundColor: colors[0]
-  }
-  ]
-};
-if (chLine) {
-  new Chart(chLine, {
-  type: 'line',
-  data: chartData,
-  options: {
-    scales: {
-      xAxes: [{
-        ticks: {
-          beginAtZero: false
-        }
-      }]
-    },
-    legend: {
-      display: false
-    },
-    responsive: true
-  }
-  });
-}
+    // Mapear os dados para o formato esperado pelo ApexCharts
+    var chartData = months.map((month, index) => ({
+      x: month,
+      y: funcionariosData[index]
+    }));
 
-    </script>
+    // Configurações do gráfico
+    var options = {
+      chart: {
+        type: 'line',
+        height: 450
+      },
+      series: [{
+        name: 'Funcionários',
+        data: chartData
+      }],
+      xaxis: {
+        categories: months
+      }
+    };
+
+    // Inicializar o gráfico
+    var chart = new ApexCharts(document.querySelector("#chart"), options);
+    chart.render();
+  </script>
+
     
 </body>
 
