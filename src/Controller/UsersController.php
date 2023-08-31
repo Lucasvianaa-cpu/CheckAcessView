@@ -176,7 +176,10 @@ class UsersController extends AppController
                         return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'no_funcionarios']);
                     }
                 }
+            } else {
+                $this->Flash->error(__('E-mail ou senha incorretas! Por favor, tente novamente.'));
             }
+           
         }
     }
 
@@ -202,9 +205,6 @@ class UsersController extends AppController
             $endereco->user_id = $this->Auth->user('id');
             $endereco->cidade_id = $this->request->getData('cidade_id');
         
-            if ($this->Enderecos->save($endereco)) {
-                $this->Flash->success(__('Foi salvo o seu Endereço'));
-            }
             
             $user = $this->Users->patchEntity($user, $this->request->getData());
 

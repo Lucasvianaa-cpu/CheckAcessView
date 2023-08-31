@@ -226,7 +226,7 @@
     <?php endif; ?>
       <div class="row">
         <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
-          <div class="card border shadow-xs mb-4 border-top-5">
+          <div class="card border shadow-xs mb-4">
             <div class="card-body text-start p-3 w-100">
               <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
                 <svg height="16" width="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
@@ -379,6 +379,11 @@
         <?= $this->Html->script('swiper-bundle.min.js'); ?>
         <?= $this->Html->script('buttons.js'); ?>
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
+
+        <?= $this->Html->script('sweetalert2.all.min.js'); ?>
+
+        <!-- Mensagens de Sucesso/Erro -->
+        <?= $this->element('alertas/mensagem'); ?>
     </footer>
 
     <script>
@@ -386,6 +391,10 @@
     var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
     var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
+    var barColors = ['#11051c', '#FFC300', '#33FF7A', '#336BFF', '#D433FF', '#33FFD7', '#33A2FF', '#33FFBE', '#FF339D', '#FFB833', '#FF5733', '#A233FF'];
+
+
+    
     // Configurações do gráfico
     var options = {
       chart: {
@@ -408,7 +417,8 @@
         title: {
           text: 'Quantidade'
         }
-      }
+      },
+      colors: barColors // Definindo as cores das barras
     };
 
     // Inicializar o gráfico

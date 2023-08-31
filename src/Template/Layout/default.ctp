@@ -80,7 +80,7 @@
 
 <div id="preload-overlay">
   <div class="spinner-container">
-    <div class="spinner-border text-primary" role="status">
+    <div class="spinner-border text-dark" role="status">
     </div>
   </div>
 </div>
