@@ -391,7 +391,7 @@
     var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
     var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
 
-    var barColors = ['#11051c', '#FFC300', '#33FF7A', '#336BFF', '#D433FF', '#33FFD7', '#33A2FF', '#33FFBE', '#FF339D', '#FFB833', '#FF5733', '#A233FF'];
+    var barColors = ['#070713'];
 
 
     
