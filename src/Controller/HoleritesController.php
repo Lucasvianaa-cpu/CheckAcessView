@@ -50,6 +50,8 @@ class HoleritesController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Users');
+
         $holerite = $this->Holerites->newEntity();
         if ($this->request->is('post')) {
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
@@ -60,7 +62,7 @@ class HoleritesController extends AppController
             }
             $this->Flash->error(__('O holerite não pôde ser adicionado. Por favor, tente novamente.'));
         }
-        $funcionarios = $this->Holerites->Funcionarios->find('list', ['limit' => 200]);
+        $funcionarios = $this->Holerites->Funcionarios->Users->find('list',  ['keyField' => 'id', 'valueField' => 'nome']);
         $this->set(compact('holerite', 'funcionarios'));
     }
 

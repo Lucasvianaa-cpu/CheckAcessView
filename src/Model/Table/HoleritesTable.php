@@ -59,9 +59,9 @@ class HoleritesTable extends Table
             ->allowEmptyString('id', null, 'create');
 
         $validator
-            ->dateTime('data')
-            ->requirePresence('data', 'create')
-            ->notEmptyDateTime('data');
+            ->date('data_holerite')
+            ->requirePresence('data_holerite', 'create')
+            ->notEmptyDate('data_holerite');
 
         $validator
             ->scalar('descricao')
@@ -107,9 +107,8 @@ class HoleritesTable extends Table
             ->allowEmptyString('vale_alimentacao');
 
         $validator
-            ->time('horas_trabalhadas')
-            ->requirePresence('horas_trabalhadas', 'create')
-            ->notEmptyTime('horas_trabalhadas');
+            ->decimal('horas_trabalhadas')
+            ->allowEmptyString('horas_trabalhadas');
 
         $validator
             ->decimal('base_fgts')

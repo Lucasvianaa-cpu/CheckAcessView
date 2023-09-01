@@ -7,7 +7,7 @@ use Cake\ORM\Entity;
  * Holerite Entity
  *
  * @property int $id
- * @property \Cake\I18n\FrozenTime $data
+ * @property \Cake\I18n\FrozenDate $data_holerite
  * @property string|null $descricao
  * @property \Cake\I18n\FrozenDate $data_admissao
  * @property float $salario
@@ -18,7 +18,7 @@ use Cake\ORM\Entity;
  * @property float|null $ir
  * @property float|null $ferias
  * @property float|null $vale_alimentacao
- * @property \Cake\I18n\FrozenTime $horas_trabalhadas
+ * @property float|null $horas_trabalhadas
  * @property float $base_fgts
  * @property float|null $base_inss
  * @property float $liquido
@@ -40,7 +40,7 @@ class Holerite extends Entity
      * @var array
      */
     protected $_accessible = [
-        'data' => true,
+        'data_holerite' => true,
         'descricao' => true,
         'data_admissao' => true,
         'salario' => true,
