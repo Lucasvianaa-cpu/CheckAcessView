@@ -14,11 +14,14 @@
                         <h6 class="mb-0 font-weight-semibold text-lg">Adicionar Holerite</h6>
                         <p class="text-sm mb-1">Preencha os campos abaixo</p>
                     </div>
+
+                    
+
                     <div class="">
                         <?= $this->Form->create($holerite, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-md-6">
-                                <?= $this->Form->control('funcionario_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
+                                <?= $this->Form->control('funcionario_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios_list, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
                             </div>
                             <div class="col-md-6">
                                 <?= $this->Form->data_personalizada('data_holerite', 'Data do Holerite', 'date', date('d/m/Y'), 'required', $holerite->data_holerite); ?>
