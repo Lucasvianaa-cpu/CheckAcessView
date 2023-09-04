@@ -55,6 +55,7 @@ CREATE TABLE `categorias` (
   `nome` varchar(45) NOT NULL,
   `descricao` varchar(100) DEFAULT NULL,
   `is_active` tinyint DEFAULT '1',
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -65,7 +66,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (2,'Suporte','AAAAAAAAAAAAAA',1),(3,'A','A',1);
+INSERT INTO `categorias` VALUES (2,'Suporte','AAAAAAAAAAAAAA',1,1),(3,'A','A',1,0);
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,6 +121,7 @@ CREATE TABLE `empresas` (
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_active` tinyint DEFAULT '1',
   `caminho_foto` varchar(245) DEFAULT NULL,
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -130,7 +132,7 @@ CREATE TABLE `empresas` (
 
 LOCK TABLES `empresas` WRITE;
 /*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
-INSERT INTO `empresas` VALUES (1,'emp teste','emp teste','1111111111111','11','11','a','a','1','1',1,'a','2023-08-01 19:28:13',1,''),(2,'Luquinha','Empresa Luquinha','2525252525','25','25','a','a','1','1',1,'a','2023-08-16 21:35:25',1,NULL);
+INSERT INTO `empresas` VALUES (1,'emp teste','emp teste','1111111111111','11','11','a','a','1','1',1,'a','2023-08-01 19:28:13',1,'',0),(2,'Luquinha','Empresa Luquinha','2525252525','25','25','a','a','1','1',1,'a','2023-08-16 21:35:25',1,NULL,0);
 /*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -181,6 +183,7 @@ CREATE TABLE `equipamentos` (
   `is_active` tinyint DEFAULT '1',
   `created` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP',
   `funcionario_id` int NOT NULL,
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `equipamento_funcionario_idx` (`funcionario_id`),
   CONSTRAINT `equipamento_funcionario` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`)
@@ -193,7 +196,7 @@ CREATE TABLE `equipamentos` (
 
 LOCK TABLES `equipamentos` WRITE;
 /*!40000 ALTER TABLE `equipamentos` DISABLE KEYS */;
-INSERT INTO `equipamentos` VALUES (3,'1515','AAA',1,'8/1/23, 11:53 PM',5);
+INSERT INTO `equipamentos` VALUES (3,'1515','AAA',1,'8/1/23, 11:53 PM',5,0);
 /*!40000 ALTER TABLE `equipamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -238,6 +241,7 @@ CREATE TABLE `funcionarios` (
   `plano_saude_id` int DEFAULT NULL,
   `empresa_id` int NOT NULL,
   `user_id` int NOT NULL,
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `funcionario_cargo_idx` (`cargo_id`),
   KEY `funcionario_plano_idx` (`plano_saude_id`),
@@ -256,7 +260,7 @@ CREATE TABLE `funcionarios` (
 
 LOCK TABLES `funcionarios` WRITE;
 /*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-INSERT INTO `funcionarios` VALUES (5,120.00,2,1,'2023-01-01 00:00:00',1,1,3),(6,1000.00,2,1,'2023-02-01 00:00:00',1,1,7),(7,1200.00,2,1,'2023-02-02 00:00:00',1,1,8),(8,1200.00,2,1,'2023-03-01 00:00:00',1,1,9),(9,1000.00,1,1,'2023-04-01 00:00:00',1,1,10),(10,1000.00,1,1,'2023-05-01 00:00:00',1,1,11),(11,1000.00,1,1,'2023-05-01 00:00:00',1,1,14),(12,200.00,1,1,'2023-06-01 00:00:00',1,2,6),(13,1.00,1,1,'2023-07-01 00:00:00',1,2,6),(14,2050.00,1,1,'2023-08-07 00:00:00',1,2,6),(15,2050.00,1,1,'2023-09-01 00:00:00',1,2,6),(16,5000.00,1,0,'2023-10-01 00:00:00',1,2,6),(17,25.00,3,1,'2023-11-01 00:00:00',1,1,21),(18,1000.00,1,1,'2023-12-01 00:00:00',1,2,23);
+INSERT INTO `funcionarios` VALUES (5,120.00,2,1,'2023-01-01 00:00:00',1,1,3,0),(6,1000.00,2,1,'2023-02-01 00:00:00',1,1,7,0),(7,1200.00,2,1,'2023-02-02 00:00:00',1,1,8,0),(8,1200.00,2,1,'2023-03-01 00:00:00',1,1,9,0),(9,1000.00,1,1,'2023-04-01 00:00:00',1,1,10,0),(10,1000.00,1,1,'2023-05-01 00:00:00',1,1,11,0),(11,1000.00,1,1,'2023-05-01 00:00:00',1,1,14,0),(12,200.00,1,1,'2023-06-01 00:00:00',1,2,6,0),(13,1.00,1,1,'2023-07-01 00:00:00',1,2,6,0),(14,2050.00,1,1,'2023-08-07 00:00:00',1,2,6,0),(15,2050.00,1,1,'2023-09-01 00:00:00',1,2,6,0),(16,5000.00,1,0,'2023-10-01 00:00:00',1,2,6,0),(17,25.00,3,1,'2023-11-01 00:00:00',1,1,21,0),(18,1000.00,1,1,'2023-12-01 00:00:00',1,2,23,0);
 /*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -373,6 +377,7 @@ CREATE TABLE `planos_saudes` (
   `celular` varchar(30) DEFAULT NULL,
   `created` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `is_active` tinyint DEFAULT '1',
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
@@ -383,7 +388,7 @@ CREATE TABLE `planos_saudes` (
 
 LOCK TABLES `planos_saudes` WRITE;
 /*!40000 ALTER TABLE `planos_saudes` DISABLE KEYS */;
-INSERT INTO `planos_saudes` VALUES (1,'111','Unimed','Plano Unimed','1836440000','18988888888','2023-07-31 23:07:56',1);
+INSERT INTO `planos_saudes` VALUES (1,'111','Unimed','Plano Unimed','1836440000','18988888888','2023-07-31 23:07:56',1,0);
 /*!40000 ALTER TABLE `planos_saudes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -501,6 +506,7 @@ CREATE TABLE `users` (
   `n_carteira_trabalho` varchar(45) NOT NULL,
   `realiza_plantao` tinyint DEFAULT NULL,
   `caminho_foto` varchar(256) DEFAULT NULL,
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `role_user_idx` (`role_id`),
@@ -514,7 +520,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (3,1,'2023-07-13 00:02:36','Lucas RH','$2y$10$7asiu7.HZQpBM9a3zOk1D.FjOEuS6RaToxBGEzjddU5CXIfovpX76','Viana','4638378323','521218275','lucas1042@live.com','18996666724',1199.99,'2023-07-13','0+','hbfdhgdf','0025','15165','16315','61265269',1,'adadsad','lucas@live.com','adsass',0,'fotos/RH -Viana-1206403349-perfil.png'),(6,1,'2023-07-19 23:09:10','inutilizavel','$2y$10$CfvCN9v1ADK8mckdhBjH4elrKlU21x.BwO4Fb4uQ1brirlP6yJ/h6',NULL,NULL,NULL,'lucas10422@live.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL),(7,1,'2023-08-04 23:08:48','inutilizavel','$2y$10$kEIGrZ6bJ3JZdDh5uEoELum7ZkddRz3YErRbQoD9UK6iJQZMI1MOC',NULL,NULL,NULL,'loise@hotmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL),(8,1,'2023-08-10 20:08:05','Admin','$2y$10$B99.THkKuD8s34WSJOvQWejG6USKibD5t9XvLLNF6Fdrzh9vcjwwi','Empresa',NULL,NULL,'admin@admin.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL),(9,1,'2023-08-10 20:08:30','Rh','$2y$10$yerdRGxP/Fl5UWj5rRWcie8v.Fi69x2MNCPUbLHjZrdXPy8bW0O/K','Empresa','31515110515','2052100125','rh@rh.com','02236203',NULL,'2001-08-07','O','aa','aa','a','a','aa',2,'aa','aa@aa.com','aaa',0,''),(10,1,'2023-08-10 20:08:45','Funcionario','$2y$10$9LKk/GZ0ooh42nPteKkV/uo5wBiNHe74GwaM4CvtbaGfQzNBuR4/.','Empresa','1151515','05215221','funcionario@funcionario.com','185185415841',NULL,NULL,'O','aa','5424','42424','24254','4245',3,'4524','funcionario@funcionario.com','102',1,'fotos/Funcionario-Empresa-358696198-perfil.png'),(11,1,'2023-08-10 20:09:07','Convidado','$2y$10$B7KZo5c7lE4IdcbcgppbOeiIuSal3HkUSX0JAXibnfOAYGu5KO2jC','Convidado',NULL,NULL,'convidado@convidado.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL),(14,1,'2023-08-16 23:21:05','Lucas','$2y$10$chTAQclujbgIBtrPJpYefev0s2GKw/aJoCfqAIIXs/MH5fJOcHKBS','Heideric',NULL,NULL,'lucasrochaheideric@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL),(20,1,'2023-08-16 23:47:06','Teste','$2y$10$im2fBK3mlTVcBNZDmAvfeeOml9A.PnE4ANZJVddxXLPptlo9l4qQK','teste1',NULL,NULL,'luckvrodrigues.77@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL),(21,1,'2023-08-17 00:46:07','novo','$2y$10$Dk0.KpdGBKFN7ppF/dj9LuEeTYmf8Zdd4HesCd/nxVy7o.630E/IC','novo',NULL,NULL,'novo@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'',NULL,NULL),(22,1,'2023-08-21 22:31:58','CONVIDADO','$2y$10$XexAwrQ3TR0WH.4XsKviN.yeX0WN3ckaisujJf2F/d5u1pclLTkWC','NOVO',NULL,NULL,'convidadonovo@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL),(23,1,'2023-08-22 18:26:12','Novo','$2y$10$Dgpv9AWON3lPNyVhrEK3HO.FG8l4zgHjBzS0EqjYeqIrWiTHEy/Im','Novinho',NULL,NULL,'novo1@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL),(24,1,'2023-08-28 16:51:09','Lucas','$2y$10$zDRj2afiyC9d3JMG1DsCf.kwUtUA7U8kUGYuMw0vLOdh1DyiSPUkG','Viana',NULL,NULL,'luskas7@oulook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL),(25,1,'2023-08-28 17:18:24','Teste','$2y$10$28qaCOrbHFEmVpYSZ89LVObLden87fyG8jZ.iDPxrS5KU1WorN3dS','teste',NULL,NULL,'lvrodrigues7@outlook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL),(26,1,'2023-08-28 17:43:39','loise','$2y$10$9MFO.sWA.NxTMgf7Nmz9Xu5Umi9ajZXsmSRR2sk49J4glZeWM0n2e','cardoso','6262161216','262161216','loise-cardoso@hotmail.com','262161216',NULL,NULL,'262','262161216','26216121','262161216','26216','262161216',4,'262161216','loise-cardoso@hotmail.com','262161216',0,'fotos/loise-cardoso-597916517-perfil.png');
+INSERT INTO `users` VALUES (3,1,'2023-07-13 00:02:36','Lucas RH','$2y$10$7asiu7.HZQpBM9a3zOk1D.FjOEuS6RaToxBGEzjddU5CXIfovpX76','Viana','4638378323','521218275','lucas1042@live.com','18996666724',1199.99,'2023-07-13','0+','hbfdhgdf','0025','15165','16315','61265269',1,'adadsad','lucas@live.com','adsass',0,'fotos/RH -Viana-1206403349-perfil.png',0),(6,1,'2023-07-19 23:09:10','inutilizavel','$2y$10$CfvCN9v1ADK8mckdhBjH4elrKlU21x.BwO4Fb4uQ1brirlP6yJ/h6',NULL,NULL,NULL,'lucas10422@live.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(7,1,'2023-08-04 23:08:48','inutilizavel','$2y$10$kEIGrZ6bJ3JZdDh5uEoELum7ZkddRz3YErRbQoD9UK6iJQZMI1MOC',NULL,NULL,NULL,'loise@hotmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(8,1,'2023-08-10 20:08:05','Admin','$2y$10$B99.THkKuD8s34WSJOvQWejG6USKibD5t9XvLLNF6Fdrzh9vcjwwi','Empresa',NULL,NULL,'admin@admin.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(9,1,'2023-08-10 20:08:30','Rh','$2y$10$yerdRGxP/Fl5UWj5rRWcie8v.Fi69x2MNCPUbLHjZrdXPy8bW0O/K','Empresa','31515110515','2052100125','rh@rh.com','02236203',NULL,'2001-08-07','O','aa','aa','a','a','aa',2,'aa','aa@aa.com','aaa',0,'',0),(10,1,'2023-08-10 20:08:45','Funcionario','$2y$10$9LKk/GZ0ooh42nPteKkV/uo5wBiNHe74GwaM4CvtbaGfQzNBuR4/.','Empresa','1151515','05215221','funcionario@funcionario.com','185185415841',NULL,NULL,'O','aa','5424','42424','24254','4245',3,'4524','funcionario@funcionario.com','102',1,'fotos/Funcionario-Empresa-358696198-perfil.png',0),(11,1,'2023-08-10 20:09:07','Convidado','$2y$10$B7KZo5c7lE4IdcbcgppbOeiIuSal3HkUSX0JAXibnfOAYGu5KO2jC','Convidado',NULL,NULL,'convidado@convidado.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(14,1,'2023-08-16 23:21:05','Lucas','$2y$10$chTAQclujbgIBtrPJpYefev0s2GKw/aJoCfqAIIXs/MH5fJOcHKBS','Heideric',NULL,NULL,'lucasrochaheideric@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(20,1,'2023-08-16 23:47:06','Teste','$2y$10$im2fBK3mlTVcBNZDmAvfeeOml9A.PnE4ANZJVddxXLPptlo9l4qQK','teste1',NULL,NULL,'luckvrodrigues.77@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(21,1,'2023-08-17 00:46:07','novo','$2y$10$Dk0.KpdGBKFN7ppF/dj9LuEeTYmf8Zdd4HesCd/nxVy7o.630E/IC','novo',NULL,NULL,'novo@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'',NULL,NULL,0),(22,1,'2023-08-21 22:31:58','CONVIDADO','$2y$10$XexAwrQ3TR0WH.4XsKviN.yeX0WN3ckaisujJf2F/d5u1pclLTkWC','NOVO',NULL,NULL,'convidadonovo@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(23,1,'2023-08-22 18:26:12','Novo','$2y$10$Dgpv9AWON3lPNyVhrEK3HO.FG8l4zgHjBzS0EqjYeqIrWiTHEy/Im','Novinho',NULL,NULL,'novo1@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(24,1,'2023-08-28 16:51:09','Lucas','$2y$10$zDRj2afiyC9d3JMG1DsCf.kwUtUA7U8kUGYuMw0vLOdh1DyiSPUkG','Viana',NULL,NULL,'luskas7@oulook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(25,1,'2023-08-28 17:18:24','Teste','$2y$10$28qaCOrbHFEmVpYSZ89LVObLden87fyG8jZ.iDPxrS5KU1WorN3dS','teste',NULL,NULL,'lvrodrigues7@outlook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(26,1,'2023-08-28 17:43:39','loise','$2y$10$9MFO.sWA.NxTMgf7Nmz9Xu5Umi9ajZXsmSRR2sk49J4glZeWM0n2e','cardoso','6262161216','262161216','loise-cardoso@hotmail.com','262161216',NULL,NULL,'262','262161216','26216121','262161216','26216','262161216',4,'262161216','loise-cardoso@hotmail.com','262161216',0,'fotos/loise-cardoso-597916517-perfil.png',0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -534,6 +540,7 @@ CREATE TABLE `veiculos` (
   `created` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP',
   `is_active` tinyint DEFAULT '1',
   `user_id` int NOT NULL,
+  `is_trash` tinyint DEFAULT '0',
   PRIMARY KEY (`id`),
   KEY `user_veiculo_idx` (`user_id`),
   CONSTRAINT `veiculo_users` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`)
@@ -546,7 +553,7 @@ CREATE TABLE `veiculos` (
 
 LOCK TABLES `veiculos` WRITE;
 /*!40000 ALTER TABLE `veiculos` DISABLE KEYS */;
-INSERT INTO `veiculos` VALUES (2,'ERT4787','Classic Chevrolet','Prata',NULL,'8/22/23, 7:24 PM',1,3);
+INSERT INTO `veiculos` VALUES (2,'ERT4787','Classic Chevrolet','Prata',NULL,'8/22/23, 7:24 PM',1,3,0);
 /*!40000 ALTER TABLE `veiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -559,4 +566,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-01 20:21:55
+-- Dump completed on 2023-09-04 20:37:05
