@@ -22,7 +22,7 @@ class EquipamentosController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Funcionarios');
 
-        $conditions = [];
+        $conditions = ['Equipamentos.is_trash' => 0];
 
         if ($this->request->getQuery('num_patrimonio') != '') {
             $num_patrimonio = $this->request->getQuery('num_patrimonio');
@@ -32,6 +32,17 @@ class EquipamentosController extends AppController
         if ($this->request->getQuery('descricao') != '') {
             $descricao = $this->request->getQuery('descricao');
             $conditions['LOWER(Equipamentos.descricao) LIKE'] = '%' . strtolower($descricao) . '%';
+        }
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['Equipamentos.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['Equipamentos.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
         }
 
         $this->paginate = [
@@ -85,6 +96,7 @@ class EquipamentosController extends AppController
         // Cria uma nova consulta para buscar os funcionários e incluir os usuários associados
         $func = $this->Funcionarios->find('all', [
             'limit' => 200,
+            'conditions' => ['Funcionarios.is_active' => 1, 'Funcionarios.is_trash <>' => 1],
             'contain' => ['Users'] // Aqui você especifica as associações que deseja buscar
         ]);
 

@@ -8,6 +8,7 @@ class User extends Entity
 {
     protected $_accessible = [
         'is_active' => true,
+        'is_trash' => true,
         'created' => true,
         'nome' => true,
         'password' => true,

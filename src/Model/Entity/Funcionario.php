@@ -38,6 +38,7 @@ class Funcionario extends Entity
         'salario' => true,
         'cargo_id' => true,
         'is_active' => true,
+        'is_trash' => true,
         'plano_saude_id' => true,
         'empresa_id' => true,
         'user_id' => true,

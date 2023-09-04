@@ -20,7 +20,7 @@ class VeiculosController extends AppController
     public function index()
     {
 
-        $conditions = [];
+        $conditions = ['Veiculos.is_trash' => 0];
 
         if ($this->request->getQuery('modelo') != '') {
             $modelo = $this->request->getQuery('modelo');
@@ -30,6 +30,18 @@ class VeiculosController extends AppController
         if ($this->request->getQuery('placa') != '') {
             $placa = $this->request->getQuery('placa');
             $conditions['LOWER(Veiculos.placa) LIKE'] = '%' . strtolower($placa) . '%';
+        }
+
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['Veiculos.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['Veiculos.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
         }
 
         $this->paginate = [
@@ -74,7 +86,7 @@ class VeiculosController extends AppController
             }
             $this->Flash->error(__('O veículo não pôde ser adicionado. Por favor, tente novamente.'));
         }
-        $users = $this->Veiculos->Users->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $users = $this->Veiculos->Users->find('list', ['keyField' => 'id', 'valueField' => 'nome', 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
         $this->set(compact('veiculo', 'users'));
     }
 

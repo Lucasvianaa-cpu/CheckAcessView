@@ -20,13 +20,24 @@ class PlanosSaudesController extends AppController
     public function index()
     {
 
-        $conditions = [];
+        $conditions = ['PlanosSaudes.is_trash' => 0];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
             $conditions['LOWER(PlanosSaudes.nome) LIKE'] = '%' . strtolower($nome) . '%';
         }
 
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['PlanosSaudes.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['PlanosSaudes.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
+        }
         $planosSaudes = $this->paginate($this->PlanosSaudes, ['conditions' => $conditions]);
 
         $this->set(compact('planosSaudes'));

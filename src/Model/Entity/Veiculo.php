@@ -34,6 +34,7 @@ class Veiculo extends Entity
         'cor' => true,
         'created' => true,
         'is_active' => true,
+        'is_trash' => true,
         'user_id' => true,
         'user' => true,
     ];

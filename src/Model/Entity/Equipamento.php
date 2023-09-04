@@ -31,6 +31,7 @@ class Equipamento extends Entity
         'descricao' => true,
         'is_active' => true,
         'created' => true,
+        'is_trash' => true,
         'funcionario_id' => true,
         'funcionario' => true,
     ];

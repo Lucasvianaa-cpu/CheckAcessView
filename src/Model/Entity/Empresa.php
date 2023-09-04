@@ -49,6 +49,7 @@ class Empresa extends Entity
         'caminho_foto' => true,
         'created' => true,
         'is_active' => true,
+        'is_trash' => true,
         'funcionarios' => true,
     ];
 }

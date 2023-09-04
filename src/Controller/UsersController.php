@@ -38,7 +38,7 @@ class UsersController extends AppController
     public function index()
     {
 
-        $conditions = [];
+        $conditions = ['Users.is_trash' => 0];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
@@ -48,6 +48,18 @@ class UsersController extends AppController
         if ($this->request->getQuery('cpf') != '') {
             $cpf = $this->request->getQuery('cpf');
             $conditions['LOWER(Users.cpf) LIKE'] = '%' . strtolower($cpf) . '%';
+        }
+
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['Users.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['Users.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
         }
         $this->paginate = [
             'contain' => ['Roles'],

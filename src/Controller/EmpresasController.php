@@ -20,7 +20,7 @@ class EmpresasController extends AppController
     public function index()
     {
 
-        $conditions = [];
+        $conditions = ['Empresas.is_trash' => 0];
 
         if ($this->request->getQuery('razao_social') != '') {
             $razao_social = $this->request->getQuery('razao_social');
@@ -30,6 +30,18 @@ class EmpresasController extends AppController
         if ($this->request->getQuery('cnpj') != '') {
             $cnpj = $this->request->getQuery('cnpj');
             $conditions['LOWER(Empresas.cnpj) LIKE'] = '%' . strtolower($cnpj) . '%';
+        }
+
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['Empresas.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['Empresas.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
         }
 
         $empresas = $this->paginate($this->Empresas, ['conditions' => $conditions]);

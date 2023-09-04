@@ -22,11 +22,13 @@
             <div class="card-body px-0 py-0">
             <div class="border-bottom py-3 px-3 align-items-center">
               <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3','filtro']); ?>
-                
+                  <div class="col-2">
+                       <?= $this->Form->control('ativo', ['type' => 'select', 'label' => 'Status', 'class' => 'form-control', 'default' => $this->request->getQuery('ativo'), 'empty' => [3 => 'Todos'], 'options' => [1 => 'Ativo', 2 => 'Inativo', 3 => 'Todos']]); ?>
+                  </div>
                   <div class="col-5">
                       <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
                   </div>
-                  <div class="col-5">
+                  <div class="col-3">
                       <?= $this->Form->control('cpf', ['class' => 'form-control', 'label' => 'Busque pelo CPF:', 'default' => $this->request->getQuery('cpf'), 'placeholder' => 'Digite o CPF']); ?>
                   </div>
 

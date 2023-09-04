@@ -33,6 +33,7 @@ class PlanosSaude extends Entity
         'telefone' => true,
         'celular' => true,
         'created' => true,
+        'is_trash' => true,
         'is_active' => true,
     ];
 }

@@ -22,7 +22,7 @@ class FuncionariosController extends AppController
     {
         $this->loadModel('Users');
 
-        $conditions = [];
+        $conditions = ['Funcionarios.is_trash' => 0];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
@@ -32,6 +32,18 @@ class FuncionariosController extends AppController
         if ($this->request->getQuery('cargo') != '') {
             $cargo = $this->request->getQuery('cargo');
             $conditions['LOWER(Cargos.nome) LIKE'] = '%' . strtolower($cargo) . '%';
+        }
+
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['Funcionarios.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['Funcionarios.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
         }
 
         $this->loadModel('PlanosSaudes');
@@ -88,9 +100,9 @@ class FuncionariosController extends AppController
             }
             $this->Flash->error(__('O funcionário não pôde ser adicionado. Por favor, tente novamente.'));
         }
-        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
-        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
-        $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
+        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
+        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
+        $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
         $users = $this->Funcionarios->Users->find('list', ['limit' => 200]);
         $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
