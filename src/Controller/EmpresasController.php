@@ -104,14 +104,19 @@ class EmpresasController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $empresa = $this->Empresas->get($id);
-        if ($this->Empresas->delete($empresa)) {
-            $this->Flash->success(__('Empresa deletada com sucesso.'));
+
+        // Define o campo "is_active" para 0 em vez de excluir
+        $empresa->is_active = 0;
+
+        if ($this->Empresas->save($empresa)) {
+            $this->Flash->success(__('Empresa desativada com sucesso.'));
         } else {
-            $this->Flash->error(__('A empresa não pôde ser deletada. Por favor, tente novamente.'));
+            $this->Flash->error(__('A empresa não pôde ser desativado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

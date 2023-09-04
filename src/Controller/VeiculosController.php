@@ -110,16 +110,23 @@ class VeiculosController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+    /**Função de Deletar, mas ao invés de deletar irá inativar */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $veiculo = $this->Veiculos->get($id);
-        if ($this->Veiculos->delete($veiculo)) {
-            $this->Flash->success(__('Veículo deletado com sucesso.'));
+
+        // Define o campo "is_active" para 0 em vez de excluir
+        $veiculo->is_active = 0;
+
+        if ($this->Veiculos->save($veiculo)) {
+            $this->Flash->success(__('Veículo desativado com sucesso.'));
         } else {
-            $this->Flash->error(__('O veículo não pôde ser deletado. Por favor, tente novamente.'));
+            $this->Flash->error(__('O veículo não pôde ser desativado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
     }
+
 }

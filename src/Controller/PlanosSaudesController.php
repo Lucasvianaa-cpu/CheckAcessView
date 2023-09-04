@@ -99,14 +99,20 @@ class PlanosSaudesController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $planosSaude = $this->PlanosSaudes->get($id);
-        if ($this->PlanosSaudes->delete($planosSaude)) {
-            $this->Flash->success(__('Plano de saúde deletado com sucesso.'));
+
+        // Define o campo "is_active" para 0 em vez de excluir
+        $planosSaude->is_active = 0;
+
+        if ($this->PlanosSaudes->save($planosSaude)) {
+            $this->Flash->success(__('Plano de Saúde desativado com sucesso.'));
         } else {
-            $this->Flash->error(__('O plano de saúde não pôde ser deletado. Por favor, tente novamente.'));
+            $this->Flash->error(__('O Plano de Saúde não pôde ser desativado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);

@@ -181,14 +181,19 @@ class FuncionariosController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $funcionario = $this->Funcionarios->get($id);
-        if ($this->Funcionarios->delete($funcionario)) {
-            $this->Flash->success(__('Funcionário deletado com sucesso.'));
+
+        // Define o campo "is_active" para 0 em vez de excluir
+        $funcionario->is_active = 0;
+
+        if ($this->Funcionarios->save($funcionario)) {
+            $this->Flash->success(__('Funcionário desativado com sucesso.'));
         } else {
-            $this->Flash->error(__('O funcionário não pôde ser deletado. Por favor, tente novamente.'));
+            $this->Flash->error(__('O Funcionário não pôde ser desativado. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
