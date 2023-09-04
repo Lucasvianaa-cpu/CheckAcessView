@@ -99,14 +99,20 @@ class CategoriasController extends AppController
      * @return \Cake\Http\Response|null Redirects to index.
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
+
+     /**Função de Deletar, mas ao invés de deletar irá inativar */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);
         $categoria = $this->Categorias->get($id);
-        if ($this->Categorias->delete($categoria)) {
-            $this->Flash->success(__('Categoria deletada com sucesso.'));
+
+        // Define o campo "is_active" para 0 em vez de excluir
+        $categoria->is_active = 0;
+
+        if ($this->Categorias->save($categoria)) {
+            $this->Flash->success(__('Categoria desativada com sucesso.'));
         } else {
-            $this->Flash->error(__('A categoria não pôde ser deletada. Por favor, tente novamente.'));
+            $this->Flash->error(__('A categoria não pôde ser desativada. Por favor, tente novamente.'));
         }
 
         return $this->redirect(['action' => 'index']);
