@@ -39,7 +39,12 @@
 
                         <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3','filtro']); ?>
 
-                        <div class="col-10">
+                        <div class="col-2">
+                            <?= $this->Form->control('ativo', ['type' => 'select', 'label' => 'Status', 'class' => 'form-control', 'default' => $this->request->getQuery('ativo'), 'empty' => [3 => 'Todos'], 'options' => [1 => 'Ativo', 2 => 'Inativo', 3 => 'Todos']]); ?>
+                        </div>
+        
+
+                        <div class="col-8">
                             <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
                         </div>
 

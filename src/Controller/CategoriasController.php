@@ -20,11 +20,23 @@ class CategoriasController extends AppController
     public function index()
     {
 
-        $conditions = [];
+        $conditions = ['Categorias.is_trash' => 0];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
             $conditions['LOWER(Categorias.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        if ($this->request->getQuery('ativo') != '') {
+            $ativo = $this->request->getQuery('ativo');
+
+            if ($ativo == 1) {
+                $conditions['Categorias.is_active'] = 1;
+            } else if ($ativo == 2) {
+                $conditions['Categorias.is_active'] = 0;
+            } else if ($ativo == 3) {
+                
+            }
         }
 
         $categorias = $this->paginate($this->Categorias, ['conditions' => $conditions]);
@@ -107,7 +119,7 @@ class CategoriasController extends AppController
         $categoria = $this->Categorias->get($id);
 
         // Define o campo "is_active" para 0 em vez de excluir
-        $categoria->is_active = 0;
+        $categoria->is_trash = 1;
 
         if ($this->Categorias->save($categoria)) {
             $this->Flash->success(__('Categoria desativada com sucesso.'));
