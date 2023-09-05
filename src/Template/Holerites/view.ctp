@@ -1,113 +1,135 @@
+<?php $this->layout = false; ?>
+
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Holerite</title>
     <style>
-        /* Estilos gerais para a página */
-        body {
-            font-family: Arial, sans-serif;
+        /* Estilos para a página A4 */
+        @page {
+            size: A4;
             margin: 0;
-            padding: 0;
         }
-
-        /* Estilos para a área do holerite */
-        .holerite {
-            width: 210mm;
-            height: 297mm;
-            margin: 0 auto;
-            padding: 20px;
-            box-sizing: border-box;
-            background-color: #fff;
-            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
-        }
-
-        /* Estilos para o cabeçalho do holerite */
-        .cabecalho {
-            text-align: center;
-            padding: 10px;
-        }
-
-        .cabecalho h1 {
-            font-size: 24px;
-        }
-
-        .cabecalho p {
-            font-size: 16px;
-        }
-
-        /* Estilos para a tabela de informações do holerite */
+        
         table {
             width: 100%;
             border-collapse: collapse;
-            margin-top: 20px;
+            font-family: Arial, sans-serif;
         }
 
         th, td {
-            border: 1px solid #ccc;
-            padding: 10px;
+            border: 1px solid #dddddd;
             text-align: left;
+            padding: 8px;
         }
 
         th {
             background-color: #f2f2f2;
         }
 
-        /* Estilos para o rodapé do holerite */
-        .rodape {
-            margin-top: 20px;
+        h1 {
             text-align: center;
+            margin-bottom: 10px;
         }
 
-        /* Estilos para a assinatura */
-        .assinatura {
-            margin-top: 40px;
+        p {
+            margin: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .page {
+            width: 210mm;
+            height: 297mm;
+            margin: 0 auto;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Estilos para o conteúdo do holerite */
+        .holerite {
+            padding: 20mm; /* Margens para o conteúdo */
+        }
+
+        /* Botão de impressão */
+        .print-button {
+            margin: 20px;
             text-align: center;
+        }
+        
+        /* Estilos de impressão */
+        @media print {
+            .page {
+                box-shadow: none;
+                margin: 0;
+                width: 100%;
+                height: auto;
+            }
+            table {
+            width: 100%;
+            border-collapse: collapse;
+            font-family: Arial, sans-serif;
+        }
+
+        th, td {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin: 0;
+        }
         }
     </style>
 </head>
 <body>
-    <button onclick="imprimirHolerite()">Imprimir</button>
-
-    <div class="holerite">
-        <div class="cabecalho">
-            <h1>Holerite</h1>
-            <p>Nome: John Doe</p>
-            <p>Departamento: Recursos Humanos</p>
-        </div>
-        <table>
-            <thead>
-                <tr>
-                    <th>Descrição</th>
-                    <th>Valor</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Salário Base</td>
-                    <td>R$ 5.000,00</td>
-                </tr>
-                <tr>
-                    <td>Horas Extras</td>
-                    <td>R$ 500,00</td>
-                </tr>
-                <tr>
-                    <td>Descontos</td>
-                    <td>R$ 200,00</td>
-                </tr>
-                <tr>
-                    <td>Total Líquido</td>
-                    <td>R$ 5.300,00</td>
-                </tr>
-            </tbody>
-        </table>
-        <div class="rodape">
-            <p>Este é um holerite de exemplo</p>
-        </div>
-        <div class="assinatura">
-            <p>___________________________</p>
-            <p>Assinatura</p>
+    <div class="page">
+        <div class="holerite">
+        <h1>Seu Holerite</h1>
+    <table>
+        <tr>
+            <th>Descrição</th>
+            <th>Valor</th>
+        </tr>
+        <tr>
+            <td>Data:</td>
+            <td>04 de setembro de 2023</td>
+        </tr>
+        <tr>
+            <td>Salário:</td>
+            <td>R$ 3.000,00</td>
+        </tr>
+        <tr>
+            <td>Descontos:</td>
+            <td>R$ 500,00</td>
+        </tr>
+        <tr>
+            <td>Salário Líquido:</td>
+            <td>R$ 2.500,00</td>
+        </tr>
+    </table>
         </div>
     </div>
+
+    
 </body>
+    <div class="print-button">
+        <button onclick="window.print()">Imprimir Holerite</button>
+    </div>
 </html>
