@@ -53,7 +53,6 @@
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data do Holerite</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data de Cadastro</th>
                       <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
-                      <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
                     </tr>
                   </thead>
                   <tbody>
@@ -72,10 +71,28 @@
                         <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->descricao ?></p>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->data_holerite ?></p>
+                        <?php
+                            // Converte a data para um objeto DateTime
+                            $date = DateTime::createFromFormat('m/d/y', $holerite->data_holerite);
+
+                            // Formata a data no novo formato
+                            $formatted_date = $date->format('d/m/Y');
+
+                            // Exibe a data formatada
+                            echo '<p class="text-sm text-dark font-weight-semibold mb-0">' . $formatted_date . '</p>';
+                        ?>
                       </td>
                       <td class="align-middle text-center text-sm">
-                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->created ?></p>
+                        <?php
+                            // Converte a data para um timestamp
+                            $timestamp = strtotime($holerite->created);
+
+                            // Formata a data no novo formato
+                            $formatted_date = date('d/m/Y', $timestamp);
+
+                            // Exibe a data formatada
+                            echo '<p class="text-sm text-dark font-weight-semibold mb-0">' . $formatted_date . '</p>';
+                        ?>
                       </td>
                       <td class="align-middle text-center">
                         <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'view', $holerite->id]); ?>">

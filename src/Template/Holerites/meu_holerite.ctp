@@ -64,11 +64,29 @@
                   <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->descricao ?></p>
                 </td>
                 <td class="align-middle text-center text-sm">
-                  <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->data_holerite ?></p>
-                </td>
+                  <?php
+                            // Converte a data para um objeto DateTime
+                            $date = DateTime::createFromFormat('m/d/y', $holerite->data_holerite);
+
+                            // Formata a data no novo formato
+                            $formatted_date = $date->format('d/m/Y');
+
+                            // Exibe a data formatada
+                            echo '<p class="text-sm text-dark font-weight-semibold mb-0">' . $formatted_date . '</p>';
+                        ?>
+                  </td>
                 <td class="align-middle text-center text-sm">
-                <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->created ?></p>
-                </td>
+                  <?php
+                              // Converte a data para um timestamp
+                              $timestamp = strtotime($holerite->created);
+
+                              // Formata a data no novo formato
+                              $formatted_date = date('d/m/Y', $timestamp);
+
+                              // Exibe a data formatada
+                              echo '<p class="text-sm text-dark font-weight-semibold mb-0">' . $formatted_date . '</p>';
+                          ?>
+                  </td>
                 <td class="align-middle text-center">
                   <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'view', $holerite->id]); ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">

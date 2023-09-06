@@ -108,23 +108,27 @@
         <?= $this->element('alertas/mensagem'); ?>
 
         <?php 
-          $timestamp = strtotime($user->data_holerite);
-          if ($timestamp !== false) {
-              $data_formatada = date('Y-m-d', $timestamp);
-          }
+            $timestamp = strtotime($holerite->data_holerite);
+            if ($timestamp  !== false) {
+                $data_formatada = date('Y-m-d', $timestamp);
+            }
         ?>
+
         <?php 
-          $timestamp = strtotime($user->data_admissao);
-          if ($timestamp !== false) {
-              $data_formatada = date('Y-m-d', $timestamp);
-          }
+            $timestamp_admissao = strtotime($holerite->data_admissao);
+            if ($timestamp_admissao !== false) {
+                $data_formatada_admissao = date('Y-m-d', $timestamp_admissao);
+            }
         ?>
 
         <script>
-          document.addEventListener("DOMContentLoaded", function() {
-            var inputElement = document.getElementById("data-nascimento");
-            inputElement.value = "<?php echo $data_formatada ?>";
-          });
+            document.addEventListener("DOMContentLoaded", function() {
+                var inputElement = document.getElementById("data-holerite");
+                inputElement.value = "<?php echo $data_formatada ?>";
+
+                var inputElementAdmissao = document.getElementById("data-admissao");
+                inputElementAdmissao.value = "<?php echo $data_formatada_admissao ?>";
+            });
         </script>
 
       </footer>
