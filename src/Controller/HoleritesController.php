@@ -19,19 +19,40 @@ class HoleritesController extends AppController
      */
     public function index()
     {
+
+        $conditions = [];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Holerites.Funcionarios.Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        if ($this->request->getQuery('descricao') != '') {
+            $descricao = $this->request->getQuery('descricao');
+            $conditions['LOWER(Holerites.descricao) LIKE'] = '%' . strtolower($descricao) . '%';
+        }
+
         $this->paginate = [
-            'contain' => ['Funcionarios'],
+            'contain' => ['Funcionarios.Users'],
         ];
-        $holerites = $this->paginate($this->Holerites);
+        $holerites = $this->paginate($this->Holerites, ['conditions' => $conditions]);
 
         $this->set(compact('holerites'));
     }
 
     public function meuHolerite()
     {
+        // Acessa o ID do usuário atual
+        $currentUserId = $this->Auth->user('id');
+
         $this->paginate = [
-            'contain' => ['Funcionarios'],
+            'contain' => [
+                'Funcionarios.Users' => function ($query) use ($currentUserId) {
+                    return $query->where(['Users.id' => $currentUserId]);
+                }
+            ]
         ];
+
         $holerites = $this->paginate($this->Holerites);
 
         $this->set(compact('holerites'));
@@ -97,6 +118,9 @@ class HoleritesController extends AppController
      */
     public function edit($id = null)
     {
+        $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+
         $holerite = $this->Holerites->get($id, [
             'contain' => [],
         ]);
@@ -109,8 +133,17 @@ class HoleritesController extends AppController
             }
             $this->Flash->error(__('O holerite não pôde ser atualizado. Por favor, tente novamente.'));
         }
-        $funcionarios = $this->Holerites->Funcionarios->find('list', ['limit' => 200]);
-        $this->set(compact('holerite', 'funcionarios'));
+        $funcionarios = $this->Holerites->Funcionarios->find('all', [
+            'limit' => 200,
+            'contain' => ['Users']
+        ]);
+        
+        $funcionarios_list = [];
+        foreach ($funcionarios as $funcionario)
+        {
+            $funcionarios_list[$funcionario->id] = $funcionario->user->nome;
+        }
+        $this->set(compact('holerite', 'funcionarios_list'));
     }
 
     /**

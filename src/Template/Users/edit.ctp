@@ -32,8 +32,8 @@
                             <div class="col-6">
                                 <?php echo $this->Form->control('telefone',['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control', 'required' => 'required', 'placeholder']);?>
                             </div>
-                            <div class="col-6">
-                                <?php echo $this->Form->control('data_nascimento',['type' => 'date', 'label' => 'Data Nascimento', 'class' => 'form-control', 'required' => 'required', 'placeholder']);?>
+                            <div class="col-md-6">
+                                <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'), 'required', $user->data_nascimento); ?>
                             </div>
                             <div class="col-6">
                                 <?php echo $this->Form->control('tipo_sanguineo',['type' => 'text', 'label' => 'Tipo Sanguíneo', 'class' => 'form-control', 'required' => 'required', 'placeholder']);?>
@@ -87,4 +87,37 @@
         </div>
     </div>
 </div>
+
+
+<footer>
+        <?= $this->Html->script('jquery.js'); ?>
+        <?= $this->Html->script('popper.min.js'); ?>
+        <?= $this->Html->script('bootstrap.min.js'); ?>
+        <?= $this->Html->script('perfect-scrollbar.min.js'); ?>
+        <?= $this->Html->script('smooth-scrollbar.min.js'); ?>
+        <?= $this->Html->script('chartjs.min.js'); ?>
+        <?= $this->Html->script('swiper-bundle.min.js'); ?>
+        <?= $this->Html->script('buttons.js'); ?>
+        <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
+
+        <?= $this->Html->script('sweetalert2.all.min.js'); ?>
+        
+        <!-- Mensagens de Sucesso/Erro -->
+        <?= $this->element('alertas/mensagem'); ?>
+
+        <?php 
+          $timestamp = strtotime($user->data_nascimento);
+          if ($timestamp !== false) {
+              $data_formatada = date('Y-m-d', $timestamp);
+          }
+        ?>
+
+        <script>
+          document.addEventListener("DOMContentLoaded", function() {
+            var inputElement = document.getElementById("data-nascimento");
+            inputElement.value = "<?php echo $data_formatada ?>";
+          });
+        </script>
+
+      </footer>
 
