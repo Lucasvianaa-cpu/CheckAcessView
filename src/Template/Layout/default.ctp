@@ -179,7 +179,7 @@
 
                 <?php if($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
                 <li class="nav-item">
-                <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Holerites', 'action' => 'index'])); ?>">
+                <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Holerites', 'action' => 'meuHolerite'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg width="21.5px" height="21.5px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

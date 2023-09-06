@@ -27,6 +27,16 @@ class HoleritesController extends AppController
         $this->set(compact('holerites'));
     }
 
+    public function meuHolerite()
+    {
+        $this->paginate = [
+            'contain' => ['Funcionarios'],
+        ];
+        $holerites = $this->paginate($this->Holerites);
+
+        $this->set(compact('holerites'));
+    }
+
     /**
      * View method
      *
