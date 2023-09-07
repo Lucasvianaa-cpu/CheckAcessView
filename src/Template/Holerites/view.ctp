@@ -1,9 +1,12 @@
-<?php $this->layout = false; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Holerite</title>
+
+    <?= $this->Html->css('corporate-ui-dashboard.css?v=1.0.0') ?>
+    <?= $this->Html->css('corporate-ui-dashboard.css.map') ?>
  
     
     <style>
@@ -12,13 +15,22 @@
             font-family: Arial, sans-serif;
             font-size: 14px;
             margin: 0 auto;
-            width: 90%;
+            width: 95%;
             height: 100vh;
+        }
 
+        @media print {
+            body {
+                width: 100%;
+            }
+            
+            /* Adicione estilos específicos para impressão aqui */
+            .imprimir {
+                display: none;
+            }
         }
 
         .botao-imprimir {
-            padding-top: 10px;
             width: 100%;
             display: flex;
             justify-content: flex-end;
@@ -28,7 +40,7 @@
         .holerite {
             
             margin: 0 auto;
-            padding: 10px;
+            padding: 5px;
             box-sizing: border-box;
             background-color: #fff;
             box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
@@ -46,7 +58,7 @@
 
         th, td {
             border: 1px solid #ccc;
-            padding: 8px;
+            padding: 4px;
             text-align: left;
         }
 
@@ -109,7 +121,7 @@
 
         /* Estilos para o rodapé do holerite */
         .rodape {
-            margin-top: 20px;
+            margin-top: 4px;
             text-align: center;
         }
 
@@ -118,16 +130,12 @@
             display: flex;
             flex-direction: row;
             justify-content: space-around;
-            margin-top: 40px;
             text-align: center;
         }
     </style>
 </head>
 <body>
-    <div class="botao-imprimir">
-        <button onclick="">Retornar para Holerites</button>
-        <button onclick="imprimirTabela()">Imprimir Tabela</button>
-    </div>
+    
         <table id="tabela">
             <thead>
                 <tr>
@@ -266,6 +274,15 @@
             </div>
         </div>
     </div>
+    <div class="botao-imprimir imprimir">
+        <button class="btn btn-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: -5px"  onclick="imprimirTabela()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-printer-fill" viewBox="0 0 16 16">
+                <path d="M5 1a2 2 0 0 0-2 2v1h10V3a2 2 0 0 0-2-2H5zm6 8H5a1 1 0 0 0-1 1v3a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1v-3a1 1 0 0 0-1-1z"/>
+                <path d="M0 7a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v3a2 2 0 0 1-2 2h-1v-2a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v2H2a2 2 0 0 1-2-2V7zm2.5 1a.5.5 0 1 0 0-1 .5.5 0 0 0 0 1z"/>
+            </svg>
+            Imprimir Tabela
+        </button>
+    </div>
 
     <script>
         function imprimirTabela() {
@@ -274,21 +291,9 @@
             var rodape = document.getElementById('rodape');
             var rodape_assinatura = document.getElementById('rodape-assinatura');
 
-            // Selecione todos os elementos que não são a tabela e os esconda
-            var elementosParaEsconder = document.querySelectorAll('body > *:not(#tabela, #rodape, #rodape-assinatura)');
-            elementosParaEsconder.forEach(function(elemento) {
-                elemento.style.display = 'none';
-            });
-
             // Imprima a tabela
             window.print();
-
-            // Restaure a exibição dos elementos ocultos após a impressão
-            elementosParaEsconder.forEach(function(elemento) {
-                elemento.style.display = ''; // Restaura o estilo padrão (exibição)
-            });
         }
-
     </script>
 
 </body>
