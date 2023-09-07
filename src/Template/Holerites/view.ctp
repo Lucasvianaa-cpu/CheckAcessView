@@ -126,7 +126,7 @@
 <body>
     <div class="botao-imprimir">
         <button onclick="">Retornar para Holerites</button>
-        <button onclick="window.print()">Imprimir Holerite</button>
+        <button onclick="imprimirTabela()">Imprimir Tabela</button>
     </div>
         <table id="tabela">
             <thead>
@@ -252,10 +252,10 @@
 
             </tbody>
         </table>
-        <div class="rodape">
+        <div class="rodape" id="rodape">
             <p>Declaro ter recebido a importância líquida determinada neste recibo.</p>
         </div>
-        <div class="rodape-assinatura">
+        <div class="rodape-assinatura" id="rodape-assinatura">
             <div class="data">
                 <p>__/__/____</p>
                 <p>Data</p>
@@ -266,6 +266,31 @@
             </div>
         </div>
     </div>
+
+    <script>
+        function imprimirTabela() {
+            // Selecione a tabela que você deseja imprimir
+            var tabela = document.getElementById('tabela');
+            var rodape = document.getElementById('rodape');
+            var rodape_assinatura = document.getElementById('rodape-assinatura');
+
+            // Selecione todos os elementos que não são a tabela e os esconda
+            var elementosParaEsconder = document.querySelectorAll('body > *:not(#tabela, #rodape, #rodape-assinatura)');
+            elementosParaEsconder.forEach(function(elemento) {
+                elemento.style.display = 'none';
+            });
+
+            // Imprima a tabela
+            window.print();
+
+            // Restaure a exibição dos elementos ocultos após a impressão
+            elementosParaEsconder.forEach(function(elemento) {
+                elemento.style.display = ''; // Restaura o estilo padrão (exibição)
+            });
+        }
+
+    </script>
+
 </body>
 </html>
 
