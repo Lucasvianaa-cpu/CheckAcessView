@@ -25,16 +25,17 @@
             }
             
             /* Adicione estilos específicos para impressão aqui */
-            .imprimir {
+        
+            .imprimir, .navbar-nav, .navegacao {
                 display: none;
             }
         }
 
-        .botao-imprimir {
+        .imprimir {
             width: 100%;
-            display: flex;
-            justify-content: flex-end;
+            text-align: right;
         }
+
 
         /* Estilos para a área do holerite */
         .holerite {
@@ -135,6 +136,14 @@
     </style>
 </head>
 <body>
+    <nav class="navegacao" aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+                  <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+                      <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Dashboard</a></li>
+                      <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Holerites', 'action' => 'index'])); ?>">Holerites</a></li>
+                      <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Visualizar</li>
+                  </ol>
+                  <h6 class="font-weight-bold mb-0">Holerites</h6>
+                </nav>
     
         <table id="tabela">
             <thead>
@@ -282,7 +291,9 @@
             </svg>
             Imprimir Tabela
         </button>
+        <a class="btn btn-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem; margin-bottom: -5px; margin-left: 10px;" href="<?= $this->Url->build(['action' => 'index']); ?>">Voltar</a>
     </div>
+    
 
     <script>
         function imprimirTabela() {

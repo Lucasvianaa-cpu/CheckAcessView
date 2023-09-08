@@ -5,12 +5,21 @@
  */
 ?>
 
+
 <div class="container-fluid py-4 px-5">
+<nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+                  <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+                      <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Dashboard</a></li>
+                      <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Holerites</li>
+                  </ol>
+                  <h6 class="font-weight-bold mb-0">Holerites</h6>
+                </nav>
       <div class="row">
         <div class="col-12">
           <div class="card border shadow-xs mb-4">
             <div class="card-header border-bottom pb-0">
               <div class="d-sm-flex align-items-center justify-content-between">
+                
                 <div>
                   <h6 class="font-weight-semibold text-lg mb-0">Holerites</h6>
                   <p class="text-sm">Holerites lançados pelo setor de Recursos Humanos...</p>
