@@ -32,7 +32,7 @@
             <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3','filtro']); ?>
           
                 <div class="col-5">
-                    <?= $this->Form->control('descricao', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
+                    <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
                 </div>
                 <div class="col-5">
                     <?= $this->Form->control('descricao', ['class' => 'form-control', 'label' => 'Busque pela descrição/mês:', 'default' => $this->request->getQuery('descricao'), 'placeholder' => 'Digite a descrição/Mês']); ?>

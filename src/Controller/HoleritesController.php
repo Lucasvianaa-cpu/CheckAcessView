@@ -19,12 +19,14 @@ class HoleritesController extends AppController
      */
     public function index()
     {
+        $this->loadModel('Users');
+        $this->loadModel('Funcionarios');
 
         $conditions = [];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
-            $conditions['LOWER(Holerites.Funcionarios.Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
         }
 
         if ($this->request->getQuery('descricao') != '') {
@@ -35,6 +37,7 @@ class HoleritesController extends AppController
         $this->paginate = [
             'contain' => ['Funcionarios.Users'],
         ];
+        
         $holerites = $this->paginate($this->Holerites, ['conditions' => $conditions]);
 
         $this->set(compact('holerites'));
