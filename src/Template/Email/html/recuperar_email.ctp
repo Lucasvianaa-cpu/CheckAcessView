@@ -478,9 +478,15 @@ a {text-decoration: none;}
                                                                 </td>
                                                             </tr>
                                                             <tr>
-                                                                <td align="center" style="padding:0;Margin:0;padding-top:10px;padding-bottom:10px"><span class="es-button-border" style="border-style:solid;border-color:#2CB543;background:#5C68E2;border-width:0px;display:inline-block;border-radius:6px;width:auto"><?php $root = pathinfo($_SERVER['HTTP_REFERER']);
-                                                                                                                                                                                                                                                                                                                                    $link = $root['dirname'] . '/' . 'redefinir-senha?h=' . $hash . '&email=' . $email;
-                                                                                                                                                                                                                                                                                                                                    echo $this->Html->link('Redefinir senha de usuário', $link); ?> 
+                                                            <td align="center" style="padding:;Margin:0;padding-top:10px;padding-bottom:10px">
+                                                                <button class="es-button-border" style="border-style:solid;border-color:#2CB543;background:#5C68E2;border-width:0px;display:inline-block;border-radius:6px;width:auto;padding:5px;color:#FFFFFF;">
+                                                                    <?php 
+                                                                    $root = pathinfo($_SERVER['HTTP_REFERER']);
+                                                                    $link = $root['dirname'] . '/' . 'redefinir-senha?h=' . $hash . '&email=' . $email;
+                                                                    echo '<a href="' . $link . '" style="text-decoration: none; color: #FFFFFF;">Redefinir senha de usuário</a>';
+                                                                    ?> 
+                                                                </button>
+                                                            </td>
                                                             </tr>
                                                         </table>
                                                     </td>
