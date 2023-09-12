@@ -65,8 +65,13 @@ class HoleritesTable extends Table
 
         $validator
             ->scalar('descricao')
-            ->maxLength('descricao', 45)
+            ->maxLength('descricao', 60)
             ->allowEmptyString('descricao');
+
+        $validator
+            ->scalar('mes')
+            ->maxLength('mes', 45)
+            ->allowEmptyString('mes');
 
         $validator
             ->date('data_admissao')
@@ -74,17 +79,9 @@ class HoleritesTable extends Table
             ->notEmptyDate('data_admissao');
 
         $validator
-            ->decimal('salario')
-            ->requirePresence('salario', 'create')
-            ->notEmptyString('salario');
-
-        $validator
-            ->decimal('adicional_noturno')
-            ->allowEmptyString('adicional_noturno');
-
-        $validator
-            ->decimal('hora_extra')
-            ->allowEmptyString('hora_extra');
+            ->decimal('salario_base')
+            ->requirePresence('salario_base', 'create')
+            ->notEmptyString('salario_base');
 
         $validator
             ->decimal('inss')
@@ -97,18 +94,6 @@ class HoleritesTable extends Table
         $validator
             ->decimal('ir')
             ->allowEmptyString('ir');
-
-        $validator
-            ->decimal('ferias')
-            ->allowEmptyString('ferias');
-
-        $validator
-            ->decimal('vale_alimentacao')
-            ->allowEmptyString('vale_alimentacao');
-
-        $validator
-            ->decimal('horas_trabalhadas')
-            ->allowEmptyString('horas_trabalhadas');
 
         $validator
             ->decimal('base_fgts')
@@ -125,9 +110,14 @@ class HoleritesTable extends Table
             ->notEmptyString('liquido');
 
         $validator
-            ->decimal('bruto')
-            ->requirePresence('bruto', 'create')
-            ->notEmptyString('bruto');
+            ->decimal('total_descontos')
+            ->requirePresence('total_descontos', 'create')
+            ->notEmptyString('total_descontos');
+
+        $validator
+            ->decimal('total_vencimentos')
+            ->requirePresence('total_vencimentos', 'create')
+            ->notEmptyString('total_vencimentos');
 
         return $validator;
     }

@@ -8,21 +8,19 @@ use Cake\ORM\Entity;
  *
  * @property int $id
  * @property \Cake\I18n\FrozenDate $data_holerite
- * @property string|null $descricao
+ * @property string $descricao
+ * @property string $mes
  * @property \Cake\I18n\FrozenDate $data_admissao
- * @property float $salario
- * @property float|null $adicional_noturno
- * @property float|null $hora_extra
+ * @property float $salario_base
  * @property float|null $inss
  * @property float|null $fgts
  * @property float|null $ir
- * @property float|null $ferias
- * @property float|null $vale_alimentacao
- * @property float|null $horas_trabalhadas
  * @property float $base_fgts
  * @property float|null $base_inss
  * @property float $liquido
- * @property float $bruto
+ * @property float $total_vencimentos
+ * @property float $total_descontos
+
  * @property int $funcionario_id
  * @property string $created
  *
@@ -42,20 +40,17 @@ class Holerite extends Entity
     protected $_accessible = [
         'data_holerite' => true,
         'descricao' => true,
+        'mes' => true,
         'data_admissao' => true,
-        'salario' => true,
-        'adicional_noturno' => true,
-        'hora_extra' => true,
+        'salario_base' => true,
         'inss' => true,
         'fgts' => true,
         'ir' => true,
-        'ferias' => true,
-        'vale_alimentacao' => true,
-        'horas_trabalhadas' => true,
         'base_fgts' => true,
         'base_inss' => true,
         'liquido' => true,
-        'bruto' => true,
+        'total_descontos' => true,
+        'total_vencimentos' => true,
         'funcionario_id' => true,
         'created' => true,
         'funcionario' => true,
