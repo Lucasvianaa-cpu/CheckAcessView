@@ -463,15 +463,14 @@
         
             });
 
-            //nao funcionou
             $('#adc-sobre-checkbox').change(function(){
                 
                 if ($(this).is(':checked')) {
                     
-                    $('.adc-sobre_hidden').removeClass('adc-sobre_hidden').addClass('adc-sobre_view');
+                    $('.adc_sobre_hidden').removeClass('adc_sobre_hidden').addClass('adc_sobre_view');
                 } else {
                     
-                    $('.adc-sobre_view').removeClass('adc-sobre_view').addClass('adc-sobre_hidden');
+                    $('.adc_sobre_view').removeClass('adc_sobre_view').addClass('adc_sobre_hidden');
                 }
 
                 
@@ -543,15 +542,15 @@
                 .prop('required', $(this).is(':checked'));
         
             });
-               //nao funcionou
+        
             $('#vale-alimentacao-checkbox').change(function(){
                 
                 if ($(this).is(':checked')) {
                     
-                    $('.vale-alimentacao_hidden').removeClass('vale-alimentacao_hidden').addClass('vale-alimentacao_view');
+                    $('.vale_alimentacao_hidden').removeClass('vale_alimentacao_hidden').addClass('vale_alimentacao_view');
                 } else {
                     
-                    $('.vale-alimentacao_view').removeClass('vale-alimentacao_view').addClass('vale-alimentacao_hidden');
+                    $('.vale_alimentacao_view').removeClass('vale_alimentacao_view').addClass('vale_alimentacao_hidden');
                 }
 
                 
