@@ -117,7 +117,7 @@
                                 <div class="col-md-2 checkbox-input">
                                     <label for="" class="form-label"></label>
                                     <div class="form-check">
-                                        <?= $this->Form->control('salario_checkbox', ['type' => 'checkbox', 'label' => 'Salário Base', 'class' => 'form-check-input']); ?>
+                                        <?= $this->Form->control('salario_checkbox', ['type' => 'checkbox', 'label' => 'Salário Mensal', 'class' => 'form-check-input']); ?>
                                     </div>
                                 </div>
                                 <div class="col-md-2 checkbox-input">
