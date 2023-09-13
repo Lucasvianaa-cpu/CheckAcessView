@@ -448,43 +448,133 @@
 
 
             $('#dsr-checkbox').change(function(){
-                // Verifica se o checkbox está marcado
+                
                 if ($(this).is(':checked')) {
-                    // Se estiver marcado, remove a classe 'salario_hidden' de todos os elementos
+                    
                     $('.dsr_hidden').removeClass('dsr_hidden').addClass('dsr_view');
-                    $('#dsr-codigo').attr('required', 'required');
-                    $('#dsr-descricao').attr('required', 'required');
-                    $('#dsr-vencimento').attr('required', 'required');
-                    $('#dsr-referencia').attr('required', 'required');
-                    $('#dsr-desconto').attr('required', 'required');
                 } else {
+                    
                     $('.dsr_view').removeClass('dsr_view').addClass('dsr_hidden');
-                    $('#dsr-codigo').removeAttr('required', 'required');
-                    $('#dsr-descricao').removeAttr('required', 'required');
-                    $('#dsr-vencimento').removeAttr('required', 'required');
-                    $('#dsr-referencia').removeAttr('required', 'required');
-                    $('#dsr-desconto').removeAttr('required', 'required');
                 }
+
+                
+                $('#dsr-codigo, #dsr-descricao, #dsr-vencimento, #dsr-referencia, #dsr-desconto')
+                .prop('required', $(this).is(':checked'));
+        
             });
 
             $('#adc-sobre-checkbox').change(function(){
-                // Verifica se o checkbox está marcado
+                
                 if ($(this).is(':checked')) {
-                    // Se estiver marcado, remove a classe 'salario_hidden' de todos os elementos
-                    $('.adc_sobre_hidden').removeClass('dsr_hidden').addClass('dsr_view');
-                    $('#adc-sobre-codigo').attr('required', 'required');
-                    $('#adc-sobre-descricao').attr('required', 'required');
-                    $('#adc-sobre-vencimento').attr('required', 'required');
-                    $('#adc-sobre-referencia').attr('required', 'required');
-                    $('#adc-sobre-desconto').attr('required', 'required');
+                    
+                    $('.adc-sobre_hidden').removeClass('adc-sobre_hidden').addClass('adc-sobre_view');
                 } else {
-                    $('.#adc-sobre_view').removeClass('dsr_view').addClass('dsr_hidden');
-                    $('##adc-sobre-codigo').removeAttr('required', 'required');
-                    $('##adc-sobre-descricao').removeAttr('required', 'required');
-                    $('##adc-sobre-vencimento').removeAttr('required', 'required');
-                    $('##adc-sobre-referencia').removeAttr('required', 'required');
-                    $('##adc-sobre-desconto').removeAttr('required', 'required');
+                    
+                    $('.adc-sobre_view').removeClass('adc-sobre_view').addClass('adc-sobre_hidden');
                 }
+
+                
+                $('#adc-sobre-codigo, #adc-sobre-descricao, #adc-sobre-vencimento, #adc-sobre-referencia, #adc-sobre-desconto')
+                .prop('required', $(this).is(':checked'));
+        
             });
+
+            $('#hr50-checkbox').change(function(){
+                
+                if ($(this).is(':checked')) {
+                    
+                    $('.hr50_hidden').removeClass('hr50_hidden').addClass('hr50_view');
+                } else {
+                    
+                    $('.hr50_view').removeClass('hr50_view').addClass('hr50_hidden');
+                }
+
+                
+                $('#hr50-codigo, #hr50-descricao, #hr50-vencimento, #hr50-referencia, #hr50-desconto')
+                .prop('required', $(this).is(':checked'));
+        
+            });
+
+            $('#hr80-checkbox').change(function(){
+                
+                if ($(this).is(':checked')) {
+                    
+                    $('.hr80_hidden').removeClass('hr80_hidden').addClass('hr80_view');
+                } else {
+                    
+                    $('.hr80_view').removeClass('hr80_view').addClass('hr80_hidden');
+                }
+
+                
+                $('#hr80-codigo, #hr80-descricao, #hr80-vencimento, #hr80-referencia, #hr80-desconto')
+                .prop('required', $(this).is(':checked'));
+        
+            });
+
+            $('#hr100-checkbox').change(function(){
+                
+                if ($(this).is(':checked')) {
+                    
+                    $('.hr100_hidden').removeClass('hr100_hidden').addClass('hr100_view');
+                } else {
+                    
+                    $('.hr100_view').removeClass('hr100_view').addClass('hr100_hidden');
+                }
+
+                
+                $('#hr100-codigo, #hr100-descricao, #hr100-vencimento, #hr100-referencia, #hr100-desconto')
+                .prop('required', $(this).is(':checked'));
+        
+            });
+
+            $('#ferias-checkbox').change(function(){
+                
+                if ($(this).is(':checked')) {
+                    
+                    $('.ferias_hidden').removeClass('ferias_hidden').addClass('ferias_view');
+                } else {
+                    
+                    $('.ferias_view').removeClass('ferias_view').addClass('ferias_hidden');
+                }
+
+                
+                $('#ferias-codigo, #ferias-descricao, #ferias-vencimento, #ferias-referencia, #ferias-desconto')
+                .prop('required', $(this).is(':checked'));
+        
+            });
+
+            $('#vale-alimentacao-checkbox').change(function(){
+                
+                if ($(this).is(':checked')) {
+                    
+                    $('.vale-alimentacao_hidden').removeClass('vale-alimentacao_hidden').addClass('vale-alimentacao_view');
+                } else {
+                    
+                    $('.vale-alimentacao_view').removeClass('vale-alimentacao_view').addClass('vale-alimentacao_hidden');
+                }
+
+                
+                $('#vale-alimentacao-codigo, #vale-alimentacao-descricao, #vale-alimentacao-vencimento, #vale-alimentacao-referencia, #vale-alimentacao-desconto')
+                .prop('required', $(this).is(':checked'));
+        
+            });
+
+            $('#adiantamento-checkbox').change(function(){
+                
+                if ($(this).is(':checked')) {
+                    
+                    $('.adiantamento_hidden').removeClass('adiantamento_hidden').addClass('adiantamento_view');
+                } else {
+                    
+                    $('.adiantamento_view').removeClass('adiantamento_view').addClass('adiantamento_hidden');
+                }
+
+                
+                $('#adiantamento-codigo, #adiantamento-descricao, #adiantamento-vencimento, #adiantamento-referencia, #adiantamento-desconto')
+                .prop('required', $(this).is(':checked'));
+        
+            });
+
+
         });
     </script>
