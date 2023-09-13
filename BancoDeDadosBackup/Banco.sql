@@ -328,27 +328,77 @@ DROP TABLE IF EXISTS `holerites`;
 CREATE TABLE `holerites` (
   `id` int NOT NULL AUTO_INCREMENT,
   `data_holerite` date NOT NULL,
-  `descricao` varchar(45) DEFAULT NULL,
+  `mes` varchar(45) NOT NULL,
   `data_admissao` date NOT NULL,
-  `salario` decimal(12,2) NOT NULL,
-  `adicional_noturno` decimal(12,2) DEFAULT NULL,
-  `hora_extra` decimal(12,2) DEFAULT NULL,
+  `salario_base` decimal(12,2) NOT NULL,
+  `base_fgts` decimal(12,2) NOT NULL,
+  `base_inss` decimal(12,2) DEFAULT NULL,
   `inss` decimal(12,2) DEFAULT NULL,
   `fgts` decimal(12,2) DEFAULT NULL,
   `ir` decimal(12,2) DEFAULT NULL,
-  `ferias` decimal(12,2) DEFAULT NULL,
-  `vale_alimentacao` decimal(12,2) DEFAULT NULL,
-  `horas_trabalhadas` decimal(12,2) DEFAULT NULL,
-  `base_fgts` decimal(12,2) NOT NULL,
-  `base_inss` decimal(12,2) DEFAULT NULL,
+  `total_descontos` decimal(12,2) NOT NULL,
+  `total_vencimentos` decimal(12,2) NOT NULL,
   `liquido` decimal(12,2) NOT NULL,
-  `bruto` decimal(12,2) NOT NULL,
-  `funcionario_id` int NOT NULL,
   `created` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP',
+  `funcionario_id` int NOT NULL,
+  `salario_checkbox` tinyint DEFAULT NULL,
+  `dsr_checkbox` tinyint DEFAULT NULL,
+  `adc_sobre_checkbox` tinyint DEFAULT NULL,
+  `hr50_checkbox` tinyint DEFAULT NULL,
+  `hr80_checkbox` tinyint DEFAULT NULL,
+  `hr100_checkbox` tinyint DEFAULT NULL,
+  `ferias_checkbox` tinyint DEFAULT NULL,
+  `vale_alimentacao_checkbox` tinyint DEFAULT NULL,
+  `adiantamento_checkbox` tinyint DEFAULT NULL,
+  `salario_codigo` varchar(45) DEFAULT NULL,
+  `salario_descricao` varchar(45) DEFAULT NULL,
+  `salario_referencia` varchar(45) DEFAULT NULL,
+  `salario_vencimento` decimal(12,2) DEFAULT NULL,
+  `salario_desconto` decimal(12,2) DEFAULT NULL,
+  `dsr_codigo` varchar(45) DEFAULT NULL,
+  `dsr_descricao` varchar(45) DEFAULT NULL,
+  `dsr_referencia` varchar(45) DEFAULT NULL,
+  `dsr_vencimento` decimal(12,2) DEFAULT NULL,
+  `dsr_desconto` decimal(12,2) DEFAULT NULL,
+  `adc_sobre_codigo` varchar(45) DEFAULT NULL,
+  `adc_sobre_descricao` varchar(45) DEFAULT NULL,
+  `adc_sobre_referencia` varchar(45) DEFAULT NULL,
+  `adc_sobre_vencimento` decimal(12,2) DEFAULT NULL,
+  `adc_sobre_desconto` decimal(12,2) DEFAULT NULL,
+  `hr50_codigo` varchar(45) DEFAULT NULL,
+  `hr50_descricao` varchar(45) DEFAULT NULL,
+  `hr50_referencia` varchar(45) DEFAULT NULL,
+  `hr50_vencimento` decimal(12,2) DEFAULT NULL,
+  `hr50_desconto` decimal(12,2) DEFAULT NULL,
+  `hr80_codigo` varchar(45) DEFAULT NULL,
+  `hr80_descricao` varchar(45) DEFAULT NULL,
+  `hr80_referencia` varchar(45) DEFAULT NULL,
+  `hr80_vencimento` decimal(12,2) DEFAULT NULL,
+  `hr80_desconto` decimal(12,2) DEFAULT NULL,
+  `hr100_codigo` varchar(45) DEFAULT NULL,
+  `hr100_descricao` varchar(45) DEFAULT NULL,
+  `hr100_referencia` varchar(45) DEFAULT NULL,
+  `hr100_vencimento` varchar(45) DEFAULT NULL,
+  `hr100_desconto` varchar(45) DEFAULT NULL,
+  `ferias_codigo` varchar(45) DEFAULT NULL,
+  `ferias_descricao` varchar(45) DEFAULT NULL,
+  `ferias_referencia` varchar(45) DEFAULT NULL,
+  `ferias_vencimento` decimal(12,2) DEFAULT NULL,
+  `ferias_desconto` decimal(12,2) DEFAULT NULL,
+  `vale_alimentacao_codigo` varchar(45) DEFAULT NULL,
+  `vale_alimentacao_descricao` varchar(45) DEFAULT NULL,
+  `vale_alimentacao_referencia` varchar(45) DEFAULT NULL,
+  `vale_alimentacao_vencimento` decimal(12,2) DEFAULT NULL,
+  `vale_alimentacao_desconto` decimal(12,2) DEFAULT NULL,
+  `adiantamento_codigo` varchar(45) DEFAULT NULL,
+  `adiantamento_descricao` varchar(45) DEFAULT NULL,
+  `adiantamento_referencia` varchar(45) DEFAULT NULL,
+  `adiantamento_vencimento` decimal(12,2) DEFAULT NULL,
+  `adiantamento_desconto` decimal(12,2) DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `holerite_funcionario_idx` (`funcionario_id`),
   CONSTRAINT `holerite_funcionario` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -357,7 +407,7 @@ CREATE TABLE `holerites` (
 
 LOCK TABLES `holerites` WRITE;
 /*!40000 ALTER TABLE `holerites` DISABLE KEYS */;
-INSERT INTO `holerites` VALUES (1,'2023-08-29','Agosto','2023-08-01',1000.00,0.00,100.00,100.00,100.00,0.00,100.00,500.00,42.00,1000.00,1000.00,800.00,1000.00,14,'9/1/23, 8:18 PM');
+INSERT INTO `holerites` VALUES (1,'2023-08-29','','2023-08-01',1000.00,1000.00,1000.00,100.00,100.00,0.00,0.00,0.00,800.00,'9/1/23, 8:18 PM',14,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL),(2,'2023-08-30','','2023-09-01',100.00,100.00,100.00,100.00,100.00,100.00,0.00,0.00,100.00,'9/6/23, 4:52 PM',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL);
 /*!40000 ALTER TABLE `holerites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -511,7 +561,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `role_user_idx` (`role_id`),
   CONSTRAINT `users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=27 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -520,7 +570,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (3,1,'2023-07-13 00:02:36','Lucas RH','$2y$10$7asiu7.HZQpBM9a3zOk1D.FjOEuS6RaToxBGEzjddU5CXIfovpX76','Viana','4638378323','521218275','lucas1042@live.com','18996666724',1199.99,'2023-07-13','0+','hbfdhgdf','0025','15165','16315','61265269',1,'adadsad','lucas@live.com','adsass',0,'fotos/RH -Viana-1206403349-perfil.png',0),(6,1,'2023-07-19 23:09:10','inutilizavel','$2y$10$CfvCN9v1ADK8mckdhBjH4elrKlU21x.BwO4Fb4uQ1brirlP6yJ/h6',NULL,NULL,NULL,'lucas10422@live.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(7,1,'2023-08-04 23:08:48','inutilizavel','$2y$10$kEIGrZ6bJ3JZdDh5uEoELum7ZkddRz3YErRbQoD9UK6iJQZMI1MOC',NULL,NULL,NULL,'loise@hotmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(8,1,'2023-08-10 20:08:05','Admin','$2y$10$B99.THkKuD8s34WSJOvQWejG6USKibD5t9XvLLNF6Fdrzh9vcjwwi','Empresa',NULL,NULL,'admin@admin.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(9,1,'2023-08-10 20:08:30','Rh','$2y$10$yerdRGxP/Fl5UWj5rRWcie8v.Fi69x2MNCPUbLHjZrdXPy8bW0O/K','Empresa','31515110515','2052100125','rh@rh.com','02236203',NULL,'2001-08-07','O','aa','aa','a','a','aa',2,'aa','aa@aa.com','aaa',0,'',0),(10,1,'2023-08-10 20:08:45','Funcionario','$2y$10$9LKk/GZ0ooh42nPteKkV/uo5wBiNHe74GwaM4CvtbaGfQzNBuR4/.','Empresa','1151515','05215221','funcionario@funcionario.com','185185415841',NULL,NULL,'O','aa','5424','42424','24254','4245',3,'4524','funcionario@funcionario.com','102',1,'fotos/Funcionario-Empresa-358696198-perfil.png',0),(11,1,'2023-08-10 20:09:07','Convidado','$2y$10$B7KZo5c7lE4IdcbcgppbOeiIuSal3HkUSX0JAXibnfOAYGu5KO2jC','Convidado',NULL,NULL,'convidado@convidado.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(14,1,'2023-08-16 23:21:05','Lucas','$2y$10$chTAQclujbgIBtrPJpYefev0s2GKw/aJoCfqAIIXs/MH5fJOcHKBS','Heideric',NULL,NULL,'lucasrochaheideric@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(20,1,'2023-08-16 23:47:06','Teste','$2y$10$im2fBK3mlTVcBNZDmAvfeeOml9A.PnE4ANZJVddxXLPptlo9l4qQK','teste1',NULL,NULL,'luckvrodrigues.77@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(21,1,'2023-08-17 00:46:07','novo','$2y$10$Dk0.KpdGBKFN7ppF/dj9LuEeTYmf8Zdd4HesCd/nxVy7o.630E/IC','novo',NULL,NULL,'novo@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'',NULL,NULL,0),(22,1,'2023-08-21 22:31:58','CONVIDADO','$2y$10$XexAwrQ3TR0WH.4XsKviN.yeX0WN3ckaisujJf2F/d5u1pclLTkWC','NOVO',NULL,NULL,'convidadonovo@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(23,1,'2023-08-22 18:26:12','Novo','$2y$10$Dgpv9AWON3lPNyVhrEK3HO.FG8l4zgHjBzS0EqjYeqIrWiTHEy/Im','Novinho',NULL,NULL,'novo1@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(24,1,'2023-08-28 16:51:09','Lucas','$2y$10$zDRj2afiyC9d3JMG1DsCf.kwUtUA7U8kUGYuMw0vLOdh1DyiSPUkG','Viana',NULL,NULL,'luskas7@oulook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(25,1,'2023-08-28 17:18:24','Teste','$2y$10$28qaCOrbHFEmVpYSZ89LVObLden87fyG8jZ.iDPxrS5KU1WorN3dS','teste',NULL,NULL,'lvrodrigues7@outlook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(26,1,'2023-08-28 17:43:39','loise','$2y$10$9MFO.sWA.NxTMgf7Nmz9Xu5Umi9ajZXsmSRR2sk49J4glZeWM0n2e','cardoso','6262161216','262161216','loise-cardoso@hotmail.com','262161216',NULL,NULL,'262','262161216','26216121','262161216','26216','262161216',4,'262161216','loise-cardoso@hotmail.com','262161216',0,'fotos/loise-cardoso-597916517-perfil.png',0);
+INSERT INTO `users` VALUES (3,1,'2023-07-13 00:02:36','Lucas RH','$2y$10$7asiu7.HZQpBM9a3zOk1D.FjOEuS6RaToxBGEzjddU5CXIfovpX76','Viana','4638378323','521218275','lucas1042@live.com','18996666724',1199.99,'2023-07-13','0+','hbfdhgdf','0025','15165','16315','61265269',1,'adadsad','lucas@live.com','adsass',0,'fotos/RH -Viana-1206403349-perfil.png',0),(6,1,'2023-07-19 23:09:10','inutilizavel','$2y$10$CfvCN9v1ADK8mckdhBjH4elrKlU21x.BwO4Fb4uQ1brirlP6yJ/h6',NULL,NULL,NULL,'lucas10422@live.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(7,1,'2023-08-04 23:08:48','inutilizavel','$2y$10$kEIGrZ6bJ3JZdDh5uEoELum7ZkddRz3YErRbQoD9UK6iJQZMI1MOC',NULL,NULL,NULL,'loise@hotmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(8,1,'2023-08-10 20:08:05','Admin','$2y$10$B99.THkKuD8s34WSJOvQWejG6USKibD5t9XvLLNF6Fdrzh9vcjwwi','Empresa',NULL,NULL,'admin@admin.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(9,1,'2023-08-10 20:08:30','Rh','$2y$10$yerdRGxP/Fl5UWj5rRWcie8v.Fi69x2MNCPUbLHjZrdXPy8bW0O/K','Empresa','31515110515','2052100125','rh@rh.com','02236203',NULL,'2001-08-07','O','aa','aa','a','a','aa',2,'aa','aa@aa.com','aaa',0,'',0),(10,1,'2023-08-10 20:08:45','Funcionario','$2y$10$9LKk/GZ0ooh42nPteKkV/uo5wBiNHe74GwaM4CvtbaGfQzNBuR4/.','Empresa','1151515','05215221','funcionario@funcionario.com','185185415841',NULL,NULL,'O','aa','5424','42424','24254','4245',3,'4524','funcionario@funcionario.com','102',1,'fotos/Funcionario-Empresa-358696198-perfil.png',0),(11,1,'2023-08-10 20:09:07','Convidado','$2y$10$B7KZo5c7lE4IdcbcgppbOeiIuSal3HkUSX0JAXibnfOAYGu5KO2jC','Convidado',NULL,NULL,'convidado@convidado.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(14,1,'2023-08-16 23:21:05','Lucas','$2y$10$chTAQclujbgIBtrPJpYefev0s2GKw/aJoCfqAIIXs/MH5fJOcHKBS','Heideric',NULL,NULL,'lucasrochaheideric@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(20,1,'2023-08-16 23:47:06','Teste','$2y$10$im2fBK3mlTVcBNZDmAvfeeOml9A.PnE4ANZJVddxXLPptlo9l4qQK','teste1',NULL,NULL,'luckvrodrigues.77@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(21,1,'2023-08-17 00:46:07','novo','$2y$10$Dk0.KpdGBKFN7ppF/dj9LuEeTYmf8Zdd4HesCd/nxVy7o.630E/IC','novo',NULL,NULL,'novo@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'',NULL,NULL,0),(22,1,'2023-08-21 22:31:58','CONVIDADO','$2y$10$XexAwrQ3TR0WH.4XsKviN.yeX0WN3ckaisujJf2F/d5u1pclLTkWC','NOVO',NULL,NULL,'convidadonovo@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(23,1,'2023-08-22 18:26:12','Novo','$2y$10$Dgpv9AWON3lPNyVhrEK3HO.FG8l4zgHjBzS0EqjYeqIrWiTHEy/Im','Novinho',NULL,NULL,'novo1@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(24,1,'2023-08-28 16:51:09','Lucas','$2y$10$zDRj2afiyC9d3JMG1DsCf.kwUtUA7U8kUGYuMw0vLOdh1DyiSPUkG','Viana',NULL,NULL,'luskas7@oulook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(25,1,'2023-08-28 17:18:24','Teste','$2y$10$28qaCOrbHFEmVpYSZ89LVObLden87fyG8jZ.iDPxrS5KU1WorN3dS','teste',NULL,NULL,'lvrodrigues7@outlook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(26,1,'2023-08-28 17:43:39','loise','$2y$10$9MFO.sWA.NxTMgf7Nmz9Xu5Umi9ajZXsmSRR2sk49J4glZeWM0n2e','cardoso','6262161216','262161216','loise-cardoso@hotmail.com','262161216',NULL,NULL,'262','262161216','26216121','262161216','26216','262161216',4,'262161216','loise-cardoso@hotmail.com','262161216',0,'fotos/loise-cardoso-597916517-perfil.png',0),(27,1,'2023-09-08 15:08:51','Teste','$2y$10$N.ix5QyZd3j0Jp6cC4E0HuSBJtapX/5nd4p4uwd6W2PZGQi2uvQ6a','1',NULL,NULL,'viana.rodrigues@aluno.ifsp.edu.br',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -566,4 +616,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-04 20:37:05
+-- Dump completed on 2023-09-13  8:29:23

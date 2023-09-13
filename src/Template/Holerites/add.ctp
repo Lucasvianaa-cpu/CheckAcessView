@@ -211,7 +211,7 @@
                             <p style="margin-top: 30px!important; margin-bottom: 0!important;">Preencha as informações do Holerite de acordo as opções selecionadas
                             <svg data-bs-toggle="tooltip" data-bs-placement="top"
                                     data-bs-custom-class="custom-tooltip"
-                                    data-bs-title="Selecione a opção que o holerite irá conter para abrir os campos de inserção das informações..."
+                                    data-bs-title="Após selecionar alguma opção irá abrir os campos pertencentes a ela para estar preenchendo..."
                                     
                                 xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-question-circle" viewBox="0 0 16 16">
                                 <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
@@ -463,6 +463,7 @@
         
             });
 
+            //nao funcionou
             $('#adc-sobre-checkbox').change(function(){
                 
                 if ($(this).is(':checked')) {
@@ -542,7 +543,7 @@
                 .prop('required', $(this).is(':checked'));
         
             });
-
+               //nao funcionou
             $('#vale-alimentacao-checkbox').change(function(){
                 
                 if ($(this).is(':checked')) {

@@ -39,7 +39,6 @@ class Holerite extends Entity
      */
     protected $_accessible = [
         'data_holerite' => true,
-        'descricao' => true,
         'mes' => true,
         'data_admissao' => true,
         'salario_base' => true,
@@ -51,6 +50,15 @@ class Holerite extends Entity
         'liquido' => true,
         'total_descontos' => true,
         'total_vencimentos' => true,
+        'salario_checkbox'=> true,
+        'dsr_checkbox'=> true,
+        'adc_sobre_checkbox'=> true,
+        'hr50_checkbox'=> true,
+        'hr80_checkbox'=> true,
+        'hr100_checkbox'=> true,
+        'ferias'=> true,
+        'vale_alimentacao'=> true,
+        'adiantamento'=> true,
         'funcionario_id' => true,
         'created' => true,
         'funcionario' => true,
