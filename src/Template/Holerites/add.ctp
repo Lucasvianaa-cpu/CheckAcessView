@@ -201,7 +201,7 @@
                                 <?= $this->Form->control('total_vencimentos', ['type' => 'number', 'label' => 'Total de Vencimentos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('total_descontos', ['type' => 'number', 'label' => 'Total de descontos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
+                                <?= $this->Form->control('total_descontos', ['type' => 'number', 'label' => 'Total de Descontos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('liquido', ['type' => 'number', 'label' => 'Salário Liquído', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
