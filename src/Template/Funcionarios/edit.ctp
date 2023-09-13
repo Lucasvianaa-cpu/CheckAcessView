@@ -31,7 +31,7 @@
                             </div>
                             
                             <div class="col-md-5 pb-3">
-                                <?php echo $this->Form->control('user_id',['type' => 'select','label' => 'Usário', 'options' => $users, 'class' => 'form-select', 'required']);?>
+                                <?php echo $this->Form->control('user_id',['type' => 'select','label' => 'Usuário', 'options' => $users, 'class' => 'form-select', 'required']);?>
                             </div>
                             <div class="col-md-5 pb-3">
                                 <?php echo $this->Form->control('plantoes._ids',['type' => 'select','label' => 'Plantão', 'options' => $plantoes, 'class' => 'form-select', 'required']);?>
