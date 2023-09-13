@@ -198,10 +198,10 @@
                                 <?= $this->Form->control('ir', ['type' => 'number', 'label' => 'Valor Imposto de Renda', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor do IR']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('total_vencimentos', ['type' => 'number', 'label' => 'Total de Vencimentos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
+                                <?= $this->Form->control('total_vencimentos', ['type' => 'number', 'label' => 'Total de Vencimentos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o total de vencimentos']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('total_descontos', ['type' => 'number', 'label' => 'Total de Descontos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
+                                <?= $this->Form->control('total_descontos', ['type' => 'number', 'label' => 'Total de Descontos', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o total de descontos']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('liquido', ['type' => 'number', 'label' => 'Salário Liquído', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário liquído']); ?>
@@ -223,157 +223,157 @@
 
                             <!-- Salário -->
                             <div class="col-lg-2 salario_hidden">
-                                <?= $this->Form->control('salario_codigo', ['type' => 'number', 'label' => 'Código Salário', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('salario_codigo', ['type' => 'number', 'label' => 'Código Salário', 'class' => 'form-control','placeholder' => 'Ex: 1']) ?>
                             </div>
                             <div class="col-lg-4 salario_hidden">
-                                <?= $this->Form->control('salario_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('salario_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Salário do Mês']) ?>
                             </div>
                             <div class="col-lg-2 salario_hidden">
-                                <?= $this->Form->control('salario_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('salario_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 salario_hidden">
-                                <?= $this->Form->control('salario_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('salario_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 salario_hidden">
-                                <?= $this->Form->control('salario_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('salario_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,91']) ?>
                             </div>
 
                             <!-- DSR -->
                             <div class="col-lg-2 dsr_hidden">
-                                <?= $this->Form->control('dsr_codigo', ['type' => 'number', 'label' => 'Código DSR', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('dsr_codigo', ['type' => 'number', 'label' => 'Código DSR', 'class' => 'form-control','placeholder' => 'Ex: 2']) ?>
                             </div>
                             <div class="col-lg-4 dsr_hidden">
-                                <?= $this->Form->control('dsr_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('dsr_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Reflexo DSR']) ?>
                             </div>
                             <div class="col-lg-2 dsr_hidden">
-                                <?= $this->Form->control('dsr_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('dsr_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 dsr_hidden">
-                                <?= $this->Form->control('dsr_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('dsr_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 dsr_hidden">
-                                <?= $this->Form->control('dsr_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('dsr_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
                             <!-- Adicional Sobreaviso -->
                             <div class="col-lg-2 adc_sobre_hidden">
-                                <?= $this->Form->control('adc_sobre_codigo', ['type' => 'number', 'label' => 'Código Adicional Sobreaviso', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adc_sobre_codigo', ['type' => 'number', 'label' => 'Código Adicional Sobreaviso', 'class' => 'form-control','placeholder' => 'Ex: 3']) ?>
                             </div>
                             <div class="col-lg-4 adc_sobre_hidden">
-                                <?= $this->Form->control('adc_sobre_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adc_sobre_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Adicional Sobreaviso']) ?>
                             </div>
                             <div class="col-lg-2 adc_sobre_hidden">
-                                <?= $this->Form->control('adc_sobre_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adc_sobre_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 adc_sobre_hidden">
-                                <?= $this->Form->control('adc_sobre_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adc_sobre_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 adc_sobre_hidden">
-                                <?= $this->Form->control('adc_sobre_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adc_sobre_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
                             <!-- Hora50 -->
                             <div class="col-lg-2 hr50_hidden">
-                                <?= $this->Form->control('hr50_codigo', ['type' => 'number', 'label' => 'Código Hora Extra 50%', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr50_codigo', ['type' => 'number', 'label' => 'Código Hora Extra 50%', 'class' => 'form-control','placeholder' => 'Ex: 4']) ?>
                             </div>
                             <div class="col-lg-4 hr50_hidden">
-                                <?= $this->Form->control('hr50_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr50_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Hora Extra 50%']) ?>
                             </div>
                             <div class="col-lg-2 hr50_hidden">
-                                <?= $this->Form->control('hr50_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr50_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 hr50_hidden">
-                                <?= $this->Form->control('hr50_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr50_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 hr50_hidden">
-                                <?= $this->Form->control('hr50_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr50_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
                                <!-- Hora80 -->
                             <div class="col-lg-2 hr80_hidden">
-                                <?= $this->Form->control('hr80_codigo', ['type' => 'number', 'label' => 'Código Hora Extra 80%', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr80_codigo', ['type' => 'number', 'label' => 'Código Hora Extra 80%', 'class' => 'form-control','placeholder' => 'Ex: 5']) ?>
                             </div>
                             <div class="col-lg-4 hr80_hidden">
-                                <?= $this->Form->control('hr80_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr80_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Hora Extra 80%']) ?>
                             </div>
                             <div class="col-lg-2 hr80_hidden">
-                                <?= $this->Form->control('hr80_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr80_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 hr80_hidden">
-                                <?= $this->Form->control('hr80_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr80_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 hr80_hidden">
-                                <?= $this->Form->control('hr80_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr80_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
                             
                                <!-- Hora100 -->
                             <div class="col-lg-2 hr100_hidden">
-                                <?= $this->Form->control('hr100_codigo', ['type' => 'number', 'label' => 'Código Hora Extra 100%', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr100_codigo', ['type' => 'number', 'label' => 'Código Hora Extra 100%', 'class' => 'form-control','placeholder' => 'Ex: 6']) ?>
                             </div>
                             <div class="col-lg-4 hr100_hidden">
-                                <?= $this->Form->control('hr100_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr100_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Hora Extra 100%']) ?>
                             </div>
                             <div class="col-lg-2 hr100_hidden">
-                                <?= $this->Form->control('hr100_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr100_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 hr100_hidden">
-                                <?= $this->Form->control('hr100_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr100_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 hr100_hidden">
-                                <?= $this->Form->control('hr100_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('hr100_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
                                 <!-- ferias -->
                             <div class="col-lg-2 ferias_hidden">
-                                <?= $this->Form->control('ferias_codigo', ['type' => 'number', 'label' => 'Código Férias', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('ferias_codigo', ['type' => 'number', 'label' => 'Código Férias', 'class' => 'form-control','placeholder' => 'Ex: 7']) ?>
                             </div>
                             <div class="col-lg-4 ferias_hidden">
-                                <?= $this->Form->control('ferias_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('ferias_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Férias']) ?>
                             </div>
                             <div class="col-lg-2 ferias_hidden">
-                                <?= $this->Form->control('ferias_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('ferias_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 ferias_hidden">
-                                <?= $this->Form->control('ferias_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('ferias_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 ferias_hidden">
-                                <?= $this->Form->control('ferias_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('ferias_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
                                 <!-- Vale Alimentação -->
                             <div class="col-lg-2 vale_alimentacao_hidden">
-                                <?= $this->Form->control('vale_alimentacao_codigo', ['type' => 'number', 'label' => 'Código Vale Alimentação', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('vale_alimentacao_codigo', ['type' => 'number', 'label' => 'Código Vale Alimentação', 'class' => 'form-control','placeholder' => 'Ex: 8']) ?>
                             </div>
                             <div class="col-lg-4 vale_alimentacao_hidden">
-                                <?= $this->Form->control('vale_alimentacao_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('vale_alimentacao_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Vale Alimentação']) ?>
                             </div>
                             <div class="col-lg-2 vale_alimentacao_hidden">
-                                <?= $this->Form->control('vale_alimentacao_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('vale_alimentacao_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 vale_alimentacao_hidden">
-                                <?= $this->Form->control('vale_alimentacao_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('vale_alimentacao_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 vale_alimentacao_hidden">
-                                <?= $this->Form->control('vale_alimentacao_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('vale_alimentacao_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
 
 
                                 <!-- Adiantamento -->
                             <div class="col-lg-2 adiantamento_hidden">
-                                <?= $this->Form->control('adiantamento_codigo', ['type' => 'number', 'label' => 'Código Adiantamento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adiantamento_codigo', ['type' => 'number', 'label' => 'Código Adiantamento', 'class' => 'form-control','placeholder' => 'Ex: 9']) ?>
                             </div>
                             <div class="col-lg-4 adiantamento_hidden">
-                                <?= $this->Form->control('adiantamento_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adiantamento_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: Adiantamento']) ?>
                             </div>
                             <div class="col-lg-2 adiantamento_hidden">
-                                <?= $this->Form->control('adiantamento_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adiantamento_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
                             <div class="col-lg-2 adiantamento_hidden">
-                                <?= $this->Form->control('adiantamento_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adiantamento_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
                             <div class="col-lg-2 adiantamento_hidden">
-                                <?= $this->Form->control('adiantamento_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control']) ?>
+                                <?= $this->Form->control('adiantamento_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,52']) ?>
                             </div>
                             
 
