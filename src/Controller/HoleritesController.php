@@ -71,7 +71,7 @@ class HoleritesController extends AppController
     public function view($id = null)
     {
         $holerite = $this->Holerites->get($id, [
-            'contain' => ['Funcionarios'],
+            'contain' => ['Funcionarios.Users', 'Funcionarios.Cargos', 'Funcionarios.Empresas'],
         ]);
 
         $this->set('holerite', $holerite);

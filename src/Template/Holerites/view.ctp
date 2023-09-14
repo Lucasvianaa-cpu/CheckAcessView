@@ -148,24 +148,33 @@
         <table id="tabela">
             <thead>
                 <tr>
-                    <th colspan="5">Gigatron Franchising Ltda</th>
+                    <th colspan="5"><?= $holerite->funcionario->empresa->razao_social ?></th>
                 </tr>
                 <tr>
-                    <th colspan="3" id="cnpj">CNPJ: 03.368.152/0001-30</th>
+                    <th colspan="3" id="cnpj"><?= formatarCnpj($holerite->funcionario->empresa->cnpj) ?></th>
                     <th colspan="2" id="folha-mensal">Folha Mensal</th>
                 </tr>
                 <tr>
-                    <th colspan="5" id="mes">Maio de 2023</th>
+                    <th colspan="5" id="mes"><?= $holerite->mes ?></th>
                 </tr>
             </thead>
             <tbody>
                 
                 <tr>
-                    <td colspan="3" id="nome-funcionario">Lucas Viana Rodrigues</td>
-                    <td colspan="2" id="admissao">Admissão: 03/08/2020</td>
+                    <td colspan="3" id="nome-funcionario"><?= $holerite->funcionario->user->nome ?></td>
+                    <td colspan="2" id="admissao">Admissão: <?php
+                            // Converte a data para um timestamp
+                            $timestamp = strtotime($holerite->data_admissao);
+
+                            // Formata a data no novo formato
+                            $formatted_date = date('d/m/Y', $timestamp);
+
+                            // Exibe a data formatada
+                            echo '<span style="font-size: 14px">' . $formatted_date . '</span>';
+                        ?></td>
                 </tr>
                 <tr>
-                    <td colspan="5" id="cargo">Suporte Tecnico</td>
+                    <td colspan="5" id="cargo"><?= $holerite->funcionario->cargo->nome ?></td>
                 </tr>
                 <tr id="coluna">
                     <td class="alinhar-centro">Código</td>
@@ -176,45 +185,66 @@
 
                 </tr>
                 <tr>
-                    <td class="alinhar-direita retirar-border-bottom">1</td>
-                    <td class="retirar-border-bottom">Salário do mês</td>
-                    <td class="alinhar-direita retirar-border-bottom">31,00</td>
-                    <td class="alinhar-direita retirar-border-bottom">1721,35</td>
-                    <td class="alinhar-direita retirar-border-bottom"></td>
+                    <td class="alinhar-direita retirar-border-bottom"><?= $holerite->salario_codigo ?></td>
+                    <td class="retirar-border-bottom"><?= $holerite->salario_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom"><?= $holerite->salario_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom"><?= number_format($holerite->salario_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom"><?= number_format($holerite->salario_desconto, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">250</td>
-                    <td class="retirar-border-bottom retirar-border-top">Reflexo DSR</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">0,00</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">6,66</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->dsr_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->dsr_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->dsr_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->dsr_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->dsr_desconto, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">370</td>
-                    <td class="retirar-border-bottom retirar-border-top">Adicional de Sobreaviso</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">4:00</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">10,09</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"></td>  
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adc_sobre_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adc_sobre_desconto, 2, ',', '.') ?></td> 
                 <tr>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">204</td>
-                    <td class="retirar-border-bottom retirar-border-top">Hora Extra 60%</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">2:00</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">25,04</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr50_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->hr50_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr50_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr50_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr50_desconto, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">545</td>
-                    <td class="retirar-border-bottom retirar-border-top">Hora extra 80%</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">0:41</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">9,58</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr80_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->hr80_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr80_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr80_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr80_desconto, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">998</td>
-                    <td class="retirar-border-bottom retirar-border-top">I.N.S.S.</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">7,88</td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top">139,74</td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr100_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->hr100_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr100_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr100_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr100_desconto, 2, ',', '.') ?></td>
+                </tr>
+                <tr>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->ferias_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->ferias_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->ferias_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->ferias_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->ferias_desconto, 2, ',', '.') ?></td>
+                </tr>
+                <tr>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->vale_alimentacao_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->vale_alimentacao_desconto, 2, ',', '.') ?></td>
+                </tr>
+                <tr>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_codigo ?></td>
+                    <td class="retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_descricao ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_referencia ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adiantamento_vencimento, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adiantamento_desconto, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
                     <td class="retirar-border-bottom retirar-border-top"></td>
@@ -244,13 +274,13 @@
                 </tr>
                 <tr>
                     <td colspan="3"  class="retirar-border-top"></td>
-                    <td class="alinhar-centro-valor retirar-border-top">1772,72</td>
-                    <td class="alinhar-centro-valor retirar-border-top">139,74</td>
+                    <td class="alinhar-centro-valor retirar-border-top"><?= number_format($holerite->total_vencimentos, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor retirar-border-top"><?= number_format($holerite->total_descontos, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
                     <td class="alinhar-centro">Valor Líquido</td>
-                    <td class="alinhar-centro-valor">1632,98</td>
+                    <td class="alinhar-centro-valor"><?= number_format($holerite->liquido, 2, ',', '.') ?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-centro">Salário Base</td>
@@ -260,11 +290,11 @@
                     <td class="alinhar-centro">Valor IRRF</td>
                 </tr>
                 <tr>
-                    <td class="alinhar-centro-valor">1721,35</td>
-                    <td class="alinhar-centro-valor">1772,72</td>
-                    <td class="alinhar-centro-valor">1772,72</td>
-                    <td class="alinhar-centro-valor">141,81</td>
-                    <td class="alinhar-centro-valor">0,00</td>
+                    <td class="alinhar-centro-valor"><?= number_format($holerite->salario_base, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor"><?= number_format($holerite->base_inss, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor"><?= number_format($holerite->base_fgts, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor"><?= number_format($holerite->fgts, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor"><?= number_format($holerite->ir, 2, ',', '.') ?></td>
                 </tr>
 
             </tbody>
@@ -306,6 +336,19 @@
             window.print();
         }
     </script>
+    <?php
+        function formatarCnpj($cnpj) {
+            // Remove qualquer caracter não numérico
+            $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
+
+            // Aplica a máscara de CNPJ: XX.XXX.XXX/XXXX-XX
+            return substr($cnpj, 0, 2) . '.' .
+                substr($cnpj, 2, 3) . '.' .
+                substr($cnpj, 5, 3) . '/' .
+                substr($cnpj, 8, 4) . '-' .
+                substr($cnpj, 12, 2);
+        }
+    ?>
 
 </body>
 </html>

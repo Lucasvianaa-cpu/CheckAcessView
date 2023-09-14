@@ -174,7 +174,7 @@
                             
                             <!-- INFORMAÇÕES BASE -->
                             <div class="col-md-6">
-                                <?= $this->Form->control('mes', ['type' => 'select', 'label' => 'Mês', 'class' => 'form-select', 'options' => ['Janeiro', 'Fevereiro','Março','Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'], 'required' => 'required', 'empty' => 'Selecione o mês']); ?>
+                                <?= $this->Form->control('mes', ['type' => 'select', 'label' => 'Mês', 'class' => 'form-select', 'options' => ['Janeiro'=>'Janeiro', 'Fevereiro'=>'Fevereiro','Março'=>'Março','Abril'=>'Abril', 'Maio'=>'Maio', 'Junho'=>'Junho', 'Julho'=>'Julho', 'Agosto'=>'Agosto', 'Setembro'=>'Setembro', 'Outubro'=>'Outubro', 'Novembro'=>'Novembro', 'Dezembro'=>'Dezembro'], 'required' => 'required', 'empty' => 'Selecione o mês']); ?>
                             </div>
                             <div class="col-md-6">
                                 <?= $this->Form->data_personalizada('data_holerite', 'Data do Holerite', 'date', date('d/m/Y'), 'required', $holerite->data_holerite); ?>
