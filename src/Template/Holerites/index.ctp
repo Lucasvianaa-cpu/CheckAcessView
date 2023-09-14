@@ -44,7 +44,7 @@
                     <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
                 </div>
                 <div class="col-5">
-                    <?= $this->Form->control('descricao', ['class' => 'form-control', 'label' => 'Busque pela descrição/mês:', 'default' => $this->request->getQuery('descricao'), 'placeholder' => 'Digite a descrição/Mês']); ?>
+                    <?= $this->Form->control('mes', ['class' => 'form-control', 'label' => 'Busque pelo mês:', 'default' => $this->request->getQuery('mes'), 'placeholder' => 'Digite o Mês']); ?>
                 </div>
 
                 <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
@@ -77,7 +77,7 @@
                         </div>
                       </td>
                       <td class="align-middle text-center text-sm">
-                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->descricao ?></p>
+                        <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->mes ?></p>
                       </td>
                       <td class="align-middle text-center text-sm">
                         <?php

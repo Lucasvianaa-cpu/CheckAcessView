@@ -37,6 +37,7 @@ class Funcionario extends Entity
     protected $_accessible = [
         'salario' => true,
         'cargo_id' => true,
+        'admissao'=> true,
         'is_active' => true,
         'is_trash' => true,
         'plano_saude_id' => true,

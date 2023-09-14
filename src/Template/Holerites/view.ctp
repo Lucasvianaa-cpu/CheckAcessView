@@ -155,7 +155,7 @@
                     <th colspan="2" id="folha-mensal">Folha Mensal</th>
                 </tr>
                 <tr>
-                    <th colspan="5" id="mes"><?= $holerite->mes ?></th>
+                    <th colspan="5" id="mes"><?= $holerite->mes ?> de <?= $holerite->ano ?></th>
                 </tr>
             </thead>
             <tbody>

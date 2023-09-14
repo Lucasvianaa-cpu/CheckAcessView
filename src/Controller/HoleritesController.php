@@ -29,9 +29,9 @@ class HoleritesController extends AppController
             $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
         }
 
-        if ($this->request->getQuery('descricao') != '') {
-            $descricao = $this->request->getQuery('descricao');
-            $conditions['LOWER(Holerites.descricao) LIKE'] = '%' . strtolower($descricao) . '%';
+        if ($this->request->getQuery('mes') != '') {
+            $mes = $this->request->getQuery('mes');
+            $conditions['LOWER(Holerites.mes) LIKE'] = '%' . strtolower($mes) . '%';
         }
 
         $this->paginate = [

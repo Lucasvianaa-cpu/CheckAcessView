@@ -20,6 +20,9 @@
                             <div class="col-3">
                                 <?php echo $this->Form->control('salario',['type' => 'text', 'label' => 'Salário', 'class' => 'form-control', 'required' => 'required']);?>
                             </div>
+                            <div class="col-3">
+                                <?= $this->Form->data_personalizada('admissao', 'Data de Admissão', 'date', date('d/m/Y'), 'required', $funcionario->admissao); ?>
+                            </div>
                             <div class="col-md-3 pb-3">
                                 <?php echo $this->Form->control('cargo_id',['type' => 'select','label' => 'Cargo', 'options' => $cargos, 'class' => 'form-select', 'required']);?>
                             </div>
@@ -30,10 +33,10 @@
                                 <?php echo $this->Form->control('plano_saude_id',['type' => 'select','label' => 'Plano de Saúde', 'options' => $planosSaudes, 'class' => 'form-select', 'required']);?>
                             </div>
                             
-                            <div class="col-md-5 pb-3">
+                            <div class="col-md-4 pb-3">
                                 <?php echo $this->Form->control('user_id',['type' => 'select','label' => 'Usuário', 'options' => $users, 'class' => 'form-select', 'required']);?>
                             </div>
-                            <div class="col-md-5 pb-3">
+                            <div class="col-md-3 pb-3">
                                 <?php echo $this->Form->control('plantoes._ids',['type' => 'select','label' => 'Plantão', 'options' => $plantoes, 'class' => 'form-select', 'required']);?>
                             </div>
                         
@@ -59,4 +62,24 @@
     </div>
 </div>
 
+
+<footer>
+
+
+        <?php 
+            $timestamp_admissao = strtotime($funcionario->admissao);
+            if ($timestamp_admissao !== false) {
+                $data_formatada_admissao = date('Y-m-d', $timestamp_admissao);
+            }
+        ?>
+
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+                var inputElementAdmissao = document.getElementById("admissao");
+                inputElementAdmissao.value = "<?php echo $data_formatada_admissao ?>";
+            });
+        </script>
+
+
+      </footer>
 

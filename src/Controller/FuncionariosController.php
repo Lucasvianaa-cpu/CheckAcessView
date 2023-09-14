@@ -100,10 +100,10 @@ class FuncionariosController extends AppController
             }
             $this->Flash->error(__('O funcionário não pôde ser adicionado. Por favor, tente novamente.'));
         }
-        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
+        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
         $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
-        $users = $this->Funcionarios->Users->find('list', ['limit' => 200]);
+        $users = $this->Funcionarios->Users->find('list', ['limit' => 200,'conditions'=>['is_active' => 1, 'is_trash <>' => 1]]);
         $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
     }

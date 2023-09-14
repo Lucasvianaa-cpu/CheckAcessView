@@ -41,7 +41,6 @@ class Holerite extends Entity
         'data_holerite' => true,
         'mes' => true,
         'ano' => true,
-        'data_admissao' => true,
         'salario_base' => true,
         'inss' => true,
         'fgts' => true,

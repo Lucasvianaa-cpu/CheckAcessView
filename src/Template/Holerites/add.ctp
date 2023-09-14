@@ -97,12 +97,8 @@
                     <div class="">
                         <?= $this->Form->create($holerite, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <?= $this->Form->control('funcionario_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios_list, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
-                            </div>
-
-                            <div class="col-md-6">
-                                <?= $this->Form->data_personalizada('data_admissao', 'Data Admissão', 'date', date('d/m/Y'), 'required', $holerite->data_admissao); ?>
                             </div>
 
 
@@ -175,7 +171,7 @@
                                         <?= $this->Form->control('vale_alimentacao_checkbox', ['type' => 'checkbox', 'label' => 'Vale Alimentação', 'class' => 'form-check-input']); ?>
                                     </div>
                                 </div>
-                                <div class="col-md-8 checkbox-input">
+                                <div class="col-md-2 checkbox-input">
                                     <label for="" class="form-label"></label>
                                     <div class="form-check">
                                         <?= $this->Form->control('adiantamento_checkbox', ['type' => 'checkbox', 'label' => 'Adiantamento', 'class' => 'form-check-input']); ?>
@@ -195,15 +191,13 @@
                             <div class="col-md-6">
                                 <?= $this->Form->data_personalizada('data_holerite', 'Data do Holerite', 'date', date('d/m/Y'), 'required', $holerite->data_holerite); ?>
                             </div>
-                            <div class="col-md-2">
+                            <div class="col-md-4">
                                 <?= $this->Form->control('salario_base', ['type' => 'number', 'label' => 'Salário Base', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário']); ?>
                             </div>
                             <div class="col-md-2">
                                 <?= $this->Form->control('base_inss', ['type' => 'number', 'label' => 'Base INSS', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor da base INSS']); ?>
                             </div>
-                            <div class="col-md-2">
-                                <?= $this->Form->control('inss', ['type' => 'number', 'label' => 'Valor INSS', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor do INSS']); ?>
-                            </div>
+                    
                             <div class="col-md-2">
                                 <?= $this->Form->control('base_fgts', ['type' => 'number', 'label' => 'Base FGTS', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor da base FGTS']); ?>
                             </div>
@@ -255,19 +249,19 @@
                             </div>
 
                             <!-- INSS -->
-                            <div class="col-lg-2 salario_hidden">
+                            <div class="col-lg-2 inss_hidden">
                                 <?= $this->Form->control('inss_codigo', ['type' => 'number', 'label' => 'Código I.N.S.S.', 'class' => 'form-control','placeholder' => 'Ex: 2']) ?>
                             </div>
-                            <div class="col-lg-4 salario_hidden">
+                            <div class="col-lg-4 inss_hidden">
                                 <?= $this->Form->control('inss_descricao', ['type' => 'text', 'label' => 'Descrição', 'class' => 'form-control','placeholder' => 'Ex: I.N.S.S.']) ?>
                             </div>
-                            <div class="col-lg-2 salario_hidden">
+                            <div class="col-lg-2 inss_hidden">
                                 <?= $this->Form->control('inss_referencia', ['type' => 'text', 'label' => 'Referência', 'class' => 'form-control','placeholder' => 'Ex: 48:00']) ?>
                             </div>
-                            <div class="col-lg-2 salario_hidden">
+                            <div class="col-lg-2 inss_hidden">
                                 <?= $this->Form->control('inss_vencimento', ['type' => 'number', 'label' => 'Vencimento', 'class' => 'form-control','placeholder' => 'Ex: 1214,52']) ?>
                             </div>
-                            <div class="col-lg-2 salario_hidden">
+                            <div class="col-lg-2 inss_hidden">
                                 <?= $this->Form->control('inss_desconto', ['type' => 'number', 'label' => 'Desconto', 'class' => 'form-control','placeholder' => 'Ex: 14,91']) ?>
                             </div>
 
@@ -431,26 +425,19 @@
 <footer>
 
         <?php 
-            $timestamp = strtotime($holerite->data);
+            $timestamp = strtotime($holerite->data_holerite);
             if ($timestamp  !== false) {
                 $data_formatada = date('Y-m-d', $timestamp);
             }
         ?>
 
-        <?php 
-            $timestamp_admissao = strtotime($holerite->data_admissao);
-            if ($timestamp_admissao !== false) {
-                $data_formatada_admissao = date('Y-m-d', $timestamp_admissao);
-            }
-        ?>
+        
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                var inputElement = document.getElementById("data");
+                var inputElement = document.getElementById("data-holerite");
                 inputElement.value = "<?php echo $data_formatada ?>";
 
-                var inputElementAdmissao = document.getElementById("data_admissao");
-                inputElementAdmissao.value = "<?php echo $data_formatada_admissao ?>";
             });
         </script>
 
