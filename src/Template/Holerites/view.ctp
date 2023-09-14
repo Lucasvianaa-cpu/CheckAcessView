@@ -164,7 +164,7 @@
                     <td colspan="3" id="nome-funcionario"><?= $holerite->funcionario->user->nome ?></td>
                     <td colspan="2" id="admissao">Admissão: <?php
                             // Converte a data para um timestamp
-                            $timestamp = strtotime($holerite->data_admissao);
+                            $timestamp = strtotime($holerite->funcionario->admissao);
 
                             // Formata a data no novo formato
                             $formatted_date = date('d/m/Y', $timestamp);

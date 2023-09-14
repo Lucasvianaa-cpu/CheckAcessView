@@ -22,14 +22,7 @@
     .adc_sobre_view {
         display: block;
     }
-    
-    .inss_hidden {
-        display: none;
-    }
 
-    .inss_view {
-        display: block;
-    }
     .hr50_hidden {
         display: none;
     }
@@ -61,6 +54,13 @@
     .ferias_view {
         display: block;
     }
+    .inss_hidden {
+        display: none;
+    }
+
+    .inss_view {
+        display: block;
+    }
 
     .vale_alimentacao_hidden {
         display: none;
@@ -79,6 +79,7 @@
     }
 
 </style>
+
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 <div class="container-fluid my-2 py-3">
@@ -88,14 +89,18 @@
                 <div class="row">
                     <div class="col-md-8 col-9">
                         <h6 class="mb-0 font-weight-semibold text-lg">Editar Holerite</h6>
-                        <p class="text-sm mb-1">Edite os campos do holerite selecionado</p>
+                        <p class="text-sm mb-1">Preencha os campos abaixo</p>
                     </div>
+
+                    
+
                     <div class="">
                         <?= $this->Form->create($holerite, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-md-12">
-                                <?= $this->Form->control('funcionario_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios_list, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
+                                <?= $this->Form->control('funcionario_id', ['type' => 'select', 'label' => 'Funcionário', 'options' => $funcionarios_list, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione', 'id' => 'funcionario-select']); ?>
                             </div>
+
 
                             <!-- OPÇÕES DO CHECKBOX -->
                             <p style="margin-bottom: 0!important;">Selecione as opções que este holerite irá conter
@@ -176,8 +181,8 @@
                             <!-- FINAL DO CHECKBOX -->
 
                             
-                             <!-- INFORMAÇÕES BASE -->
-                             <div class="col-md-4">
+                            <!-- INFORMAÇÕES BASE -->
+                            <div class="col-md-4">
                                 <?= $this->Form->control('mes', ['type' => 'select', 'label' => 'Mês', 'class' => 'form-select', 'options' => ['Janeiro'=>'Janeiro', 'Fevereiro'=>'Fevereiro','Março'=>'Março','Abril'=>'Abril', 'Maio'=>'Maio', 'Junho'=>'Junho', 'Julho'=>'Julho', 'Agosto'=>'Agosto', 'Setembro'=>'Setembro', 'Outubro'=>'Outubro', 'Novembro'=>'Novembro', 'Dezembro'=>'Dezembro'], 'required' => 'required', 'empty' => 'Selecione o mês']); ?>
                             </div>
                             <div class="col-md-2">
@@ -187,11 +192,12 @@
                                 <?= $this->Form->data_personalizada('data_holerite', 'Data do Holerite', 'date', date('d/m/Y'), 'required', $holerite->data_holerite); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('salario_base', ['type' => 'number', 'label' => 'Salário Base', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário']); ?>
+                                <?= $this->Form->control('salario_base', ['type' => 'number', 'label' => 'Salário Base', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário', 'id' => 'salario-base']); ?>
                             </div>
                             <div class="col-md-2">
                                 <?= $this->Form->control('base_inss', ['type' => 'number', 'label' => 'Base INSS', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor da base INSS']); ?>
                             </div>
+                    
                             <div class="col-md-2">
                                 <?= $this->Form->control('base_fgts', ['type' => 'number', 'label' => 'Base FGTS', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor da base FGTS']); ?>
                             </div>
@@ -419,26 +425,19 @@
 <footer>
 
         <?php 
-            $timestamp = strtotime($holerite->data);
+            $timestamp = strtotime($holerite->data_holerite);
             if ($timestamp  !== false) {
                 $data_formatada = date('Y-m-d', $timestamp);
             }
         ?>
 
-        <?php 
-            $timestamp_admissao = strtotime($holerite->data_admissao);
-            if ($timestamp_admissao !== false) {
-                $data_formatada_admissao = date('Y-m-d', $timestamp_admissao);
-            }
-        ?>
+        
 
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-                var inputElement = document.getElementById("data");
+                var inputElement = document.getElementById("data-holerite");
                 inputElement.value = "<?php echo $data_formatada ?>";
 
-                var inputElementAdmissao = document.getElementById("data_admissao");
-                inputElementAdmissao.value = "<?php echo $data_formatada_admissao ?>";
             });
         </script>
 
@@ -615,3 +614,20 @@
 
         });
     </script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#funcionario-select').change(function() {
+            var funcionarioId = $(this).val();
+            $.ajax({
+                url: '/funcionarios/getSalario',
+                type: 'GET',
+                data: { funcionario_id: funcionarioId },
+                success: function(response) {
+                    $('#salario-base').val(response.salario);
+                }
+            });
+        });
+    });
+</script>

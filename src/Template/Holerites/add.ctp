@@ -98,7 +98,7 @@
                         <?= $this->Form->create($holerite, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-md-12">
-                                <?= $this->Form->control('funcionario_id', ['type' => 'select','label' => 'Funcionário', 'options' => $funcionarios_list, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione'  ]); ?>           
+                                <?= $this->Form->control('funcionario_id', ['type' => 'select', 'label' => 'Funcionário', 'options' => $funcionarios_list, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Selecione o funcionário', 'empty' => 'Selecione', 'id' => 'funcionario-select']); ?>
                             </div>
 
 
@@ -192,7 +192,7 @@
                                 <?= $this->Form->data_personalizada('data_holerite', 'Data do Holerite', 'date', date('d/m/Y'), 'required', $holerite->data_holerite); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('salario_base', ['type' => 'number', 'label' => 'Salário Base', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário']); ?>
+                                <?= $this->Form->control('salario_base', ['type' => 'number', 'label' => 'Salário Base', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o salário', 'id' => 'salario-base']); ?>
                             </div>
                             <div class="col-md-2">
                                 <?= $this->Form->control('base_inss', ['type' => 'number', 'label' => 'Base INSS', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o valor da base INSS']); ?>
@@ -614,3 +614,20 @@
 
         });
     </script>
+
+
+<script>
+    $(document).ready(function() {
+        $('#funcionario-select').change(function() {
+            var funcionarioId = $(this).val();
+            $.ajax({
+                url: '/funcionarios/getSalario',
+                type: 'GET',
+                data: { funcionario_id: funcionarioId },
+                success: function(response) {
+                    $('#salario-base').val(response.salario);
+                }
+            });
+        });
+    });
+</script>

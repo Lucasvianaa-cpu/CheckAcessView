@@ -117,4 +117,14 @@ class FuncionariosTable extends Table
 
         return $rules;
     }
+
+    public function getSalarioPorId($funcionarioId)
+    {
+        $query = $this->find()
+            ->select(['salario'])
+            ->where(['id' => $funcionarioId])
+            ->first();
+
+        return $query ? $query->salario : null;
+    }
 }

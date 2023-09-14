@@ -210,4 +210,14 @@ class FuncionariosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
+
+    public function getSalario()
+    {
+        $this->autoRender = false;
+        $funcionarioId = $this->request->getQuery('funcionario_id');
+        $salario = $this->Funcionarios->getSalarioPorId($funcionarioId);
+
+        $this->response = $this->response->withType('application/json')
+        ->withStringBody(json_encode(['salario' => $salario]));
+    }
 }
