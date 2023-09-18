@@ -304,9 +304,12 @@ CREATE TABLE `historicos_pontos` (
   `id` int NOT NULL AUTO_INCREMENT,
   `created` varchar(45) NOT NULL DEFAULT 'CURRENT_TIMESTAMP',
   `funcionario_id` int NOT NULL,
+  `pontos_horas_id` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `funcionario_ponto_idx` (`funcionario_id`),
-  CONSTRAINT `historico_funcionario` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`)
+  KEY `historico_pontosHoras_idx` (`pontos_horas_id`),
+  CONSTRAINT `historico_funcionario` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`),
+  CONSTRAINT `historico_pontosHoras` FOREIGN KEY (`pontos_horas_id`) REFERENCES `pontos_horas` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -492,7 +495,7 @@ CREATE TABLE `pontos_horas` (
   PRIMARY KEY (`id`),
   KEY `pontohora_historico_idx` (`historico_ponto_id`),
   CONSTRAINT `ponto_historicoponto` FOREIGN KEY (`historico_ponto_id`) REFERENCES `historicos_pontos` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -622,4 +625,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-14 20:32:48
+-- Dump completed on 2023-09-18 19:45:27

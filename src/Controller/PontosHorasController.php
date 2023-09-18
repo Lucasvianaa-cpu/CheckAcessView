@@ -53,6 +53,9 @@ class PontosHorasController extends AppController
         $pontosHora = $this->PontosHoras->newEntity();
         if ($this->request->is('post')) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
+            $pontosHora->data_ponto = date('Y-m-d');
+            $pontosHora->hora = date('H:i:s');
+            debug($pontosHora->id); exit;
             if ($this->PontosHoras->save($pontosHora)) {
                 $this->Flash->success(__('Ponto adicionado com sucesso.'));
 
