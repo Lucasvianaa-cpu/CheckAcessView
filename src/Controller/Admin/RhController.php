@@ -59,6 +59,13 @@ class RhController extends AppController
     }
 
 
+    public function relatorios()
+    {
+
+       
+    }
+
+
     public function permissions($id = null)
     {
 

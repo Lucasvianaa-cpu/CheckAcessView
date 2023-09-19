@@ -292,7 +292,7 @@
 
                 <?php if($current_user['role_id'] == 2) : ?>
                 <li class="nav-item">
-                    <a class="nav-link" href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Users', 'action' => 'index'])); ?>">
+                    <a class="nav-link" href="<?= str_replace('/admin/admin', '/admin',  $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios'])); ?>">
                         <div
                             class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             

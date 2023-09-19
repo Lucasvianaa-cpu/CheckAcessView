@@ -36,9 +36,12 @@ class PontosHorasTable extends Table
         $this->setDisplayField('id');
         $this->setPrimaryKey('id');
 
-        $this->belongsTo('HistoricosPontos', [
-            'foreignKey' => 'historico_ponto_id',
-            'joinType' => 'INNER',
+        $this->hasMany('HistoricosPontos', [
+            'foreignKey' => 'pontos_horas_id',
+        ]);
+
+        $this->belongsTo('Funcionarios', [
+            'foreignKey' => 'funcionario_id',
         ]);
     }
 

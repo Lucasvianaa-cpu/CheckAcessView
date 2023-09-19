@@ -1,5 +1,8 @@
 <?php
+
 namespace App\Controller;
+
+use Cake\ORM\TableRegistry;
 
 use App\Controller\AppController;
 
@@ -17,10 +20,55 @@ class PontosHorasController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+
+
+    public function relatorioFuncionarios()
+    {
+        $this->loadModel('HistoricosPontos');
+
+        $conditions = ['Funcionarios.is_active' => 1];
+
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+        if ($this->request->getQuery('sobrenome') != '') {
+            $sobrenome = $this->request->getQuery('sobrenome');
+            $conditions['LOWER(Users.sobrenome) LIKE'] = '%' . strtolower($sobrenome) . '%';
+        }
+        if ($this->request->getQuery('data_ponto') != '') {
+            $data_ponto = $this->request->getQuery('data_ponto');
+
+            $data_ponto = new \DateTime(); // Supondo que você tenha uma data aqui
+            $nova_data = $data_ponto->format('Y-m-d'); // Formata a data
+
+            $conditions['PontosHoras.data_ponto'] = $nova_data;
+        }
+
+        $this->paginate = [
+            'contain' => ['Funcionarios.Users'],
+            'conditions' => $conditions,
+        ];
+
+        $pontos_historico = $this->paginate($this->PontosHoras);
+
+        $this->set(compact('pontos_historico'));
+    }
+
+
+
+
     public function index()
     {
+        $this->loadModel('Funcionarios');
+
+        $funcionario = $this->Funcionarios->find('all', [
+            'conditions' => ['user_id' => $this->Auth->user('id')],
+            'limit' => 1
+        ])->first();
+
         $this->paginate = [
-            'contain' => ['HistoricosPontos'],
+            'conditions' => ['funcionario_id' => $funcionario->id]
         ];
         $pontosHoras = $this->paginate($this->PontosHoras);
 
@@ -36,9 +84,7 @@ class PontosHorasController extends AppController
      */
     public function view($id = null)
     {
-        $pontosHora = $this->PontosHoras->get($id, [
-            'contain' => ['HistoricosPontos'],
-        ]);
+        $pontosHora = $this->PontosHoras->get($id, []);
 
         $this->set('pontosHora', $pontosHora);
     }
@@ -50,21 +96,41 @@ class PontosHorasController extends AppController
      */
     public function add()
     {
+        $this->loadModel('Funcionarios');
+
+        $funcionario = $this->Funcionarios->find('all', [
+            'conditions' => ['user_id' => $this->Auth->user('id')],
+            'limit' => 1
+        ])->first();
+
         $pontosHora = $this->PontosHoras->newEntity();
         if ($this->request->is('post')) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
             $pontosHora->data_ponto = date('Y-m-d');
             $pontosHora->hora = date('H:i:s');
-            debug($pontosHora->id); exit;
+            $pontosHora->funcionario_id = $funcionario->id;
+
             if ($this->PontosHoras->save($pontosHora)) {
+
+                $id_ponto = $pontosHora->id;
+
+                $data = [
+                    'funcionario_id' => $funcionario->id,
+                    'pontos_horas_id' => $id_ponto,
+                ];
+
+                $postsTable = TableRegistry::getTableLocator()->get('HistoricosPontos');
+                $newPost = $postsTable->newEntity($data);
+                $postsTable->save($newPost);
+
                 $this->Flash->success(__('Ponto adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
-        $historicosPontos = $this->PontosHoras->HistoricosPontos->find('list', ['limit' => 200]);
-        $this->set(compact('pontosHora', 'historicosPontos'));
+
+        $this->set(compact('pontosHora'));
     }
 
     /**
@@ -88,8 +154,8 @@ class PontosHorasController extends AppController
             }
             $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
-        $historicosPontos = $this->PontosHoras->HistoricosPontos->find('list', ['limit' => 200]);
-        $this->set(compact('pontosHora', 'historicosPontos'));
+
+        $this->set(compact('pontosHora'));
     }
 
     /**

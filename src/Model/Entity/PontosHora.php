@@ -27,7 +27,5 @@ class PontosHora extends Entity
     protected $_accessible = [
         'data_ponto' => true,
         'hora' => true,
-        'historico_ponto_id' => true,
-        'historicos_ponto' => true,
     ];
 }

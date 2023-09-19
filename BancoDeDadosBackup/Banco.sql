@@ -306,11 +306,11 @@ CREATE TABLE `historicos_pontos` (
   `funcionario_id` int NOT NULL,
   `pontos_horas_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `funcionario_ponto_idx` (`funcionario_id`),
-  KEY `historico_pontosHoras_idx` (`pontos_horas_id`),
-  CONSTRAINT `historico_funcionario` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`),
-  CONSTRAINT `historico_pontosHoras` FOREIGN KEY (`pontos_horas_id`) REFERENCES `pontos_horas` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3;
+  KEY `pontos_funcionarios_idx` (`funcionario_id`),
+  KEY `historico_pontos_idx` (`pontos_horas_id`),
+  CONSTRAINT `historico_funcionarios` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`),
+  CONSTRAINT `historico_pontos` FOREIGN KEY (`pontos_horas_id`) REFERENCES `pontos_horas` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,6 +319,7 @@ CREATE TABLE `historicos_pontos` (
 
 LOCK TABLES `historicos_pontos` WRITE;
 /*!40000 ALTER TABLE `historicos_pontos` DISABLE KEYS */;
+INSERT INTO `historicos_pontos` VALUES (12,'9/19/23, 8:14 PM',8,20),(13,'9/19/23, 8:48 PM',8,21),(14,'9/19/23, 8:49 PM',8,22);
 /*!40000 ALTER TABLE `historicos_pontos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -491,11 +492,11 @@ CREATE TABLE `pontos_horas` (
   `id` int NOT NULL AUTO_INCREMENT,
   `data_ponto` date NOT NULL,
   `hora` time NOT NULL,
-  `historico_ponto_id` int NOT NULL,
+  `funcionario_id` int NOT NULL,
   PRIMARY KEY (`id`),
-  KEY `pontohora_historico_idx` (`historico_ponto_id`),
-  CONSTRAINT `ponto_historicoponto` FOREIGN KEY (`historico_ponto_id`) REFERENCES `historicos_pontos` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb3;
+  KEY `pontos_funcionarios_idx` (`funcionario_id`),
+  CONSTRAINT `pontos_funcionarios` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -504,6 +505,7 @@ CREATE TABLE `pontos_horas` (
 
 LOCK TABLES `pontos_horas` WRITE;
 /*!40000 ALTER TABLE `pontos_horas` DISABLE KEYS */;
+INSERT INTO `pontos_horas` VALUES (19,'2023-09-19','19:44:27',9),(20,'2023-09-19','20:14:34',8),(21,'2023-09-19','20:48:57',8),(22,'2023-09-19','20:49:46',8);
 /*!40000 ALTER TABLE `pontos_horas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -625,4 +627,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-09-18 19:45:27
+-- Dump completed on 2023-09-19 20:52:10
