@@ -97,12 +97,16 @@ class PontosHorasController extends AppController
     public function add()
     {
         $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+        $this->loadModel('Empresas');
 
-        $funcionario = $this->Funcionarios->find('all', [
-            'conditions' => ['user_id' => $this->Auth->user('id')],
-            'limit' => 1
-        ])->first();
+        $funcionario = $this->Funcionarios->find()
+        ->contain(['Users', 'Empresas'])
+        ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
+        ->first();
 
+
+     
         $pontosHora = $this->PontosHoras->newEntity();
         if ($this->request->is('post')) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
@@ -129,8 +133,9 @@ class PontosHorasController extends AppController
             }
             $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
+        
 
-        $this->set(compact('pontosHora'));
+        $this->set(compact('pontosHora', 'funcionario'));
     }
 
     /**
