@@ -153,22 +153,7 @@
         </div>
       </div>
      
-                <div class="container">
-    <div class="row my-3">
-        <div class="col">
-            <h4>Funcionários registrados por mês:</h4>
-        </div>
-    </div>
-    <div class=" my-2">
-        <div class="col-md-12 py-1">
-            <div class="card">
-                <div class="card-body">
-                <div id="chart"></div>
-                </div>
-            </div>
-        </div>
-       
-    </div>
+               
    
       </div>
       <footer class="footer pt-3  ">
@@ -210,47 +195,4 @@
         <?= $this->element('alertas/mensagem'); ?>
     </footer>
 
-    <script>
-    // Dados do gráfico
-    var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
-    var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
-
-    var barColors = ['#070713'];
-
-
-    
-    // Configurações do gráfico
-    var options = {
-      chart: {
-        type: 'bar',
-        height: 250
-      },
-      xaxis: {
-        categories: months
-      },
-      plotOptions: {
-        bar: {
-          horizontal: false
-        }
-      },
-      series: [{
-        name: 'Funcionários',
-        data: funcionariosData
-      }],
-      yaxis: {
-        title: {
-          text: 'Quantidade'
-        }
-      },
-      colors: barColors // Definindo as cores das barras
-    };
-
-    // Inicializar o gráfico
-    var chart = new ApexCharts(document.querySelector("#chart"), options);
-    chart.render();
-  </script>
-
-    
-</body>
-
-</html>
+   

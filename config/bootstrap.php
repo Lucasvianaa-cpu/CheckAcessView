@@ -101,6 +101,7 @@ if (Configure::read('debug')) {
 // date_default_timezone_set(Configure::read('App.defaultTimezone'));
 date_default_timezone_set('America/Sao_Paulo');
 
+
 /*
  * Configure the mbstring extension to use the correct encoding.
  */

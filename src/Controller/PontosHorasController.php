@@ -62,17 +62,56 @@ class PontosHorasController extends AppController
     {
         $this->loadModel('Funcionarios');
 
-        $funcionario = $this->Funcionarios->find('all', [
-            'conditions' => ['user_id' => $this->Auth->user('id')],
-            'limit' => 1
-        ])->first();
+        $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
+
+        $dias = range(1, 31);
+        $pontos_dias = [];
 
         $this->paginate = [
             'conditions' => ['funcionario_id' => $funcionario->id]
         ];
-        $pontosHoras = $this->paginate($this->PontosHoras);
+        $pontos = $this->paginate($this->PontosHoras);
 
-        $this->set(compact('pontosHoras'));
+
+        foreach ($pontos as $ponto) {
+            $data = $ponto->data_ponto->format('d/m/Y');
+
+            $pontos_dias[$data][] = [
+                'data' => $ponto->data_ponto->format('Y-m-d'),
+                'hora' => $ponto->hora->format('H:i:s')
+            ];
+        }
+
+        foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
+            sort($pontos);
+            $contagem = count($pontos);
+
+            if ($contagem == 2) {
+                $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
+                $total = date("H:i", $saida - $entrada);
+
+                // Adicione o total ao array atual em $pontos
+                $pontos[] = ['total' => $total];
+            } else if ($contagem == 4) {
+                $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
+
+                $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
+                $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
+
+                $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
+                $total_segundo_periodo = date("H:i", $saida - $retorno);
+
+                $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
+
+                // Adicione o total ao array atual em $pontos
+                $pontos[] = ['total' => $total];
+            }
+        }
+
+
+        $this->set(compact('pontos_dias'));
     }
 
     /**
@@ -84,9 +123,26 @@ class PontosHorasController extends AppController
      */
     public function view($id = null)
     {
+
+
+        $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+        $this->loadModel('Empresas');
+
+        $funcionario = $this->Funcionarios->find()
+            ->contain(['Users', 'Empresas'])
+            ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
+            ->first();
+
         $pontosHora = $this->PontosHoras->get($id, []);
 
-        $this->set('pontosHora', $pontosHora);
+        $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
+
+        $pontosHora->funcionario_id = $funcionario->id;
+
+
+
+        $this->set(compact('pontosHora', 'funcionario'));
     }
 
     /**
@@ -101,12 +157,12 @@ class PontosHorasController extends AppController
         $this->loadModel('Empresas');
 
         $funcionario = $this->Funcionarios->find()
-        ->contain(['Users', 'Empresas'])
-        ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
-        ->first();
+            ->contain(['Users', 'Empresas'])
+            ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
+            ->first();
 
 
-     
+
         $pontosHora = $this->PontosHoras->newEntity();
         if ($this->request->is('post')) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
@@ -133,7 +189,7 @@ class PontosHorasController extends AppController
             }
             $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
-        
+
 
         $this->set(compact('pontosHora', 'funcionario'));
     }
@@ -146,12 +202,28 @@ class PontosHorasController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
+
+
     {
+
+        $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+        $this->loadModel('Empresas');
+
+        $funcionario = $this->Funcionarios->find()
+            ->contain(['Users', 'Empresas'])
+            ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
+            ->first();
+
         $pontosHora = $this->PontosHoras->get($id, [
             'contain' => [],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
+
+            $pontosHora->data_ponto  = new \DateTime(); // Supondo que você tenha uma data aqui
+            $data = $pontosHora->data_ponto->format('Y-m-d');
+
             if ($this->PontosHoras->save($pontosHora)) {
                 $this->Flash->success(__('Ponto atualizado com sucesso.'));
 
@@ -160,7 +232,7 @@ class PontosHorasController extends AppController
             $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
         }
 
-        $this->set(compact('pontosHora'));
+        $this->set(compact('pontosHora', 'funcionario'));
     }
 
     /**

@@ -89,12 +89,6 @@ if (isset($_SESSION['msg'])) {
 </div>
 
 
-
-
-
-
-
-
 <script>
     var apHorario = document.getElementById("horario");
 

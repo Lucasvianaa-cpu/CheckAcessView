@@ -137,8 +137,11 @@
               </div>
               <div class="">
                 <?= $this->Form->create($user, ['class' => 'row g-3', 'type' => 'file']) ?>
-                <div class="col-8">
+                <div class="col-4">
                   <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
+                </div>
+                <div class="col-4">
+                  <?= $this->Form->control('sobrenome', ['type' => 'text', 'label' => 'Sobrenome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu sobrenome']); ?>
                 </div>
                 <div class="col-lg-4">
                   <?= $this->Form->control('caminho_foto', ['type' => 'file', 'class' => 'form-control']) ?>
