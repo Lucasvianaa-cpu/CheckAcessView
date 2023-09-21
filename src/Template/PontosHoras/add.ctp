@@ -20,13 +20,6 @@ if (isset($_SESSION['msg'])) {
 
 
 <div class="container-fluid my-2 py-3">
-<nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
-    <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
-    <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Dashboard</a></li>
-        <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Registrar Ponto</li>
-    </ol>
-    <h6 class="font-weight-bold mb-0">Registrar Ponto</h6>
-</nav>
 <div>
     <h6 class="font-weight-semibold text-lg mb-0">Registre aqui o seu ponto</h6>
     <p class="text-sm">Aqui você controla de forma fácil suas entradas e saídas!</p>
@@ -80,10 +73,22 @@ if (isset($_SESSION['msg'])) {
                                     <span class="mb-3 font-weight-bold text-lg">Empresa:</span> <?= $funcionario->empresa->razao_social ?>
                                 </h3>
                             </div>
+                            
+
                         </div>
+                        
                     </div>
                 </div>
             </div>
+        </div>
+        <div id="map" style="height: 400px; width: 100%;"></div>
+        <button id="obterLocalizacao">Obter Localização</button>
+
+        <div id="location-info">
+            <p>Rua: <span id="street"></span></p>
+            <p>Bairro: <span id="neighborhood"></span></p>
+            <p>Cidade: <span id="city"></span></p>
+            <p>Estado: <span id="state"></span></p>
         </div>
     </div>
 </div>
@@ -101,4 +106,79 @@ if (isset($_SESSION['msg'])) {
     }
 
     setInterval(atualizarHorario, 1000);
+</script>
+
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhI4AXWZU-LWRbwOAs3kxvROfldqrirpA&callback=initMap" async defer></script>
+
+<script>
+    function initMap() {
+    // Configurar o mapa
+    var map = new google.maps.Map(document.getElementById('map'), {
+        zoom: 15, // Nível de zoom
+        center: {lat: -34.397, lng: 150.644} // Coordenadas iniciais do mapa
+    });
+
+    // Adicionar um evento de clique a um botão
+    var button = document.getElementById('obterLocalizacao');
+    button.addEventListener('click', function() {
+        // Obter a localização do usuário
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                var userLocation = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                // Criar um marcador no mapa com a localização do usuário
+                var marker = new google.maps.Marker({
+                    position: userLocation,
+                    map: map,
+                    title: 'Sua Localização'
+                });
+
+                // Centralizar o mapa na localização do usuário
+                map.setCenter(userLocation);
+
+                // Obter informações de localização usando a Geocodificação Reversa
+                var geocoder = new google.maps.Geocoder();
+                geocoder.geocode({ 'location': userLocation }, function(results, status) {
+                    if (status === 'OK') {
+                        if (results[0]) {
+                            var addressComponents = results[0].address_components;
+                            var street = '';
+                            var neighborhood = '';
+                            var city = '';
+
+                            for (var i = 0; i < addressComponents.length; i++) {
+                                var component = addressComponents[i];
+                                if (component.types.includes('route')) {
+                                    street = component.long_name;
+                                } else if (component.types.includes('sublocality')) {
+                                    neighborhood = component.long_name;
+                                } else if (component.types.includes('locality')) {
+                                    city = component.long_name || component.short_name; // Use long_name se estiver disponível
+                                } else if (component.types.includes('administrative_area_level_1')) {
+                                    state = component.short_name; // Use .long_name se desejar o nome completo do estado
+                                }
+                            }
+
+                            // Exibir as informações no HTML
+                            document.getElementById('street').textContent = street;
+                            document.getElementById('neighborhood').textContent = neighborhood;
+                            document.getElementById('city').textContent = city;
+                            document.getElementById('state').textContent = state; // Exibir o estado
+                        } else {
+                            alert('Nenhum resultado encontrado.');
+                        }
+                    } else {
+                        alert('Erro ao obter informações de localização: ' + status);
+                    }
+                });
+            });
+        } else {
+            alert('Geolocalização não suportada neste navegador.');
+        }
+    });
+}
+
 </script>
