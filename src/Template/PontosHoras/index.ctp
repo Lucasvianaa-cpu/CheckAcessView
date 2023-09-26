@@ -56,6 +56,9 @@
               </thead>
               <tbody>
                 <?php foreach ($pontos_dias as $data => $pontos) : ?>
+                  <?php $valor_contagem = count($pontos); // Calcular o valor de contagem antes do loop interno 
+                  ?>
+
                   <tr>
                     <td><?= $data ?></td>
                     <?php foreach ($pontos as $ponto) : ?>
@@ -65,10 +68,25 @@
                         </td>
                       <?php endif; ?>
                     <?php endforeach; ?>
-                    <td><?= $pontos[4]['total'] ?></td>
-                    <td></td>
+
+                  <?php if ($valor_contagem == 5) : ?>
+                    <td colspan="5">
+                    <?php $total = end($pontos); ?>
+                      <?= $total['total'] ?>
+                    </td>
+                  <?php endif; ?>
+
+                  <?php if ($valor_contagem == 4) : ?>
+                    <td colspan="3">
+                    <?php $total = end($pontos); ?>
+                      <?= $total['total'] ?>
+                    </td>
+                  <?php endif; ?>
+                        
+                        
                   </tr>
                 <?php endforeach; ?>
+
               </tbody>
             </table>
 

@@ -109,76 +109,78 @@ if (isset($_SESSION['msg'])) {
 </script>
 
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhI4AXWZU-LWRbwOAs3kxvROfldqrirpA&callback=initMap" async defer></script>
-
 <script>
     function initMap() {
-    // Configurar o mapa
-    var map = new google.maps.Map(document.getElementById('map'), {
-        zoom: 15, // Nível de zoom
-        center: {lat: -34.397, lng: 150.644} // Coordenadas iniciais do mapa
-    });
+        // Configurar o mapa
+        var map = new google.maps.Map(document.getElementById('map'), {
+            zoom: 15, // Nível de zoom
+            center: {lat: -34.397, lng: 150.644} // Coordenadas iniciais do mapa
+        });
 
-    // Adicionar um evento de clique a um botão
-    var button = document.getElementById('obterLocalizacao');
-    button.addEventListener('click', function() {
-        // Obter a localização do usuário
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                var userLocation = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
+        // Adicionar um evento de clique a um botão
+        var button = document.getElementById('obterLocalizacao');
+        button.addEventListener('click', function() {
+            // Obter a localização do usuário
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var userLocation = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    console.log(userLocation);
 
-                // Criar um marcador no mapa com a localização do usuário
-                var marker = new google.maps.Marker({
-                    position: userLocation,
-                    map: map,
-                    title: 'Sua Localização'
-                });
+                    // Criar um marcador no mapa com a localização do usuário
+                    var marker = new google.maps.Marker({
+                        position: userLocation,
+                        map: map,
+                        title: 'Sua Localização'
+                    });
 
-                // Centralizar o mapa na localização do usuário
-                map.setCenter(userLocation);
+                    // Centralizar o mapa na localização do usuário
+                    map.setCenter(userLocation);
 
-                // Obter informações de localização usando a Geocodificação Reversa
-                var geocoder = new google.maps.Geocoder();
-                geocoder.geocode({ 'location': userLocation }, function(results, status) {
-                    if (status === 'OK') {
-                        if (results[0]) {
-                            var addressComponents = results[0].address_components;
-                            var street = '';
-                            var neighborhood = '';
-                            var city = '';
+                    // Declarar a variável 'state' antes de usá-la
+                    var state = '';
 
-                            for (var i = 0; i < addressComponents.length; i++) {
-                                var component = addressComponents[i];
-                                if (component.types.includes('route')) {
-                                    street = component.long_name;
-                                } else if (component.types.includes('sublocality')) {
-                                    neighborhood = component.long_name;
-                                } else if (component.types.includes('locality')) {
-                                    city = component.long_name || component.short_name; // Use long_name se estiver disponível
-                                } else if (component.types.includes('administrative_area_level_1')) {
-                                    state = component.short_name; // Use .long_name se desejar o nome completo do estado
+                    // Obter informações de localização usando a Geocodificação Reversa
+                    var geocoder = new google.maps.Geocoder();
+                    geocoder.geocode({ 'location': userLocation }, function(results, status) {
+                        if (status === 'OK') {
+                            if (results[0]) {
+                                var addressComponents = results[0].address_components;
+                                var street = '';
+                                var neighborhood = '';
+                                var city = '';
+
+                                for (var i = 0; i < addressComponents.length; i++) {
+                                    var component = addressComponents[i];
+                                    if (component.types.includes('route')) {
+                                        street = component.long_name;
+                                    } else if (component.types.includes('sublocality')) {
+                                        neighborhood = component.long_name;
+                                    } else if (component.types.includes('locality')) {
+                                        city = component.long_name || component.short_name; // Use long_name se estiver disponível
+                                    } else if (component.types.includes('administrative_area_level_1')) {
+                                        state = component.short_name; // Use .long_name se desejar o nome completo do estado
+                                    }
                                 }
+
+                                // Exibir as informações no HTML
+                                document.getElementById('street').textContent = street;
+                                document.getElementById('neighborhood').textContent = neighborhood;
+                                document.getElementById('city').textContent = city;
+                                document.getElementById('state').textContent = state; // Exibir o estado
+                            } else {
+                                alert('Nenhum resultado encontrado.');
                             }
-
-                            // Exibir as informações no HTML
-                            document.getElementById('street').textContent = street;
-                            document.getElementById('neighborhood').textContent = neighborhood;
-                            document.getElementById('city').textContent = city;
-                            document.getElementById('state').textContent = state; // Exibir o estado
                         } else {
-                            alert('Nenhum resultado encontrado.');
+                            alert('Erro ao obter informações de localização: ' + status);
                         }
-                    } else {
-                        alert('Erro ao obter informações de localização: ' + status);
-                    }
+                    });
                 });
-            });
-        } else {
-            alert('Geolocalização não suportada neste navegador.');
-        }
-    });
-}
-
+            } else {
+                alert('Geolocalização não suportada neste navegador.');
+            }
+        });
+    }
 </script>
