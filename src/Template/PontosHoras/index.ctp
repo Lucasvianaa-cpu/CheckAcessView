@@ -32,7 +32,7 @@
           <div class="border-bottom py-3 px-3 align-items-center">
             <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
             <div class="col-10">
-              <?= $this->Form->control('data_ponto', ['class' => 'form-control', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
+              <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
             </div>
 
             <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
@@ -69,24 +69,41 @@
                       <?php endif; ?>
                     <?php endforeach; ?>
 
-                  <?php if ($valor_contagem == 5) : ?>
-                    <td colspan="5">
-                    <?php $total = end($pontos); ?>
-                      <?= $total['total'] ?>
-                    </td>
-                  <?php endif; ?>
+                    <?php if ($valor_contagem == 2) : ?>
+                      <td></td>
+                      <td></td>
+                      <td></td>
+                      <td colspan="2">
+                        <?php $total = end($pontos); ?>
+                        <?= $total['total'] ?>
+                      </td>
+                    <?php endif; ?>
 
-                  <?php if ($valor_contagem == 4) : ?>
-                    <td colspan="3">
-                    <?php $total = end($pontos); ?>
-                      <?= $total['total'] ?>
-                    </td>
-                  <?php endif; ?>
-                        
-                        
+                    <?php if ($valor_contagem == 3) : ?>
+                      <td></td>
+                      <td></td>
+                      <td colspan="2">
+                        <?php $total = end($pontos); ?>
+                        <?= $total['total'] ?>
+                      </td>
+                    <?php endif; ?>
+
+                    <?php if ($valor_contagem == 5) : ?>
+                      <td colspan="5">
+                        <?php $total = end($pontos); ?>
+                        <?= $total['total'] ?>
+                      </td>
+                    <?php endif; ?>
+
+                    <?php if ($valor_contagem == 4) : ?>
+                      <td colspan="3">
+                        <?php $total = end($pontos); ?>
+                        <?= $total['total'] ?>
+                      </td>
+                    <?php endif; ?>
                   </tr>
                 <?php endforeach; ?>
-                //* Precisa Incluir o view e de edit para apenas funcionário de RH validar (estão em INDEX COPY.CTP)//*
+                
               </tbody>
             </table>
 

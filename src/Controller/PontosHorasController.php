@@ -4,6 +4,8 @@ namespace App\Controller;
 
 use Cake\ORM\TableRegistry;
 
+use DateTime;
+
 use App\Controller\AppController;
 
 /**
@@ -62,6 +64,16 @@ class PontosHorasController extends AppController
     {
         $this->loadModel('Funcionarios');
 
+        $conditions = [];
+
+        if ($this->request->getQuery('data_ponto') != '') {
+            $data = $this->request->getQuery('data_ponto');
+            $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+            if ($data_formatada) {
+                $conditions['PontosHoras.data_ponto ='] = $data_formatada->format('Y-m-d');
+            }
+        }
+
         $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
 
         $dias = range(1, 31);
@@ -70,7 +82,7 @@ class PontosHorasController extends AppController
         $this->paginate = [
             'conditions' => ['funcionario_id' => $funcionario->id]
         ];
-        $pontos = $this->paginate($this->PontosHoras);
+        $pontos = $this->paginate($this->PontosHoras, ['conditions' => $conditions]);
 
 
         foreach ($pontos as $ponto) {
@@ -117,7 +129,7 @@ class PontosHorasController extends AppController
                 // Adicione o total ao array atual em $pontos
                 $pontos[] = ['total' => $total];
             } else if ($contagem == 1 || $contagem == 3) {
-                $pontos[] = ['total' => 'Registre pelo menos dois pontos ou quatro pontos para definir o total de horas'];
+                $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
             }
         }
 
@@ -223,7 +235,7 @@ class PontosHorasController extends AppController
         $this->set(compact('pontosHora', 'funcionario'));
     }
 
-    
+
 
     /**
      * Add method
@@ -237,19 +249,7 @@ class PontosHorasController extends AppController
         $this->loadModel('Empresas');
 
 
-        if ($this->request->is('ajax')) {
-            $data = $this->request->getData();
-            // Agora você pode acessar os dados enviados via AJAX
-            $rua = $data['rua'];
-            $bairro = $data['bairro'];
-            $cidade = $data['cidade'];
-            $estado = $data['estado'];
-
-          
-            // Você pode retornar uma resposta JSON se desejar
-            $this->autoRender = false;
-          debug($rua) ; exit;
-        }
+      
         $funcionario = $this->Funcionarios->find()
             ->contain(['Users', 'Empresas'])
             ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
