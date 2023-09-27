@@ -86,7 +86,7 @@
                         
                   </tr>
                 <?php endforeach; ?>
-
+                //* Precisa Incluir o view e de edit para apenas funcionário de RH validar (estão em INDEX COPY.CTP)//*
               </tbody>
             </table>
 
