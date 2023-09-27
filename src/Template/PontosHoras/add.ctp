@@ -17,14 +17,14 @@ if (isset($_SESSION['msg'])) {
 }
 ?>
 
-
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="container-fluid my-2 py-3">
-<div>
-    <h6 class="font-weight-semibold text-lg mb-0">Registre aqui o seu ponto</h6>
-    <p class="text-sm">Aqui você controla de forma fácil suas entradas e saídas!</p>
-</div>
-            
+    <div>
+        <h6 class="font-weight-semibold text-lg mb-0">Registre aqui o seu ponto</h6>
+        <p class="text-sm">Aqui você controla de forma fácil suas entradas e saídas!</p>
+    </div>
+
     <div class="row">
         <div class="col-md-6 col-12 mb-4">
             <div class="card shadow-lg">
@@ -46,13 +46,13 @@ if (isset($_SESSION['msg'])) {
         <div class="col-md-6 col-12 mb-4">
             <div class="card shadow-lg">
                 <div class="card-body d-flex flex-column justify-content-center" style="height: 300px;">
-                    
+
                     <div class="text-center">
                         <div class="row">
                             <div class="col-md-4 col-sm-12 d-flex justify-content-center align-items-center">
                                 <div class="avatar avatar-2xl rounded-circle position-relative border border-gray-100 border-4">
-                                    
-                                <?php if (!empty($funcionario->user->caminho_foto)) : ?>
+
+                                    <?php if (!empty($funcionario->user->caminho_foto)) : ?>
                                         <?= $this->Html->image($funcionario->user->caminho_foto, ['style' => 'min-height: 155px; max-height: 155px;']); ?>
                                     <?php else : ?>
                                         <?= $this->Html->image('perfil.png', ['style' => 'min-height: 155px; max-height: 155px;']); ?>
@@ -62,27 +62,27 @@ if (isset($_SESSION['msg'])) {
                             <div class="col-md-8 col-sm-12 " style="text-align: left!important">
                                 <h6 class="mb-3 font-weight-bold text-lg">FUNCIONÁRIO</h6>
                                 <h3 class="mb-3 font-weight-semibold text-lg">
-                                <span class="mb-3 font-weight-bold text-lg">Nome:</span> <?= $funcionario->user->nome ?> <?= $funcionario->user->sobrenome ?>
+                                    <span class="mb-3 font-weight-bold text-lg">Nome:</span> <?= $funcionario->user->nome ?> <?= $funcionario->user->sobrenome ?>
                                 </h3>
 
                                 <h3 class="mb-3 font-weight-semibold text-lg">
-                                <span class="mb-3 font-weight-bold text-lg">CPF:</span> <?= $funcionario->user->cpf ?>
+                                    <span class="mb-3 font-weight-bold text-lg">CPF:</span> <?= $funcionario->user->cpf ?>
                                 </h3>
 
                                 <h3 class="mb-3 font-weight-semibold text-lg">
                                     <span class="mb-3 font-weight-bold text-lg">Empresa:</span> <?= $funcionario->empresa->razao_social ?>
                                 </h3>
                             </div>
-                            
+
 
                         </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
         <div id="map" style="height: 400px; width: 100%;"></div>
-        <button id="obterLocalizacao">Obter Localização</button>
+        <button id="obterLocalizacao" class="botao-loc">Obter Localização</button>
 
         <div id="location-info">
             <p>Rua: <span id="street"></span></p>
@@ -114,7 +114,10 @@ if (isset($_SESSION['msg'])) {
         // Configurar o mapa
         var map = new google.maps.Map(document.getElementById('map'), {
             zoom: 15, // Nível de zoom
-            center: {lat: -34.397, lng: 150.644} // Coordenadas iniciais do mapa
+            center: {
+                lat: -34.397,
+                lng: 150.644
+            } // Coordenadas iniciais do mapa
         });
 
         // Adicionar um evento de clique a um botão
@@ -144,7 +147,9 @@ if (isset($_SESSION['msg'])) {
 
                     // Obter informações de localização usando a Geocodificação Reversa
                     var geocoder = new google.maps.Geocoder();
-                    geocoder.geocode({ 'location': userLocation }, function(results, status) {
+                    geocoder.geocode({
+                        'location': userLocation
+                    }, function(results, status) {
                         if (status === 'OK') {
                             if (results[0]) {
                                 var addressComponents = results[0].address_components;
@@ -183,4 +188,38 @@ if (isset($_SESSION['msg'])) {
             }
         });
     }
+</script>
+
+<script>
+    // Defina a função coletadados()
+    function coletadados() {
+        var rua = $("#street").text();
+        var bairro = $("#neighborhood").text();
+        var cidade = $("#city").text();
+        var estado = $("#state").text();
+        console.log(rua, bairro, cidade, estado);
+    }
+
+    // Associe a função coletadados() ao evento de clique do botão
+    $(document).ready(function() {
+        $(".botao-loc").on("click", function() {
+            setTimeout(coletadados, 300); // Executa coletadados() após X segundos
+        });
+    });
+
+    var dados = {
+        rua: rua,
+        bairro: bairro,
+        cidade: cidade,
+        estado: estado
+    };
+
+    // Fazer uma requisição AJAX para a sua controller
+    $.ajax({
+        type: "POST",
+        url: "/pontos-horas/add", // Substitua com o caminho correto para sua controller
+        data: dados,
+        success: function(response) {
+console.log('oi');        }
+    });
 </script>
