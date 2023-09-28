@@ -28,6 +28,22 @@
     <?= $this->fetch('meta') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('script') ?>
+
+    <style>
+        .wifi-loader {
+            width: 40px;
+            height: 40px;
+            border: 5px solid #1e293b;
+            border-top: 5px solid transparent;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
 </head>
 
 
@@ -48,14 +64,17 @@
                         <div class="row">
                             <div class="col-xl-4 col-md-6 d-flex flex-column mx-auto">
                                 <div class="card d-flex d-flex flex-column justify-content-center " style="padding-left: 60px; padding-right: 60px;">
-
-                                    <img src="../img/logo/3.png" class="d-flex  justify-content" alt="...">
-
-
                                     <div class="card-header pb-0 text-left bg-transparent">
-                                        <h3 class="font-weight-black text-dark">Login</h3>
-                                        <p class="mb-0">Seja bem-vindo(a) ao CheckAcessView</p>
+                                        <h3 class="font-weight-black text-dark d-flex justify-content-center">Aproxime o seu cartão</h3>
+                                        <p class="mb-0 d-flex justify-content-center">Por favor, aguarde o sinal sonoro para confirmar.</p>
                                     </div>
+                                    <div class="d-flex justify-content-center m-4">
+                                        <div class="wifi-loader"></div>
+                                    </div>
+                                    <img src="../img/logo/4.png" class="d-flex  justify-content" alt="...">
+
+
+                                    
                                     <div class="card-body">
 
                                         <?= $this->Form->create('', ['class' => '']) ?>

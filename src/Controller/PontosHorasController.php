@@ -363,13 +363,13 @@ class PontosHorasController extends AppController
 
 
     public function addRfid()
-
     {
-
+        if ($this->request->is('post')) {
+            return $this->redirect(['action' => 'retornoRfid']);
+        }
     }
 
     public function retornoRfid()
-
     {
 
     }
