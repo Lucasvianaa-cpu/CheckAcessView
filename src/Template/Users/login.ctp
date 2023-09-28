@@ -86,6 +86,10 @@
                         Não tem uma conta ainda?
                         <a href="<?= $this->Url->build(['action' => 'adicionar']);?>" class="text-dark font-weight-bold">Registre-se</a>
                       </p>
+                      <p class="mb-4 text-xs mx-auto">
+                        Irá utilizar o ponto automatizado com RFID?
+                        <a href="<?= $this->Url->build(['controller' => 'PontosHoras','action' => 'addRfid']);?>" class="text-dark font-weight-bold">Clique aqui</a>
+                      </p>
                     </div>
                   </div>
                 </div>

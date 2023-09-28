@@ -22,7 +22,19 @@ class PontosHorasController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+    public function initialize()
+    {
+        parent::initialize();
+    }
 
+    public function beforeFilter(\Cake\Event\Event $event)
+    {
+        parent::beforeFilter($event);
+        
+        // Permitir acesso público à ação 'addRfid'
+        $this->Auth->allow(['addRfid']);
+        $this->Auth->allow(['retornoRfid']);
+    }
 
     public function relatorioFuncionarios()
     {
@@ -347,5 +359,18 @@ class PontosHorasController extends AppController
         }
 
         return $this->redirect(['action' => 'index']);
+    }
+
+
+    public function addRfid()
+
+    {
+
+    }
+
+    public function retornoRfid()
+
+    {
+
     }
 }
