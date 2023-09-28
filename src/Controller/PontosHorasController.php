@@ -31,7 +31,7 @@ class PontosHorasController extends AppController
     {
         parent::beforeFilter($event);
         
-        // Permitir acesso público à ação 'addRfid'
+        // Permitir acesso público 
         $this->Auth->allow(['addRfid']);
         $this->Auth->allow(['retornoRfid']);
     }
