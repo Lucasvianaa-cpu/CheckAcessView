@@ -27,9 +27,5 @@ class PontosHora extends Entity
     protected $_accessible = [
         'data_ponto' => true,
         'hora' => true,
-        'rua' => true,
-        'estado' => true,
-        'bairro' => true,
-        'cidade' => true,
     ];
 }

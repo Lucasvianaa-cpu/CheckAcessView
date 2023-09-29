@@ -43,6 +43,7 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+
     </style>
 </head>
 
@@ -80,18 +81,13 @@
                                         <?= $this->Form->create('', ['class' => '']) ?>
 
                                         <div class="mb-3">
-                                            <?= $this->Form->control('uid_rfid', [ 'type' => 'text', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Tag RFID']); ?>
+                                            <?= $this->Form->control('uid_rfid', [ 'type' => 'text', 'label' => '', 'class' => 'form-control hidden-input', 'required' => 'required', 'placeholder' => 'Tag RFID']); ?>
                                         </div>
                                        
-                                        <div class="d-flex align-items-center">
-                                            <div class="form-check form-check-info text-left mb-0">
-                                            
-                                            </div>
-
-                                        </div>
                                         <div class="text-center">
                                             <?= $this->Form->button(__('Confirmar'), [
                                                 'class' => 'btn btn-dark w-100 mt-4 mb-3',
+                                                'hidden' => true
                                             ]) ?>
                                         </div>
                                         <?= $this->Form->end(); ?>
