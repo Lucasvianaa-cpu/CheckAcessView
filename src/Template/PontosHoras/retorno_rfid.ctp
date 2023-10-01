@@ -17,6 +17,12 @@ background: #f8f9fa;
 
 .logo-card{max-width:70px; margin-bottom:15px; border-radius: 10px;}
 
+.ponto-registrado {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+
 label{display:flex; font-size:12px; color: #FFF; opacity:.6;}
 
 input{font-family: 'Work Sans', sans-serif;background:transparent; border:none; border-bottom:1px solid transparent; color:#dbdce0; transition: border-bottom .4s;}
@@ -45,6 +51,20 @@ input:focus{border-bottom:1px solid #1abc9c; outline:none;}
 .proceed:focus{outline:none;box-shadow: inset 0px 0px 5px white;}
 .sendicon{filter:invert(100%); padding-top:2px;}
 
+.wifi-loader {
+    width: 24px;
+    height: 24px;
+    border: 5px solid #1e293b;
+    border-top: 5px solid transparent;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+
 @media (max-width: 600px){
   .proceed{transform:translate(250px, 10px);}
   .col{display:block; margin:auto; width:100%; text-align:center;}
@@ -64,9 +84,30 @@ input:focus{border-bottom:1px solid #1abc9c; outline:none;}
     </div>
   </div>
   <div class="receipt" style="margin-top: -80px; background-color: #FFFFFF; box-shadow: 0 20px 27px 0 rgba(0, 0, 0, 0.05);">
-    <h3 class="font-weight-black text-dark">Ponto registrado</h3>
-    <p class="mb-0">Aguarde alguns segundos para voltar a página anterior...</p>
-
+    <div class="ponto-registrado">
+      <img src="../img/logo/correto.png" width="24px" height="24px">
+      <h3 class="font-weight-black text-dark" style="margin-left: 10px;">Ponto registrado</h3>
+    </div>
+    <div class="ponto-registrado">
+      <img src="../img/logo/calendario.png" width="24px" height="24px">
+      <h3 class="font-weight-black text-dark" style="margin-left: 10px;">Dia: </h3>
+      <span style="font-size: 18px; margin-left: 6px;">01/10/2023</span>
+    </div>
+    <div class="ponto-registrado">
+      <img src="../img/logo/despertador.png" width="24px" height="24px">
+      <h3 class="font-weight-black text-dark" style="margin-left: 10px;">Hora: </h3>
+      <span style="font-size: 18px; margin-left: 6px;"> 10:49</span>
+    </div>
+    <div class="d-flex" style="display: flex; justify-content: center; margin-top: 20px;">
+        <div class="wifi-loader"></div>
+    </div>
+    <p class="mb-0" style="text-align: center;">Aguarde alguns segundos para voltar a página anterior...</p>
     
   </div>
 </div>
+
+<script>
+  setTimeout(function() {
+    window.location.href = "/pontos-horas/add-rfid";
+  }, 5000);
+</script>
