@@ -378,9 +378,9 @@ class PontosHorasController extends AppController
             if (!empty($user)) {
 
                 $funcionario = $this->Funcionarios->find()
-                ->contain(['Users', 'Empresas'])
-                ->where(['Funcionarios.user_id' => $user->id])
-                ->first();
+                    ->contain(['Users', 'Empresas'])
+                    ->where(['Funcionarios.user_id' => $user->id])
+                    ->first();
 
                 $pontosHora = $this->PontosHoras->newEntity();
 
@@ -401,19 +401,40 @@ class PontosHorasController extends AppController
                     $newPost = $postsTable->newEntity($data);
                     $postsTable->save($newPost);
 
-                    return $this->redirect(['action' => 'retornoRfid']);
-                } 
+                    return $this->redirect(['action' => 'retornoRfid/?tag=' . $tag . '']);
+                }
             } else {
                 $this->Flash->error(__('Cartão não foi reconhecido. Vá até ao RH!'));
                 return $this->redirect(['action' => 'addRfid']);
             }
-
-
-    
         }
     }
 
     public function retornoRfid()
     {
+
+        $this->loadModel('Users');
+        $this->loadModel('Funcionarios');
+        $this->loadModel('PontosHora');
+
+        $tag = $_GET['tag'];
+        if ($tag) {
+
+            $user = $this->Users->find('all', [
+                'conditions' => ['uid_rfid' => $tag],
+            ])->first();
+
+            $funcionario = $this->Funcionarios->find()
+                ->contain(['Users', 'Empresas'])
+                ->where(['Funcionarios.user_id' => $user->id])
+                ->first();
+
+            $pontosHora = $this->PontosHoras->find()
+                ->where(['funcionario_id' => $funcionario->id])
+                ->first();
+        }
+
+        $this->set(compact('pontosHora', 'funcionario'));
+
     }
 }
