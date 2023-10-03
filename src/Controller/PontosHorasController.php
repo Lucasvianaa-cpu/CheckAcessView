@@ -30,7 +30,7 @@ class PontosHorasController extends AppController
     public function beforeFilter(\Cake\Event\Event $event)
     {
         parent::beforeFilter($event);
-        
+
         // Permitir acesso público 
         $this->Auth->allow(['addRfid']);
         $this->Auth->allow(['retornoRfid']);
@@ -261,7 +261,7 @@ class PontosHorasController extends AppController
         $this->loadModel('Empresas');
 
 
-      
+
         $funcionario = $this->Funcionarios->find()
             ->contain(['Users', 'Empresas'])
             ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
@@ -364,13 +364,56 @@ class PontosHorasController extends AppController
 
     public function addRfid()
     {
+        $this->loadModel('Users');
+        $this->loadModel('Funcionarios');
+
         if ($this->request->is('post')) {
-            return $this->redirect(['action' => 'retornoRfid']);
+            $tag = $_POST['uid_rfid'];
+
+            $user = $this->Users->find('all', [
+                'conditions' => ['uid_rfid' => $tag],
+            ])->first();
+
+
+            if (!empty($user)) {
+
+                $funcionario = $this->Funcionarios->find()
+                ->contain(['Users', 'Empresas'])
+                ->where(['Funcionarios.user_id' => $user->id])
+                ->first();
+
+                $pontosHora = $this->PontosHoras->newEntity();
+
+                $pontosHora->data_ponto = date('Y-m-d');
+                $pontosHora->hora = date('H:i:s');
+                $pontosHora->funcionario_id = $funcionario->id;
+
+                if ($this->PontosHoras->save($pontosHora)) {
+
+                    $id_ponto = $pontosHora->id;
+
+                    $data = [
+                        'funcionario_id' => $funcionario->id,
+                        'pontos_horas_id' => $id_ponto,
+                    ];
+
+                    $postsTable = TableRegistry::getTableLocator()->get('HistoricosPontos');
+                    $newPost = $postsTable->newEntity($data);
+                    $postsTable->save($newPost);
+
+                    return $this->redirect(['action' => 'retornoRfid']);
+                } 
+            } else {
+                $this->Flash->error(__('Cartão não foi reconhecido. Vá até ao RH!'));
+                return $this->redirect(['action' => 'addRfid']);
+            }
+
+
+    
         }
     }
 
     public function retornoRfid()
     {
-
     }
 }

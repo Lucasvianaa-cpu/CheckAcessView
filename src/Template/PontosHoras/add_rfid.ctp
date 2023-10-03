@@ -40,10 +40,21 @@
         }
 
         @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+            0% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(360deg);
+            }
         }
 
+        .rfid_hidden {
+            background-color: white!important;
+            border: none!important;
+            box-shadow: none!important;
+            color: white!important;
+        }
     </style>
 </head>
 
@@ -75,15 +86,16 @@
                                     <img src="../img/logo/4.png" class="d-flex  justify-content" alt="...">
 
 
-                                    
+
                                     <div class="card-body">
 
                                         <?= $this->Form->create('', ['class' => '']) ?>
 
-                                        <div class="mb-3">
-                                            <?= $this->Form->control('uid_rfid', [ 'type' => 'text', 'label' => '', 'class' => 'form-control hidden-input', 'required' => 'required', 'placeholder' => 'Tag RFID']); ?>
+                                        <div class="mb-3" style="pointer-events: none;">
+                                            <?= $this->Form->control('uid_rfid', ['type' => 'text', 'label' => '', 'class' => 'form-control rfid_hidden', 'autofocus' => 'autofocus']); ?>
                                         </div>
-                                       
+
+
                                         <div class="text-center">
                                             <?= $this->Form->button(__('Confirmar'), [
                                                 'class' => 'btn btn-dark w-100 mt-4 mb-3',
@@ -113,7 +125,7 @@
 
 
         <footer>
-            <?= $this->Html->script('jquery.js'); ?>
+            <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
             <?= $this->Html->script('popper.min.js'); ?>
             <?= $this->Html->script('bootstrap.min.js'); ?>
             <?= $this->Html->script('perfect-scrollbar.min.js'); ?>
@@ -134,3 +146,15 @@
 
 
 </html>
+
+
+<script>
+$(document).ready(function() {
+    $('#uid-rfid').focus(); // Define o foco inicialmente
+    
+    $('#uid-rfid').blur(function() {
+        // Quando o elemento perde o foco, redefine o foco para ele
+        $('#uid-rfid').focus();
+    });
+});
+</script>
