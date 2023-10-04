@@ -13,7 +13,7 @@
                 <div class="card-header border-bottom pb-0">
                     <div class="d-sm-flex align-items-center justify-content-between">
                         <div>
-                            <h6 class="font-weight-semibold text-lg mb-0">Ponto de Hora</h6>
+                            <h6 class="font-weight-semibold text-lg mb-0">Pontos de Horas</h6>
                             <p class="text-sm">Estes são os pontos registrados...</p>
                         </div>
 
@@ -26,7 +26,7 @@
                     <div class="border-bottom py-3 px-3 align-items-center">
                         <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
                         <div class="col-2">
-                            <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
+                            <?= $this->Form->control('data_ponto', ['class' => 'form-control input-mes-ano', 'label' => 'Busque pelo mês e ano:', 'default' => $this->request->getQuery('data_ponto')]); ?>
                         </div>
                         <div class="col-4">
                             <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
@@ -48,32 +48,29 @@
                                 <tr>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
-                                    <th class="text-secondary text-xs font-weight-semibold opacity-7">Registro do Ponto</th>
+                                    <th class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7"></th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php foreach ($pontos as $data => $ponto) : ?>
+                                <?php foreach ($pontos_dias as $data => $pontos) : ?>
+
                                     <tr>
-                                        <td><?= $ponto->data_ponto->format('d/m/Y') ?></td>
-                                        <td><?= $ponto->funcionario->user->nome ?> <?= $ponto->funcionario->user->sobrenome ?></td>
-                                        <td><?= $ponto->hora->format('H:i:s') ?></td>
+                                        <td><?= $data ?></td>
+                                        <td><?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?></td>
                                         <td>
-                                            <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'edit', $ponto->id]); ?>">
-                                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                                                    <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
-                                                    <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
-                                                </svg>
-                                            </a>
+                                            <?php $total = end($pontos); ?>
+                                            <?= $total['total'] ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+
                             </tbody>
+
                         </table>
-
-
-
                     </div>
+
+                    <p>TOTAL DE HORAS TRABALHAS NO MES: (TOTAL)</p>
 
                     <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
                         <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
