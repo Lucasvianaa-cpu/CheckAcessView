@@ -151,69 +151,31 @@ class PontosHorasController extends AppController
 
     public function geral() //alterar para buscar os pontos de todos os funcionários
     {
+        $this->loadModel('Users');
         $this->loadModel('Funcionarios');
 
-        $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
+        $conditions = [];
 
-        $dias = range(1, 31);
-        $pontos_dias = [];
-
-        $this->paginate = [
-            'conditions' => ['funcionario_id' => $funcionario->id]
-        ];
-        $pontos = $this->paginate($this->PontosHoras);
-
-
-        foreach ($pontos as $ponto) {
-            $data = $ponto->data_ponto->format('d/m/Y');
-
-            $pontos_dias[$data][] = [
-                'data' => $ponto->data_ponto->format('Y-m-d'),
-                'hora' => $ponto->hora->format('H:i:s')
-            ];
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
         }
 
-        foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
-            sort($pontos);
-            $contagem = count($pontos);
-            if ($contagem == 2) {
-                $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
-                $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
-
-                $diferenca_em_segundos = $saida - $entrada;
-
-                // Calcular horas, minutos e segundos
-                $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
-                $diferenca_em_segundos %= 3600; // Remover as horas
-                $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
-                $segundos = $diferenca_em_segundos % 60; // O resto em segundos
-
-                // Formate o total em horas, minutos e segundos
-                $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
-
-                // Adicione o total ao array atual em $pontos
-                $pontos[] = ['total' => $total];
-            } else if ($contagem == 4) {
-                $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
-                $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
-
-                $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
-                $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
-
-                $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
-                $total_segundo_periodo = date("H:i", $saida - $retorno);
-
-                $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
-
-                // Adicione o total ao array atual em $pontos
-                $pontos[] = ['total' => $total];
-            } else if ($contagem == 1 || $contagem == 3) {
-                $pontos[] = ['total' => 'Registre pelo menos dois pontos ou quatro pontos para definir o total de horas'];
+        if ($this->request->getQuery('data_ponto') != '') {
+            $data = $this->request->getQuery('data_ponto');
+            $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+            if ($data_formatada) {
+                $conditions['PontosHoras.data_ponto ='] = $data_formatada->format('Y-m-d');
             }
         }
 
+        $this->paginate = [
+            'contain' => ['Funcionarios.Users'],
+        ];
+        
+        $pontos = $this->paginate($this->PontosHoras, ['conditions' => $conditions]);
 
-        $this->set(compact('pontos_dias'));
+        $this->set(compact('pontos'));
     }
 
     /**
