@@ -200,7 +200,7 @@
                     </li>
                 <?php endif; ?>
 
-                <?php if ($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
+                <?php if ($current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
                         <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'geral'])); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
