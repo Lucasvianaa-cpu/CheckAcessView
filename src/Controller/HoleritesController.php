@@ -95,6 +95,8 @@ class HoleritesController extends AppController
 
                 return $this->redirect(['action' => 'index']);
             }
+
+            debug($holerite); exit;
             $this->Flash->error(__('O holerite não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $funcionarios = $this->Funcionarios->find('all', [

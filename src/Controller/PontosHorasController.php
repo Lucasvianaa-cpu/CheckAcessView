@@ -49,11 +49,19 @@ class PontosHorasController extends AppController
 
         if ($this->request->getQuery('data_ponto') != '') {
             $data = $this->request->getQuery('data_ponto');
-            $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+            $data_formatada = DateTime::createFromFormat('m/Y', $data);
             if ($data_formatada) {
-                $conditions['PontosHoras.data_ponto ='] = $data_formatada->format('Y-m-d');
+                // Primeiro dia do mês
+                $primeiro_dia = $data_formatada->format('Y-m-01');
+                
+                // Último dia do mês
+                $ultimo_dia = $data_formatada->format('Y-m-t');
+                
+                $conditions['PontosHoras.data_ponto >='] = $primeiro_dia;
+                $conditions['PontosHoras.data_ponto <='] = $ultimo_dia;
             }
         }
+        
 
         if ($this->request->getQuery('sobrenome') != '') {
             $sobrenome = $this->request->getQuery('sobrenome');

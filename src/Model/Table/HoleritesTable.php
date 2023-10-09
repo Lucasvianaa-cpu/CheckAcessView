@@ -74,11 +74,6 @@ class HoleritesTable extends Table
             ->allowEmptyString('mes');
 
         $validator
-            ->date('data_admissao')
-            ->requirePresence('data_admissao', 'create')
-            ->notEmptyDate('data_admissao');
-
-        $validator
             ->decimal('salario_base')
             ->requirePresence('salario_base', 'create')
             ->notEmptyString('salario_base');

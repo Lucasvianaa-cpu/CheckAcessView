@@ -188,63 +188,63 @@
                     <td class="alinhar-direita retirar-border-bottom"><?= $holerite->salario_codigo ?></td>
                     <td class="retirar-border-bottom"><?= $holerite->salario_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom"><?= $holerite->salario_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom"><?= number_format($holerite->salario_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom"><?= number_format($holerite->salario_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom"><?= $holerite->salario_vencimento ? number_format($holerite->salario_vencimento, 2, ',', '.') : ''?></td>
+                    <td class="alinhar-direita retirar-border-bottom"><?= $holerite->salario_desconto ? number_format($holerite->salario_desconto, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->dsr_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->dsr_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->dsr_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->dsr_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->dsr_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->dsr_desconto ? number_format($holerite->dsr_vencimento, 2, ',', '.') : ''?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->dsr_desconto ? number_format($holerite->dsr_desconto, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adc_sobre_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adc_sobre_desconto, 2, ',', '.') ?></td> 
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_vencimento ? number_format($holerite->adc_sobre_vencimento, 2, ',', '.') : '' ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adc_sobre_desconto ? number_format($holerite->adc_sobre_desconto, 2, ',', '.') : '' ?></td> 
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr50_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->hr50_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr50_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr50_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr50_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr50_vencimento ? number_format($holerite->hr50_vencimento, 2, ',', '.') : '' ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr50_desconto ? number_format($holerite->hr50_desconto, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr80_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->hr80_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr80_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr80_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr80_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr80_vencimento ? number_format($holerite->hr80_vencimento, 2, ',', '.') : '' ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr80_desconto ? number_format($holerite->hr80_desconto, 2, ',', '.') : '' ?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr100_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->hr100_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr100_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr100_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->hr100_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr100_vencimento ? number_format($holerite->hr100_vencimento, 2, ',', '.') : '' ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->hr100_desconto ? number_format($holerite->hr100_desconto, 2, ',', '.') : '' ?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->ferias_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->ferias_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->ferias_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->ferias_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->ferias_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->ferias_vencimento ? number_format($holerite->ferias_vencimento, 2, ',', '.'): '' ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->ferias_vencimento ? number_format($holerite->ferias_desconto, 2, ',', '.'): '' ?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->vale_alimentacao_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->vale_alimentacao_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_vencimento ? number_format($holerite->vale_alimentacao_vencimento, 2, ',', '.') : ''?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->vale_alimentacao_desconto ? number_format($holerite->vale_alimentacao_desconto, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_codigo ?></td>
                     <td class="retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_descricao ?></td>
                     <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_referencia ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adiantamento_vencimento, 2, ',', '.') ?></td>
-                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= number_format($holerite->adiantamento_desconto, 2, ',', '.') ?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_vencimento ? number_format($holerite->adiantamento_vencimento, 2, ',', '.') : ''?></td>
+                    <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_desconto ? number_format($holerite->adiantamento_desconto, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td class="retirar-border-bottom retirar-border-top"></td>
@@ -274,13 +274,13 @@
                 </tr>
                 <tr>
                     <td colspan="3"  class="retirar-border-top"></td>
-                    <td class="alinhar-centro-valor retirar-border-top"><?= number_format($holerite->total_vencimentos, 2, ',', '.') ?></td>
-                    <td class="alinhar-centro-valor retirar-border-top"><?= number_format($holerite->total_descontos, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor retirar-border-top"><?= $holerite->total_vencimentos ? number_format($holerite->total_vencimentos, 2, ',', '.') : '' ?></td>
+                    <td class="alinhar-centro-valor retirar-border-top"><?= $holerite->total_descontos ? number_format($holerite->total_descontos, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td colspan="3"></td>
                     <td class="alinhar-centro">Valor Líquido</td>
-                    <td class="alinhar-centro-valor"><?= number_format($holerite->liquido, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor"><?= $holerite->liquido ? number_format($holerite->liquido, 2, ',', '.') : ''?></td>
                 </tr>
                 <tr>
                     <td class="alinhar-centro">Salário Base</td>
@@ -290,11 +290,11 @@
                     <td class="alinhar-centro">Valor IRRF</td>
                 </tr>
                 <tr>
-                    <td class="alinhar-centro-valor"><?= number_format($holerite->salario_base, 2, ',', '.') ?></td>
-                    <td class="alinhar-centro-valor"><?= number_format($holerite->base_inss, 2, ',', '.') ?></td>
-                    <td class="alinhar-centro-valor"><?= number_format($holerite->base_fgts, 2, ',', '.') ?></td>
-                    <td class="alinhar-centro-valor"><?= number_format($holerite->fgts, 2, ',', '.') ?></td>
-                    <td class="alinhar-centro-valor"><?= number_format($holerite->ir, 2, ',', '.') ?></td>
+                    <td class="alinhar-centro-valor"><?= $holerite->salario_base ? number_format($holerite->salario_base, 2, ',', '.') : ''?></td>
+                    <td class="alinhar-centro-valor"><?= $holerite->base_inss ? number_format($holerite->base_inss, 2, ',', '.'): '' ?></td>
+                    <td class="alinhar-centro-valor"><?= $holerite->base_fgts ? number_format($holerite->base_fgts, 2, ',', '.'): '' ?></td>
+                    <td class="alinhar-centro-valor"><?= $holerite->fgts ? number_format($holerite->fgts, 2, ',', '.') : '' ?></td>
+                    <td class="alinhar-centro-valor"><?= $holerite->ir ? number_format($holerite->ir, 2, ',', '.') : ''?></td>
                 </tr>
 
             </tbody>

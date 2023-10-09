@@ -10,7 +10,6 @@ use Cake\ORM\Entity;
  * @property \Cake\I18n\FrozenDate $data_holerite
  * @property string $descricao
  * @property string $mes
- * @property \Cake\I18n\FrozenDate $data_admissao
  * @property float $salario_base
  * @property float|null $inss
  * @property float|null $fgts
