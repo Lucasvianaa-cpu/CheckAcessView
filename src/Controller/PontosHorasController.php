@@ -395,8 +395,7 @@ class PontosHorasController extends AppController
                 'conditions' => ['uid_rfid' => $tag],
             ])->first();
 
-
-            if (!empty($user)) {
+            if (!empty($user) && $user->uid_rfid == $tag) {
 
                 $funcionario = $this->Funcionarios->find()
                     ->contain(['Users', 'Empresas'])
@@ -426,7 +425,7 @@ class PontosHorasController extends AppController
                 }
             } else {
                 $this->Flash->error(__('Cartão não foi reconhecido. Vá até ao RH!'));
-                return $this->redirect(['action' => 'addRfid']);
+                 return $this->redirect(['action' => 'addRfid']);
             }
         }
     }

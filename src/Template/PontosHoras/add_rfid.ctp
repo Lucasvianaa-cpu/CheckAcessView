@@ -50,10 +50,10 @@
         }
 
         .rfid_hidden {
-            background-color: white!important;
-            border: none!important;
-            box-shadow: none!important;
-            color: white!important;
+            background-color: white !important;
+            border: none !important;
+            box-shadow: none !important;
+            color: white !important;
         }
     </style>
 </head>
@@ -149,12 +149,12 @@
 
 
 <script>
-$(document).ready(function() {
-    $('#uid-rfid').focus(); // Define o foco inicialmente
-    
-    $('#uid-rfid').blur(function() {
-        // Quando o elemento perde o foco, redefine o foco para ele
-        $('#uid-rfid').focus();
+    $(document).ready(function() {
+        $('#uid-rfid').focus(); // Define o foco inicialmente
+
+        $('#uid-rfid').blur(function() {
+            // Quando o elemento perde o foco, redefine o foco para ele
+            $('#uid-rfid').focus();
+        });
     });
-});
 </script>

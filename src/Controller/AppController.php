@@ -73,8 +73,8 @@ class AppController extends Controller
 
         $funcionario_empresa = $this->Auth->user();
 
-        $user = $this->Users->find('all', ['conditions' => ['id' => '3']]);
-        $this->set('user', $user);
+        // $user = $this->Users->find('all', ['conditions' => ['id' => '3']]);
+        // $this->set('user', $user);
 
 
         if ($funcionario_empresa) {
