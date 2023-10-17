@@ -13,8 +13,8 @@
                 <div class="card-header border-bottom pb-0">
                     <div class="d-sm-flex align-items-center justify-content-between">
                         <div>
-                            <h6 class="font-weight-semibold text-lg mb-0">Pontos de Horas</h6>
-                            <p class="text-sm">Estes são os pontos registrados...</p>
+                            <h6 class="font-weight-semibold text-lg mb-0">Relatório de Pontos Mensais</h6>
+                            <p class="text-sm">Estes são os pontos registrados deste funcionário...</p>
                         </div>
 
                         <div style="text-align: right;">
@@ -48,29 +48,57 @@
                                 <tr>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
-                                    <th class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
-                                    <th class="text-secondary text-xs font-weight-semibold opacity-7"></th>
+                                    <th style="text-align: end;" class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
                                 </tr>
                             </thead>
-                            <tbody>
-                                <?php foreach ($pontos_dias as $data => $pontos) : ?>
+                            <?php
+                            $minutos_trabalhados = 0;
+                            ?>
 
+                            <?php if (!empty($pontos_dias)) : ?>
+                                <?php foreach ($pontos_dias as $data => $pontos) : ?>
                                     <tr>
                                         <td><?= $data ?></td>
                                         <td><?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?></td>
-                                        <td>
-                                            <?php $total = end($pontos); ?>
-                                            <?= $total['total'] ?>
+                                        <td style="text-align: end;">
+                                            <?php
+                                            $total = end($pontos);
+                                            list($horas, $minutos) = explode(':', $total['total']);
+                                            $horas = (int)$horas;
+                                            $minutos = (int)$minutos;
+                                            $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
+                                            $minutos_trabalhados += $total_minutos;
+                                            echo $total['total'];
+                                            ?>
                                         </td>
                                     </tr>
                                 <?php endforeach; ?>
+                            <?php else : ?>
+                                <tr>
+                                    <td>
+                                        Busque por um funcionário
+                                    </td>
+                                </tr>
+                            <?php endif; ?>
 
                             </tbody>
-
                         </table>
                     </div>
 
-                    <p>TOTAL DE HORAS TRABALHAS NO MES: (TOTAL)</p>
+                    <?php
+                    // Extrai as horas
+                    $horas = floor($minutos_trabalhados / 60);
+
+                    // Extrai os minutos
+                    $minutos = $minutos_trabalhados % 60;
+
+                    ?>
+
+                    <p style="text-align: end; margin-right: 10px; margin-top: 5px;">
+                        Horas Mensais Trabalhadas: <strong><?= sprintf('%02d', $horas) . ':' . sprintf('%02d', $minutos) ?></strong>
+                    </p>
+
+
 
                     <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
                         <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>

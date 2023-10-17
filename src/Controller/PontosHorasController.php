@@ -36,7 +36,8 @@ class PontosHorasController extends AppController
         $this->Auth->allow(['retornoRfid']);
     }
 
-    public function totalFuncionarios(){
+    public function totalFuncionarios()
+    {
 
         $this->loadModel('Funcionarios');
 
@@ -53,15 +54,15 @@ class PontosHorasController extends AppController
             if ($data_formatada) {
                 // Primeiro dia do mês
                 $primeiro_dia = $data_formatada->format('Y-m-01');
-                
+
                 // Último dia do mês
                 $ultimo_dia = $data_formatada->format('Y-m-t');
-                
+
                 $conditions['PontosHoras.data_ponto >='] = $primeiro_dia;
                 $conditions['PontosHoras.data_ponto <='] = $ultimo_dia;
             }
         }
-        
+
 
         if ($this->request->getQuery('sobrenome') != '') {
             $sobrenome = $this->request->getQuery('sobrenome');
@@ -91,47 +92,48 @@ class PontosHorasController extends AppController
             ];
         }
 
-        foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
-            sort($pontos);
-            $contagem = count($pontos);
-            if ($contagem == 2) {
-                $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
-                $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
+        if ($this->request->getQuery('nome') != '') {
+            foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
+                sort($pontos);
+                $contagem = count($pontos);
+                if ($contagem == 2) {
+                    $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                    $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
 
-                $diferenca_em_segundos = $saida - $entrada;
+                    $diferenca_em_segundos = $saida - $entrada;
 
-                // Calcular horas, minutos e segundos
-                $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
-                $diferenca_em_segundos %= 3600; // Remover as horas
-                $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
-                $segundos = $diferenca_em_segundos % 60; // O resto em segundos
+                    // Calcular horas, minutos e segundos
+                    $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
+                    $diferenca_em_segundos %= 3600; // Remover as horas
+                    $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
+                    $segundos = $diferenca_em_segundos % 60; // O resto em segundos
 
-                // Formate o total em horas, minutos e segundos
-                $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
+                    // Formate o total em horas, minutos e segundos
+                    $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
 
-                // Adicione o total ao array atual em $pontos
-                $pontos[] = ['total' => $total];
-            } else if ($contagem == 4) {
-                $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
-                $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
+                    // Adicione o total ao array atual em $pontos
+                    $pontos[] = ['total' => $total];
+                } else if ($contagem == 4) {
+                    $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                    $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
 
-                $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
-                $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
+                    $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
+                    $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
 
-                $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
-                $total_segundo_periodo = date("H:i", $saida - $retorno);
+                    $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
+                    $total_segundo_periodo = date("H:i", $saida - $retorno);
 
-                $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
+                    $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
 
-                // Adicione o total ao array atual em $pontos
-                $pontos[] = ['total' => $total];
-            } else if ($contagem == 1 || $contagem == 3) {
-                $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
+                    // Adicione o total ao array atual em $pontos
+                    $pontos[] = ['total' => $total];
+                } else if ($contagem == 1 || $contagem == 3) {
+                    $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
+                }
             }
+
+            $this->set(compact('pontos_dias'));
         }
-
-
-        $this->set(compact('pontos_dias'));
     }
 
     public function index()
@@ -242,7 +244,7 @@ class PontosHorasController extends AppController
         $this->paginate = [
             'contain' => ['Funcionarios.Users'],
         ];
-        
+
         $pontos = $this->paginate($this->PontosHoras, ['conditions' => $conditions]);
 
         $this->set(compact('pontos'));
@@ -436,7 +438,7 @@ class PontosHorasController extends AppController
                 }
             } else {
                 $this->Flash->error(__('Cartão não foi reconhecido. Vá até ao RH!'));
-                 return $this->redirect(['action' => 'addRfid']);
+                return $this->redirect(['action' => 'addRfid']);
             }
         }
     }
@@ -466,6 +468,5 @@ class PontosHorasController extends AppController
         }
 
         $this->set(compact('pontosHora', 'funcionario'));
-
     }
 }
