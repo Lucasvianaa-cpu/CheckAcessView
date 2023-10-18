@@ -65,35 +65,28 @@ class PlantoesTable extends Table
             ->requirePresence('data', 'create')
             ->notEmptyDate('data');
 
-        $validator
-            ->time('hora_total')
-            ->requirePresence('hora_total', 'create')
-            ->notEmptyTime('hora_total');
+        // $validator
+        //     ->time('hora_total')
+        //     ->requirePresence('hora_total', 'create')
+        //     ->notEmptyTime('hora_total');
 
         $validator
             ->time('hora_inicio')
             ->requirePresence('hora_inicio', 'create')
             ->notEmptyTime('hora_inicio');
 
-        $validator
-            ->time('hora_termino')
-            ->requirePresence('hora_termino', 'create')
-            ->notEmptyTime('hora_termino');
+        // $validator
+        //     ->time('hora_termino')
+        //     ->requirePresence('hora_termino', 'create')
+        //     ->notEmptyTime('hora_termino');
 
         return $validator;
     }
 
-    /**
-     * Returns a rules checker object that will be used for validating
-     * application integrity.
-     *
-     * @param \Cake\ORM\RulesChecker $rules The rules object to be modified.
-     * @return \Cake\ORM\RulesChecker
-     */
-    public function buildRules(RulesChecker $rules)
-    {
-        $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'));
+    // public function buildRules(RulesChecker $rules)
+    // {
+    //     $rules->add($rules->existsIn(['funcionario_id'], 'Funcionarios'));
 
-        return $rules;
-    }
+    //     return $rules;
+    // }
 }

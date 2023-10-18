@@ -27,7 +27,7 @@ if (isset($_SESSION['msg'])) {
                     <div class="text-center">
                         <p id="horario"><?= date("d/m/y H:i:s"); ?></p>
                     </div>
-                    <?= $this->Form->create($planto, ['class' => 'row g-3']) ?>
+                    <?= $this->Form->create($ponto, ['class' => 'row g-3']) ?>
                     <div class="text-center mt-3">
                         <?= $this->Form->button(__('Registrar'), ['class' => 'btn btn-dark']) ?>
                         <a class="btn btn-white" href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>

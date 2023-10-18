@@ -66,13 +66,6 @@
                               <?= $this->Form->control('password', ['type' => 'password','label' => 'Senha', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite sua senha']); ?>
                           </div>
                           <div class="d-flex align-items-center">
-                            <div class="form-check form-check-info text-left mb-0">
-                              <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                              <label class="font-weight-normal text-dark mb-0" for="flexCheckDefault">
-                                Lembrar-me
-                              </label>
-                            </div>
-                           
                                 <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'esqueciSenha']);?>" class="text-xs font-weight-bold ms-auto">Esqueceu a senha?</a>
                           </div>
                           <div class="text-center">
