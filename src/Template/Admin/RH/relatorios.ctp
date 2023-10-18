@@ -87,63 +87,13 @@
               <div class="row">
                 <div class="col-12">
                   <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Categorias</p>
-                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeCategorias ?></h4>
+                    <p class="text-sm text-secondary mb-1">Plantões de Funcionários</p>
+                    <h4 class="mb-2 font-weight-bold"><a href="<?=str_replace('/admin', '',$this->Url->build(['controller' => 'Plantoes', 'action' => 'totalPlantoes'])) ?>" class="btn btn-primary btn-sm">Horas Extras</a></h4>
                     <div class="d-flex align-items-center">
                       <span class="text-sm text-success font-weight-bolder">
                         <i class="fa fa-chevron-up text-xs me-1"></i>
                       </span>
-                      <span class="text-sm ms-1">Categorias Cadastradas</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
-          <div class="card border shadow-xs mb-4">
-            <div class="card-body text-start p-3 w-100">
-              <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
-                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path fill-rule="evenodd" d="M3 6a3 3 0 013-3h12a3 3 0 013 3v12a3 3 0 01-3 3H6a3 3 0 01-3-3V6zm4.5 7.5a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0v-2.25a.75.75 0 01.75-.75zm3.75-1.5a.75.75 0 00-1.5 0v4.5a.75.75 0 001.5 0V12zm2.25-3a.75.75 0 01.75.75v6.75a.75.75 0 01-1.5 0V9.75A.75.75 0 0113.5 9zm3.75-1.5a.75.75 0 00-1.5 0v9a.75.75 0 001.5 0v-9z" clip-rule="evenodd" />
-                </svg>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Cargos</p>
-                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeCargos ?></h4>
-                    <div class="d-flex align-items-center">
-                      <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>
-                      </span>
-                      <span class="text-sm ms-1">Cargos Cadastrados</span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div class="col-xl-3 col-sm-6 mb-xl-0 border-top-5 mt-4">
-          <div class="card border shadow-xs mb-4">
-            <div class="card-body text-start p-3 w-100">
-              <div class="icon icon-shape icon-sm bg-dark text-white text-center border-radius-sm d-flex align-items-center justify-content-center mb-3">
-                <svg width="16" height="16" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
-                  <path fill-rule="evenodd" d="M5.25 2.25a3 3 0 00-3 3v4.318a3 3 0 00.879 2.121l9.58 9.581c.92.92 2.39 1.186 3.548.428a18.849 18.849 0 005.441-5.44c.758-1.16.492-2.629-.428-3.548l-9.58-9.581a3 3 0 00-2.122-.879H5.25zM6.375 7.5a1.125 1.125 0 100-2.25 1.125 1.125 0 000 2.25z" clip-rule="evenodd" />
-                </svg>
-              </div>
-              <div class="row">
-                <div class="col-12">
-                  <div class="w-100">
-                    <p class="text-sm text-secondary mb-1">Funcionários</p>
-                    <h4 class="mb-2 font-weight-bold"><?= $quantidadeFuncionarios ?></h4>
-                    <div class="d-flex align-items-center">
-                      <span class="text-sm text-success font-weight-bolder">
-                        <i class="fa fa-chevron-up text-xs me-1"></i>
-                      </span>
-                      <span class="text-sm ms-1">Funcionários da Empresa</span>
+                      <span class="text-sm ms-1">Funcionários</span>
                     </div>
                   </div>
                 </div>

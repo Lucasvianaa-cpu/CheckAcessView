@@ -17,6 +17,17 @@ class PlantoesController extends AppController
      *
      * @return \Cake\Http\Response|null
      */
+
+
+     public function totalPlantoes()
+     {
+         $plantoes = $this->paginate($this->Plantoes);
+ 
+         $this->set(compact('plantoes'));
+     }
+
+
+
     public function index()
     {
         $plantoes = $this->paginate($this->Plantoes);
