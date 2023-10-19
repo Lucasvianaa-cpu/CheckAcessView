@@ -1,6 +1,8 @@
 <?php
 namespace App\Controller;
 
+use DateTime;
+
 use App\Controller\AppController;
 use Cake\Mailer\MailerAwareTrait;
 
@@ -309,6 +311,7 @@ class UsersController extends AppController
         $this->loadModel('Funcionarios');
         $this->loadModel('Users');
         $this->loadModel('Roles');
+        $this->loadModel('PontosHoras');
 
         $empresa = $this->Empresas->get($id, [
             'contain' => [],
@@ -339,12 +342,83 @@ class UsersController extends AppController
                 'contain' => ['Roles'],
                 'limit'=> 3
             ];
-        }
+        }    
+
+        //teste
+        if ($this->current_user['role_id'] == 3) {
+            $conditions = [];
         
+            if ($this->request->getQuery('data_ponto') != '') {
+                $data = $this->request->getQuery('data_ponto');
+                $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+                if ($data_formatada) {
+                    $conditions['data_ponto'] = $data_formatada->format('Y-m-d');
+                }
+            }
+        
+            $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
+        
+            if ($funcionario) {
+                $conditions['funcionario_id'] = $funcionario->id;
+            }
+    
+            $pontos = $this->PontosHoras->find('all', ['conditions' => $conditions]);
+            // debug($pontos); exit;
+
+            foreach ($pontos as $ponto) {
+                $data = $ponto->data_ponto->format('d/m/Y');
+
+                $pontos_dias[$data][] = [
+                    'data' => $ponto->data_ponto->format('Y-m-d'),
+                    'hora' => $ponto->hora->format('H:i:s')
+                ];
+            }
+
+            foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
+                sort($pontos);
+                $contagem = count($pontos);
+                if ($contagem == 2) {
+                    $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                    $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
+
+                    $diferenca_em_segundos = $saida - $entrada;
+
+                    // Calcular horas, minutos e segundos
+                    $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
+                    $diferenca_em_segundos %= 3600; // Remover as horas
+                    $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
+                    $segundos = $diferenca_em_segundos % 60; // O resto em segundos
+
+                    // Formate o total em horas, minutos e segundos
+                    $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
+
+                    // Adicione o total ao array atual em $pontos
+                    $pontos[] = ['total' => $total];
+                } else if ($contagem == 4) {
+                    $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                    $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
+
+                    $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
+                    $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
+
+                    $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
+                    $total_segundo_periodo = date("H:i", $saida - $retorno);
+
+                    $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
+
+                    // Adicione o total ao array atual em $pontos
+                    $pontos[] = ['total' => $total];
+                } else if ($contagem == 1 || $contagem == 3) {
+                    $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
+                }
+            }
+            $this->set(compact('pontos', 'pontos_dias'));
+        }
         
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
-        $this->set(compact('users','roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios', 'descricaoRole'));
+        $this->set(compact('users', 'roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios', 'descricaoRole'));
+
     }
  
     public function sair () {
