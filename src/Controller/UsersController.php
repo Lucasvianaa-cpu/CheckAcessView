@@ -307,6 +307,8 @@ class UsersController extends AppController
         $this->loadModel('Categorias');
         $this->loadModel('Cargos');
         $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+        $this->loadModel('Roles');
 
         $empresa = $this->Empresas->get($id, [
             'contain' => [],
@@ -319,6 +321,12 @@ class UsersController extends AppController
 
         $funcionarios_grafico = $this->ListaFuncionarios->ListaFuncionariosGrafico($id);
 
+        $current_user = $this->Users->get($this->current_user['id'], [
+            'contain' => ['Roles'] // Inclua a tabela "Roles" como uma tabela associada
+        ]);
+        
+        $descricaoRole = $current_user->role->descricao;
+        // debug( $descricaoRole ); exit;
         
         if($this->current_user['role_id'] == 2){
             $this->paginate = [
@@ -336,7 +344,7 @@ class UsersController extends AppController
         
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
-        $this->set(compact('users','roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios'));
+        $this->set(compact('users','roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios', 'descricaoRole'));
     }
  
     public function sair () {
