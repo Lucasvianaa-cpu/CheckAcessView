@@ -45,12 +45,9 @@
               <thead class="bg-gray-100">
                 <tr>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Entrada</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Saída p/ Intervalo</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Retorno</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Saída</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Horário de Início</th>
+                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Horário de Término</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">Horas Trabalhadas</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7"></th>
                 </tr>
               </thead>
               <tbody>

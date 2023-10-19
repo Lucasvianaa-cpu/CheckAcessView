@@ -2,6 +2,9 @@
 
 namespace App\Controller;
 
+
+use DateTime;
+
 use App\Controller\AppController;
 
 
@@ -26,7 +29,47 @@ class PlantoesController extends AppController
 
     public function index()
     {
-        $plantoes = $this->paginate($this->Plantoes);
+
+        $this->loadModel('Funcionarios');
+
+
+        $conditions = [];
+        
+        if ($this->request->getQuery('data_ponto') != '') {
+            $data = $this->request->getQuery('data_ponto');
+            $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+            if ($data_formatada) {
+                $conditions['Plantoes.data_ponto ='] = $data_formatada->format('Y-m-d');
+            }
+        }
+
+        $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
+
+        
+        $dias = range(1, 31);
+        $pontos_dias = [];
+
+        $this->paginate = [
+            'conditions' => ['funcionario_id' => $funcionario->id]
+        ];
+
+        $conditions['Plantoes.funcionario_id'] = $funcionario->id;
+
+
+        $plantoes = $this->paginate($this->Plantoes, ['conditions' => $conditions]);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
         $this->set(compact('plantoes'));
     }
@@ -50,6 +93,17 @@ class PlantoesController extends AppController
 
     public function add()
     {
+
+        $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+        $this->loadModel('Empresas');
+
+
+
+        $funcionario = $this->Funcionarios->find()
+            ->contain(['Users', 'Empresas'])
+            ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
+            ->first();
 
         // Coleta os dados do usuário logado
         $current_user = $this->Auth->user();
@@ -76,7 +130,7 @@ class PlantoesController extends AppController
                 }
                 $this->Flash->error(__('O ponto não pode ser criado.'));
             }
-            $this->set(compact('ponto'));
+            $this->set(compact('ponto', 'funcionario'));
         } else {
             // Altera o ultimo ponto
             $ponto = $this->Plantoes->get($ultimo_ponto->id, [
@@ -107,7 +161,7 @@ class PlantoesController extends AppController
                 }
                 $this->Flash->error(__('O ponto não pode ser alterado.'));
             }
-            $this->set(compact('ponto'));
+            $this->set(compact('ponto', 'funcionario'));
         }
     }
 
