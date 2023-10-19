@@ -464,6 +464,7 @@ class PontosHorasController extends AppController
 
             $pontosHora = $this->PontosHoras->find()
                 ->where(['funcionario_id' => $funcionario->id])
+                ->order(['id' => 'DESC'])
                 ->first();
         }
 

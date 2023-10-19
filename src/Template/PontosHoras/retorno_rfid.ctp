@@ -190,6 +190,7 @@
   }
 </style>
 
+
 <div class="container d-flex align-items-center" style="height: 100vh;">
   <div class="card">
     <div>
@@ -241,4 +242,19 @@
   setTimeout(function() {
     window.location.href = "/pontos-horas/add-rfid";
   }, 5000);
+</script>
+
+
+<script>
+    var apHorario = document.getElementById("horario");
+
+    function atualizarHorario() {
+        var data = new Date().toLocaleString("pt-br", {
+            timeZone: "America/Sao_Paulo"
+        });
+        var formatarData = data.replace(", ", " - ");
+        apHorario.innerHTML = formatarData;
+    }
+
+    setInterval(atualizarHorario, 1000);
 </script>
