@@ -95,6 +95,10 @@
                                             <?= $this->Form->control('uid_rfid', ['type' => 'text', 'label' => '', 'class' => 'form-control rfid_hidden', 'autofocus' => 'autofocus']); ?>
                                         </div>
 
+                                        <div class="text-center">
+                                            <p id="horario"><?= date("d/m/y H:i:s"); ?></p>
+                                        </div>
+
 
                                         <div class="text-center">
                                             <?= $this->Form->button(__('Confirmar'), [
@@ -157,4 +161,19 @@
             $('#uid-rfid').focus();
         });
     });
+</script>
+
+
+<script>
+    var apHorario = document.getElementById("horario");
+
+    function atualizarHorario() {
+        var data = new Date().toLocaleString("pt-br", {
+            timeZone: "America/Sao_Paulo"
+        });
+        var formatarData = data.replace(", ", " - ");
+        apHorario.innerHTML = formatarData;
+    }
+
+    setInterval(atualizarHorario, 1000);
 </script>
