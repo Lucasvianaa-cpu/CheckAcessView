@@ -66,7 +66,7 @@
                           <td class="align-middle text-center">
                             <p class="text-sm text-dark font-weight-semibold mb-0"><?= $user->role->descricao ?></p>
                           </td>
-                          <td class="align-middle text-center">
+                          <td class="align-middle text-center" style="display: flex; justify-content: end;">
 
                             <?php
                               $url = $this->Url->build(['controller' => 'Funcionarios', 'action' => 'vincularUsuario',  $user->id]);
