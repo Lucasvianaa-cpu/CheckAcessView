@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Planto[]|\Cake\Collection\CollectionInterface $plantoes
@@ -31,7 +32,7 @@
           <div class="border-bottom py-3 px-3 align-items-center">
             <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
             <div class="col-10">
-              <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
+              <?= $this->Form->control('data', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data'), 'placeholder' => 'Digite a data']); ?>
             </div>
 
             <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
@@ -48,58 +49,32 @@
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">Horário de Início</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">Horário de Término</th>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">Horas Trabalhadas</th>
+                  
                 </tr>
               </thead>
               <tbody>
-                <?php foreach ($pontos_dias as $data => $pontos) : ?>
-                  <?php $valor_contagem = count($pontos); // Calcular o valor de contagem antes do loop interno 
-                  ?>
+                <?php foreach ($plantoes as $plantao) : ?>
 
                   <tr>
-                    <td><?= $data ?></td>
-                    <?php foreach ($pontos as $ponto) : ?>
-                      <?php if (isset($ponto['hora'])) : ?>
-                        <td>
-                          <?= $ponto['hora'] ?>
-                        </td>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
+                    <td class="align-middle text-left">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->data->format('d/m/Y') ?></p>
+                    </td>
+                    <td class="align-middle text-left">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->hora_inicio->format('H:i') ?></p>
+                    </td>
+                    <td class="align-middle text-left">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->hora_termino->format('H:i') ?></p>
+                    </td>
+                    <td class="align-middle text-left">
+                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->hora_total->format('H:i') ?></p>
+                    </td>
+                  
 
-                    <?php if ($valor_contagem == 2) : ?>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td colspan="2">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if ($valor_contagem == 3) : ?>
-                      <td></td>
-                      <td></td>
-                      <td colspan="2">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if ($valor_contagem == 5) : ?>
-                      <td colspan="5">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if ($valor_contagem == 4) : ?>
-                      <td colspan="3">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
                   </tr>
+
+
                 <?php endforeach; ?>
-                
+
               </tbody>
             </table>
 

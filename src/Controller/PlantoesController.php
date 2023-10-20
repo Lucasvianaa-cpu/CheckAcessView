@@ -35,11 +35,11 @@ class PlantoesController extends AppController
 
         $conditions = [];
         
-        if ($this->request->getQuery('data_ponto') != '') {
-            $data = $this->request->getQuery('data_ponto');
+        if ($this->request->getQuery('data') != '') {
+            $data = $this->request->getQuery('data');
             $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
             if ($data_formatada) {
-                $conditions['Plantoes.data_ponto ='] = $data_formatada->format('Y-m-d');
+                $conditions['Plantoes.data ='] = $data_formatada->format('Y-m-d');
             }
         }
 
