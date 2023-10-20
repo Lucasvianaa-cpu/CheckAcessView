@@ -364,7 +364,6 @@ class PontosHorasController extends AppController
             ->contain(['Users', 'Empresas'])
             ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
             ->first();
-
             
 
         $pontosHora = $this->PontosHoras->get($id, [
@@ -426,7 +425,6 @@ class PontosHorasController extends AppController
                     ->contain(['Users', 'Empresas'])
                     ->where(['Funcionarios.user_id' => $user->id])
                     ->first();
-                    
 
                 $pontosHora = $this->PontosHoras->newEntity();
 

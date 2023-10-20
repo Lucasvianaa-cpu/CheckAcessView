@@ -607,7 +607,7 @@
                       <div class="border-bottom py-3 px-3 align-items-center">
                         <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
                         <div class="col-10">
-                          <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
+                          <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Filtre por uma data e encontre os últimos 5 dias ', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
                         </div>
 
                         <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
