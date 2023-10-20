@@ -27,7 +27,7 @@
                     <div class="border-bottom py-3 px-3 align-items-center">
                         <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
                         <div class="col-2">
-                            <?= $this->Form->control('data_ponto', ['class' => 'form-control input-mes-ano', 'label' => 'Busque pelo mês e ano:', 'default' => $this->request->getQuery('data_ponto')]); ?>
+                            <?= $this->Form->control('data', ['class' => 'form-control input-mes-ano', 'label' => 'Busque pelo mês e ano:', 'default' => $this->request->getQuery('data')]); ?>
                         </div>
                         <div class="col-4">
                             <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
@@ -52,51 +52,23 @@
                                     <th style="text-align: end;" class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
                                 </tr>
                             </thead>
-                            <?php
-                            $minutos_trabalhados = 0;
-                            ?>
-
-                            <?php if (!empty($pontos_dias)) : ?>
-                                <?php foreach ($pontos_dias as $data => $pontos) : ?>
-                                    <tr>
-                                        <td><?= $data ?></td>
-                                        <td><?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?></td>
-                                        <td style="text-align: end;">
-                                            <?php
-                                            $total = end($pontos);
-                                            list($horas, $minutos) = explode(':', $total['total']);
-                                            $horas = (int)$horas;
-                                            $minutos = (int)$minutos;
-                                            $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
-                                            $minutos_trabalhados += $total_minutos;
-                                            echo $total['total'];
-                                            ?>
-                                        </td>
-                                    </tr>
-                                <?php endforeach; ?>
-                            <?php else : ?>
+                            <tbody>
+                                <?php foreach ($plantoes as $plantao) : ?>
                                 <tr>
-                                    <td>
-                                        Busque por um funcionário
-                                    </td>
-                                </tr>
-                            <?php endif; ?>
+                                    <td><?= $plantao->data ?></td>
+                                    <td></td>
 
+                                    <td><?= $plantao->hora_total->format('H:i') ?></td>
+                                </tr>
+                                <?php endforeach; ?>
                             </tbody>
                         </table>
                     </div>
 
-                    <?php
-                    // Extrai as horas
-                    $horas = floor($minutos_trabalhados / 60);
-
-                    // Extrai os minutos
-                    $minutos = $minutos_trabalhados % 60;
-
-                    ?>
+                
 
                     <p style="text-align: end; margin-right: 10px; margin-top: 5px;">
-                        Horas Mensais Trabalhadas: <strong><?= sprintf('%02d', $horas) . ':' . sprintf('%02d', $minutos) ?></strong>
+                        Horas Extras Mensais: <strong><?= sprintf('%02d', $horas) . ':' . sprintf('%02d', $minutos) ?></strong>
                     </p>
 
 

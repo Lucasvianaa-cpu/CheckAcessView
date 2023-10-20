@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use DateTime;
@@ -34,7 +35,6 @@ class UsersController extends AppController
         $this->loadComponent('ListaFuncionarios');
 
         $this->current_user = $this->Auth->user();
-
     }
 
     public function index()
@@ -45,7 +45,7 @@ class UsersController extends AppController
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
             $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
-        } 
+        }
 
         if ($this->request->getQuery('cpf') != '') {
             $cpf = $this->request->getQuery('cpf');
@@ -60,13 +60,12 @@ class UsersController extends AppController
             } else if ($ativo == 2) {
                 $conditions['Users.is_active'] = 0;
             } else if ($ativo == 3) {
-                
             }
         }
         $this->paginate = [
             'contain' => ['Roles'],
         ];
-        $users = $this->paginate($this->Users,['conditions' => $conditions]);
+        $users = $this->paginate($this->Users, ['conditions' => $conditions]);
 
         $this->set(compact('users'));
     }
@@ -103,7 +102,7 @@ class UsersController extends AppController
                 $this->Flash->success(__('Usuário adicionado com sucesso.'));
 
                 $user = $this->Auth->identify();
-                if($user){
+                if ($user) {
                     $user = $this->Users->get($user['id'], [
                         'contain' => ['Funcionarios.Empresas']
                     ]);
@@ -168,19 +167,20 @@ class UsersController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function login() {
+    public function login()
+    {
         $this->loadModel('Empresas');
-    
+
         if ($this->request->is('post')) {
             $user = $this->Auth->identify();
-            
+
             if ($user) {
                 // Carregar o usuário junto com os funcionários e empresas associados
                 $user = $this->Users->get($user['id'], [
                     'contain' => ['Funcionarios.Empresas']
                 ]);
                 $this->Auth->setUser($user);
-                
+
                 // Se for ROLE 4, redirecionar para a página inicial
                 if ($user['role_id'] == 4) {
                     return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
@@ -195,15 +195,18 @@ class UsersController extends AppController
                         // Caso não haja funcionários associados, redirecionar para uma página de erro ou página inicial
                         return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'no_funcionarios']);
                     }
+
+                    //if ($user['role_id'] == 1)
+                    // Entrar em dashboard (mas sem vinculo com funcionario ou se necessario ate sem empresa... n sei)
                 }
             } else {
                 $this->Flash->error(__('E-mail ou senha incorretas! Por favor, tente novamente.'));
             }
-           
         }
     }
 
-    public function editarPerfil ($id = null) {
+    public function editarPerfil($id = null)
+    {
         $this->loadModel('Estados');
         $this->loadModel('Cidades');
         $this->loadModel('Enderecos');
@@ -214,18 +217,18 @@ class UsersController extends AppController
         $user = $this->Users->get($id, [
             'contain' => ['Enderecos'],
         ]);
-        
+
         if ($this->request->is(['patch', 'post', 'put'])) {
             $endereco = $user->enderecos ? $user->enderecos[0] : $this->Enderecos->newEntity();
-        
+
             $endereco->rua = $this->request->getData('rua');
             $endereco->numero = $this->request->getData('numero');
             $endereco->bairro = $this->request->getData('bairro');
             $endereco->cep = $this->request->getData('cep');
             $endereco->user_id = $this->Auth->user('id');
             $endereco->cidade_id = $this->request->getData('cidade_id');
-        
-            
+
+
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
             if (!empty($this->request->getData()['caminho_foto']['name'])) {
@@ -241,12 +244,11 @@ class UsersController extends AppController
                     $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
                 }
             }
-            
+
             if ($this->Users->save($user)) {
                 $this->Flash->success(__('Perfil atualizado com sucesso.'));
 
                 return $this->redirect($this->referer());
-
             }
             $this->Flash->error(__('O perfil não pôde ser atualizado. Por favor, tente novamente.'));
         }
@@ -259,13 +261,13 @@ class UsersController extends AppController
         $veiculos = $this->Veiculos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
 
         $this->set(compact('user', 'roles', 'estados', 'cidades', 'endereco_perfil', 'categorias', 'cargos', 'veiculos'));
-        
     }
 
-    public function visualizarPerfil ($id = null){
+    public function visualizarPerfil($id = null)
+    {
 
         $this->loadModel('Cargos');
-        
+
         $user = $this->Users->get($id, [
             'contain' => ['Funcionarios.Cargos.Categorias']
         ]);
@@ -298,12 +300,13 @@ class UsersController extends AppController
         }
         $this->set(compact('user'));
     }
-    
 
-    
 
-    public function dashboard ($id = null){
-        
+
+
+    public function dashboard($id = null)
+    {
+
         $this->loadModel('Empresas');
         $this->loadModel('Equipamentos');
         $this->loadModel('Categorias');
@@ -318,7 +321,7 @@ class UsersController extends AppController
         ]);
 
         $quantidadeEquipamentos = $this->Equipamentos->find()->count();
-        $quantidadeCategorias= $this->Categorias->find()->count();
+        $quantidadeCategorias = $this->Categorias->find()->count();
         $quantidadeCargos = $this->Cargos->find()->count();
         $quantidadeFuncionarios = $this->Funcionarios->find()->count();
 
@@ -327,43 +330,55 @@ class UsersController extends AppController
         $current_user = $this->Users->get($this->current_user['id'], [
             'contain' => ['Roles'] // Inclua a tabela "Roles" como uma tabela associada
         ]);
-        
+
         $descricaoRole = $current_user->role->descricao;
         // debug( $descricaoRole ); exit;
-        
-        if($this->current_user['role_id'] == 2){
+
+        if ($this->current_user['role_id'] == 2) {
             $this->paginate = [
                 'contain' => ['Roles'],
                 'conditions' => ['Users.role_id' => 4],
-                'limit'=> 3
+                'limit' => 3
             ];
         } else {
             $this->paginate = [
                 'contain' => ['Roles'],
-                'limit'=> 3
+                'limit' => 3
             ];
-        }    
+        }
 
         //teste
         if ($this->current_user['role_id'] == 3) {
             $conditions = [];
-        
+
             if ($this->request->getQuery('data_ponto') != '') {
                 $data = $this->request->getQuery('data_ponto');
                 $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+
                 if ($data_formatada) {
-                    $conditions['data_ponto'] = $data_formatada->format('Y-m-d');
+                    $data_formatada_clone = clone $data_formatada;
+
+                    $d1 = $data_formatada_clone->modify('-1 day')->format('Y-m-d');
+                    $d2 = $data_formatada_clone->modify('-1 day')->format('Y-m-d');
+                    $d3 = $data_formatada_clone->modify('-1 day')->format('Y-m-d');
+                    $d4 = $data_formatada_clone->modify('-1 day')->format('Y-m-d');
+                    $data_formatada = $data_formatada->format('Y-m-d');
+
+                    $conditions['data_ponto IN'] = [$d4, $d3, $d2, $d1, $data_formatada];
                 }
             }
-        
+
+
+
+
             $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
-        
+
             if ($funcionario) {
                 $conditions['funcionario_id'] = $funcionario->id;
             }
-    
+
             $pontos = $this->PontosHoras->find('all', ['conditions' => $conditions]);
-            // debug($pontos); exit;
+
 
             foreach ($pontos as $ponto) {
                 $data = $ponto->data_ponto->format('d/m/Y');
@@ -374,54 +389,62 @@ class UsersController extends AppController
                 ];
             }
 
-            foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
-                sort($pontos);
-                $contagem = count($pontos);
-                if ($contagem == 2) {
-                    $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
-                    $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
+            if (!empty($pontos_dias)) {
+                foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
+                    sort($pontos);
+                    $contagem = count($pontos);
+                    if ($contagem == 2) {
+                        $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                        $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
 
-                    $diferenca_em_segundos = $saida - $entrada;
+                        $diferenca_em_segundos = $saida - $entrada;
 
-                    // Calcular horas, minutos e segundos
-                    $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
-                    $diferenca_em_segundos %= 3600; // Remover as horas
-                    $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
-                    $segundos = $diferenca_em_segundos % 60; // O resto em segundos
+                        // Calcular horas, minutos e segundos
+                        $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
+                        $diferenca_em_segundos %= 3600; // Remover as horas
+                        $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
+                        $segundos = $diferenca_em_segundos % 60; // O resto em segundos
 
-                    // Formate o total em horas, minutos e segundos
-                    $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
+                        // Formate o total em horas, minutos e segundos
+                        $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
 
-                    // Adicione o total ao array atual em $pontos
-                    $pontos[] = ['total' => $total];
-                } else if ($contagem == 4) {
-                    $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
-                    $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
+                        // Adicione o total ao array atual em $pontos
+                        $pontos[] = ['total' => $total];
+                    } else if ($contagem == 4) {
+                        $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
+                        $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
 
-                    $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
-                    $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
+                        $retorno = strtotime(substr($pontos[2]['hora'], 0, 5));
+                        $saida = strtotime(substr($pontos[3]['hora'], 0, 5));
 
-                    $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
-                    $total_segundo_periodo = date("H:i", $saida - $retorno);
+                        $total_primeiro_periodo = date("H:i", $saida_intervalo - $entrada);
+                        $total_segundo_periodo = date("H:i", $saida - $retorno);
 
-                    $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
+                        $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
 
-                    // Adicione o total ao array atual em $pontos
-                    $pontos[] = ['total' => $total];
-                } else if ($contagem == 1 || $contagem == 3) {
-                    $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
+                        // Adicione o total ao array atual em $pontos
+                        $pontos[] = ['total' => $total];
+                    } else if ($contagem == 1 || $contagem == 3) {
+                        $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
+                    }
                 }
+            } else {
+                $pontos_dias = '';
             }
+
+
+
+
             $this->set(compact('pontos', 'pontos_dias'));
         }
-        
+
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
         $this->set(compact('users', 'roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios', 'descricaoRole'));
-
     }
- 
-    public function sair () {
+
+    public function sair()
+    {
         return $this->redirect($this->Auth->logout());
     }
 
@@ -439,7 +462,7 @@ class UsersController extends AppController
                 $this->Flash->success(__('Senha alterada com sucesso!'));
                 return $this->redirect(['action' => 'login']);
             }
-            
+
             $this->Flash->error(__('Não foi possivel alterar sua senha, tente novamente!'));
         } else {
             if ($user = $this->Users->findByEmail($q_email)->toArray()) {

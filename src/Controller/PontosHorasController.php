@@ -301,35 +301,45 @@ class PontosHorasController extends AppController
             ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
             ->first();
 
+        $hoje = date('Y-m-d');
+        $pontos_registros_dia = $this->PontosHoras->find()
+            ->where(['funcionario_id' => $funcionario->id, 'data_ponto' => $hoje])
+            ->toArray();
 
 
-        $pontosHora = $this->PontosHoras->newEntity();
-        if ($this->request->is('post')) {
-            $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
-            $pontosHora->data_ponto = date('Y-m-d');
-            $pontosHora->hora = date('H:i:s');
-            $pontosHora->funcionario_id = $funcionario->id;
+        $qtd_pontos_dia = count($pontos_registros_dia);
 
-            if ($this->PontosHoras->save($pontosHora)) {
+        if ($qtd_pontos_dia <= 3) {
+            $pontosHora = $this->PontosHoras->newEntity();
+            if ($this->request->is('post')) {
+                $pontosHora = $this->PontosHoras->patchEntity($pontosHora, $this->request->getData());
+                $pontosHora->data_ponto = date('Y-m-d');
+                $pontosHora->hora = date('H:i:s');
+                $pontosHora->funcionario_id = $funcionario->id;
 
-                $id_ponto = $pontosHora->id;
+                if ($this->PontosHoras->save($pontosHora)) {
 
-                $data = [
-                    'funcionario_id' => $funcionario->id,
-                    'pontos_horas_id' => $id_ponto,
-                ];
+                    $id_ponto = $pontosHora->id;
 
-                $postsTable = TableRegistry::getTableLocator()->get('HistoricosPontos');
-                $newPost = $postsTable->newEntity($data);
-                $postsTable->save($newPost);
+                    $data = [
+                        'funcionario_id' => $funcionario->id,
+                        'pontos_horas_id' => $id_ponto,
+                    ];
 
-                $this->Flash->success(__('Ponto adicionado com sucesso.'));
+                    $postsTable = TableRegistry::getTableLocator()->get('HistoricosPontos');
+                    $newPost = $postsTable->newEntity($data);
+                    $postsTable->save($newPost);
 
-                return $this->redirect(['action' => 'index']);
+                    $this->Flash->success(__('Ponto adicionado com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('O ponto não pôde ser salvo. Por favor, tente novamente.'));
+        } else {
+            $this->Flash->error(__('Já foi registrado o máximo de pontos permitido!'));
+            return $this->redirect(['action' => 'index']);
         }
-
 
         $this->set(compact('pontosHora', 'funcionario'));
     }
@@ -354,6 +364,8 @@ class PontosHorasController extends AppController
             ->contain(['Users', 'Empresas'])
             ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
             ->first();
+
+            
 
         $pontosHora = $this->PontosHoras->get($id, [
             'contain' => [],
@@ -414,6 +426,7 @@ class PontosHorasController extends AppController
                     ->contain(['Users', 'Empresas'])
                     ->where(['Funcionarios.user_id' => $user->id])
                     ->first();
+                    
 
                 $pontosHora = $this->PontosHoras->newEntity();
 

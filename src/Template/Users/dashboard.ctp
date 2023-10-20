@@ -593,186 +593,188 @@
           </div>
 
           <div class="container-fluid mt-4">
-          <div class="row">
-            <div class="col-12">
-              <div class="card border shadow-xs mb-4">
-                <div class="card-header border-bottom pb-0">
-                  <div class="d-sm-flex align-items-center justify-content-between">
-                    <div>
-                      <h6 class="font-weight-semibold text-lg mb-0">Pontos de Horas</h6>
-                      <p class="text-sm">Acompanhe seus pontos de horas...</p>
-                    </div>
-                  </div>
-                  <div class="card-body px-0 py-0">
-                    <div class="border-bottom py-3 px-3 align-items-center">
-                      <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
-                      <div class="col-10">
-                        <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
+            <div class="row">
+              <div class="col-12">
+                <div class="card border shadow-xs mb-4">
+                  <div class="card-header border-bottom pb-0">
+                    <div class="d-sm-flex align-items-center justify-content-between">
+                      <div>
+                        <h6 class="font-weight-semibold text-lg mb-0">Pontos de Horas</h6>
+                        <p class="text-sm">Acompanhe seus pontos de horas...</p>
                       </div>
-
-                      <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
-                        <b>Buscar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
-                      </button>
-
-                      <?php echo $this->Form->end(); ?>
                     </div>
-                    <div class="table-responsive p-0">
-            <table class="table align-items-center mb-0">
-              <thead class="bg-gray-100">
-                <tr>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Entrada</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Saída p/ Intervalo</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Retorno</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Saída</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7">Horas Trabalhadas</th>
-                  <th class="text-secondary text-xs font-weight-semibold opacity-7"></th>
-                </tr>
-              </thead>
-              <tbody>
-                <?php foreach ($pontos_dias as $data => $pontos) : ?>
-                  <?php $valor_contagem = count($pontos); // Calcular o valor de contagem antes do loop interno 
-                  ?>
-
-                  <tr>
-                    <td><?= $data ?></td>
-                    <?php foreach ($pontos as $ponto) : ?>
-                      <?php if (isset($ponto['hora'])) : ?>
-                        <td>
-                          <?= $ponto['hora'] ?>
-                        </td>
-                      <?php endif; ?>
-                    <?php endforeach; ?>
-
-                    <?php if ($valor_contagem == 2) : ?>
-                      <td></td>
-                      <td></td>
-                      <td></td>
-                      <td colspan="2">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if ($valor_contagem == 3) : ?>
-                      <td></td>
-                      <td></td>
-                      <td colspan="2">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if ($valor_contagem == 5) : ?>
-                      <td colspan="5">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-
-                    <?php if ($valor_contagem == 4) : ?>
-                      <td colspan="3">
-                        <?php $total = end($pontos); ?>
-                        <?= $total['total'] ?>
-                      </td>
-                    <?php endif; ?>
-                  </tr>
-                <?php endforeach; ?>
-                
-              </tbody>
-            </table>
-
-
-
-          </div>
-        </div>
-      </div>
-    </div>
-        </div>
-
-        
-
-
-
-                  <?php endif; ?>
-                  <footer class="footer pt-3  ">
-                    <div class="container-fluid">
-                      <div class="row align-items-center justify-content-lg-between">
-                        <div class="col-lg-6 mb-lg-0 mb-4">
-                          <div class="copyright text-center text-xs text-muted text-lg-start">
-                            Copyright
-                            © <script>
-                              document.write(new Date().getFullYear())
-                            </script>
-                            Jaine Oliveira e Lucas Viana.
-                          </div>
+                    <div class="card-body px-0 py-0">
+                      <div class="border-bottom py-3 px-3 align-items-center">
+                        <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
+                        <div class="col-10">
+                          <?= $this->Form->control('data_ponto', ['class' => 'form-control input-data', 'label' => 'Busque pela data:', 'default' => $this->request->getQuery('data_ponto'), 'placeholder' => 'Digite a data']); ?>
                         </div>
+
+                        <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
+                          <b>Buscar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
+                        </button>
+
+                        <?php echo $this->Form->end(); ?>
+                      </div>
+                      <div class="table-responsive p-0">
+                        <table class="table align-items-center mb-0">
+                          <thead class="bg-gray-100">
+                            <tr>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7">Entrada</th>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7">Saída p/ Intervalo</th>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7">Retorno</th>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7">Saída</th>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7">Horas Trabalhadas</th>
+                              <th class="text-secondary text-xs font-weight-semibold opacity-7"></th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <?php if (!empty($pontos_dias)) : ?>
+                              <?php foreach ($pontos_dias as $data => $pontos) : ?>
+                                <?php $valor_contagem = count($pontos); // Calcular o valor de contagem antes do loop interno 
+                                ?>
+
+                                <tr>
+                                  <td><?= $data ?></td>
+                                  <?php foreach ($pontos as $ponto) : ?>
+                                    <?php if (isset($ponto['hora'])) : ?>
+                                      <td>
+                                        <?= $ponto['hora'] ?>
+                                      </td>
+                                    <?php endif; ?>
+                                  <?php endforeach; ?>
+
+                                  <?php if ($valor_contagem == 2) : ?>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">
+                                      <?php $total = end($pontos); ?>
+                                      <?= $total['total'] ?>
+                                    </td>
+                                  <?php endif; ?>
+
+                                  <?php if ($valor_contagem == 3) : ?>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="2">
+                                      <?php $total = end($pontos); ?>
+                                      <?= $total['total'] ?>
+                                    </td>
+                                  <?php endif; ?>
+
+                                  <?php if ($valor_contagem == 5) : ?>
+                                    <td colspan="5">
+                                      <?php $total = end($pontos); ?>
+                                      <?= $total['total'] ?>
+                                    </td>
+                                  <?php endif; ?>
+
+                                  <?php if ($valor_contagem == 4) : ?>
+                                    <td colspan="3">
+                                      <?php $total = end($pontos); ?>
+                                      <?= $total['total'] ?>
+                                    </td>
+                                  <?php endif; ?>
+                                </tr>
+                              <?php endforeach; ?>
+                            <?php else : ?>
+                              <tr>
+                                <td colspan="7">
+                                  Não possui registros.
+                                </td>
+                              </tr>
+                            <?php endif; ?>
+
+                          </tbody>
+                        </table>
+
+
+
                       </div>
                     </div>
-                  </footer>
                   </div>
-                  </main>
-
-                  <?= $this->Flash->render() ?>
-                  <div>
-                    <?= $this->fetch('content') ?>
+                </div>
+              <?php endif; ?>
+              <footer class="footer pt-3  ">
+                <div class="container-fluid">
+                  <div class="row align-items-center justify-content-lg-between">
+                    <div class="col-lg-6 mb-lg-0 mb-4">
+                      <div class="copyright text-center text-xs text-muted text-lg-start">
+                        Copyright
+                        © <script>
+                          document.write(new Date().getFullYear())
+                        </script>
+                        Jaine Oliveira e Lucas Viana.
+                      </div>
+                    </div>
                   </div>
+                </div>
+              </footer>
+              </div>
+              </main>
 
-                  <footer>
-                    <?= $this->Html->script('popper.min.js'); ?>
-                    <?= $this->Html->script('bootstrap.min.js'); ?>
-                    <?= $this->Html->script('perfect-scrollbar.min.js'); ?>
-                    <?= $this->Html->script('smooth-scrollbar.min.js'); ?>
-                    <?= $this->Html->script('chartjs.min.js'); ?>
-                    <?= $this->Html->script('swiper-bundle.min.js'); ?>
-                    <?= $this->Html->script('buttons.js'); ?>
-                    <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
+              <?= $this->Flash->render() ?>
+              <div>
+                <?= $this->fetch('content') ?>
+              </div>
 
-                    <?= $this->Html->script('sweetalert2.all.min.js'); ?>
+              <footer>
+                <?= $this->Html->script('popper.min.js'); ?>
+                <?= $this->Html->script('bootstrap.min.js'); ?>
+                <?= $this->Html->script('perfect-scrollbar.min.js'); ?>
+                <?= $this->Html->script('smooth-scrollbar.min.js'); ?>
+                <?= $this->Html->script('chartjs.min.js'); ?>
+                <?= $this->Html->script('swiper-bundle.min.js'); ?>
+                <?= $this->Html->script('buttons.js'); ?>
+                <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
 
-                    <!-- Mensagens de Sucesso/Erro -->
-                    <?= $this->element('alertas/mensagem'); ?>
-                  </footer>
+                <?= $this->Html->script('sweetalert2.all.min.js'); ?>
 
-                  <script>
-                    // Dados do gráfico
-                    var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
-                    var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+                <!-- Mensagens de Sucesso/Erro -->
+                <?= $this->element('alertas/mensagem'); ?>
+              </footer>
 
-                    var barColors = ['#070713'];
+              <script>
+                // Dados do gráfico
+                var funcionariosData = <?php echo json_encode(array_values($funcionarios_grafico)); ?>;
+                var months = ["Jan", "Fev", "Mar", "Abr", "Mai", "Jun", "Jul", "Ago", "Set", "Out", "Nov", "Dez"];
+
+                var barColors = ['#070713'];
 
 
 
-                    // Configurações do gráfico
-                    var options = {
-                      chart: {
-                        type: 'bar',
-                        height: 250
-                      },
-                      xaxis: {
-                        categories: months
-                      },
-                      plotOptions: {
-                        bar: {
-                          horizontal: false
-                        }
-                      },
-                      series: [{
-                        name: 'Funcionários',
-                        data: funcionariosData
-                      }],
-                      yaxis: {
-                        title: {
-                          text: 'Quantidade'
-                        }
-                      },
-                      colors: barColors // Definindo as cores das barras
-                    };
+                // Configurações do gráfico
+                var options = {
+                  chart: {
+                    type: 'bar',
+                    height: 250
+                  },
+                  xaxis: {
+                    categories: months
+                  },
+                  plotOptions: {
+                    bar: {
+                      horizontal: false
+                    }
+                  },
+                  series: [{
+                    name: 'Funcionários',
+                    data: funcionariosData
+                  }],
+                  yaxis: {
+                    title: {
+                      text: 'Quantidade'
+                    }
+                  },
+                  colors: barColors // Definindo as cores das barras
+                };
 
-                    // Inicializar o gráfico
-                    var chart = new ApexCharts(document.querySelector("#chart"), options);
-                    chart.render();
-                  </script>
+                // Inicializar o gráfico
+                var chart = new ApexCharts(document.querySelector("#chart"), options);
+                chart.render();
+              </script>
 
 
 </body>

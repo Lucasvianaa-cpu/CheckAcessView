@@ -17,7 +17,6 @@ class User extends Entity
         'rg' => true,
         'email' => true,
         'telefone' => true,
-        'salario' => true,
         'data_nascimento' => true,
         'tipo_sanguineo' => true,
         'exp_profissional' => true,

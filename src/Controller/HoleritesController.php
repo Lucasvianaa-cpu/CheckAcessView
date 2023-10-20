@@ -47,6 +47,12 @@ class HoleritesController extends AppController
     {
         // Acessa o ID do usuário atual
         $currentUserId = $this->Auth->user('id');
+        $conditions = [];
+
+        if ($this->request->getQuery('mes') != '') {
+            $mes = $this->request->getQuery('mes');
+            $conditions['LOWER(Holerites.mes) LIKE'] = '%' . strtolower($mes) . '%';
+        }
 
         $this->paginate = [
             'contain' => [
@@ -56,7 +62,7 @@ class HoleritesController extends AppController
             ]
         ];
 
-        $holerites = $this->paginate($this->Holerites);
+        $holerites = $this->paginate($this->Holerites,['conditions' => $conditions]);
 
         $this->set(compact('holerites'));
     }

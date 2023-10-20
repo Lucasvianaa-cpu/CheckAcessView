@@ -20,7 +20,22 @@ class PlantoesController extends AppController
 
     public function totalPlantoes()
     {
-        $plantoes = $this->paginate($this->Plantoes);
+
+        $this->loadModel('Funcionarios');
+        $this->loadModel('Users');
+
+
+        $conditions = [];
+        
+        if ($this->request->getQuery('data') != '') {
+            $data = $this->request->getQuery('data');
+            $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+            if ($data_formatada) {
+                $conditions['Plantoes.data ='] = $data_formatada->format('Y-m-d');
+            }
+        }
+
+        $plantoes = $this->paginate($this->Plantoes, ['contain' => 'Funcionarios']);
 
         $this->set(compact('plantoes'));
     }
