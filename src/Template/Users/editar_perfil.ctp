@@ -33,17 +33,15 @@
       <div class="container py-2">
         <nav aria-label="breadcrumb">
           <div class="d-flex align-items-center">
-            <span class="px-3 font-weight-bold text-lg text-white me-4">CheckAcessView</span>
+            <span class="px-3 font-weight-bold text-lg text-white me-4">
+              <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>" class="nav-link text-white p-0">
+                Voltar
+              </a>
+            </span>
+
           </div>
         </nav>
-        <?php if ($current_user['role_id'] != 4) : ?>
-          <ul class="navbar-nav d-none d-lg-flex">
-            <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
-              <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>" class="nav-link text-white p-0">
-                Dashboard
-              </a>
-            </li>
-          <?php endif; ?>
+      
           <!--CONVIDADO-->
           <?php if ($current_user['role_id'] == 4) : ?>
             <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
@@ -57,25 +55,43 @@
           <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
             <ul class="navbar-nav ms-md-auto  justify-content-end">
 
-              <li class="nav-item d-flex align-items-center ps-2">
-                <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
-              <li class="nav-item dropdown pe-2 d-flex align-items-center">
-                <div class="avatar avatar-sm position-relative">
-                  <?php if (!empty($user->caminho_foto)) : ?>
-                    <?= $this->Html->image($user->caminho_foto, [
-                      'width' => '40px',
-                      'height' => 'auto',
-                      'style' => 'border-radius: 20px;'
-                    ]); ?>
-                  <?php else : ?>
-                    <?= $this->Html->image('perfil.png', [
-                      'width' => '40px',
-                      'height' => 'auto',
-                    ]); ?>
-                  <?php endif; ?>
+              <li class="nav-item ps-2 d-flex align-items-center">
+                <div class="dropdown">
+                  <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    <?php if (!empty($current_user->caminho_foto)) : ?>
+                      <?= $this->Html->image($current_user->caminho_foto, [
+                        'width' => '50px',
+                        'height' => 'auto',
+                        'style' => 'border-radius: 25px; min-height: 50px; max-height: 50px'
+                      ]); ?>
+
+
+                    <?php else : ?>
+                      <?= $this->Html->image('perfil.png', [
+                        'width' => '40px',
+                        'height' => 'auto',
+                      ]); ?>
+                    <?php endif; ?>
+                    <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
+                  </button>
+                  <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <?php if ($current_user['role_id'] != 1) : ?>
+                      <li>
+                        <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a>
+                      </li>
+                    <?php endif; ?>
+
+                    <?php if ($current_user['role_id'] == 1) : ?>
+                      <li>
+                        <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Meu Perfil</a>
+                      </li>
+                    <?php endif; ?>
+
+                    <li>
+                      <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'sair'])) ?>">Sair</a>
+                    </li>
+                  </ul>
                 </div>
-              </li>
-              </a>
               </li>
             </ul>
           </div>
@@ -276,15 +292,15 @@
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
 
         <?= $this->Html->script('sweetalert2.all.min.js'); ?>
-        
+
         <!-- Mensagens de Sucesso/Erro -->
         <?= $this->element('alertas/mensagem'); ?>
 
-        <?php 
-          $timestamp = strtotime($user->data_nascimento);
-          if ($timestamp !== false) {
-              $data_formatada = date('Y-m-d', $timestamp);
-          }
+        <?php
+        $timestamp = strtotime($user->data_nascimento);
+        if ($timestamp !== false) {
+          $data_formatada = date('Y-m-d', $timestamp);
+        }
         ?>
 
         <script>

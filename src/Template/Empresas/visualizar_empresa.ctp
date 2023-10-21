@@ -32,40 +32,40 @@
         <nav class="navbar bg-slate-900 navbar-expand-lg flex-wrap top-0 px-0 py-0">
             <div class="container py-2">
                 <nav aria-label="breadcrumb">
+
                     <div class="d-flex align-items-center">
-                        <span class="px-3 font-weight-bold text-lg text-white me-4">CheckAcessView</span>
+                        <span class="px-3 font-weight-bold text-lg text-white me-4">
+                            <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>" class="nav-link text-white p-0">
+                                Voltar
+                            </a>
+                        </span>
+
                     </div>
                 </nav>
-                <ul class="navbar-nav d-none d-lg-flex">
-                    <li class="nav-item px-3 py-3 border-radius-sm  d-flex align-items-center">
-                        <a href="../" class="nav-link text-white p-0">
-                            Dashboard
-                        </a>
-                    </li>
-                </ul>
+
                 <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
                     <ul class="navbar-nav ms-md-auto  justify-content-end">
                         <li class="nav-item d-xl-none ps-3 d-flex align-items-center">
 
                         </li>
-           
+
                         <li class="nav-item d-flex align-items-center ps-2">
                             <a href="javascript:;" class="nav-link text-white font-weight-bold px-0">
                         <li class="nav-item dropdown pe-2 d-flex align-items-center">
                             <div class="avatar avatar-sm position-relative">
-                            <?php if (!empty($empresa->caminho_foto)): ?>
-                            <?= $this->Html->image($empresa->caminho_foto, [
-                                    'width' => '50px', 
-                                    'height' => 'auto', 
-                                    'style' => 'border-radius: 25px;'
-                                ]); ?>
-            
-                            <?php else: ?>
-                                <?= $this->Html->image('perfil.png', [
-                                                        'width' => '40px', 
-                                                        'height' => 'auto', 
-                                                    ]); ?>
-                            <?php endif;?>
+                                <?php if (!empty($empresa->caminho_foto)) : ?>
+                                    <?= $this->Html->image($empresa->caminho_foto, [
+                                        'width' => '50px',
+                                        'height' => 'auto',
+                                        'style' => 'border-radius: 25px;'
+                                    ]); ?>
+
+                                <?php else : ?>
+                                    <?= $this->Html->image('perfil.png', [
+                                        'width' => '40px',
+                                        'height' => 'auto',
+                                    ]); ?>
+                                <?php endif; ?>
                             </div>
                         </li>
                         </a>
@@ -78,13 +78,13 @@
                 <div class="p-0 d-flex">
                     <ul class="navbar-nav list-group-horizontal">
                         <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                        <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller'=>'Empresas','action' => 'visualizarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
+                            <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Empresas', 'action' => 'visualizarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
                                 Minha Empresa
                             </a>
                         </li>
                         <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                        <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller'=>'Empresas','action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
-                            Editar Dados Empresa
+                            <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
+                                Editar Dados Empresa
                             </a>
                         </li>
                     </ul>
@@ -97,14 +97,13 @@
             <div class="card card-body py-2 bg-transparent shadow-none">
                 <div class="row">
                     <div class="col-auto">
-                        <div
-                            class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
-                            <?php if (!empty($empresa->caminho_foto)): ?>
+                        <div class="avatar avatar-2xl rounded-circle position-relative mt-n7 border border-gray-100 border-4">
+                            <?php if (!empty($empresa->caminho_foto)) : ?>
                                 <?= $this->Html->image($empresa->caminho_foto, ['style' => 'min-height: 155px; max-height: 155px;']); ?>
-                            
-                            <?php else: ?>
+
+                            <?php else : ?>
                                 <?= $this->Html->image('perfil.png', ['style' => 'min-height: 155px; max-height: 155px;']); ?>
-                            <?php endif;?>
+                            <?php endif; ?>
                         </div>
                     </div>
                     <div class="col-auto my-auto">
@@ -130,36 +129,28 @@
                                 <h6 class="mb-0 font-weight-semibold text-lg">Minhas Informações</h6>
                                 <p class="text-sm mb-1">Um resumo de suas informações...</p>
                             </div>
-                            
+
                         </div>
                     </div>
                     <div class="card-body p-3">
 
                         <ul class="list-group">
                             <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pt-0 pb-1 text-sm">
-                                <span class="text-secondary">Razão Social:</span> &nbsp; <?= $empresa->razao_social ?> </li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Nome Fantasia:</span> &nbsp; <?= $empresa->nome_fantasia ?></li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">CNPJ:</span> &nbsp; <?= $empresa->cnpj ?></li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">IE:</span> &nbsp;
-                                <?= $empresa->ie ?></li>
-                                <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Descrição da Empresa:</span> &nbsp;
-                                <?= $empresa->desc_empresa ?></li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Endereco:</span> &nbsp;
-                                <?= $empresa->endereco?>, <?= $empresa->numero?>, <?= $empresa->bairro?></li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">CEP:</span> &nbsp; <?= $empresa->cep ?></li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Telefone:</span> &nbsp; <?= $empresa->telefone ?></li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                class="text-secondary">Qtd. Funcionários:</span> &nbsp; <?= $empresa->qtd_funcionarios ?>
+                                <span class="text-secondary">Razão Social:</span> &nbsp; <?= $empresa->razao_social ?>
                             </li>
-                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span
-                                    class="text-secondary">Ativo?</span> &nbsp; <?= $empresa->is_active == 1 ? 'Sim' : 'Não' ?>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Nome Fantasia:</span> &nbsp; <?= $empresa->nome_fantasia ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">CNPJ:</span> &nbsp; <?= $empresa->cnpj ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">IE:</span> &nbsp;
+                                <?= $empresa->ie ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Descrição da Empresa:</span> &nbsp;
+                                <?= $empresa->desc_empresa ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Endereco:</span> &nbsp;
+                                <?= $empresa->endereco ?>, <?= $empresa->numero ?>, <?= $empresa->bairro ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">CEP:</span> &nbsp; <?= $empresa->cep ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Telefone:</span> &nbsp; <?= $empresa->telefone ?></li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Qtd. Funcionários:</span> &nbsp; <?= $empresa->qtd_funcionarios ?>
+                            </li>
+                            <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1 text-sm"><span class="text-secondary">Ativo?</span> &nbsp; <?= $empresa->is_active == 1 ? 'Sim' : 'Não' ?>
                             </li>
                         </ul>
                     </div>
@@ -178,7 +169,6 @@
                         Copyright
                         © <script>
                             document.write(new Date().getFullYear())
-
                         </script>
                         Jaine Oliveira e Lucas Viana
                     </div>
