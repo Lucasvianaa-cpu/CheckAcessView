@@ -74,6 +74,7 @@
                                                     $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
                                                     $minutos_trabalhados += $total_minutos;
                                                     echo $total['total'];
+                                                   
                                                 }
                                             }
                                             ?>
@@ -84,6 +85,12 @@
                                 <tr>
                                     <td>
                                         Busque por um funcionário
+                                    </td>
+                                    <td>
+                                        
+                                    </td>
+                                    <td>
+                                        
                                     </td>
                                 </tr>
                             <?php endif; ?>
