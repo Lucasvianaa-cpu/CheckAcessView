@@ -76,7 +76,8 @@ class PontosHorasController extends AppController
 
         $this->paginate = [
             'conditions' => ['funcionario_id' => $funcionario->id],
-            'contain' => ['Funcionarios.Users']
+            'contain' => ['Funcionarios.Users'],
+            'limit' => 31
         ];
         $pontos = $this->paginate($this->PontosHoras, ['conditions' => $conditions]);
 
