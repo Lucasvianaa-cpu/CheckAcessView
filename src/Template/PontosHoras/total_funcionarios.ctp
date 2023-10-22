@@ -59,16 +59,23 @@
                                 <?php foreach ($pontos_dias as $data => $pontos) : ?>
                                     <tr>
                                         <td><?= $data ?></td>
-                                        <td><?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?></td>
+                                        <td>
+                                            <?php if (isset($pontos[0]['nome']) && isset($pontos[0]['sobrenome'])) : ?>
+                                                <?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?>
+                                            <?php endif; ?>
+                                        </td>
                                         <td style="text-align: end;">
-                                            <?php
-                                            $total = end($pontos);
-                                            list($horas, $minutos) = explode(':', $total['total']);
-                                            $horas = (int)$horas;
-                                            $minutos = (int)$minutos;
-                                            $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
-                                            $minutos_trabalhados += $total_minutos;
-                                            echo $total['total'];
+                                            <?php if (!empty($pontos)) {
+                                                $total = end($pontos);
+                                                if (isset($total['total'])) {
+                                                    list($horas, $minutos) = explode(':', $total['total']);
+                                                    $horas = (int)$horas;
+                                                    $minutos = (int)$minutos;
+                                                    $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
+                                                    $minutos_trabalhados += $total_minutos;
+                                                    echo $total['total'];
+                                                }
+                                            }
                                             ?>
                                         </td>
                                     </tr>
@@ -80,6 +87,8 @@
                                     </td>
                                 </tr>
                             <?php endif; ?>
+
+
 
                             </tbody>
                         </table>

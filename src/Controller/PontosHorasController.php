@@ -365,7 +365,7 @@ class PontosHorasController extends AppController
             ->contain(['Users', 'Empresas'])
             ->where(['Funcionarios.user_id' => $this->Auth->user('id')])
             ->first();
-            
+
 
         $pontosHora = $this->PontosHoras->get($id, [
             'contain' => [],
@@ -427,26 +427,36 @@ class PontosHorasController extends AppController
                     ->where(['Funcionarios.user_id' => $user->id])
                     ->first();
 
-                $pontosHora = $this->PontosHoras->newEntity();
-
-                $pontosHora->data_ponto = date('Y-m-d');
-                $pontosHora->hora = date('H:i:s');
-                $pontosHora->funcionario_id = $funcionario->id;
-
-                if ($this->PontosHoras->save($pontosHora)) {
-
-                    $id_ponto = $pontosHora->id;
-
-                    $data = [
+                $pontos_registros_dia = $this->PontosHoras->find()
+                    ->where([
                         'funcionario_id' => $funcionario->id,
-                        'pontos_horas_id' => $id_ponto,
-                    ];
+                        'data_ponto' => date('Y-m-d')
+                    ]);
+                $qtd_pontos_dia = $pontos_registros_dia->count();
 
-                    $postsTable = TableRegistry::getTableLocator()->get('HistoricosPontos');
-                    $newPost = $postsTable->newEntity($data);
-                    $postsTable->save($newPost);
+                if ($qtd_pontos_dia < 4) {
+                    $pontosHora = $this->PontosHoras->newEntity();
+                    $pontosHora->data_ponto = date('Y-m-d');
+                    $pontosHora->hora = date('H:i:s');
+                    $pontosHora->funcionario_id = $funcionario->id;
 
-                    return $this->redirect(['action' => 'retornoRfid/?tag=' . $tag . '']);
+                    if ($this->PontosHoras->save($pontosHora)) {
+                        $id_ponto = $pontosHora->id;
+
+                        $data = [
+                            'funcionario_id' => $funcionario->id,
+                            'pontos_horas_id' => $id_ponto,
+                        ];
+
+                        $postsTable = TableRegistry::getTableLocator()->get('HistoricosPontos');
+                        $newPost = $postsTable->newEntity($data);
+                        $postsTable->save($newPost);
+
+                        return $this->redirect(['action' => 'retornoRfid/?tag=' . $tag]);
+                    }
+                } else {
+                    $this->Flash->error(__('Limite de pontos atingido para o dia!'));
+                    return $this->redirect(['action' => 'addRfid']);
                 }
             } else {
                 $this->Flash->error(__('Cartão não foi reconhecido. Vá até ao RH!'));
@@ -454,6 +464,7 @@ class PontosHorasController extends AppController
             }
         }
     }
+
 
     public function retornoRfid()
     {
