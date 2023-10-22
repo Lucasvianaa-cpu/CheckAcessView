@@ -1,6 +1,6 @@
 -- MySQL dump 10.13  Distrib 8.0.34, for Win64 (x86_64)
 --
--- Host: 127.0.0.1    Database: teste
+-- Host: 127.0.0.1    Database: checkacessview
 -- ------------------------------------------------------
 -- Server version	8.0.31
 
@@ -30,7 +30,7 @@ CREATE TABLE `cargos` (
   PRIMARY KEY (`id`),
   KEY `Categorias_Cargo_idx` (`categoria_id`),
   CONSTRAINT `categoria_cargo` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -39,7 +39,7 @@ CREATE TABLE `cargos` (
 
 LOCK TABLES `cargos` WRITE;
 /*!40000 ALTER TABLE `cargos` DISABLE KEYS */;
-INSERT INTO `cargos` VALUES (6,'Admin','Administrador',1);
+INSERT INTO `cargos` VALUES (1,'N1','BBBB',2),(2,'Supervisor','Supervisor de T.I',3),(3,'Gerente','Gerente',2),(4,'b','A',3),(5,'Teste','ANALISTA TI',4);
 /*!40000 ALTER TABLE `cargos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -66,7 +66,7 @@ CREATE TABLE `categorias` (
 
 LOCK TABLES `categorias` WRITE;
 /*!40000 ALTER TABLE `categorias` DISABLE KEYS */;
-INSERT INTO `categorias` VALUES (1,'Admin','Administrador',1,0);
+INSERT INTO `categorias` VALUES (2,'Suporte','AAAAAAAAAAAAAA',1,1),(3,'A','A',1,0),(4,'Analista','Analista de TI',1,0);
 /*!40000 ALTER TABLE `categorias` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -94,7 +94,7 @@ CREATE TABLE `cidades` (
 
 LOCK TABLES `cidades` WRITE;
 /*!40000 ALTER TABLE `cidades` DISABLE KEYS */;
-INSERT INTO `cidades` VALUES (1,'Birigui',3506508,1);
+INSERT INTO `cidades` VALUES (1,'Birigui',1,1),(2,'Araçatuba',1,1),(3,'AAAA',2856185,1);
 /*!40000 ALTER TABLE `cidades` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -132,7 +132,7 @@ CREATE TABLE `empresas` (
 
 LOCK TABLES `empresas` WRITE;
 /*!40000 ALTER TABLE `empresas` DISABLE KEYS */;
-INSERT INTO `empresas` VALUES (1,'CheckAcessView LTDA','Sistema de Ponto Eletrônico CheckAcessView','14.743.109/0001','387.089.109.425','16200-397','Rua João de Souza Vilaça','Bosque da Saúde','100','(18) 2843-4129',10,'Empresa Focada na solução rápida para sua empresa com seu ponto eletrônico automatizado e prático.','2023-08-01 19:28:13',1,'',0);
+INSERT INTO `empresas` VALUES (1,'emp teste','emp teste','1111111111111','11','11','a','a','1','1',1,'a','2023-08-01 19:28:13',1,'',0),(2,'Luquinha','Empresa Luquinha','2525252525','25','25','a','a','1','1',1,'a','2023-08-16 21:35:25',1,NULL,0);
 /*!40000 ALTER TABLE `empresas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -165,6 +165,7 @@ CREATE TABLE `enderecos` (
 
 LOCK TABLES `enderecos` WRITE;
 /*!40000 ALTER TABLE `enderecos` DISABLE KEYS */;
+INSERT INTO `enderecos` VALUES (7,'Rua São Benedito','Jd. Klayton','1270','16203039',1,3),(8,'RUA X','X','7','16203039',1,10),(9,'262161216','262161216','26216121','262161216',2,26),(10,'sadas','sadas','1','1',1,9);
 /*!40000 ALTER TABLE `enderecos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -195,6 +196,7 @@ CREATE TABLE `equipamentos` (
 
 LOCK TABLES `equipamentos` WRITE;
 /*!40000 ALTER TABLE `equipamentos` DISABLE KEYS */;
+INSERT INTO `equipamentos` VALUES (3,'1515','Notebook',1,'8/1/23, 11:53 PM',5,0);
 /*!40000 ALTER TABLE `equipamentos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -210,7 +212,7 @@ CREATE TABLE `estados` (
   `sigla` char(2) NOT NULL,
   `nome` varchar(20) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -219,7 +221,7 @@ CREATE TABLE `estados` (
 
 LOCK TABLES `estados` WRITE;
 /*!40000 ALTER TABLE `estados` DISABLE KEYS */;
-INSERT INTO `estados` VALUES (1,'SP','São Paulo'),(2,'RJ','Rio de Janeiro');
+INSERT INTO `estados` VALUES (1,'SP','São Paulo'),(8,'MG','Minas Gerais'),(9,'AL','Alagoas'),(10,'SC','Santa Catarina'),(11,'DF','Distrito Federal'),(12,'MT','Mato Grosso'),(13,'MS','Mato Grosso do Sul'),(14,'PR','Paraná'),(15,'TO','Tocantins'),(16,'AM','Amazônia'),(17,'RS','Rio Grande do Sul'),(18,'RN','Rio Grande do Norte'),(19,'ES','Espiríto Santo'),(20,'GO','Goiás'),(21,'PE','Pernambuco'),(22,'BA','Bahia'),(23,'AC','Acre'),(24,'AP','Amapá'),(25,'CE','Ceará'),(26,'MA','Maranhão'),(27,'PB','Paraíba'),(28,'PA','Pará'),(29,'PI','Piauí'),(30,'RO','Rondônia'),(31,'RR','Roraíma'),(32,'SE','Sergipe');
 /*!40000 ALTER TABLE `estados` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -259,7 +261,7 @@ CREATE TABLE `funcionarios` (
 
 LOCK TABLES `funcionarios` WRITE;
 /*!40000 ALTER TABLE `funcionarios` DISABLE KEYS */;
-INSERT INTO `funcionarios` VALUES (1,1000.00,6,1,'2023-10-20 19:40:46',1,1,1,0,'2023-10-20 00:00:00');
+INSERT INTO `funcionarios` VALUES (5,120.00,2,1,'2023-01-01 00:00:00',1,1,3,0,'1999-01-01 00:00:00'),(6,1000.00,2,1,'2023-02-01 00:00:00',1,1,7,0,'1999-01-01 00:00:00'),(7,1200.00,2,1,'2023-02-02 00:00:00',1,1,8,0,'1999-01-01 00:00:00'),(8,1200.00,2,1,'2023-03-01 00:00:00',1,1,9,0,'1999-01-01 00:00:00'),(9,1000.00,1,1,'2023-04-01 00:00:00',1,1,10,0,'1999-01-01 00:00:00'),(10,1000.00,1,1,'2023-05-01 00:00:00',1,1,11,0,'1999-01-01 00:00:00'),(11,1000.00,1,1,'2023-05-01 00:00:00',1,1,14,0,'1999-01-01 00:00:00'),(12,200.00,1,1,'2023-06-01 00:00:00',1,2,6,0,'1999-01-01 00:00:00'),(13,1.00,1,1,'2023-07-01 00:00:00',1,2,6,0,'1999-01-01 00:00:00'),(14,2050.00,1,1,'2023-08-07 00:00:00',1,2,6,0,'1999-01-01 00:00:00'),(15,2050.00,1,1,'2023-09-01 00:00:00',1,2,6,0,'1999-01-01 00:00:00'),(16,5000.00,1,0,'2023-10-01 00:00:00',1,2,6,0,'1999-01-01 00:00:00'),(17,25.00,3,1,'2023-11-01 00:00:00',1,1,21,0,'1999-01-01 00:00:00'),(18,1000.00,1,1,'2023-12-01 00:00:00',1,2,23,0,'1999-01-01 00:00:00'),(19,5000.00,2,1,'2023-10-16 19:29:30',1,1,24,0,'0000-00-00 00:00:00'),(20,1000.00,5,1,'2023-10-16 19:44:19',1,2,28,0,'0000-00-00 00:00:00');
 /*!40000 ALTER TABLE `funcionarios` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -308,7 +310,7 @@ CREATE TABLE `historicos_pontos` (
   KEY `historico_pontos_idx` (`pontos_horas_id`),
   CONSTRAINT `historico_funcionarios` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`),
   CONSTRAINT `historico_pontos` FOREIGN KEY (`pontos_horas_id`) REFERENCES `pontos_horas` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=118 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=149 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -414,6 +416,7 @@ CREATE TABLE `holerites` (
 
 LOCK TABLES `holerites` WRITE;
 /*!40000 ALTER TABLE `holerites` DISABLE KEYS */;
+INSERT INTO `holerites` VALUES (1,'2023-01-01','1',1000.00,1000.00,1000.00,100.00,0.00,1.00,1.00,800.00,'9/1/23, 8:18 PM',14,0,0,1,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(2,'2023-08-30','',100.00,100.00,100.00,100.00,100.00,0.00,0.00,100.00,'9/6/23, 4:52 PM',5,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(3,'2023-09-13','0',100.00,100.00,100.00,100.00,100.00,100.00,100.00,100.00,'9/13/23, 1:42 PM',17,1,0,0,0,0,0,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,0),(4,'2023-01-29','Janeiro',1500.00,1500.00,1500.00,150.00,0.00,170.00,1820.00,1530.00,'9/14/23, 7:53 PM',18,1,1,1,1,1,1,1,NULL,NULL,'1','Salário Mensal','48:00',12.00,1.00,1,'3','Reflexo DSR','12:00',12.00,1.00,'4','Adc. Sobreaviso','01:00',12.00,1.00,'5','Hora Extra 50%','00:40',12.00,1.00,'6','Hora Extra 80%','00:20',12.00,1.00,'7','Hora Extra 100%','00:10','12.00','1.00','8','Férias','01:00',12.00,1.00,'9','Vale Alimentação','48:00',12.00,1.00,'10','Adiantamento','00:00',12.00,1.00,'2','INSS','7,99',12.00,1.00,2023),(5,'2023-10-09','Abril',1000.00,1000.00,1000.00,1000.00,1000.00,0.00,1000.00,1000.00,'10/9/23, 8:10 PM',9,1,0,0,0,0,0,0,NULL,NULL,'1','MES','48:00',1000.00,0.00,0,'','','',NULL,NULL,'','','',NULL,NULL,'','','',NULL,NULL,'','','',NULL,NULL,'','','','','','','','',NULL,NULL,'','','',NULL,NULL,'','','',NULL,NULL,'','','',NULL,NULL,2023),(6,'2023-10-16','Outubro',5000.00,5000.00,5000.00,5000.00,1000.00,100.00,5240.00,5140.00,'10/16/23, 7:33 PM',9,0,0,0,1,0,0,0,NULL,NULL,'','','',NULL,NULL,0,'','','',NULL,NULL,'','','',NULL,NULL,'1','Hora Extra 50% ','48:00',5000.00,14.00,'','','',NULL,NULL,'','','','','','','','',NULL,NULL,'','','',NULL,NULL,'','','',NULL,NULL,'','','',NULL,NULL,2023);
 /*!40000 ALTER TABLE `holerites` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -444,7 +447,7 @@ CREATE TABLE `planos_saudes` (
 
 LOCK TABLES `planos_saudes` WRITE;
 /*!40000 ALTER TABLE `planos_saudes` DISABLE KEYS */;
-INSERT INTO `planos_saudes` VALUES (1,'11111','Sem Plano','Sem convênio com Plano','(11)1111-1111','(11)1111-1111','2023-10-20 10:44:05',1,0);
+INSERT INTO `planos_saudes` VALUES (1,'111','Unimed','Plano Unimed','1836440000','18988888888','2023-07-31 23:07:56',1,0);
 /*!40000 ALTER TABLE `planos_saudes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,7 +468,7 @@ CREATE TABLE `plantoes` (
   PRIMARY KEY (`id`),
   KEY `plantao_funcionario_idx` (`funcionario_id`),
   CONSTRAINT `funcionario_plantoes` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -474,6 +477,7 @@ CREATE TABLE `plantoes` (
 
 LOCK TABLES `plantoes` WRITE;
 /*!40000 ALTER TABLE `plantoes` DISABLE KEYS */;
+INSERT INTO `plantoes` VALUES (17,'2023-10-18','19:10:00','20:41:00','01:31:00',9),(18,'2023-10-19','08:18:00','08:19:00','00:01:00',9);
 /*!40000 ALTER TABLE `plantoes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -492,7 +496,7 @@ CREATE TABLE `pontos_horas` (
   PRIMARY KEY (`id`),
   KEY `pontos_funcionarios_idx` (`funcionario_id`),
   CONSTRAINT `pontos_funcionarios` FOREIGN KEY (`funcionario_id`) REFERENCES `funcionarios` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=138 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=170 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -501,6 +505,7 @@ CREATE TABLE `pontos_horas` (
 
 LOCK TABLES `pontos_horas` WRITE;
 /*!40000 ALTER TABLE `pontos_horas` DISABLE KEYS */;
+INSERT INTO `pontos_horas` VALUES (108,'2023-10-17','19:05:09',8),(109,'2023-10-17','19:06:24',9),(110,'2023-10-17','19:18:17',8),(111,'2023-10-17','19:18:29',8),(112,'2023-10-17','19:18:41',8),(113,'2023-10-16','08:00:00',8),(114,'2023-10-16','11:30:00',8),(115,'2023-10-16','13:00:00',8),(116,'2023-10-16','18:00:00',8),(117,'2023-10-15','08:05:00',8),(118,'2023-10-15','10:00:00',8),(119,'2023-10-15','12:00:00',8),(120,'2023-10-15','15:00:00',8),(121,'2023-10-14','06:00:00',8),(122,'2023-10-14','06:59:00',8),(123,'2023-10-14','08:54:30',8),(124,'2023-10-14','20:00:00',8),(125,'2023-10-18','18:57:47',9),(126,'2023-10-19','16:08:17',9),(127,'2023-10-19','16:09:29',9),(128,'2023-10-19','16:18:43',9),(133,'2023-10-20','17:46:29',9),(134,'2023-10-20','17:00:00',9),(135,'2023-10-20','19:01:08',9),(136,'2023-10-20','19:01:16',9),(144,'2023-10-20','19:58:43',8),(145,'2023-10-20','19:58:51',8),(146,'2023-10-20','19:58:57',8),(147,'2023-10-20','19:59:04',8),(148,'2023-10-19','22:00:00',9),(161,'2023-10-22','11:16:14',8),(162,'2023-10-22','11:17:44',8),(163,'2023-10-22','11:18:10',8),(166,'2023-10-22','11:34:24',9),(167,'2023-10-22','11:34:33',9),(168,'2023-10-22','11:34:42',9),(169,'2023-10-22','11:35:07',9);
 /*!40000 ALTER TABLE `pontos_horas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -567,7 +572,7 @@ CREATE TABLE `users` (
   UNIQUE KEY `uid_rfid_UNIQUE` (`uid_rfid`),
   KEY `role_user_idx` (`role_id`),
   CONSTRAINT `users_roles` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=30 DEFAULT CHARSET=utf8mb3;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8mb3;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -576,7 +581,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,1,'2023-08-10 20:08:05','Admin','$2y$10$B99.THkKuD8s34WSJOvQWejG6USKibD5t9XvLLNF6Fdrzh9vcjwwi','Empresa',NULL,NULL,'admin@admin.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0);
+INSERT INTO `users` VALUES (3,1,'2023-07-13 00:02:36','Lucas RH','$2y$10$7asiu7.HZQpBM9a3zOk1D.FjOEuS6RaToxBGEzjddU5CXIfovpX76','Viana','4638378323','521218275','lucas1042@live.com','18996666724','2023-07-13','0+','hbfdhgdf','0025','15165','16315','61265269',1,'adadsad','lucas@live.com','adsass',0,'fotos/RH -Viana-1206403349-perfil.png',0),(6,1,'2023-07-19 23:09:10','inutilizavel','$2y$10$CfvCN9v1ADK8mckdhBjH4elrKlU21x.BwO4Fb4uQ1brirlP6yJ/h6',NULL,NULL,NULL,'lucas10422@live.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(7,1,'2023-08-04 23:08:48','inutilizavel','$2y$10$kEIGrZ6bJ3JZdDh5uEoELum7ZkddRz3YErRbQoD9UK6iJQZMI1MOC',NULL,NULL,NULL,'loise@hotmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(8,1,'2023-08-10 20:08:05','Admin','$2y$10$B99.THkKuD8s34WSJOvQWejG6USKibD5t9XvLLNF6Fdrzh9vcjwwi','Empresa',NULL,NULL,'admin@admin.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,1,NULL,NULL,'',NULL,NULL,0),(9,1,'2023-08-10 20:08:30','Lucas','$2y$10$yerdRGxP/Fl5UWj5rRWcie8v.Fi69x2MNCPUbLHjZrdXPy8bW0O/K','RH','31515110515','2052100125','rh@rh.com','02236203','2001-08-07','O','aa','aa','a','a','aa',2,'0009903871','aa@aa.com','aaa',0,'',0),(10,1,'2023-08-10 20:08:45','Funcionario','$2y$10$9LKk/GZ0ooh42nPteKkV/uo5wBiNHe74GwaM4CvtbaGfQzNBuR4/.','Empresa','1151515','05215221','funcionario@funcionario.com','185185415841','2001-08-07','O','aa','5424','42424','24254','4245',3,'0009909291','funcionario@funcionario.com','102',1,'',0),(11,1,'2023-08-10 20:09:07','Convidado','$2y$10$B7KZo5c7lE4IdcbcgppbOeiIuSal3HkUSX0JAXibnfOAYGu5KO2jC','Convidado',NULL,NULL,'convidado@convidado.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(14,1,'2023-08-16 23:21:05','Lucas','$2y$10$chTAQclujbgIBtrPJpYefev0s2GKw/aJoCfqAIIXs/MH5fJOcHKBS','a',NULL,NULL,'lucasrochaheideric@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(20,1,'2023-08-16 23:47:06','Teste','$2y$10$im2fBK3mlTVcBNZDmAvfeeOml9A.PnE4ANZJVddxXLPptlo9l4qQK','teste1',NULL,NULL,'luckvrodrigues.77@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(21,1,'2023-08-17 00:46:07','novo','$2y$10$Dk0.KpdGBKFN7ppF/dj9LuEeTYmf8Zdd4HesCd/nxVy7o.630E/IC','novo',NULL,NULL,'novo@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,2,NULL,NULL,'',NULL,NULL,0),(22,1,'2023-08-21 22:31:58','CONVIDADO','$2y$10$XexAwrQ3TR0WH.4XsKviN.yeX0WN3ckaisujJf2F/d5u1pclLTkWC','NOVO',NULL,NULL,'convidadonovo@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(23,1,'2023-08-22 18:26:12','Novo','$2y$10$Dgpv9AWON3lPNyVhrEK3HO.FG8l4zgHjBzS0EqjYeqIrWiTHEy/Im','Novinho',NULL,NULL,'novo1@novo.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(24,1,'2023-08-28 16:51:09','Lucas','$2y$10$zDRj2afiyC9d3JMG1DsCf.kwUtUA7U8kUGYuMw0vLOdh1DyiSPUkG','Viana',NULL,NULL,'luskas7@oulook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0),(25,1,'2023-08-28 17:18:24','Teste','$2y$10$28qaCOrbHFEmVpYSZ89LVObLden87fyG8jZ.iDPxrS5KU1WorN3dS','teste',NULL,NULL,'lvrodrigues7@outlook.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(26,1,'2023-08-28 17:43:39','loise','$2y$10$9MFO.sWA.NxTMgf7Nmz9Xu5Umi9ajZXsmSRR2sk49J4glZeWM0n2e','cardoso','6262161216','262161216','loise-cardoso@hotmail.com','262161216',NULL,'262','262161216','26216121','262161216','26216','262161216',4,'262161216','loise-cardoso@hotmail.com','262161216',0,'fotos/loise-cardoso-597916517-perfil.png',0),(27,1,'2023-09-08 15:08:51','Teste','$2y$10$N.ix5QyZd3j0Jp6cC4E0HuSBJtapX/5nd4p4uwd6W2PZGQi2uvQ6a','1',NULL,NULL,'viana.rodrigues@aluno.ifsp.edu.br',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,4,NULL,NULL,'',NULL,NULL,0),(28,1,'2023-10-16 19:41:14','Lucas','$2y$10$vVZqL.h4bKzm.re/aanWlu074oBT1vyIXHYQTWs6nJGgUDGxE/dfm','Apresentacao',NULL,NULL,'suporteadm.pontoeletronico@gmail.com',NULL,NULL,NULL,NULL,NULL,NULL,NULL,NULL,3,NULL,NULL,'',NULL,NULL,0);
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -609,6 +614,7 @@ CREATE TABLE `veiculos` (
 
 LOCK TABLES `veiculos` WRITE;
 /*!40000 ALTER TABLE `veiculos` DISABLE KEYS */;
+INSERT INTO `veiculos` VALUES (2,'ERT4787','Classic Chevrolet','Prata',NULL,'8/22/23, 7:24 PM',1,3,0);
 /*!40000 ALTER TABLE `veiculos` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -621,4 +627,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2023-10-20 19:53:51
+-- Dump completed on 2023-10-22 12:45:04

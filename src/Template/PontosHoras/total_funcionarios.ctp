@@ -68,13 +68,17 @@
                                             <?php if (!empty($pontos)) {
                                                 $total = end($pontos);
                                                 if (isset($total['total'])) {
-                                                    list($horas, $minutos) = explode(':', $total['total']);
+
+                                                    $total_novo = $total['total'];
+                                                    list($horas, $minutos) = explode(':', $total_novo);
                                                     $horas = (int)$horas;
                                                     $minutos = (int)$minutos;
                                                     $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
                                                     $minutos_trabalhados += $total_minutos;
-                                                    echo $total['total'];
-                                                   
+                                                    echo $total_novo;                                                   
+                                                }else {
+                                                    debug($total['total']); exit;
+                                                    $total['total'] = 0;
                                                 }
                                             }
                                             ?>
