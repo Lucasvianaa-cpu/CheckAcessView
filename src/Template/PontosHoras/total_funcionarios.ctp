@@ -57,6 +57,7 @@
 
                             <?php if (!empty($pontos_dias)) : ?>
                                 <?php foreach ($pontos_dias as $data => $pontos) : ?>
+                                    <?php if (count($pontos) != 2 && count($pontos) != 4) : ?>
                                     <tr>
                                         <td><?= $data ?></td>
                                         <td>
@@ -84,6 +85,7 @@
                                             ?>
                                         </td>
                                     </tr>
+                                    <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php else : ?>
                                 <tr>
