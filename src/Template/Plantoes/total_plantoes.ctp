@@ -27,13 +27,13 @@
                     <div class="border-bottom py-3 px-3 align-items-center">
                         <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
                         <div class="col-2">
-                            <?= $this->Form->control('data', ['class' => 'form-control input-mes-ano', 'label' => 'Busque pelo mês e ano:', 'default' => $this->request->getQuery('data')]); ?>
+                            <?= $this->Form->control('data', ['required' => true, 'class' => 'form-control input-mes-ano', 'label' => 'Busque pelo mês e ano:', 'default' => $this->request->getQuery('data')]); ?>
                         </div>
                         <div class="col-4">
-                            <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
+                            <?= $this->Form->control('nome', ['required' => true, 'class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
                         </div>
                         <div class="col-4">
-                            <?= $this->Form->control('sobrenome', ['class' => 'form-control', 'label' => 'Busque pelo sobrenome:', 'default' => $this->request->getQuery('sobrenome'), 'placeholder' => 'Digite o sobrenome']); ?>
+                            <?= $this->Form->control('sobrenome', ['required' => true, 'class' => 'form-control', 'label' => 'Busque pelo sobrenome:', 'default' => $this->request->getQuery('sobrenome'), 'placeholder' => 'Digite o sobrenome']); ?>
                         </div>
 
                         <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
@@ -50,29 +50,54 @@
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
                                     <th style="text-align: end;" class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
+                                <?php if (!empty($plantoes)) : ?>
+                                <?php $minutos_trabalhados = 0; ?>
                                 <?php foreach ($plantoes as $plantao) : ?>
                                 <tr>
-                                    <td><?= $plantao->data ?></td>
-                                    <td></td>
+                                    <td><?= $plantao->data->format('d/m/Y'); ?></td>
+                                    <td><?= $plantao->funcionario->user->nome.' '.$plantao->funcionario->user->sobrenome ?></td>
 
-                                    <td><?= $plantao->hora_total->format('H:i') ?></td>
+                                    <?php
+                                        list($horas, $minutos) = explode(':', $plantao->hora_total->format('H:i'));
+                                        $horas = (int)$horas;
+                                        $minutos = (int)$minutos;
+                                        $total_minutos = $horas * 60 + $minutos;
+                                        $minutos_trabalhados += $total_minutos;
+                                    ?>
+                                    <td style="text-align: end;"><?= $plantao->hora_total->format('H:i') ?></td>
                                 </tr>
                                 <?php endforeach; ?>
+                                <?php else : ?>
+                                    <tr>
+                                        <td colspan="3">Busque nos campos acima para trazer o resultado</td>
+                                    </tr>
+                                <?php endif; ?>
                             </tbody>
                         </table>
                     </div>
 
                 
 
+                    <?php if (!empty($plantoes)) : ?>
+                    <?php
+                    $horas = floor($minutos_trabalhados / 60);
+                    $minutos = $minutos_trabalhados % 60;
+                    ?>
+
                     <p style="text-align: end; margin-right: 10px; margin-top: 5px;">
                         Horas Extras Mensais: <strong><?= sprintf('%02d', $horas) . ':' . sprintf('%02d', $minutos) ?></strong>
                     </p>
+                    <?php else : ?>
+                        <p style="text-align: end; margin-right: 10px; margin-top: 5px;">Não possui horas</p>
+                    <?php endif; ?>
 
 
 
+                    <?php if (!empty($plantoes)) : ?>
                     <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
                         <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
                         <ul class="pagination d-flex align-items-center">
@@ -80,6 +105,7 @@
                             <span aria-hidden="true" class="border rounded-2 p-2 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->next(__('<span class="text-white" style="font-size: 20px">&raquo;</span>') . ' ', ['escape' => false, 'class' => 'next']) ?></span>
                         </ul>
                     </div>
+                    <?php endif; ?>
                 </div>
             </div>
         </div>

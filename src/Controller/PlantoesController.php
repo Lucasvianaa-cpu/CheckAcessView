@@ -20,24 +20,44 @@ class PlantoesController extends AppController
 
     public function totalPlantoes()
     {
-
         $this->loadModel('Funcionarios');
         $this->loadModel('Users');
 
-
         $conditions = [];
         
+        if ($this->request->getQuery('nome') != '') {
+            $nome = $this->request->getQuery('nome');
+            $nome = $this->removerAcentos($nome);
+            $conditions['LOWER(Users.nome) LIKE'] = '%' . strtolower($nome) . '%';
+        }
+
+        if ($this->request->getQuery('sobrenome') != '') {
+            $sobrenome = $this->request->getQuery('sobrenome');
+            $sobrenome = $this->removerAcentos($sobrenome);
+            $conditions['LOWER(Users.sobrenome) LIKE'] = '%' . strtolower($sobrenome) . '%';
+        }
+
+
         if ($this->request->getQuery('data') != '') {
             $data = $this->request->getQuery('data');
-            $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
+            $data_formatada = DateTime::createFromFormat('m/Y', $data);
             if ($data_formatada) {
-                $conditions['Plantoes.data ='] = $data_formatada->format('Y-m-d');
+                // Primeiro dia do mês
+                $primeiro_dia = $data_formatada->format('Y-m-01');
+
+                // Último dia do mês
+                $ultimo_dia = $data_formatada->format('Y-m-t');
+
+                $conditions['Plantoes.data >='] = $primeiro_dia;
+                $conditions['Plantoes.data <='] = $ultimo_dia;
+
+
+                $plantoes = $this->paginate($this->Plantoes, ['contain' => 'Funcionarios.Users', 'limit' => 31, 'conditions' => $conditions]);
+                $this->set(compact('plantoes'));
             }
         }
 
-        $plantoes = $this->paginate($this->Plantoes, ['contain' => 'Funcionarios']);
-
-        $this->set(compact('plantoes'));
+        
     }
 
 
@@ -49,7 +69,7 @@ class PlantoesController extends AppController
 
 
         $conditions = [];
-        
+
         if ($this->request->getQuery('data') != '') {
             $data = $this->request->getQuery('data');
             $data_formatada = DateTime::createFromFormat('d/m/Y', $data);
@@ -60,7 +80,7 @@ class PlantoesController extends AppController
 
         $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
 
-        
+
         $dias = range(1, 31);
         $pontos_dias = [];
 

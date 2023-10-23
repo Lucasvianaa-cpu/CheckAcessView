@@ -41,11 +41,11 @@ class PlantoesTable extends Table
             'foreignKey' => 'funcionario_id',
             'joinType' => 'INNER',
         ]);
-        $this->belongsToMany('Funcionarios', [
-            'foreignKey' => 'plantao_id',
-            'targetForeignKey' => 'funcionario_id',
-            'joinTable' => 'funcionarios_plantoes',
-        ]);
+        // $this->belongsToMany('Funcionarios', [
+        //     'foreignKey' => 'plantao_id',
+        //     'targetForeignKey' => 'funcionario_id',
+        //     'joinTable' => 'funcionarios_plantoes',
+        // ]);
     }
 
     /**

@@ -54,13 +54,19 @@ class AppController extends Controller
             'storage' => 'Session',
             'authorize' => 'Controller'
         ]);
-
         
     }
     
     public function isAuthorized($user)
     {
         return true;
+    }
+
+    public function removerAcentos($str) {
+        $acentos = array('á', 'à', 'â', 'ã', 'é', 'è', 'ê', 'í', 'ì', 'î', 'ó', 'ò', 'ô', 'õ', 'ú', 'ù', 'û', 'ç', 'Á', 'À', 'Â', 'Ã', 'É', 'È', 'Ê', 'Í', 'Ì', 'Î', 'Ó', 'Ò', 'Ô', 'Õ', 'Ú', 'Ù', 'Û', 'Ç');
+        $semAcentos = array('a', 'a', 'a', 'a', 'e', 'e', 'e', 'i', 'i', 'i', 'o', 'o', 'o', 'o', 'u', 'u', 'u', 'c', 'A', 'A', 'A', 'A', 'E', 'E', 'E', 'I', 'I', 'I', 'O', 'O', 'O', 'O', 'U', 'U', 'U', 'C');
+        $str = str_replace($acentos, $semAcentos, $str);
+        return $str;
     }
 
     //! Usuário faz login é capturado os dados do usuário e atribuito a váriavel $current_user
