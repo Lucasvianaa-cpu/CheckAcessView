@@ -445,7 +445,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Relatórios</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios'])) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin/admin', '', $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios'])) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
