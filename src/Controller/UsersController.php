@@ -280,13 +280,11 @@ class UsersController extends AppController
         $this->set(compact('user', 'cargo', 'cargos', 'categoria'));
     }
 
-    //--Alterar
-
     public function esqueciSenha()
     {
         $this->loadModel('Users');
         $user = $this->Users->newEntity();
-        if (!empty($this->request->data)) {
+        if (!empty($this->request->getData())) {
 
             if ($this->request->is('post')) {
                 $user = $this->Users->patchEntity($user, $this->request->data);
