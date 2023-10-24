@@ -265,20 +265,24 @@ class UsersController extends AppController
 
     public function visualizarPerfil($id = null)
     {
-
         $this->loadModel('Cargos');
 
         $user = $this->Users->get($id, [
             'contain' => ['Funcionarios.Cargos.Categorias']
         ]);
 
-        $cargo = $user->funcionarios[0]->cargo;
-        $categoria = $cargo->categoria;
+        if ($user->role_id !== 4) {
+            $cargo = $user->funcionarios[0]->cargo;
+            $categoria = $cargo->categoria;
 
-        $cargos = $this->Cargos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+            $cargos = $this->Cargos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
 
-        $this->set(compact('user', 'cargo', 'cargos', 'categoria'));
+            $this->set(compact('user', 'cargo', 'cargos', 'categoria'));
+        } else {
+            $this->set(compact('user'));
+        }
     }
+
 
     public function esqueciSenha()
     {
