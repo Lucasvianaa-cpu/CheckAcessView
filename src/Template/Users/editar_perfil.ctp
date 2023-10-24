@@ -255,7 +255,7 @@
 
                   <?= $this->Form->button(__('Enviar'), ['class' => 'btn btn-sm btn-dark']) ?>
                   <?php if ($current_user['role_id'] != 4) : ?>
-                      <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Users', 'action' => 'dashboard'])); ?>">Cancelar</a>
+                      <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Cancelar</a>
                   <?php endif; ?>
                   <?php if ($current_user['role_id'] == 4) : ?>
                       <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home'])); ?>">Cancelar</a>
