@@ -29,19 +29,19 @@
           </div>
         </div>
         <div class="card-body px-0 py-0">
-        <div class="border-bottom py-3 px-3 align-items-center">
-              <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3','filtro']); ?>
-                
-                  <div class="col-10">
-                      <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
-                  </div>
+          <div class="border-bottom py-3 px-3 align-items-center">
+            <?php echo $this->Form->create(null, ['type' => 'get', 'class' => 'row g-3', 'filtro']); ?>
 
-                  <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
-                    <b>Buscar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
-                  </button>
-                  
-              <?php echo $this->Form->end(); ?>
-        </div>
+            <div class="col-10">
+              <?= $this->Form->control('nome', ['class' => 'form-control', 'label' => 'Busque pelo nome:', 'default' => $this->request->getQuery('nome'), 'placeholder' => 'Digite o nome']); ?>
+            </div>
+
+            <button type="submit" class="btn btn-sm btn-dark col-2" style="margin-top: 46px; height: 40px;">
+              <b>Buscar </b>&nbsp;<i class="fa-solid fa-magnifying-glass text-white"></i>
+            </button>
+
+            <?php echo $this->Form->end(); ?>
+          </div>
           <div class="table-responsive p-0">
             <table class="table align-items-center mb-0">
               <thead class="bg-gray-100">
@@ -70,7 +70,7 @@
                     <td class="align-middle text-center text-sm">
                       <p class="text-sm text-dark font-weight-semibold mb-0"><?= $cidade->estado->nome ?></p>
                     </td>
-                    <td class="align-middle text-center"  style="display: flex; justify-content: end;">
+                    <td class="align-middle text-center" style="display: flex; justify-content: end;">
                       <a class="btn btn-sm btn-dark mx-1" href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'view', $cidade->id]); ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-eye" viewBox="0 0 16 16">
                           <path d="M16 8s-3-5.5-8-5.5S0 8 0 8s3 5.5 8 5.5S16 8 16 8zM1.173 8a13.133 13.133 0 0 1 1.66-2.043C4.12 4.668 5.88 3.5 8 3.5c2.12 0 3.879 1.168 5.168 2.457A13.133 13.133 0 0 1 14.828 8c-.058.087-.122.183-.195.288-.335.48-.83 1.12-1.465 1.755C11.879 11.332 10.119 12.5 8 12.5c-2.12 0-3.879-1.168-5.168-2.457A13.134 13.134 0 0 1 1.172 8z" />
@@ -79,24 +79,24 @@
                       </a>
                       <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'edit', $cidade->id]); ?>">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
-                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
-                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                          <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                          <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
                         </svg>
                       </a>
                       <?= $this->Form->postLink(
-                                '<button type="button" class="btn btn-sm btn-dark mx-1">
+                        '<button type="button" class="btn btn-sm btn-dark mx-1">
                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash-fill" viewBox="0 0 16 16">
                                     <path d="M2.5 1a1 1 0 0 0-1 1v1a1 1 0 0 0 1 1H3v9a2 2 0 0 0 2 2h6a2 2 0 0 0 2-2V4h.5a1 1 0 0 0 1-1V2a1 1 0 0 0-1-1H10a1 1 0 0 0-1-1H7a1 1 0 0 0-1 1H2.5zm3 4a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 .5-.5zM8 5a.5.5 0 0 1 .5.5v7a.5.5 0 0 1-1 0v-7A.5.5 0 0 1 8 5zm3 .5v7a.5.5 0 0 1-1 0v-7a.5.5 0 0 1 1 0z"/>
                                   </svg>
                               </button>',
-                                ['action' => 'delete', $cidade->id],
-                                [
-                                    'confirm' => __('Tem certeza que deseja deletar a cidade: {0}?', $cidade->nome),
-                                    'escapeTitle' => false,
-                                    'escape' => false,
-                                    'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
-                                ]
-                            ) ?>
+                        ['action' => 'delete', $cidade->id],
+                        [
+                          'confirm' => __('Tem certeza que deseja deletar a cidade: {0}?', $cidade->nome),
+                          'escapeTitle' => false,
+                          'escape' => false,
+                          'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
+                        ]
+                      ) ?>
                     </td>
                   </tr>
                 <?php endforeach; ?>
@@ -118,16 +118,14 @@
       </div>
     </div>
 
-    <footer class="footer pt-3  ">
-      <div class="container-fluid">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6 mb-lg-0 mb-4">
-            <div class="copyright text-center text-xs text-muted text-lg-start">
-              Copyright
-              © <script>
+    <footer class="footer pt-3">
+      <div class="container-fluid d-flex justify-content-center">
+        <div class="row">
+          <div class="col-lg-12 mb-lg-0 mb-4 text-center">
+            <div class="copyright text-xs text-muted text-lg-start">
+              Desenvolvido por Jaine Oliveira e Lucas Viana - Copyright © <script>
                 document.write(new Date().getFullYear())
               </script>
-              Jaine Oliveira e Lucas Viana
             </div>
           </div>
         </div>

@@ -103,7 +103,7 @@
                     <?php endif; ?>
                   </tr>
                 <?php endforeach; ?>
-                
+
               </tbody>
             </table>
 
@@ -122,16 +122,14 @@
       </div>
     </div>
 
-    <footer class="footer pt-3  ">
-      <div class="container-fluid">
-        <div class="row align-items-center justify-content-lg-between">
-          <div class="col-lg-6 mb-lg-0 mb-4">
-            <div class="copyright text-center text-xs text-muted text-lg-start">
-              Copyright
-              © <script>
+    <footer class="footer pt-3">
+      <div class="container-fluid d-flex justify-content-center">
+        <div class="row">
+          <div class="col-lg-12 mb-lg-0 mb-4 text-center">
+            <div class="copyright text-xs text-muted text-lg-start">
+              Desenvolvido por Jaine Oliveira e Lucas Viana - Copyright © <script>
                 document.write(new Date().getFullYear())
               </script>
-              Jaine Oliveira e Lucas Viana
             </div>
           </div>
         </div>

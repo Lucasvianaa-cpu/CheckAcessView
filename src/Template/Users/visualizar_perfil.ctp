@@ -56,48 +56,48 @@
                     </nav>
                 <?php endif; ?>
 
-                    <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-                        <ul class="navbar-nav ms-md-auto  justify-content-end">
-                            <li class="nav-item ps-2 d-flex align-items-center">
-                                <div class="dropdown">
-                                    <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                                        <?php if (!empty($current_user->caminho_foto)) : ?>
-                                            <?= $this->Html->image($current_user->caminho_foto, [
-                                                'width' => '50px',
-                                                'height' => 'auto',
-                                                'style' => 'border-radius: 25px; min-height: 50px; max-height: 50px'
-                                            ]); ?>
+                <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
+                    <ul class="navbar-nav ms-md-auto  justify-content-end">
+                        <li class="nav-item ps-2 d-flex align-items-center">
+                            <div class="dropdown">
+                                <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <?php if (!empty($current_user->caminho_foto)) : ?>
+                                        <?= $this->Html->image($current_user->caminho_foto, [
+                                            'width' => '50px',
+                                            'height' => 'auto',
+                                            'style' => 'border-radius: 25px; min-height: 50px; max-height: 50px'
+                                        ]); ?>
 
 
-                                        <?php else : ?>
-                                            <?= $this->Html->image('perfil.png', [
-                                                'width' => '40px',
-                                                'height' => 'auto',
-                                            ]); ?>
-                                        <?php endif; ?>
-                                        <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
-                                    </button>
-                                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                                        <?php if ($current_user['role_id'] != 1) : ?>
-                                            <li>
-                                                <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a>
-                                            </li>
-                                        <?php endif; ?>
-
-                                        <?php if ($current_user['role_id'] == 1) : ?>
-                                            <li>
-                                                <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Meu Perfil</a>
-                                            </li>
-                                        <?php endif; ?>
-
+                                    <?php else : ?>
+                                        <?= $this->Html->image('perfil.png', [
+                                            'width' => '40px',
+                                            'height' => 'auto',
+                                        ]); ?>
+                                    <?php endif; ?>
+                                    <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                                    <?php if ($current_user['role_id'] != 1) : ?>
                                         <li>
-                                            <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'sair'])) ?>">Sair</a>
+                                            <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a>
                                         </li>
-                                    </ul>
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
+                                    <?php endif; ?>
+
+                                    <?php if ($current_user['role_id'] == 1) : ?>
+                                        <li>
+                                            <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Meu Perfil</a>
+                                        </li>
+                                    <?php endif; ?>
+
+                                    <li>
+                                        <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'sair'])) ?>">Sair</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
             </div>
             <hr class="horizontal w-100 my-0 dark">
             <div class="container pb-3 pt-3">
@@ -191,18 +191,18 @@
 
 
     </div>
-    <footer class="footer pt-3  ">
-        <div class="container-fluid">
-            <div class="row align-items-center justify-content-lg-between">
-                <div class="col-lg-6 mb-lg-0 mb-4">
-                    <div class="copyright text-center text-xs text-muted text-lg-start">
-                        Copyright
-                        © <script>
+    <footer class="footer pt-3">
+        <div class="container-fluid d-flex justify-content-center">
+            <div class="row">
+                <div class="col-lg-12 mb-lg-0 mb-4 text-center">
+                    <div class="copyright text-xs text-muted text-lg-start">
+                        Desenvolvido por Jaine Oliveira e Lucas Viana - Copyright © <script>
                             document.write(new Date().getFullYear())
                         </script>
-                        Jaine Oliveira e Lucas Viana
                     </div>
                 </div>
+            </div>
+        </div>
     </footer>
 
     </div>

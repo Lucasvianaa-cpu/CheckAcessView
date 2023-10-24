@@ -1,4 +1,3 @@
-
 <?php
 
 /**
@@ -50,27 +49,27 @@
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
                                     <th style="text-align: end;" class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
-                                    
+
                                 </tr>
                             </thead>
                             <tbody>
                                 <?php if (!empty($plantoes)) : ?>
-                                <?php $minutos_trabalhados = 0; ?>
-                                <?php foreach ($plantoes as $plantao) : ?>
-                                <tr>
-                                    <td><?= $plantao->data->format('d/m/Y'); ?></td>
-                                    <td><?= $plantao->funcionario->user->nome.' '.$plantao->funcionario->user->sobrenome ?></td>
+                                    <?php $minutos_trabalhados = 0; ?>
+                                    <?php foreach ($plantoes as $plantao) : ?>
+                                        <tr>
+                                            <td><?= $plantao->data->format('d/m/Y'); ?></td>
+                                            <td><?= $plantao->funcionario->user->nome . ' ' . $plantao->funcionario->user->sobrenome ?></td>
 
-                                    <?php
-                                        list($horas, $minutos) = explode(':', $plantao->hora_total->format('H:i'));
-                                        $horas = (int)$horas;
-                                        $minutos = (int)$minutos;
-                                        $total_minutos = $horas * 60 + $minutos;
-                                        $minutos_trabalhados += $total_minutos;
-                                    ?>
-                                    <td style="text-align: end;"><?= $plantao->hora_total->format('H:i') ?></td>
-                                </tr>
-                                <?php endforeach; ?>
+                                            <?php
+                                            list($horas, $minutos) = explode(':', $plantao->hora_total->format('H:i'));
+                                            $horas = (int)$horas;
+                                            $minutos = (int)$minutos;
+                                            $total_minutos = $horas * 60 + $minutos;
+                                            $minutos_trabalhados += $total_minutos;
+                                            ?>
+                                            <td style="text-align: end;"><?= $plantao->hora_total->format('H:i') ?></td>
+                                        </tr>
+                                    <?php endforeach; ?>
                                 <?php else : ?>
                                     <tr>
                                         <td colspan="3">Busque nos campos acima para trazer o resultado</td>
@@ -80,17 +79,17 @@
                         </table>
                     </div>
 
-                
+
 
                     <?php if (!empty($plantoes)) : ?>
-                    <?php
-                    $horas = floor($minutos_trabalhados / 60);
-                    $minutos = $minutos_trabalhados % 60;
-                    ?>
+                        <?php
+                        $horas = floor($minutos_trabalhados / 60);
+                        $minutos = $minutos_trabalhados % 60;
+                        ?>
 
-                    <p style="text-align: end; margin-right: 10px; margin-top: 5px;">
-                        Horas Extras Mensais: <strong><?= sprintf('%02d', $horas) . ':' . sprintf('%02d', $minutos) ?></strong>
-                    </p>
+                        <p style="text-align: end; margin-right: 10px; margin-top: 5px;">
+                            Horas Extras Mensais: <strong><?= sprintf('%02d', $horas) . ':' . sprintf('%02d', $minutos) ?></strong>
+                        </p>
                     <?php else : ?>
                         <p style="text-align: end; margin-right: 10px; margin-top: 5px;">Não possui horas</p>
                     <?php endif; ?>
@@ -98,28 +97,26 @@
 
 
                     <?php if (!empty($plantoes)) : ?>
-                    <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
-                        <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
-                        <ul class="pagination d-flex align-items-center">
-                            <span aria-hidden="true" class="border rounded-2 p-2 mx-1 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->prev('' . __('<span class="text-white" style="font-size: 20px">&laquo;</span>'), ['escape' => false, 'class' => 'prev']) ?></span>
-                            <span aria-hidden="true" class="border rounded-2 p-2 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->next(__('<span class="text-white" style="font-size: 20px">&raquo;</span>') . ' ', ['escape' => false, 'class' => 'next']) ?></span>
-                        </ul>
-                    </div>
+                        <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
+                            <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
+                            <ul class="pagination d-flex align-items-center">
+                                <span aria-hidden="true" class="border rounded-2 p-2 mx-1 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->prev('' . __('<span class="text-white" style="font-size: 20px">&laquo;</span>'), ['escape' => false, 'class' => 'prev']) ?></span>
+                                <span aria-hidden="true" class="border rounded-2 p-2 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->next(__('<span class="text-white" style="font-size: 20px">&raquo;</span>') . ' ', ['escape' => false, 'class' => 'next']) ?></span>
+                            </ul>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
         </div>
 
-        <footer class="footer pt-3  ">
-            <div class="container-fluid">
-                <div class="row align-items-center justify-content-lg-between">
-                    <div class="col-lg-6 mb-lg-0 mb-4">
-                        <div class="copyright text-center text-xs text-muted text-lg-start">
-                            Copyright
-                            © <script>
+        <footer class="footer pt-3">
+            <div class="container-fluid d-flex justify-content-center">
+                <div class="row">
+                    <div class="col-lg-12 mb-lg-0 mb-4 text-center">
+                        <div class="copyright text-xs text-muted text-lg-start">
+                            Desenvolvido por Jaine Oliveira e Lucas Viana - Copyright © <script>
                                 document.write(new Date().getFullYear())
                             </script>
-                            Jaine Oliveira e Lucas Viana
                         </div>
                     </div>
                 </div>

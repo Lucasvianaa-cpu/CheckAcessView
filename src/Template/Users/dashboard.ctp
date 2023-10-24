@@ -710,11 +710,6 @@
                   </div>
                 </div>
               </footer>
-
-
-
-
-
               </div>
               </main>
 
