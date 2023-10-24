@@ -254,8 +254,13 @@
                 <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
 
                   <?= $this->Form->button(__('Enviar'), ['class' => 'btn btn-sm btn-dark']) ?>
-                  <a class="btn btn-sm btn-white" href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
-                </div>
+                  <?php if ($current_user['role_id'] != 4) : ?>
+                      <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Users', 'action' => 'dashboard'])); ?>">Cancelar</a>
+                  <?php endif; ?>
+                  <?php if ($current_user['role_id'] == 4) : ?>
+                      <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home'])); ?>">Cancelar</a>
+                  <?php endif; ?>
+                    </div>
                 <?= $this->Form->end() ?>
               </div>
 
