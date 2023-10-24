@@ -64,8 +64,9 @@
                       <?= $this->Form->control('email', ['label' => 'E-mail', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu E-mail']); ?>
                     </div>
 
-                    <div class="text-center">
-                      <?= $this->Form->button(__('Enviar E-mail'), ['class' => 'btn btn-dark w-100 mt-4 mb-3']) ?>
+                    <div class="text-center d-flex justify-content-between">
+                      <a class="btn btn-white w-50 mt-2 mb-2 mx-2" href="<?= $this->Url->build(['action' => 'login']); ?>">Voltar</a>
+                      <?= $this->Form->button(__('Enviar E-mail'), ['class' => 'btn btn-dark w-50 mt-2 mb-2 mx-2']) ?>
                     </div>
 
                     <?= $this->Form->end(); ?>
