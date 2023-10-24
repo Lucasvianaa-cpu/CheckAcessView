@@ -30,8 +30,8 @@
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
     <!-- Sidenav Top -->
     <nav class="navbar bg-slate-900 navbar-expand-lg flex-wrap top-0 px-0 py-0">
-      <?php if ($current_user['role_id'] != 4) : ?>
-        <div class="container py-2">
+      <div class="container py-2">
+        <?php if ($current_user['role_id'] != 4) : ?>
           <nav aria-label="breadcrumb">
             <div class="d-flex align-items-center">
               <span class="px-3 font-weight-bold text-lg text-white me-4">
@@ -43,7 +43,6 @@
             </div>
           </nav>
         <?php endif; ?>
-        <!--CONVIDADO-->
         <?php if ($current_user['role_id'] == 4) : ?>
           <nav aria-label="breadcrumb">
             <div class="d-flex align-items-center">
@@ -55,10 +54,7 @@
 
             </div>
           </nav>
-
         <?php endif; ?>
-
-        </ul>
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
           <ul class="navbar-nav ms-md-auto  justify-content-end">
 
@@ -102,24 +98,24 @@
             </li>
           </ul>
         </div>
+      </div>
+      <hr class="horizontal w-100 my-0 dark">
+      <div class="container pb-3 pt-3">
+        <div class="p-0 d-flex">
+          <ul class="navbar-nav list-group-horizontal">
+            <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
+              <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">
+                Meu Perfil
+              </a>
+            </li>
+            <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
+              <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">
+                Editar Perfil
+              </a>
+            </li>
+          </ul>
         </div>
-        <hr class="horizontal w-100 my-0 dark">
-        <div class="container pb-3 pt-3">
-          <div class="p-0 d-flex">
-            <ul class="navbar-nav list-group-horizontal">
-              <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">
-                  Meu Perfil
-                </a>
-              </li>
-              <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">
-                  Editar Perfil
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
+      </div>
     </nav>
     <!-- End Sidenav Top -->
     <div class="pt-7 pb-6 bg-cover" style="background-image: url('<?= $this->Url->image('header.png', ['controller' => 'img', 'action' => 'header.png']); ?>'); background-position: bottom;"></div>
