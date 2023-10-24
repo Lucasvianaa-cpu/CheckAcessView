@@ -60,7 +60,7 @@ if (isset($_SESSION['msg'])) {
                                 </div>
                             </div>
                             <div class="col-md-8 col-sm-12 " style="text-align: left!important">
-                                <h6 class="mb-3 font-weight-bold text-lg">FUNCIONÁRIO</h6>
+                                <h6 class="mb-3 font-weight-bold text-lg">Dados do Funcionário</h6>
                                 <h3 class="mb-3 font-weight-semibold text-lg">
                                     <span class="mb-3 font-weight-bold text-lg">Nome:</span> <?= $funcionario->user->nome ?> <?= $funcionario->user->sobrenome ?>
                                 </h3>
