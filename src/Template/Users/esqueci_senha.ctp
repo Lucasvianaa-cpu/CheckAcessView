@@ -58,7 +58,7 @@
                   </div>
                   <div class="card-body">
 
-                    <?= $this->Form->create('', ['class' => '']) ?>
+                    <?= $this->Form->create(null, ['class' => '']) ?>
 
                     <div class="mb-3">
                       <?= $this->Form->control('email', ['label' => 'E-mail', 'type' => 'email', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu E-mail']); ?>

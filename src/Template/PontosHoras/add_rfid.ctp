@@ -89,7 +89,7 @@
 
                                     <div class="card-body">
 
-                                        <?= $this->Form->create('', ['class' => '']) ?>
+                                        <?= $this->Form->create(null, ['class' => '']) ?>
 
                                         <div class="mb-3" style="pointer-events: none;">
                                             <?= $this->Form->control('uid_rfid', ['type' => 'text', 'label' => '', 'class' => 'form-control rfid_hidden', 'autofocus' => 'autofocus']); ?>
