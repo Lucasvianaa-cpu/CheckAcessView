@@ -215,18 +215,21 @@ class UsersController extends AppController
         $this->loadModel('Veiculos');
 
         $user = $this->Users->get($id, [
-            'contain' => ['Enderecos'],
+            'contain' => ['Enderecos.Cidades'],
         ]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $endereco = $user->enderecos ? $user->enderecos[0] : $this->Enderecos->newEntity();
-
-            $endereco->rua = $this->request->getData('rua');
-            $endereco->numero = $this->request->getData('numero');
-            $endereco->bairro = $this->request->getData('bairro');
-            $endereco->cep = $this->request->getData('cep');
+        
+            $endereco->rua = $this->request->getData('enderecos.0.rua');
+            $endereco->numero = $this->request->getData('enderecos.0.numero');
+            $endereco->bairro = $this->request->getData('enderecos.0.bairro');
+            $endereco->cep = $this->request->getData('enderecos.0.cep');
             $endereco->user_id = $this->Auth->user('id');
-            $endereco->cidade_id = $this->request->getData('cidade_id');
+            $endereco->cidade_id = $this->request->getData('enderecos.0.cidade_id');
+            
+            $this->Enderecos->save($endereco);
+
 
 
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -255,12 +258,11 @@ class UsersController extends AppController
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $estados = $this->Estados->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $cidades = $this->Cidades->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
-        $endereco_perfil = $this->Enderecos->find('all', ['contain' => ['Cidades.Estados'], 'order' => ['Enderecos.id' => 'DESC'], 'limit' => 1])->where(['Enderecos.user_id' => $this->Auth->User('id')])->first();
         $categorias = $this->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $cargos = $this->Cargos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $veiculos = $this->Veiculos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
 
-        $this->set(compact('user', 'roles', 'estados', 'cidades', 'endereco_perfil', 'categorias', 'cargos', 'veiculos'));
+        $this->set(compact('user', 'roles', 'estados', 'cidades', 'categorias', 'cargos', 'veiculos'));
     }
 
     public function visualizarPerfil($id = null)
@@ -291,8 +293,8 @@ class UsersController extends AppController
         if (!empty($this->request->getData())) {
 
             if ($this->request->is('post')) {
-                $user = $this->Users->patchEntity($user, $this->request->data);
-                if ($user = $this->Users->findByEmail($this->request->data['email'])->toArray()) {
+                $user = $this->Users->patchEntity($user, $this->request->getData());
+                if ($user = $this->Users->findByEmail($this->request->getData(['email']))->toArray()) {
                     $this->getMailer('User')->send('recovery', [$user]);
                     $this->Flash->success(__('Enviamos um e-mail de recuperação. Acesse sua caixa de mensagens e clique no link de recuperação.'));
                 } else {
