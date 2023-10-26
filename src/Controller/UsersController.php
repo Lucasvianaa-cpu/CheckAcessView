@@ -215,19 +215,19 @@ class UsersController extends AppController
         $this->loadModel('Veiculos');
 
         $user = $this->Users->get($id, [
-            'contain' => ['Enderecos.Cidades'],
+            'contain' => ['Enderecos.Cidades.Estados'],
         ]);
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $endereco = $user->enderecos ? $user->enderecos[0] : $this->Enderecos->newEntity();
-        
+
             $endereco->rua = $this->request->getData('enderecos.0.rua');
             $endereco->numero = $this->request->getData('enderecos.0.numero');
             $endereco->bairro = $this->request->getData('enderecos.0.bairro');
             $endereco->cep = $this->request->getData('enderecos.0.cep');
             $endereco->user_id = $this->Auth->user('id');
             $endereco->cidade_id = $this->request->getData('enderecos.0.cidade_id');
-            
+
             $this->Enderecos->save($endereco);
             $foto = $user->caminho_foto;
 
@@ -271,6 +271,22 @@ class UsersController extends AppController
         $veiculos = $this->Veiculos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
 
         $this->set(compact('user', 'roles', 'estados', 'cidades', 'categorias', 'cargos', 'veiculos'));
+    }
+
+    public function getEstado()
+    {
+        $this->loadModel('Cidades');
+        $this->autoRender = false;
+        $cidadeID = $this->request->getQuery('cidadeid');
+
+        $estado = $this->Cidades->find('all', [
+            'conditions' => ['Cidades.id' => $cidadeID],
+            'contain' => ['Estados'],
+            'limit' => 1
+        ])->first();
+
+        $this->response = $this->response->withType('application/json')
+            ->withStringBody(json_encode(['estado' => $estado->estado->nome]));
     }
 
     public function visualizarPerfil($id = null)

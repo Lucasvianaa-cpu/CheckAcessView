@@ -185,7 +185,7 @@
                   <?= $this->Form->control('enderecos.0.cidade_id', ['type' => 'select', 'label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade', 'empty' => 'Selecione']); ?>
                 </div>
                 <div class="col-md-2">
-                  <?= $this->Form->control('cidades.estado_id', ['type' => 'select', 'label' => 'Estado', 'empty' => 'Selecione', 'options' => $estados, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite o Estado', 'default' => $user->enderecos[0]->cidade->estado_id]); ?>
+                  <?= $this->Form->control('cidades.estado_id', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'required' => 'required', 'style' => 'pointer-events: none;', 'disabled' => true, 'placeholder' => 'Digite o Estado', 'default' => $user->enderecos[0]->cidade->estado->nome]); ?>
                 </div>
 
                 <div class="col-md-6">
@@ -255,12 +255,12 @@
 
                   <?= $this->Form->button(__('Enviar'), ['class' => 'btn btn-sm btn-dark']) ?>
                   <?php if ($current_user['role_id'] != 4) : ?>
-                      <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Cancelar</a>
+                    <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Cancelar</a>
                   <?php endif; ?>
                   <?php if ($current_user['role_id'] == 4) : ?>
-                      <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home'])); ?>">Cancelar</a>
+                    <a class="btn btn-sm btn-white" href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home'])); ?>">Cancelar</a>
                   <?php endif; ?>
-                    </div>
+                </div>
                 <?= $this->Form->end() ?>
               </div>
 
@@ -289,6 +289,7 @@
       </div>
 
       <footer>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <?= $this->Html->script('jquery.js'); ?>
         <?= $this->Html->script('popper.min.js'); ?>
         <?= $this->Html->script('bootstrap.min.js'); ?>
@@ -315,6 +316,25 @@
           document.addEventListener("DOMContentLoaded", function() {
             var inputElement = document.getElementById("data-nascimento");
             inputElement.value = "<?php echo $data_formatada ?>";
+          });
+        </script>
+
+        <script>
+          $(document).ready(function() {
+            $('#enderecos-0-cidade-id').change(function() {
+              var cidadeID = $(this).val();
+              console.log(cidadeID);
+              $.ajax({
+                url: '/users/getEstado',
+                type: 'GET',
+                data: {
+                  cidadeid: cidadeID
+                },
+                success: function(response) {
+                  $('#cidades-estado-id').val(response.estado);
+                }
+              });
+            });
           });
         </script>
 
