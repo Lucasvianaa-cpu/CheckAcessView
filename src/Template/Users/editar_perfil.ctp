@@ -201,7 +201,7 @@
                 <div class="col-md-6">
                   <?= $this->Form->control('telefone', ['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o telefone']); ?>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-6"> 
                   <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'), 'required', $user->data_nascimento); ?>
                 </div>
                 <div class="col-md-2">
