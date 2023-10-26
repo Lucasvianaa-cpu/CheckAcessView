@@ -229,7 +229,7 @@ class UsersController extends AppController
             $endereco->cidade_id = $this->request->getData('enderecos.0.cidade_id');
             
             $this->Enderecos->save($endereco);
-
+            $foto = $user->caminho_foto;
 
 
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -238,14 +238,22 @@ class UsersController extends AppController
                 $file = $this->request->getData()['caminho_foto'];
                 $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
                 $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+
+                // Substituir caracteres inválidos no nome do arquivo
+                $nomeDoArquivo = preg_replace("/[^a-zA-Z0-9._-]/", "_", $user->caminho_foto);
+
                 if (in_array($ext, $arr_ext)) {
                     $numeros = rand();
-                    $filename = $user->nome . '-' . $user->sobrenome . '-' . $numeros . '-perfil' . '.' . $ext;
+                    $filename = $nomeDoArquivo . '-' . $numeros . '.' . $ext;
                     move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
                     $user->caminho_foto = 'fotos/' . $filename;
                 } else {
-                    $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
+                    $this->Flash->error(__('Só é permitido documentos do tipo (JPG, JPEG, GIF, PNG).'));
                 }
+            }
+
+            if (empty($this->request->getData()['caminho_foto']['name'])) {
+                $user->caminho_foto = $foto;
             }
 
             if ($this->Users->save($user)) {
