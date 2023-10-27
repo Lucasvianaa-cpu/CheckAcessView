@@ -22,6 +22,19 @@ class HoleritesController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Funcionarios');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $conditions = [];
 
         if ($this->request->getQuery('nome') != '') {
@@ -45,6 +58,20 @@ class HoleritesController extends AppController
 
     public function meuHolerite()
     {
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2 && $usuario_logado->role_id != 3) {
+            $this->Flash->error(__('Você não possui holerites!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         // Acessa o ID do usuário atual
         $currentUserId = $this->Auth->user('id');
         $conditions = [];
@@ -81,16 +108,31 @@ class HoleritesController extends AppController
         $this->loadModel('Users');
 
         $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2 && $usuario_logado->role_id != 3) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
+        $usuario_logado = $this->Auth->user();
 
 
         $holerite = $this->Holerites->get($id, [
             'contain' => ['Funcionarios.Users', 'Funcionarios.Cargos', 'Funcionarios.Empresas'],
         ]);
 
-        if ($usuario_logado['funcionarios'][0]['id'] != $holerite->funcionario->id) {
-            $this->Flash->error(__('Usuário não confere ao logado'));
-            return $this->redirect(['controller' => 'Holerites', 'action' => 'meuHolerite']);
+        if ($usuario_logado->role_id != 2) {
+            if ($usuario_logado['funcionarios'][0]['id'] != $holerite->funcionario->id) {
+                $this->Flash->error(__('Usuário não confere ao logado'));
+                return $this->redirect(['controller' => 'Holerites', 'action' => 'meuHolerite']);
 
+            }
         }
 
         $this->set('holerite', $holerite);
@@ -105,6 +147,19 @@ class HoleritesController extends AppController
     {
         $this->loadModel('Funcionarios');
         $this->loadModel('Users');
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $holerite = $this->Holerites->newEntity();
         if ($this->request->is('post')) {
@@ -145,6 +200,19 @@ class HoleritesController extends AppController
         $this->loadModel('Funcionarios');
         $this->loadModel('Users');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $holerite = $this->Holerites->get($id, [
             'contain' => [],
         ]);
@@ -179,6 +247,19 @@ class HoleritesController extends AppController
      */
     public function delete($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $holerite = $this->Holerites->get($id);
         if ($this->Holerites->delete($holerite)) {

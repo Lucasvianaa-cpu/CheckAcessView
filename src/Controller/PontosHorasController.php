@@ -41,6 +41,19 @@ class PontosHorasController extends AppController
 
         $this->loadModel('Funcionarios');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $conditions = [];
 
         if ($this->request->getQuery('nome') != '') {
@@ -141,6 +154,19 @@ class PontosHorasController extends AppController
     {
         $this->loadModel('Funcionarios');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2 && $usuario_logado->role_id != 3) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $conditions = [];
 
         if ($this->request->getQuery('data_ponto') != '') {
@@ -222,6 +248,19 @@ class PontosHorasController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Funcionarios');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $conditions = [];
 
         if ($this->request->getQuery('nome') != '') {
@@ -260,11 +299,22 @@ class PontosHorasController extends AppController
      */
     public function view($id = null)
     {
-
-
         $this->loadModel('Funcionarios');
         $this->loadModel('Users');
         $this->loadModel('Empresas');
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $funcionario = $this->Funcionarios->find()
             ->contain(['Users', 'Empresas'])
@@ -295,7 +345,18 @@ class PontosHorasController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Empresas');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
 
+        if ($usuario_logado->role_id != 2 && $usuario_logado->role_id != 3) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $funcionario = $this->Funcionarios->find()
             ->contain(['Users', 'Empresas'])
@@ -353,13 +414,24 @@ class PontosHorasController extends AppController
      * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
      */
     public function edit($id = null)
-
-
     {
 
         $this->loadModel('Funcionarios');
         $this->loadModel('Users');
         $this->loadModel('Empresas');
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $funcionario = $this->Funcionarios->find()
             ->contain(['Users', 'Empresas'])
@@ -396,6 +468,19 @@ class PontosHorasController extends AppController
      */
     public function delete($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $pontosHora = $this->PontosHoras->get($id);
         if ($this->PontosHoras->delete($pontosHora)) {
