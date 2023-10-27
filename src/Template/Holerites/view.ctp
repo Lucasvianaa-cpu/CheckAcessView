@@ -366,11 +366,6 @@
         // Remove qualquer caracter não numérico
         $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
 
-        // Verifique se o CNPJ tem 14 dígitos
-        if (strlen($cnpj) != 14) {
-            return "CNPJ inválido";
-        }
-
         // Calcula os dígitos verificadores
         $digito1 = (int)$cnpj[12];
         $digito2 = (int)$cnpj[13];
