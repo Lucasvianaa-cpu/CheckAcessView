@@ -20,6 +20,14 @@ class EmpresasController extends AppController
     public function index()
     {
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
+
         $conditions = ['Empresas.is_trash' => 0];
 
         if ($this->request->getQuery('razao_social') != '') {
@@ -58,6 +66,14 @@ class EmpresasController extends AppController
      */
     public function view($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
+
         $empresa = $this->Empresas->get($id, [
             'contain' => ['Funcionarios.Users', 'Funcionarios.Cargos'],
         ]);
@@ -72,6 +88,14 @@ class EmpresasController extends AppController
      */
     public function add()
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
+
         $empresa = $this->Empresas->newEntity();
         if ($this->request->is('post')) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
@@ -94,6 +118,14 @@ class EmpresasController extends AppController
      */
     public function edit($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
+
         $empresa = $this->Empresas->get($id, [
             'contain' => [],
         ]);
@@ -119,6 +151,14 @@ class EmpresasController extends AppController
 
     public function delete($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $empresa = $this->Empresas->get($id);
 
@@ -136,6 +176,14 @@ class EmpresasController extends AppController
 
     public function editarEmpresa ($id = null) 
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
+
         $empresa = $this->Empresas->get($id, [
             'contain' => [],
         ]);
@@ -171,10 +219,18 @@ class EmpresasController extends AppController
         
     }
 
-        public function visualizarEmpresa ($id = null){
-            $empresa = $this->Empresas->get($id, [
-                'contain' => [],
-            ]);
-            $this->set(compact('empresa'));
+    public function visualizarEmpresa ($id = null){
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
         }
+
+        $empresa = $this->Empresas->get($id, [
+            'contain' => [],
+        ]);
+        $this->set(compact('empresa'));
+    }
 }

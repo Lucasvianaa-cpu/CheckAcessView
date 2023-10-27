@@ -19,6 +19,18 @@ class CidadesController extends AppController
      */
     public function index()
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $conditions = [];
 
@@ -44,6 +56,19 @@ class CidadesController extends AppController
      */
     public function view($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $cidade = $this->Cidades->get($id, [
             'contain' => ['Estados', 'Enderecos', 'Enderecos.Users'],
         ]);
@@ -58,6 +83,19 @@ class CidadesController extends AppController
      */
     public function add()
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $cidade = $this->Cidades->newEntity();
         if ($this->request->is('post')) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
@@ -81,6 +119,19 @@ class CidadesController extends AppController
      */
     public function edit($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $cidade = $this->Cidades->get($id, [
             'contain' => [],
         ]);
@@ -106,6 +157,19 @@ class CidadesController extends AppController
      */
     public function delete($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $cidade = $this->Cidades->get($id);
         if ($this->Cidades->delete($cidade)) {

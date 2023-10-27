@@ -71,6 +71,7 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->connect('/admin/alterar-permissao', ['controller' => 'Rh', 'action' => 'alterarPermissao']);
     $routes->connect('/admin/pendentes', ['controller' => 'Rh', 'action' => 'index']);
     Router::connect('/pontos-horas/add-rfid', ['controller' => 'PontosHoras', 'action' => 'addRfid']);
+    
 
 
 

@@ -19,6 +19,18 @@ class CategoriasController extends AppController
      */
     public function index()
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $conditions = ['Categorias.is_trash' => 0];
 
@@ -53,6 +65,19 @@ class CategoriasController extends AppController
      */
     public function view($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $categoria = $this->Categorias->get($id, [
             'contain' => ['Cargos'],
         ]);
@@ -67,6 +92,20 @@ class CategoriasController extends AppController
      */
     public function add()
     {
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $categoria = $this->Categorias->newEntity();
         if ($this->request->is('post')) {
             $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
@@ -89,6 +128,19 @@ class CategoriasController extends AppController
      */
     public function edit($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $categoria = $this->Categorias->get($id, [
             'contain' => [],
         ]);
@@ -115,6 +167,19 @@ class CategoriasController extends AppController
      /**Função de Deletar, mas ao invés de deletar irá inativar */
     public function delete($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $categoria = $this->Categorias->get($id);
 

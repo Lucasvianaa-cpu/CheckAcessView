@@ -22,6 +22,19 @@ class FuncionariosController extends AppController
     {
         $this->loadModel('Users');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $conditions = ['Funcionarios.is_trash' => 0];
 
         if ($this->request->getQuery('nome') != '') {
@@ -69,6 +82,19 @@ class FuncionariosController extends AppController
         $this->loadModel('Equipamentos');
         $this->loadModel('PlanosSaudes');
 
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $funcionario = $this->Funcionarios->get($id, [
             'contain' => ['Cargos', 'PlanosSaudes', 'Empresas', 'Users', 'Plantoes', 'Equipamentos', 'HistoricosPontos', 'Holerites', 'Equipamentos.Funcionarios'],
         ]);
@@ -90,6 +116,19 @@ class FuncionariosController extends AppController
      */
     public function add()
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $funcionario = $this->Funcionarios->newEntity();
         if ($this->request->is('post')) {
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
@@ -113,6 +152,19 @@ class FuncionariosController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Roles');
         $this->loadModel('Funcionarios');
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
 
         $user = $this->Users->get($id, [
             'contain' => ['Roles'],
@@ -166,6 +218,19 @@ class FuncionariosController extends AppController
      */
     public function edit($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $funcionario = $this->Funcionarios->get($id, [
             'contain' => ['Plantoes'],
         ]);
@@ -196,6 +261,19 @@ class FuncionariosController extends AppController
 
     public function delete($id = null)
     {
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
+            $this->Flash->error(__('Você não tem permissão a essa página!'));
+
+            if($usuario_logado->role_id != 4) {
+                return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+            }  else {
+                return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+            }
+        }
+
         $this->request->allowMethod(['post', 'delete']);
         $funcionario = $this->Funcionarios->get($id);
 
