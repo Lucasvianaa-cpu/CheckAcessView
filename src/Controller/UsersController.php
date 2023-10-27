@@ -214,9 +214,17 @@ class UsersController extends AppController
         $this->loadModel('Cargos');
         $this->loadModel('Veiculos');
 
+        $usuario_logado = $this->Auth->user();
+
         $user = $this->Users->get($id, [
             'contain' => ['Enderecos.Cidades.Estados'],
         ]);
+
+        if ($usuario_logado->id != $user->id) {
+            $this->Flash->error(__('Usuário não confere ao logado'));
+            return $this->redirect(['action' => 'editarPerfil', $usuario_logado->id]);
+
+        }
 
         if ($this->request->is(['patch', 'post', 'put'])) {
             $endereco = $user->enderecos ? $user->enderecos[0] : $this->Enderecos->newEntity();

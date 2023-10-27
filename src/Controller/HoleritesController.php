@@ -53,6 +53,7 @@ class HoleritesController extends AppController
             $mes = $this->request->getQuery('mes');
             $conditions['LOWER(Holerites.mes) LIKE'] = '%' . strtolower($mes) . '%';
         }
+        
 
         $this->paginate = [
             'contain' => [
@@ -76,9 +77,21 @@ class HoleritesController extends AppController
      */
     public function view($id = null)
     {
+
+        $this->loadModel('Users');
+
+        $usuario_logado = $this->Auth->user();
+
+
         $holerite = $this->Holerites->get($id, [
             'contain' => ['Funcionarios.Users', 'Funcionarios.Cargos', 'Funcionarios.Empresas'],
         ]);
+
+        if ($usuario_logado['funcionarios'][0]['id'] != $holerite->funcionario->id) {
+            $this->Flash->error(__('Usuário não confere ao logado'));
+            return $this->redirect(['controller' => 'Holerites', 'action' => 'meuHolerite']);
+
+        }
 
         $this->set('holerite', $holerite);
     }
