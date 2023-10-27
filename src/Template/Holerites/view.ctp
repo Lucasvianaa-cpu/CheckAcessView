@@ -257,6 +257,13 @@
                 <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->adiantamento_desconto ? number_format($holerite->adiantamento_desconto, 2, ',', '.') : '' ?></td>
             </tr>
             <tr>
+                <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->inss_codigo ?></td>
+                <td class="retirar-border-bottom retirar-border-top"><?= $holerite->inss_descricao ?></td>
+                <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->inss_referencia ?></td>
+                <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->inss_vencimento ? number_format($holerite->inss_vencimento, 2, ',', '.') : '' ?></td>
+                <td class="alinhar-direita retirar-border-bottom retirar-border-top"><?= $holerite->inss_desconto ? number_format($holerite->inss_desconto, 2, ',', '.') : '' ?></td>
+            </tr>
+            <tr>
                 <td class="retirar-border-bottom retirar-border-top"></td>
                 <td class="retirar-border-bottom retirar-border-top"></td>
                 <td class="alinhar-direita retirar-border-bottom retirar-border-top"></td>
@@ -359,12 +366,36 @@
         // Remove qualquer caracter não numérico
         $cnpj = preg_replace('/[^0-9]/', '', $cnpj);
 
+        // Verifique se o CNPJ tem 14 dígitos
+        if (strlen($cnpj) != 14) {
+            return "CNPJ inválido";
+        }
+
+        // Calcula os dígitos verificadores
+        $digito1 = (int)$cnpj[12];
+        $digito2 = (int)$cnpj[13];
+
+        $soma1 = 5 * (int)$cnpj[0] + 4 * (int)$cnpj[1] + 3 * (int)$cnpj[2] + 2 * (int)$cnpj[3] +
+                 9 * (int)$cnpj[4] + 8 * (int)$cnpj[5] + 7 * (int)$cnpj[6] + 6 * (int)$cnpj[7] +
+                 5 * (int)$cnpj[8] + 4 * (int)$cnpj[9] + 3 * (int)$cnpj[10] + 2 * (int)$cnpj[11];
+
+        $resto1 = $soma1 % 11;
+        $digito1 = ($resto1 < 2) ? 0 : 11 - $resto1;
+
+        $soma2 = 6 * (int)$cnpj[0] + 5 * (int)$cnpj[1] + 4 * (int)$cnpj[2] + 3 * (int)$cnpj[3] +
+                 2 * (int)$cnpj[4] + 9 * (int)$cnpj[5] + 8 * (int)$cnpj[6] + 7 * (int)$cnpj[7] +
+                 6 * (int)$cnpj[8] + 5 * (int)$cnpj[9] + 4 * (int)$cnpj[10] + 3 * (int)$cnpj[11] +
+                 2 * $digito1;
+
+        $resto2 = $soma2 % 11;
+        $digito2 = ($resto2 < 2) ? 0 : 11 - $resto2;
+
         // Aplica a máscara de CNPJ: XX.XXX.XXX/XXXX-XX
         return substr($cnpj, 0, 2) . '.' .
-            substr($cnpj, 2, 3) . '.' .
-            substr($cnpj, 5, 3) . '/' .
-            substr($cnpj, 8, 4) . '-' .
-            substr($cnpj, 12, 2);
+               substr($cnpj, 2, 3) . '.' .
+               substr($cnpj, 5, 3) . '/' .
+               substr($cnpj, 8, 4) . '-' .
+               $digito1 . $digito2;
     }
     ?>
 

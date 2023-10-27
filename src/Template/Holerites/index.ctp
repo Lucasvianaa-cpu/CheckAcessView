@@ -59,7 +59,7 @@
               <thead class="bg-gray-100">
                 <tr>
                   <th class="text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
-                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Descrição</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Mês</th>
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data do Holerite</th>
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Data de Cadastro</th>
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
