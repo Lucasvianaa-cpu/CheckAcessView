@@ -575,6 +575,7 @@ class PontosHorasController extends AppController
                 ->order(['id' => 'DESC'])
                 ->first();
         }
+        
 
         $this->set(compact('pontosHora', 'funcionario'));
     }

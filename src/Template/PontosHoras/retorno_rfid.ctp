@@ -226,7 +226,7 @@
       <?= $this->Html->image('../img/logo/despertador.png', ['style' => 'min-height: 24px; max-height: 24px;']); ?>
       <h3 class="font-weight-black text-dark" style="margin-left: 10px;">Hora: </h3>
       <span style="font-size: 18px; margin-left: 6px;">
-        <?= date('H:i', strtotime($pontosHora->hora)) ?>
+        <?= $pontosHora->hora->format('H:i:s'); ?>
       </span>
 
     </div>

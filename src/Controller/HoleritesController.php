@@ -178,10 +178,13 @@ class HoleritesController extends AppController
             'contain' => ['Users']
         ]);
 
+
         $funcionarios_list = [];
         foreach ($funcionarios as $funcionario)
         {
-            $funcionarios_list[$funcionario->id] = $funcionario->user->nome;
+            if($funcionario->user->role_id != 1 && $funcionario->user->role_id  != 4) {
+                $funcionarios_list[$funcionario->id] = $funcionario->user->nome;
+            }
         }
         
 
