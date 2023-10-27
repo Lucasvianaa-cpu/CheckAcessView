@@ -35,7 +35,7 @@
 
                     <div class="d-flex align-items-center">
                         <span class="px-3 font-weight-bold text-lg text-white me-4">
-                            <a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>" class="nav-link text-white p-0">
+                            <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>" class="nav-link text-white p-0">
                                 Voltar
                             </a>
                         </span>
@@ -78,12 +78,12 @@
                 <div class="p-0 d-flex">
                     <ul class="navbar-nav list-group-horizontal">
                         <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                            <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Empresas', 'action' => 'visualizarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
+                            <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'visualizarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">
                                 Minha Empresa
                             </a>
                         </li>
                         <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-                            <a class="nav-link text-white p-0  " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
+                            <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">
                                 Editar Dados Empresa
                             </a>
                         </li>

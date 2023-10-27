@@ -68,8 +68,8 @@ Router::scope('/', function (RouteBuilder $routes) {
      */
     $routes->connect('/', ['controller' => 'Pages', 'action' => 'display', 'home']);
     $routes->connect('/login', ['controller' => 'Users', 'action' => 'login']);
-    $routes->connect('/admin/alterar-permissao', ['controller' => 'Rh', 'action' => 'alterarPermissao']);
-    $routes->connect('/admin/pendentes', ['controller' => 'Rh', 'action' => 'index']);
+    $routes->connect('/rh/alterar-permissao', ['controller' => 'Rh', 'action' => 'alterarPermissao']);
+    $routes->connect('/rh/pendentes', ['controller' => 'Rh', 'action' => 'index']);
     Router::connect('/pontos-horas/add-rfid', ['controller' => 'PontosHoras', 'action' => 'addRfid']);
     
 
@@ -103,7 +103,5 @@ Router::scope('/', function (RouteBuilder $routes) {
     $routes->fallbacks(DashedRoute::class);
 });
 
- Router::prefix('admin', function ($routes){
-    $routes->fallbacks(DashedRoute::class);
-});
+
 

@@ -112,7 +112,7 @@
                 <?php if ($current_user['role_id'] != 4) : ?>
                     <li class="nav-item">
 
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>dashboard</title>
@@ -131,7 +131,7 @@
                     <?php if ($current_user['role_id'] == 4) : ?>
                     <li class="nav-item">
 
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg width="30px" height="30px" viewBox="0 0 48 48" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
                                     <title>dashboard</title>
@@ -152,7 +152,7 @@
 
                     <?php if ($current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Holerites', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-trello" viewBox="0 0 16 16">
                                     <path d="M14.1 0H1.903C.852 0 .002.85 0 1.9v12.19A1.902 1.902 0 0 0 1.902 16h12.199A1.902 1.902 0 0 0 16 14.09V1.9A1.902 1.902 0 0 0 14.1 0ZM7 11.367a.636.636 0 0 1-.64.633H3.593a.633.633 0 0 1-.63-.633V3.583c0-.348.281-.631.63-.633h2.765c.35.002.632.284.633.633L7 11.367Zm6.052-3.5a.633.633 0 0 1-.64.633h-2.78A.636.636 0 0 1 9 7.867V3.583a.636.636 0 0 1 .633-.633h2.778c.35.002.631.285.631.633l.01 4.284Z" />
@@ -166,7 +166,7 @@
 
                 <?php if ($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Holerites', 'action' => 'meuHolerite'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'meuHolerite']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg width="21.5px" height="21.5px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
 
@@ -189,7 +189,7 @@
                 <!-- qnd tem mais que um id -->
                 <?php if ($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-calendar-check-fill" viewBox="0 0 16 16">
                                     <path d="M4 .5a.5.5 0 0 0-1 0V1H2a2 2 0 0 0-2 2v1h16V3a2 2 0 0 0-2-2h-1V.5a.5.5 0 0 0-1 0V1H4V.5zM16 14V5H0v9a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2zm-5.146-5.146-3 3a.5.5 0 0 1-.708 0l-1.5-1.5a.5.5 0 0 1 .708-.708L7.5 10.793l2.646-2.647a.5.5 0 0 1 .708.708z" />
@@ -202,7 +202,7 @@
 
                 <?php if ($current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'geral'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'geral']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-bell-fill" viewBox="0 0 16 16">
                                     <path d="M8 16a2 2 0 0 0 2-2H6a2 2 0 0 0 2 2zm.995-14.901a1 1 0 1 0-1.99 0A5.002 5.002 0 0 0 3 6c0 1.098-.5 6-2 7h14c-1.5-1-2-5.902-2-7 0-2.42-1.72-4.44-4.005-4.901z" />
@@ -215,7 +215,7 @@
 
                 <?php if ($current_user['role_id'] == 2 || $current_user['role_id'] == 3) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'add'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'add']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-alarm-fill" viewBox="0 0 16 16">
                                     <path d="M6 .5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 0 1H9v1.07a7.001 7.001 0 0 1 3.274 12.474l.601.602a.5.5 0 0 1-.707.708l-.746-.746A6.97 6.97 0 0 1 8 16a6.97 6.97 0 0 1-3.422-.892l-.746.746a.5.5 0 0 1-.707-.708l.602-.602A7.001 7.001 0 0 1 7 2.07V1h-.5A.5.5 0 0 1 6 .5zm2.5 5a.5.5 0 0 0-1 0v3.362l-1.429 2.38a.5.5 0 1 0 .858.515l1.5-2.5A.5.5 0 0 0 8.5 9V5.5zM.86 5.387A2.5 2.5 0 1 1 4.387 1.86 8.035 8.035 0 0 0 .86 5.387zM11.613 1.86a2.5 2.5 0 1 1 3.527 3.527 8.035 8.035 0 0 0-3.527-3.527z" />
@@ -242,7 +242,7 @@
 
                 <?php if ($current_user['role_id'] == 1 || $current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
-                        <a class="nav-link  " href="<?= str_replace('/admin/admin', '/admin',   $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index'])); ?>">
+                        <a class="nav-link  " href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-clipboard2-plus-fill" viewBox="0 0 16 16">
                                     <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
@@ -256,7 +256,7 @@
 
                 <?php if ($current_user['role_id'] == 1 || $current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
-                        <a class="nav-link  " href="<?= str_replace('/admin/admin', '/admin', $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'alterarPermissao'])); ?>">
+                        <a class="nav-link  " href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'alterarPermissao']); ?>">
 
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-unlock-fill" viewBox="0 0 16 16">
@@ -270,7 +270,7 @@
 
                 <?php if ($current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Holerites', 'action' => 'add'], ['_full' => true])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'add'], ['_full' => true]); ?>">
 
 
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
@@ -287,7 +287,7 @@
 
                 <?php if ($current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
-                        <a class="nav-link" href="<?= str_replace('/admin/admin', '/admin',  $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios'])); ?>">
+                        <a class="nav-link" href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'relatorios']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
 
                                 <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="currentColor" class="bi bi-newspaper" viewBox="0 0 16 16">
@@ -303,7 +303,7 @@
 
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Categorias', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Categorias', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-grid-1x2-fill" viewBox="0 0 16 16">
                                     <path d="M0 1a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v14a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1V1zm9 0a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1V1zm0 9a1 1 0 0 1 1-1h5a1 1 0 0 1 1 1v5a1 1 0 0 1-1 1h-5a1 1 0 0 1-1-1v-5z" />
@@ -317,7 +317,7 @@
 
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Cargos', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cargos', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg fill="#ffffff" width="18" height="18" viewBox="0 0 32 32" version="1.1" xmlns="http://www.w3.org/2000/svg" stroke="#ffffff">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -335,7 +335,7 @@
 
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Veiculos', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Veiculos', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg width="22" height="22" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#ffffff">
                                     <g id="SVGRepo_bgCarrier" stroke-width="0" />
@@ -353,7 +353,7 @@
 
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Equipamentos', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Equipamentos', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-laptop" viewBox="0 0 16 16">
                                     <path d="M13.5 3a.5.5 0 0 1 .5.5V11H2V3.5a.5.5 0 0 1 .5-.5h11zm-11-1A1.5 1.5 0 0 0 1 3.5V12h14V3.5A1.5 1.5 0 0 0 13.5 2h-11zM0 12.5h16a1.5 1.5 0 0 1-1.5 1.5h-13A1.5 1.5 0 0 1 0 12.5z" />
@@ -366,7 +366,7 @@
 
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'PlanosSaudes', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'PlanosSaudes', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clipboard2-pulse-fill" viewBox="0 0 16 16">
                                     <path d="M10 .5a.5.5 0 0 0-.5-.5h-3a.5.5 0 0 0-.5.5.5.5 0 0 1-.5.5.5.5 0 0 0-.5.5V2a.5.5 0 0 0 .5.5h5A.5.5 0 0 0 11 2v-.5a.5.5 0 0 0-.5-.5.5.5 0 0 1-.5-.5Z" />
@@ -381,7 +381,7 @@
 
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Cidades', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cidades', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-house-fill" viewBox="0 0 16 16">
                                     <path d="M8.707 1.5a1 1 0 0 0-1.414 0L.646 8.146a.5.5 0 0 0 .708.708L8 2.207l6.646 6.647a.5.5 0 0 0 .708-.708L13 5.793V2.5a.5.5 0 0 0-.5-.5h-1a.5.5 0 0 0-.5.5v1.293L8.707 1.5Z" />
@@ -394,7 +394,7 @@
                 <?php endif; ?>
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Estados', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Estados', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-geo-alt-fill" viewBox="0 0 16 16">
                                     <path d="M8 16s6-5.686 6-10A6 6 0 0 0 2 6c0 4.314 6 10 6 10zm0-7a3 3 0 1 1 0-6 3 3 0 0 1 0 6z" />
@@ -409,7 +409,7 @@
                     <li class="nav-item">
                         <!--Modifiquei o link da navegação ao novo padrão-->
 
-                        <a class="nav-link " href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']]); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-person-fill" viewBox="0 0 16 16">
                                     <path d="M3 14s-1 0-1-1 1-4 6-4 6 3 6 4-1 1-1 1H3Zm5-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Z" />
@@ -423,7 +423,7 @@
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
                         <?php if (!empty($funcionario_empresa['funcionarios'][0]['empresa_id'])) :  ?>
-                            <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">
+                            <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">
                                 <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-building-fill" viewBox="0 0 16 16">
                                         <path d="M3 0a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h3v-3.5a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5V16h3a1 1 0 0 0 1-1V1a1 1 0 0 0-1-1H3Zm1 2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3 0a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5ZM4 5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM7.5 5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1ZM4.5 8h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Zm2.5.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1Zm3.5-.5h1a.5.5 0 0 1 .5.5v1a.5.5 0 0 1-.5.5h-1a.5.5 0 0 1-.5-.5v-1a.5.5 0 0 1 .5-.5Z" />
@@ -438,7 +438,7 @@
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
 
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Empresas', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-buildings-fill" viewBox="0 0 16 16">
                                     <path d="M15 .5a.5.5 0 0 0-.724-.447l-8 4A.5.5 0 0 0 6 4.5v3.14L.342 9.526A.5.5 0 0 0 0 10v5.5a.5.5 0 0 0 .5.5h9a.5.5 0 0 0 .5-.5V14h1v1.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 .5-.5V.5ZM2 11h1v1H2v-1Zm2 0h1v1H4v-1Zm-1 2v1H2v-1h1Zm1 0h1v1H4v-1Zm9-10v1h-1V3h1ZM8 5h1v1H8V5Zm1 2v1H8V7h1ZM8 9h1v1H8V9Zm2 0h1v1h-1V9Zm-1 2v1H8v-1h1Zm1 0h1v1h-1v-1Zm3-2v1h-1V9h1Zm-1 2h1v1h-1v-1Zm-2-4h1v1h-1V7Zm3 0v1h-1V7h1Zm-2-2v1h-1V5h1Zm1 0h1v1h-1V5Z" />
@@ -452,7 +452,7 @@
                 <?php if ($current_user['role_id'] == 1 || $current_user['role_id'] == 2) : ?>
                     <li class="nav-item">
 
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Funcionarios', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Funcionarios', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-person-vcard-fill" viewBox="0 0 16 16">
                                     <path d="M0 4a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V4Zm9 1.5a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4a.5.5 0 0 0-.5.5ZM9 8a.5.5 0 0 0 .5.5h4a.5.5 0 0 0 0-1h-4A.5.5 0 0 0 9 8Zm1 2.5a.5.5 0 0 0 .5.5h3a.5.5 0 0 0 0-1h-3a.5.5 0 0 0-.5.5Zm-1 2C9 10.567 7.21 9 5 9c-2.086 0-3.8 1.398-3.984 3.181A1 1 0 0 0 2 13h6.96c.026-.163.04-.33.04-.5ZM7 6a2 2 0 1 0-4 0 2 2 0 0 0 4 0Z" />
@@ -466,7 +466,7 @@
                 <?php if ($current_user['role_id'] == 1) : ?>
                     <li class="nav-item">
 
-                        <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Users', 'action' => 'index'])); ?>">
+                        <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'index']); ?>">
                             <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                                 <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" class="bi bi-people-fill" viewBox="0 0 16 16">
                                     <path d="M7 14s-1 0-1-1 1-4 5-4 5 3 5 4-1 1-1 1H7Zm4-6a3 3 0 1 0 0-6 3 3 0 0 0 0 6Zm-5.784 6A2.238 2.238 0 0 1 5 13c0-1.355.68-2.75 1.936-3.72A6.325 6.325 0 0 0 5 9c-4 0-5 3-5 4s1 1 1 1h4.216ZM4.5 8a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z" />
@@ -480,7 +480,7 @@
 
                 <li class="nav-item">
 
-                    <a class="nav-link " href="<?= str_replace('/admin', '',  $this->Url->build(['controller' => 'Users', 'action' => 'sair'])) ?>">
+                    <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'sair']) ?>">
                         <div class="icon icon-shape icon-sm px-0 text-center d-flex align-items-center justify-content-center">
                             <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="currentColor" class="bi bi-box-arrow-left" viewBox="0 0 16 16">
                                 <path fill-rule="evenodd" d="M6 12.5a.5.5 0 0 0 .5.5h8a.5.5 0 0 0 .5-.5v-9a.5.5 0 0 0-.5-.5h-8a.5.5 0 0 0-.5.5v2a.5.5 0 0 1-1 0v-2A1.5 1.5 0 0 1 6.5 2h8A1.5 1.5 0 0 1 16 3.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 5 12.5v-2a.5.5 0 0 1 1 0v2z" />
@@ -563,18 +563,18 @@
                                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                                     <?php if ($current_user['role_id'] != 1) : ?>
                                         <li>
-                                            <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']])); ?>">Meu Perfil</a>
+                                            <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']]); ?>">Meu Perfil</a>
                                         </li>
                                     <?php endif; ?>
 
                                     <?php if ($current_user['role_id'] == 1) : ?>
                                         <li>
-                                            <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']])); ?>">Meu Perfil</a>
+                                            <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">Meu Perfil</a>
                                         </li>
                                     <?php endif; ?>
 
                                     <li>
-                                        <a class="dropdown-item" href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Users', 'action' => 'sair'])) ?>">Sair</a>
+                                        <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'sair']) ?>">Sair</a>
                                     </li>
                                 </ul>
                             </div>

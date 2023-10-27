@@ -193,7 +193,7 @@ class FuncionariosController extends AppController
 
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('Funcionário vinculado com sucesso.'));
-                return $this->redirect(['controller' => 'Admin/Rh', 'action' => 'index']);
+                return $this->redirect(['controller' => 'Rh', 'action' => 'index']);
             } else {
                 $this->Flash->error(__('O funcionário não pôde ser vinculado. Por favor, tente novamente.'));
             }

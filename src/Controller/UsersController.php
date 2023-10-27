@@ -42,6 +42,7 @@ class UsersController extends AppController
         $usuario_logado = $this->Auth->user();
         $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
 
+
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
@@ -415,6 +416,16 @@ class UsersController extends AppController
         $this->loadModel('Users');
         $this->loadModel('Roles');
         $this->loadModel('PontosHoras');
+
+        $usuario_logado = $this->Auth->user();
+        $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
+        $url_empresa_id = $this->request->getParam('pass')[0];
+
+        if ($empresa_id != $url_empresa_id) {
+            $this->Flash->error(__('Você não está vinculado a essa empresa!'));
+            return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
+        }
 
         $empresa = $this->Empresas->get($id, [
             'contain' => [],

@@ -62,7 +62,7 @@
               <div class="col-12">
                 <div class="w-100">
                   <p class="text-sm text-secondary mb-1">Total De Horas Mensais</p>
-                  <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'totalFuncionarios'])) ?>" class="btn btn-dark btn-sm">Horas Mensais</a></h4>
+                  <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'totalFuncionarios']) ?>" class="btn btn-dark btn-sm">Horas Mensais</a></h4>
                   <div class="d-flex align-items-center">
                     <span class="text-sm text-success font-weight-bolder">
                       <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -88,7 +88,7 @@
               <div class="col-12">
                 <div class="w-100">
                   <p class="text-sm text-secondary mb-1">Plantões de Funcionários</p>
-                  <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Plantoes', 'action' => 'totalPlantoes'])) ?>" class="btn btn-dark btn-sm">Horas Extras</a></h4>
+                  <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Plantoes', 'action' => 'totalPlantoes']) ?>" class="btn btn-dark btn-sm">Horas Extras</a></h4>
                   <div class="d-flex align-items-center">
                     <span class="text-sm text-success font-weight-bolder">
                       <i class="fa fa-chevron-up text-xs me-1"></i>

@@ -116,7 +116,7 @@
                     <p class="text-sm mb-sm-0 mb-2">Estes são os novos registros, defina as permissões para cada um deles</p>
                   </div>
                   <div class="ms-auto d-flex">
-                    <a class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'index']); ?>">Definir Permissões</a>
+                    <a class="btn btn-sm btn-dark btn-icon d-flex align-items-center mb-0" href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'index']); ?>">Definir Permissões</a>
                   </div>
                 </div>
                 <div class="pb-3 d-sm-flex align-items-center">
@@ -394,7 +394,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Holerite</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Holerites', 'action' => 'add'])) ?>" class="btn btn-dark btn-sm">Lançar Holerite</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'add']) ?>" class="btn btn-dark btn-sm">Lançar Holerite</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -420,7 +420,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Pontos de Funcionários</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'geral'])) ?>" class="btn btn-dark btn-sm">Total de Pontos Funcionários</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'geral']) ?>" class="btn btn-dark btn-sm">Total de Pontos Funcionários</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -445,7 +445,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Relatórios</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= str_replace('/admin/admin', '', $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios'])) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios']) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -551,7 +551,7 @@
                     <div class="w-100">
                       <h5 class=" text-secondary mb-1">Holerites</h5>
                       <p class="text-sm text-secondary mb-1">Confira os seus holerites mensalmente.</p>
-                      <h4 class="mb-2 font-weight-bold mt-6"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'Holerites', 'action' => 'meuHolerite'])) ?>" class="btn btn-dark btn-sm">Meu Holerite</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-6"><a href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'meuHolerite']) ?>" class="btn btn-dark btn-sm">Meu Holerite</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -578,7 +578,7 @@
                     <div class="w-100">
                       <h5 class=" text-secondary mb-1">Registrar Ponto</h5>
                       <p class="text-sm text-secondary mb-1">Registre o seu ponto aqui.</p>
-                      <h4 class="mb-2 font-weight-bold mt-6"><a href="<?= str_replace('/admin', '', $this->Url->build(['controller' => 'PontosHoras', 'action' => 'add'])) ?>" class="btn btn-dark btn-sm">Registrar Ponto</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-6"><a href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'add']) ?>" class="btn btn-dark btn-sm">Registrar Ponto</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
