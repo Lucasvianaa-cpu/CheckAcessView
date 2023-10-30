@@ -79,7 +79,7 @@
                     </td>
                     <td class="align-middle text-center text-sm">
                       <p class="text-sm text-dark font-weight-semibold mb-0">
-                        <?= $equipamento->created ?>
+                        <?= $equipamento->created->format('d/m/Y') ?>
                       </p>
                     </td>
                     <td class="align-middle text-center text-sm">

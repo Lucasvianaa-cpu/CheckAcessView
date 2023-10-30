@@ -125,7 +125,6 @@ class EquipamentosController extends AppController
         if ($this->request->is('post')) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
 
-            //debug($equipamento->created); exit;
             if ($this->Equipamentos->save($equipamento)) {
                 $this->Flash->success(__('Equipamento adicionado com sucesso.'));
 
