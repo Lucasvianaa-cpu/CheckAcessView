@@ -21,7 +21,7 @@ use Cake\ORM\Entity;
  * @property float $total_descontos
 
  * @property int $funcionario_id
- * @property string $created
+ * @property \Cake\I18n\FrozenTime $created
  *
  * @property \App\Model\Entity\Funcionario $funcionario
  */

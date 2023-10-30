@@ -164,7 +164,9 @@ class HoleritesController extends AppController
         $holerite = $this->Holerites->newEntity();
         if ($this->request->is('post')) {
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
+            
             if ($this->Holerites->save($holerite)) {
+                // debug($holerite->created);exit;
                 $this->Flash->success(__('Holerite adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);

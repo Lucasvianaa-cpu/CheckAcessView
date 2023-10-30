@@ -445,7 +445,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Relatórios</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Admin/Rh', 'action' => 'relatorios']) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'relatorios']) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -522,10 +522,7 @@
                   </li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Sobrenome:</span> &nbsp; <?= $current_user['sobrenome'] ?></li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Data de Nascimento:</span> &nbsp;
-                    <?php $data_nascimento = $current_user['data_nascimento'];
-                    $data_formatada = date('d/m/Y', strtotime($data_nascimento));
-                    echo $data_formatada
-                    ?>
+                    <?= $current_user['data_nascimento']->format('d/m/Y') ?>
                   </li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Realiza Plantão? </span> &nbsp;
                     <?= $current_user['realiza_plantao'] == 1 ?  'Sim' : 'Não' ?></li>
