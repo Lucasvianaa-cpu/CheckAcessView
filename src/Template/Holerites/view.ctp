@@ -311,7 +311,7 @@
                 <td class="alinhar-centro-valor"><?= $holerite->base_inss ? number_format($holerite->base_inss, 2, ',', '.') : '' ?></td>
                 <td class="alinhar-centro-valor"><?= $holerite->base_fgts ? number_format($holerite->base_fgts, 2, ',', '.') : '' ?></td>
                 <td class="alinhar-centro-valor"><?= $holerite->fgts ? number_format($holerite->fgts, 2, ',', '.') : '' ?></td>
-                <td class="alinhar-centro-valor"><?= $holerite->ir ? number_format($holerite->ir, 2, ',', '.') : '' ?></td>
+                <td class="alinhar-centro-valor"><?= $holerite->ir ? number_format($holerite->ir, 2, ',', '.') : '0,00' ?></td>
             </tr>
 
         </tbody>
