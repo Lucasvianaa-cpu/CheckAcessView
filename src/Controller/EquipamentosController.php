@@ -2,6 +2,8 @@
 namespace App\Controller;
 
 use App\Controller\AppController;
+use Cake\I18n\FrozenTime;
+use Cake\I18n\Time;
 
 /**
  * Equipamentos Controller
@@ -123,7 +125,7 @@ class EquipamentosController extends AppController
         if ($this->request->is('post')) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
 
-            // debug($equipamento); exit;
+            //debug($equipamento->created); exit;
             if ($this->Equipamentos->save($equipamento)) {
                 $this->Flash->success(__('Equipamento adicionado com sucesso.'));
 

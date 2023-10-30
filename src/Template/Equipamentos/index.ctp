@@ -79,11 +79,7 @@
                     </td>
                     <td class="align-middle text-center text-sm">
                       <p class="text-sm text-dark font-weight-semibold mb-0">
-                        <?php
-                        $data_criado = $equipamento->created;
-                        $data_formatada = date('d/m/Y', strtotime($data_criado));
-                        echo $data_formatada;
-                        ?>
+                        <?= $equipamento->created ?>
                       </p>
                     </td>
                     <td class="align-middle text-center text-sm">
