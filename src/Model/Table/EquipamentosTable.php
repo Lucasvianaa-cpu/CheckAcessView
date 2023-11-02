@@ -62,7 +62,8 @@ class EquipamentosTable extends Table
             ->scalar('num_patrimonio')
             ->maxLength('num_patrimonio', 45)
             ->requirePresence('num_patrimonio', 'create')
-            ->notEmptyString('num_patrimonio');
+            ->notEmptyString('num_patrimonio')
+            ->add('num_patrimonio', 'unique', ['rule' => 'validateUnique', 'provider' => 'table']);
 
         $validator
             ->scalar('descricao')

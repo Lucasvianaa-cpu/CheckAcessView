@@ -63,10 +63,16 @@
                       <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->hora_inicio->format('H:i') ?></p>
                     </td>
                     <td class="align-middle text-left">
-                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->hora_termino->format('H:i') ?></p>
+                      <p class="text-sm text-dark font-weight-semibold mb-0">
+                        <?php if ($plantao->hora_termino !== null): ?>
+                          <?= $plantao->hora_termino->format('H:i') ?>
+                        <?php endif; ?></p>
                     </td>
                     <td class="align-middle text-left">
-                      <p class="text-sm text-dark font-weight-semibold mb-0"><?= $plantao->hora_total->format('H:i') ?></p>
+                      <p class="text-sm text-dark font-weight-semibold mb-0">
+                        <?php if ($plantao->hora_termino !== null): ?>
+                          <?= $plantao->hora_total->format('H:i') ?>
+                        <?php endif; ?></p>
                     </td>
 
 

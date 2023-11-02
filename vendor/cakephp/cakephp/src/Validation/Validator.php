@@ -2685,10 +2685,10 @@ class Validator implements ArrayAccess, IteratorAggregate, Countable
         $errors = [];
         // Loading default provider in case there is none
         $this->getProvider('default');
-        $message = 'The provided value is invalid';
+        $message = 'Já existe um campo idêntico cadastrado';
 
         if ($this->_useI18n) {
-            $message = __d('cake', 'The provided value is invalid');
+            $message = __d('cake', 'Já existe um campo idêntico cadastrado');
         }
 
         foreach ($rules as $name => $rule) {

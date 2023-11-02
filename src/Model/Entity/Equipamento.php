@@ -10,7 +10,7 @@ use Cake\ORM\Entity;
  * @property string $num_patrimonio
  * @property string $descricao
  * @property int $is_active
- * @property string $created
+ * @property \Cake\I18n\FrozenDate $created
  * @property int $funcionario_id
  *
  * @property \App\Model\Entity\Funcionario $funcionario

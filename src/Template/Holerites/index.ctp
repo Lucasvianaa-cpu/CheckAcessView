@@ -81,28 +81,11 @@
                       <p class="text-sm text-dark font-weight-semibold mb-0"><?= $holerite->mes ?></p>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <?php
-                      // Converte a data para um objeto DateTime
-                      $date = DateTime::createFromFormat('m/d/y', $holerite->data_holerite);
-
-                      // Formata a data no novo formato
-                      $formatted_date = $date->format('d/m/Y');
-
-                      // Exibe a data formatada
-                      echo '<p class="text-sm text-dark font-weight-semibold mb-0">' . $formatted_date . '</p>';
-                      ?>
+                      <?= $holerite->data_holerite->format('d/m/Y') ?>
                     </td>
                     <td class="align-middle text-center text-sm">
-                      <?php
-                      // Converte a data para um timestamp
-                      $timestamp = strtotime($holerite->created);
+                    <?= $holerite->created->format('d/m/Y') ?>
 
-                      // Formata a data no novo formato
-                      $formatted_date = date('d/m/Y', $timestamp);
-
-                      // Exibe a data formatada
-                      echo '<p class="text-sm text-dark font-weight-semibold mb-0">' . $formatted_date . '</p>';
-                      ?>
                     </td>
                     <td class="align-middle text-center" style="display: flex; justify-content: end;">
                       <a class="btn btn-sm btn-dark" href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'view', $holerite->id]); ?>">

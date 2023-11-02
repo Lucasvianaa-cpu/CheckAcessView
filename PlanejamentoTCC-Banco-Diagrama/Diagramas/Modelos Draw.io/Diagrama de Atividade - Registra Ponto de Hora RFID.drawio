@@ -1,0 +1,127 @@
+<mxfile host="app.diagrams.net" modified="2023-11-01T18:57:39.313Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36" etag="euyRXOy7eKF7d4vVzS7r" version="22.0.8" type="device">
+  <diagram id="XXOyx7wN-yMfLFyLkWte" name="Página-1">
+    <mxGraphModel dx="880" dy="468" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="GySldFF7dTpuCWAZkZOo-1" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="RbHhKcOVrRznY30tw-43-1" target="RbHhKcOVrRznY30tw-43-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RbHhKcOVrRznY30tw-43-1" value="" style="ellipse;fillColor=#000000;strokeColor=none;" parent="1" vertex="1">
+          <mxGeometry x="100" y="130" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="RbHhKcOVrRznY30tw-43-2" value="" style="ellipse;html=1;shape=endState;fillColor=#000000;strokeColor=#000000;" parent="1" vertex="1">
+          <mxGeometry x="770" y="300" width="30" height="30" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-3" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="RbHhKcOVrRznY30tw-43-7" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="115" y="290" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="RbHhKcOVrRznY30tw-43-7" value="Tela de Registro de &lt;br&gt;Ponto de Horas" style="html=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="200" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="RbHhKcOVrRznY30tw-43-8" target="GySldFF7dTpuCWAZkZOo-12" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="RbHhKcOVrRznY30tw-43-8" value="" style="rhombus;" parent="1" vertex="1">
+          <mxGeometry x="290" y="295" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="RbHhKcOVrRznY30tw-43-9" value="Diagrama de Atividades:&lt;br&gt;&lt;br&gt;Registra Ponto De Hora: Automático&amp;nbsp;" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="274" y="40" width="280" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-6" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="GySldFF7dTpuCWAZkZOo-5" target="RbHhKcOVrRznY30tw-43-8" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-5" value="Aproxima cartão&lt;br&gt;&amp;nbsp;do leitor RFID" style="html=1;" parent="1" vertex="1">
+          <mxGeometry x="60" y="290" width="110" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-7" value="Tag vinculada a um funcionário?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="274" y="260" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-11" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;" parent="1" source="VIEAYWOrzQ98pczFZ8jC-9" target="RbHhKcOVrRznY30tw-43-2" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="730" y="315" as="sourcePoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-10" value="SIM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="310" y="320" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-25" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="GySldFF7dTpuCWAZkZOo-12" target="RbHhKcOVrRznY30tw-43-7" edge="1">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-12" value="Tag não cadastrada." style="html=1;" parent="1" vertex="1">
+          <mxGeometry x="265" y="410" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-14" value="NÃO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" parent="1" vertex="1">
+          <mxGeometry x="240" y="390" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="GySldFF7dTpuCWAZkZOo-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" parent="1" source="RbHhKcOVrRznY30tw-43-8" edge="1">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="360" y="315" as="sourcePoint" />
+            <mxPoint x="450" y="315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-5" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VIEAYWOrzQ98pczFZ8jC-2">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="600" y="315" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-7" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="VIEAYWOrzQ98pczFZ8jC-2" target="VIEAYWOrzQ98pczFZ8jC-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="485" y="410" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-2" value="" style="rhombus;" vertex="1" parent="1">
+          <mxGeometry x="450" y="295" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-3" value="Existe algum ponto registrado no dia atual?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="430" y="260" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-6" value="NÃO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="480" y="290" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-9" value="Registrar horário" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="600" y="290" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-10" value="SIM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="335" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-13" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;" edge="1" parent="1" source="VIEAYWOrzQ98pczFZ8jC-11">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="485" y="520" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-14" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VIEAYWOrzQ98pczFZ8jC-11" target="VIEAYWOrzQ98pczFZ8jC-16">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="580" y="435" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-11" value="" style="rhombus;" vertex="1" parent="1">
+          <mxGeometry x="450" y="430" width="70" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-12" value="A quantidade de pontos gravados é menor ou igual a 4?" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="500" y="400" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-15" value="SIM" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="440" y="480" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-18" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=0.5;entryY=1;entryDx=0;entryDy=0;" edge="1" parent="1" source="VIEAYWOrzQ98pczFZ8jC-16" target="RbHhKcOVrRznY30tw-43-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-16" value="Quantidade limite de&lt;br&gt;&amp;nbsp;pontos atingida" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="630" y="425" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-19" value="NÃO" style="text;html=1;strokeColor=none;fillColor=none;align=center;verticalAlign=middle;whiteSpace=wrap;rounded=0;" vertex="1" parent="1">
+          <mxGeometry x="470" y="455" width="120" height="20" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-21" style="edgeStyle=orthogonalEdgeStyle;rounded=0;orthogonalLoop=1;jettySize=auto;html=1;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="VIEAYWOrzQ98pczFZ8jC-20" target="RbHhKcOVrRznY30tw-43-2">
+          <mxGeometry relative="1" as="geometry" />
+        </mxCell>
+        <mxCell id="VIEAYWOrzQ98pczFZ8jC-20" value="Registrar horário" style="html=1;" vertex="1" parent="1">
+          <mxGeometry x="425" y="520" width="120" height="50" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
