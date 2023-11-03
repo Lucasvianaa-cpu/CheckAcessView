@@ -207,18 +207,16 @@ class PontosHorasController extends AppController
             if ($contagem == 2) {
                 $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
                 $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
-
+        
                 $diferenca_em_segundos = $saida - $entrada;
-
-                // Calcular horas, minutos e segundos
+        
+                // Calcular horas e minutos
                 $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
-                $diferenca_em_segundos %= 3600; // Remover as horas
-                $minutos = floor($diferenca_em_segundos / 60); // O resto em minutos
-                $segundos = $diferenca_em_segundos % 60; // O resto em segundos
-
-                // Formate o total em horas, minutos e segundos
-                $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
-
+                $minutos = floor(($diferenca_em_segundos % 3600) / 60); // minutos restantes após calcular as horas
+        
+                // Formate o total em horas e minutos
+                $total = sprintf("%02d:%02d", $horas, $minutos);
+        
                 // Adicione o total ao array atual em $pontos
                 $pontos[] = ['total' => $total];
             } else if ($contagem == 4) {
