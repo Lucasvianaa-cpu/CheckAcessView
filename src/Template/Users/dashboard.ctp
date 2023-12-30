@@ -522,7 +522,11 @@
                   </li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Sobrenome:</span> &nbsp; <?= $current_user['sobrenome'] ?></li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Data de Nascimento:</span> &nbsp;
-                    <?= $current_user['data_nascimento']->format('d/m/Y') ?>
+                    
+                    <?php $data_nascimento = $current_user['data_nascimento'];
+                      $data_formatada = date('d/m/Y', strtotime($data_nascimento));
+                      echo $data_formatada
+                    ?>
                   </li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Realiza Plantão? </span> &nbsp;
                     <?= $current_user['realiza_plantao'] == 1 ?  'Sim' : 'Não' ?></li>

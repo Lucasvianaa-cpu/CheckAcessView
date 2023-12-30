@@ -26,7 +26,7 @@
     <?= $this->fetch('script') ?>
 </head>
 
-<body class="">
+<body class="bg-gray-100">
   <div class="container position-sticky z-index-sticky top-0">
     <div class="row">
       <div class="col-12">
