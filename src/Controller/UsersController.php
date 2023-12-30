@@ -119,6 +119,7 @@ class UsersController extends AppController
      */
     public function adicionar()
     {
+
         $user = $this->Users->newEntity();
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
@@ -504,7 +505,7 @@ class UsersController extends AppController
                         $segundos = $diferenca_em_segundos % 60; // O resto em segundos
 
                         // Formate o total em horas, minutos e segundos
-                        $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
+                        $total = sprintf("%02d:%02d", $horas, $minutos);
 
                         // Adicione o total ao array atual em $pontos
                         $pontos[] = ['total' => $total];
