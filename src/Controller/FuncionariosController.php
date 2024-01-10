@@ -28,9 +28,9 @@ class FuncionariosController extends AppController
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -55,7 +55,6 @@ class FuncionariosController extends AppController
             } else if ($ativo == 2) {
                 $conditions['Funcionarios.is_active'] = 0;
             } else if ($ativo == 3) {
-                
             }
         }
 
@@ -88,9 +87,9 @@ class FuncionariosController extends AppController
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -104,7 +103,7 @@ class FuncionariosController extends AppController
             'limit' => 5
         ];
         $funcionarios = $this->paginate($this->Funcionarios);
-       
+
 
         $this->set('funcionario', $funcionario);
     }
@@ -122,9 +121,9 @@ class FuncionariosController extends AppController
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -140,9 +139,9 @@ class FuncionariosController extends AppController
             $this->Flash->error(__('O funcionário não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
-        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
-        $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200,'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
-        $users = $this->Funcionarios->Users->find('list', ['limit' => 200,'conditions'=>['is_active' => 1, 'is_trash <>' => 1]]);
+        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200, 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
+        $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200, 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
+        $users = $this->Funcionarios->Users->find('list', ['limit' => 200, 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
         $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
     }
@@ -159,9 +158,9 @@ class FuncionariosController extends AppController
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -202,10 +201,13 @@ class FuncionariosController extends AppController
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
         $roles = $this->Roles->find('list');
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
-        $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200]);
-        $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
+        $is_trash = 0;
+        $empresas = $this->Funcionarios->Empresas->find('list', [
+            'limit' => 200,
+            'conditions' => ['is_trash' => $is_trash],
+        ]);
 
-        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'plantoes', 'user', 'roles'));
+        $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'user', 'roles'));
     }
 
 
@@ -224,9 +226,9 @@ class FuncionariosController extends AppController
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -267,9 +269,9 @@ class FuncionariosController extends AppController
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -296,6 +298,6 @@ class FuncionariosController extends AppController
         $salario = $this->Funcionarios->getSalarioPorId($funcionarioId);
 
         $this->response = $this->response->withType('application/json')
-        ->withStringBody(json_encode(['salario' => $salario]));
+            ->withStringBody(json_encode(['salario' => $salario]));
     }
 }
