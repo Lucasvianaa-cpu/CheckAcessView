@@ -1,5 +1,7 @@
 <?php
+
 namespace App\Mailer;
+
 use Cake\Mailer\Mailer;
 
 class UserMailer extends Mailer
@@ -8,23 +10,27 @@ class UserMailer extends Mailer
 
     public function welcome($user)
     {
-        $this->to($user->email)
-        ->profile('checkAcessViewEmail')
-        ->emailFormat('html')
-        ->template('welcome_email')
-        ->layout('default')
-        ->viewVars(['nome' => $user->nome])
-        ->subject(sprintf('Bem-vindo, %s', $user->nome));
+        $this
+            ->setTo($user->email)
+            ->setProfile('checkAcessViewEmail')
+            ->setEmailFormat('html')
+            ->setSubject(sprintf('Bem-vindo, %s', $user->nome))
+            ->setViewVars(['nome' => $user->nome])
+            ->viewBuilder()
+            ->setTemplate('welcome_email')
+            ->setLayout('default');
     }
-
+    
     public function recovery($user)
     {
-        $this->to($user[0]['email'])
-        ->profile('checkAcessViewEmail')
-        ->emailFormat('html')
-        ->template('recuperar_email')
-        ->layout('default')
-        ->viewVars(['nome' => $user[0]['nome'], 'email' => $user[0]['email'], 'hash' => substr($user[0]['password'], 0, 25)])
-        ->subject('Recuperação de senha');
-    }
+        $this
+            ->setTo($user[0]['email'])
+            ->setProfile('checkAcessViewEmail')
+            ->setEmailFormat('html')
+            ->setSubject('Recuperação de senha')
+            ->setViewVars(['nome' => $user[0]['nome'], 'email' => $user[0]['email'], 'hash' => substr($user[0]['password'], 0, 25)])
+            ->viewBuilder()
+            ->setTemplate('recuperar_email')
+            ->setLayout('default');
+        }
 }

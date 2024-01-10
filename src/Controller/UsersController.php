@@ -573,8 +573,8 @@ class UsersController extends AppController
 
     public function redefinirSenha()
     {
-        $q_hash = $this->request->query('h');
-        $q_email = $this->request->query('email');
+        $q_hash = $this->request->getQuery('h');
+        $q_email = $this->request->getQuery('email');
 
         $user = $this->Users->newEntity();
         if ($this->request->is(['post', 'put'])) {
