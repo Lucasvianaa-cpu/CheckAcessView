@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -25,9 +26,9 @@ class EstadosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -59,9 +60,9 @@ class EstadosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -86,9 +87,9 @@ class EstadosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -96,12 +97,23 @@ class EstadosController extends AppController
         $estado = $this->Estados->newEntity();
         if ($this->request->is('post')) {
             $estado = $this->Estados->patchEntity($estado, $this->request->getData());
-            if ($this->Estados->save($estado)) {
-                $this->Flash->success(__('Estado adicionado com sucesso.'));
+            try{
+                if ($this->Estados->save($estado)) {
+                    $this->Flash->success(__('Estado adicionado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O estado não pôde ser adicionado. Por favor, tente novamente.'));
+            } catch(\PDOException $e){
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Erro: O estado não pode ser adicionado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
+            
             }
-            $this->Flash->error(__('O estado não pôde ser adicionado. Por favor, tente novamente.'));
         }
         $this->set(compact('estado'));
     }
@@ -121,9 +133,9 @@ class EstadosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -133,13 +145,27 @@ class EstadosController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $estado = $this->Estados->patchEntity($estado, $this->request->getData());
+        try{
             if ($this->Estados->save($estado)) {
                 $this->Flash->success(__('Estado atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
+            } else{
+                $this->Flash->error(__('O estado não pôde ser atualizado. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('O estado não pôde ser atualizado. Por favor, tente novamente.'));
+            
+        } catch (\PDOException $e) {
+            $errorCode = $e->getCode();
+
+            if ($errorCode == '23000') {
+                $this->Flash->error(__('Erro: O estado não pode ser atualizado. Verifique se não está associado a outras entidades.'));
+            } else {
+                $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+            }
         }
+        }
+           
+        
         $this->set(compact('estado'));
     }
 
@@ -158,19 +184,29 @@ class EstadosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
-        
+
         $this->request->allowMethod(['post', 'delete']);
-        $estado = $this->Estados->get($id);
-        if ($this->Estados->delete($estado)) {
-            $this->Flash->success(__('Estado deletado com sucesso.'));
-        } else {
-            $this->Flash->error(__('O estado não pode ser deletado. Por favor, tente novamente.'));
+        try {
+            $estado = $this->Estados->get($id);
+            if ($this->Estados->delete($estado)) {
+                $this->Flash->success(__('Estado deletado com sucesso.'));
+            } else {
+                $this->Flash->error(__('O estado não pode ser deletado. Por favor, tente novamente.'));
+            }
+        } catch (\PDOException $e) {
+            $errorCode = $e->getCode();
+
+            if ($errorCode == '23000') {
+                $this->Flash->error(__('Erro: O estado não pode ser deletado. Verifique se não está associado a outras entidades.'));
+            } else {
+                $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+            }
         }
 
         return $this->redirect(['action' => 'index']);

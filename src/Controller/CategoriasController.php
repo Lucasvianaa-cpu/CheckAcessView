@@ -39,17 +39,16 @@ class CategoriasController extends AppController
             $conditions['LOWER(Categorias.nome) LIKE'] = '%' . strtolower($nome) . '%';
         }
 
-        if ($this->request->getQuery('ativo') != '') {
+        if ($this->request->getQuery('ativo') !== '') {
             $ativo = $this->request->getQuery('ativo');
-
+        
             if ($ativo == 1) {
                 $conditions['Categorias.is_active'] = 1;
             } else if ($ativo == 2) {
-                $conditions['Categorias.is_active'] = 0;
-            } else if ($ativo == 3) {
-                
+                $conditions['Categorias.is_trash'] = 1;
             }
         }
+        
 
         $categorias = $this->paginate($this->Categorias, ['conditions' => $conditions]);
 
@@ -109,12 +108,25 @@ class CategoriasController extends AppController
         $categoria = $this->Categorias->newEntity();
         if ($this->request->is('post')) {
             $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
-            if ($this->Categorias->save($categoria)) {
-                $this->Flash->success(__('Categoria adicionada com sucesso.'));
+            
+            try{
+                if ($this->Categorias->save($categoria)) {
+                    $this->Flash->success(__('Categoria adicionada com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('A categoria não pôde ser adicionada. Por favor, tente novamente.'));
+            }catch(\PDOException $e){
+                $errorCode = $e->getCode();
+
+            if ($errorCode == '23000') {
+                $this->Flash->error(__('A categoria  não pode ser adicionada. Verifique se não está associado a outras entidades.'));
+            } else {
+                $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
             }
-            $this->Flash->error(__('A categoria não pôde ser adicionada. Por favor, tente novamente.'));
+        }
+
+            
         }
         $this->set(compact('categoria'));
     }
@@ -146,12 +158,31 @@ class CategoriasController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
-            if ($this->Categorias->save($categoria)) {
+
+            if ($categoria->is_active == 1) {
+                $categoria->is_trash = 0;
+            }
+            
+            try{
+                if ($this->Categorias->save($categoria)) {
                 $this->Flash->success(__('Categoria atualizada com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
+                }
+
+                $this->Flash->error(__('A categoria não pôde ser atualizada. Por favor, tente novamente.'));
+            } catch(\PDOException $e){
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('A categoria não pode ser alterada. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
+            
             }
-            $this->Flash->error(__('A categoria não pôde ser atualizada. Por favor, tente novamente.'));
+            
+            
         }
         $this->set(compact('categoria'));
     }

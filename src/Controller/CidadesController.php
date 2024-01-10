@@ -99,12 +99,23 @@ class CidadesController extends AppController
         $cidade = $this->Cidades->newEntity();
         if ($this->request->is('post')) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
-            if ($this->Cidades->save($cidade)) {
-                $this->Flash->success(__('Cidade adicionada com sucesso.'));
-
-                return $this->redirect(['action' => 'index']);
+            try {
+                if ($this->Cidades->save($cidade)) {
+                    $this->Flash->success(__('Cidade adicionada com sucesso.'));
+    
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                    $this->Flash->error(__('A cidade não pôde ser adicionada. Por favor, tente novamente.'));
+                }
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+    
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('A cidade já existe.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('A cidade não pôde ser adicionada. Por favor, tente novamente.'));
         }
         $estados = $this->Cidades->Estados->find('list', ['limit' => 200]);
         $this->set(compact('cidade', 'estados'));
@@ -137,12 +148,24 @@ class CidadesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $cidade = $this->Cidades->patchEntity($cidade, $this->request->getData());
-            if ($this->Cidades->save($cidade)) {
-                $this->Flash->success(__('Cidade atualizada com sucesso.'));
+            try {
+                if ($this->Cidades->save($cidade)) {
+                    $this->Flash->success(__('Cidade atualizada com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('A cidade não pôde ser atualizada. Por favor, tente novamente.'));
+                    return $this->redirect(['action' => 'index']);
+                } else {
+                     $this->Flash->error(__('A cidade não pôde ser atualizada. Por favor, tente novamente.'));
+                }
+            } catch(\PDOException $e){
+
+                $errorCode = $e->getCode();
+                
+                     if ($errorCode == '23000') {
+                         $this->Flash->error(__(' Não pode ser alterado. Verifique se não está associado a outras entidades.'));
+                    } else {
+                         $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                        }
+                    }       
         }
         $estados = $this->Cidades->Estados->find('list', ['limit' => 200]);
         $this->set(compact('cidade', 'estados'));

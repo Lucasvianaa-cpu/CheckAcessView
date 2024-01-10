@@ -25,7 +25,7 @@
                             <div class="col-2 checkbox-input">
                                 <label for="" class="form-label"></label>
                                 <div class="form-check mt-2">
-                                    <?= $this->Form->control('is_active', ['type' => 'checkbox', 'label' => 'Ativo', 'class' => 'form-check-input']); ?>
+                                    <?= $this->Form->control('is_trash', ['type' => 'checkbox', 'label' => 'Ativar?', 'class' => 'form-check-input']); ?>
                                 </div>
                             </div>
 

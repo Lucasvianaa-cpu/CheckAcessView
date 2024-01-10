@@ -81,7 +81,17 @@
                                         </td>
                                         <td class="align-middle text-center text-sm">
                                             <p class="text-sm text-dark font-weight-semibold mb-0">
-                                                <?= $categoria->is_active == 1 ? 'Sim' : 'Não' ?></p>
+                                                <?php
+                                                if ($categoria->is_active == 1 && $categoria->is_trash == 0) {
+                                                    echo 'Sim';
+                                                } elseif ($categoria->is_active == 1 && $categoria->is_trash == 1) {
+                                                    echo 'Não';
+                                                } else {
+                                                    echo 'Outro caso...';
+                                                }
+                                                ?>
+                                            </p>
+
                                         </td>
                                         <td class="align-middle text-center" style="display: flex; justify-content: end;">
                                             <a class="btn btn-sm btn-dark mx-1" href="<?= $this->Url->build(['controller' => 'Categorias', 'action' => 'view', $categoria->id]); ?>">
