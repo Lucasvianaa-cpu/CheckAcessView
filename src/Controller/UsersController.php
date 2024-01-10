@@ -124,7 +124,8 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             $user->role_id = 4;
-            if ($this->Users->save($user)) {
+            try{
+                if ($this->Users->save($user)) {
                 $this->getMailer('User')->send('welcome', [$user]);
                 $this->Flash->success(__('Usuário adicionado com sucesso.'));
 
@@ -138,7 +139,17 @@ class UsersController extends AppController
                 }
             }
             $this->Flash->error(__('O usuário não pôde ser adicionado. Por favor, tente novamente.'));
-        }
+            }catch(\PDOException $e){
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Usuário não pode ser adicionado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
+            }
+            }
+            
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
     }
@@ -170,13 +181,26 @@ class UsersController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
-            if ($this->Users->save($user)) {
+
+            try{
+                if ($this->Users->save($user)) {
                 $this->Flash->success(__('Usuário atualizado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('O usuário não pôde ser atualizado. Por favor, tente novamente.'));
+            }catch(\PDOException $e){
+                $errorCode = $e->getCode();
+
+            if ($errorCode == '23000') {
+                $this->Flash->error(__('Usuário não pode ser atualizado. Verifique se não está associado a outras entidades.'));
+            } else {
+                $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+            }
         }
+
+            }
+            
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
     }

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -25,9 +26,9 @@ class VeiculosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -52,7 +53,6 @@ class VeiculosController extends AppController
             } else if ($ativo == 2) {
                 $conditions['Veiculos.is_active'] = 0;
             } else if ($ativo == 3) {
-                
             }
         }
 
@@ -79,9 +79,9 @@ class VeiculosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -106,9 +106,9 @@ class VeiculosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -116,13 +116,26 @@ class VeiculosController extends AppController
         $veiculo = $this->Veiculos->newEntity();
         if ($this->request->is('post')) {
             $veiculo = $this->Veiculos->patchEntity($veiculo, $this->request->getData());
-            if ($this->Veiculos->save($veiculo)) {
-                $this->Flash->success(__('Veículo adicionado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+            try {
+                if ($this->Veiculos->save($veiculo)) {
+                    $this->Flash->success(__('Veículo adicionado com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O veículo não pôde ser adicionado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Veículo não pode ser adicionado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('O veículo não pôde ser adicionado. Por favor, tente novamente.'));
         }
+
+
         $users = $this->Veiculos->Users->find('list', ['keyField' => 'id', 'valueField' => 'nome', 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
         $this->set(compact('veiculo', 'users'));
     }
@@ -142,9 +155,9 @@ class VeiculosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -154,13 +167,26 @@ class VeiculosController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $veiculo = $this->Veiculos->patchEntity($veiculo, $this->request->getData());
-            if ($this->Veiculos->save($veiculo)) {
-                $this->Flash->success(__('Veículo atualizado com sucesso.'));
+            try{
+                 if ($this->Veiculos->save($veiculo)) {
+                    $this->Flash->success(__('Veículo atualizado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('O veículo não pôde ser atualizado. Por favor, tente novamente.'));
-        }
+                    return $this->redirect(['action' => 'index']);
+                }
+                    $this->Flash->error(__('O veículo não pôde ser atualizado. Por favor, tente novamente.'));
+                }catch(\PDOException $e){
+                    $errorCode = $e->getCode();
+
+                    if ($errorCode == '23000') {
+                        $this->Flash->error(__('Veículo não pode ser atualizado. Verifique se não está associado a outras entidades.'));
+                    } else {
+                        $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                    }
+                }
+        
+                }
+            
+           
         $users = $this->Veiculos->Users->find('list', ['limit' => 200]);
         $this->set(compact('veiculo', 'users'));
     }
@@ -182,13 +208,13 @@ class VeiculosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
-        
+
         $this->request->allowMethod(['post', 'delete']);
         $veiculo = $this->Veiculos->get($id);
 
@@ -203,5 +229,4 @@ class VeiculosController extends AppController
 
         return $this->redirect(['action' => 'index']);
     }
-
 }

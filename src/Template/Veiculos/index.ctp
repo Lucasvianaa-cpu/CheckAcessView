@@ -58,7 +58,7 @@
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Placa</th>
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Cor</th>
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Ativo</th>
-                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
+                  <th class="text-center text-secondary text-xs font-weight-semibold opacity-7">Condutor</th>
                   <th class="text-center text-secondary text-xs font-weight-semibold opacity-7"></th>
                 </tr>
               </thead>

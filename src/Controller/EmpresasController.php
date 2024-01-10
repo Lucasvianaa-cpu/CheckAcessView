@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -48,7 +49,6 @@ class EmpresasController extends AppController
             } else if ($ativo == 2) {
                 $conditions['Empresas.is_active'] = 0;
             } else if ($ativo == 3) {
-                
             }
         }
 
@@ -99,13 +99,26 @@ class EmpresasController extends AppController
         $empresa = $this->Empresas->newEntity();
         if ($this->request->is('post')) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
-            if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('Empresa adicionada com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+            try {
+                if ($this->Empresas->save($empresa)) {
+                    $this->Flash->success(__('Empresa adicionada com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('A empresa não pôde ser adicionada. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('A empresa não pode ser adicionada. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('A empresa não pôde ser adicionada. Por favor, tente novamente.'));
         }
+
+
         $this->set(compact('empresa'));
     }
 
@@ -131,13 +144,25 @@ class EmpresasController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $empresa = $this->Empresas->patchEntity($empresa, $this->request->getData());
-            if ($this->Empresas->save($empresa)) {
-                $this->Flash->success(__('Empresa atualizada com sucesso.'));
+            try {
+                if ($this->Empresas->save($empresa)) {
+                    $this->Flash->success(__('Empresa atualizada com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('A empresa não pode ser atualizada. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('A empresa não pode ser atualizada. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('A empresa não pode ser atualizada. Por favor, tente novamente.'));
         }
+
+
         $this->set(compact('empresa'));
     }
 
@@ -174,7 +199,7 @@ class EmpresasController extends AppController
         return $this->redirect(['action' => 'index']);
     }
 
-    public function editarEmpresa ($id = null) 
+    public function editarEmpresa($id = null)
     {
         $usuario_logado = $this->Auth->user();
         $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
@@ -204,7 +229,7 @@ class EmpresasController extends AppController
                     $this->Flash->error(__('Only image files (JPG, JPEG, GIF, PNG) are allowed.'));
                 }
             }
-            
+
             if ($this->Empresas->save($empresa)) {
                 $this->Flash->success(__('Empresa atualizada com sucesso.'));
 
@@ -214,12 +239,10 @@ class EmpresasController extends AppController
         }
 
         $this->set(compact('empresa'));
-
-        
-        
     }
 
-    public function visualizarEmpresa ($id = null){
+    public function visualizarEmpresa($id = null)
+    {
         $usuario_logado = $this->Auth->user();
         $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
 

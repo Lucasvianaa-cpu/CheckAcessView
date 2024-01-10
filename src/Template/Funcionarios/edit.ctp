@@ -36,9 +36,6 @@
                             <div class="col-md-4 pb-3">
                                 <?php echo $this->Form->control('user_id',['type' => 'select','label' => 'Usuário', 'options' => $users, 'class' => 'form-select', 'required']);?>
                             </div>
-                            <div class="col-md-3 pb-3">
-                                <?php echo $this->Form->control('plantoes._ids',['type' => 'select','label' => 'Plantão', 'options' => $plantoes, 'class' => 'form-select', 'required']);?>
-                            </div>
                         
                             <div class="col-2 checkbox-input">
                                 <label for="" class="form-label"></label>

@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -25,9 +26,9 @@ class PlanosSaudesController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -47,7 +48,6 @@ class PlanosSaudesController extends AppController
             } else if ($ativo == 2) {
                 $conditions['PlanosSaudes.is_active'] = 0;
             } else if ($ativo == 3) {
-                
             }
         }
         $planosSaudes = $this->paginate($this->PlanosSaudes, ['conditions' => $conditions]);
@@ -70,9 +70,9 @@ class PlanosSaudesController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -97,9 +97,9 @@ class PlanosSaudesController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -107,13 +107,25 @@ class PlanosSaudesController extends AppController
         $planosSaude = $this->PlanosSaudes->newEntity();
         if ($this->request->is('post')) {
             $planosSaude = $this->PlanosSaudes->patchEntity($planosSaude, $this->request->getData());
-            if ($this->PlanosSaudes->save($planosSaude)) {
-                $this->Flash->success(__('Plano de saúde adicionado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+            try {
+                if ($this->PlanosSaudes->save($planosSaude)) {
+                    $this->Flash->success(__('Plano de saúde adicionado com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O plano de saúde não pôde ser adicionado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Plano não pode ser adicionado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('O plano de saúde não pôde ser adicionado. Por favor, tente novamente.'));
         }
+
         $this->set(compact('planosSaude'));
     }
 
@@ -132,9 +144,9 @@ class PlanosSaudesController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -144,13 +156,25 @@ class PlanosSaudesController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $planosSaude = $this->PlanosSaudes->patchEntity($planosSaude, $this->request->getData());
-            if ($this->PlanosSaudes->save($planosSaude)) {
-                $this->Flash->success(__('Plano de saúde atualizado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+            try {
+                if ($this->PlanosSaudes->save($planosSaude)) {
+                    $this->Flash->success(__('Plano de saúde atualizado com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O plano de saúde não pôde ser atualizado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Plano não pode ser alterado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('O plano de saúde não pôde ser atualizado. Por favor, tente novamente.'));
         }
+
         $this->set(compact('planosSaude'));
     }
 
@@ -171,9 +195,9 @@ class PlanosSaudesController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }

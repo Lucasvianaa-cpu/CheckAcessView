@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controller;
 
 use App\Controller\AppController;
@@ -23,16 +24,16 @@ class EquipamentosController extends AppController
     {
         $this->loadModel('Users');
         $this->loadModel('Funcionarios');
-        
+
         $usuario_logado = $this->Auth->user();
         $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
 
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -56,7 +57,6 @@ class EquipamentosController extends AppController
             } else if ($ativo == 2) {
                 $conditions['Equipamentos.is_active'] = 0;
             } else if ($ativo == 3) {
-                
             }
         }
 
@@ -83,13 +83,13 @@ class EquipamentosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
-        
+
         $equipamento = $this->Equipamentos->get($id, [
             'contain' => ['Funcionarios.Users'],
         ]);
@@ -113,9 +113,9 @@ class EquipamentosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -125,14 +125,25 @@ class EquipamentosController extends AppController
         if ($this->request->is('post')) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
 
-            if ($this->Equipamentos->save($equipamento)) {
-                $this->Flash->success(__('Equipamento adicionado com sucesso.'));
+            try {
+                if ($this->Equipamentos->save($equipamento)) {
+                    $this->Flash->success(__('Equipamento adicionado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O equipamento não pôde ser adicionado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Equipamento não pode ser adicionado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('O equipamento não pôde ser adicionado. Por favor, tente novamente.'));
         }
-        
+
         // Cria uma nova consulta para buscar os funcionários e incluir os usuários associados
         $func = $this->Funcionarios->find('all', [
             'limit' => 200,
@@ -144,8 +155,8 @@ class EquipamentosController extends AppController
         $funcionarios = [];
         foreach ($func as $funcionario) {
             $funcionarios[$funcionario->id] = $funcionario->user->nome;
-        }     
-        
+        }
+
         $this->set(compact('equipamento', 'funcionarios'));
     }
 
@@ -168,9 +179,9 @@ class EquipamentosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -180,12 +191,23 @@ class EquipamentosController extends AppController
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
-            if ($this->Equipamentos->save($equipamento)) {
-                $this->Flash->success(__('Equipamento atualizado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
+            try {
+                if ($this->Equipamentos->save($equipamento)) {
+                    $this->Flash->success(__('Equipamento atualizado com sucesso.'));
+
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O equipamento não pôde ser atualizado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('O Equipamento não pode ser editado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('O equipamento não pôde ser atualizado. Por favor, tente novamente.'));
         }
         $func = $this->Funcionarios->find('all', [
             'limit' => 200,
@@ -196,8 +218,8 @@ class EquipamentosController extends AppController
         $funcionarios = [];
         foreach ($func as $funcionario) {
             $funcionarios[$funcionario->id] = $funcionario->user->nome;
-        } 
-        
+        }
+
         $this->set(compact('equipamento', 'funcionarios'));
     }
 
@@ -217,9 +239,9 @@ class EquipamentosController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
