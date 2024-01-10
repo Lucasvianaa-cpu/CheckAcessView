@@ -63,7 +63,7 @@ class EquipamentosController extends AppController
         $this->paginate = [
             'contain' => ['Funcionarios.Users'],
         ];
-        $equipamentos = $this->paginate($this->Equipamentos, ['conditions' => $conditions]);
+        $equipamentos = $this->paginate($this->Equipamentos, ['conditions' => $conditions, 'order' => ['Equipamentos.descricao' => 'ASC']]);
 
         $this->set(compact('equipamentos'));
     }

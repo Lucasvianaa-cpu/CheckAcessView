@@ -40,7 +40,7 @@ class EstadosController extends AppController
             $conditions['LOWER(Estados.sigla) LIKE'] = '%' . strtolower($sigla) . '%';
         }
 
-        $estados = $this->paginate($this->Estados, ['conditions' => $conditions]);
+        $estados = $this->paginate($this->Estados, ['conditions' => $conditions, 'order' => ['Estados.nome' => 'ASC']]);
 
         $this->set(compact('estados'));
     }

@@ -50,7 +50,7 @@ class PlanosSaudesController extends AppController
             } else if ($ativo == 3) {
             }
         }
-        $planosSaudes = $this->paginate($this->PlanosSaudes, ['conditions' => $conditions]);
+        $planosSaudes = $this->paginate($this->PlanosSaudes, ['conditions' => $conditions, 'order' => ['PlanosSaudes.nome' => 'ASC']]);
 
         $this->set(compact('planosSaudes'));
     }

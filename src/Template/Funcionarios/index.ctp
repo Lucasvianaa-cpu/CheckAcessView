@@ -80,7 +80,7 @@
                     </div>
                   </td>
                   <td class="align-middle text-center text-sm">
-                    <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionario->salario ?></p>
+                    <p class="text-sm text-dark font-weight-semibold mb-0"><?= 'R$ ' . number_format($funcionario->salario, 2, ',', '.') ?></p>
                   </td>
                   <td class="align-middle text-center">
                     <p class="text-sm text-dark font-weight-semibold mb-0"><?= $funcionario->cargo->nome ?></p>

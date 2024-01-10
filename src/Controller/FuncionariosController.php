@@ -63,7 +63,8 @@ class FuncionariosController extends AppController
         $this->paginate = [
             'contain' => ['Cargos', 'Empresas', 'Users', 'PlanosSaudes'],
         ];
-        $funcionarios = $this->paginate($this->Funcionarios, ['conditions' => $conditions]);
+        $funcionarios = $this->paginate($this->Funcionarios, ['conditions' => $conditions, 'order' => ['Users.nome' => 'ASC']]);
+        
 
         $this->set(compact('funcionarios'));
     }
@@ -117,27 +118,40 @@ class FuncionariosController extends AppController
     {
         $usuario_logado = $this->Auth->user();
         $empresa_id = $usuario_logado['funcionarios'][0]['empresa']['id'];
-
+    
         if ($usuario_logado->role_id != 1 && $usuario_logado->role_id != 2) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
-
+    
             if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
             } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
-
+    
         $funcionario = $this->Funcionarios->newEntity();
         if ($this->request->is('post')) {
-            $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
+            $data = $this->request->getData();
+    
+            // Certifique-se de que o campo salario está presente nos dados do formulário
+            if (isset($data['salario'])) {
+                // Remover caracteres não numéricos, exceto vírgula
+                $data['salario'] = preg_replace('/[^0-9,]/', '', $data['salario']);
+            
+                // Substituir vírgula por ponto, se necessário
+                $data['salario'] = str_replace(',', '.', $data['salario']);
+            }
+    
+            $funcionario = $this->Funcionarios->patchEntity($funcionario, $data);
+    
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('Funcionário adicionado com sucesso.'));
-
+    
                 return $this->redirect(['action' => 'index']);
             }
             $this->Flash->error(__('O funcionário não pôde ser adicionado. Por favor, tente novamente.'));
         }
+        
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
         $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200, 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
         $empresas = $this->Funcionarios->Empresas->find('list', ['limit' => 200, 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
@@ -145,6 +159,8 @@ class FuncionariosController extends AppController
         $plantoes = $this->Funcionarios->Plantoes->find('list', ['limit' => 200]);
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users', 'plantoes'));
     }
+    
+
 
     public function vincularUsuario($id = null)
     {
@@ -237,7 +253,21 @@ class FuncionariosController extends AppController
             'contain' => ['Plantoes'],
         ]);
         if ($this->request->is(['patch', 'post', 'put'])) {
-            $funcionario = $this->Funcionarios->patchEntity($funcionario, $this->request->getData());
+            $data = $this->request->getData();
+    
+            // Certifique-se de que o campo salario está presente nos dados do formulário
+            if (isset($data['salario'])) {
+                // Remover caracteres não numéricos, exceto vírgula
+                $data['salario'] = preg_replace('/[^0-9,]/', '', $data['salario']);
+            
+                // Substituir vírgula por ponto, se necessário
+                $data['salario'] = str_replace(',', '.', $data['salario']);
+            }
+    
+            $funcionario = $this->Funcionarios->patchEntity($funcionario, $data);
+
+           
+
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('Funcionário atualizado com sucesso.'));
 

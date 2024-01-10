@@ -42,7 +42,7 @@ class CidadesController extends AppController
         $this->paginate = [
             'contain' => ['Estados'],
         ];
-        $cidades = $this->paginate($this->Cidades, ['conditions' => $conditions]);
+        $cidades = $this->paginate($this->Cidades, ['conditions' => $conditions, 'order' => ['Cidades.nome' => 'ASC']]);
 
         $this->set(compact('cidades'));
     }

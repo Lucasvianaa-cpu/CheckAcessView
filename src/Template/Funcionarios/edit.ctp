@@ -18,7 +18,7 @@
                         <?= $this->Form->create($funcionario, ['class'=> 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-3">
-                                <?php echo $this->Form->control('salario',['type' => 'text', 'label' => 'Salário', 'class' => 'form-control', 'required' => 'required']);?>
+                                <?php echo $this->Form->control('salario',['type' => 'text', 'label' => 'Salário', 'class' => 'form-control', 'required' => 'required', 'value' => 'R$ ' . number_format($funcionario->salario, 2, ',', '.')]);?>
                             </div>
                             <div class="col-3">
                                 <?= $this->Form->data_personalizada('admissao', 'Data de Admissão', 'date', date('d/m/Y'), 'required', $funcionario->admissao); ?>
@@ -62,6 +62,7 @@
 
 <footer>
 
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
         <?php 
             $timestamp_admissao = strtotime($funcionario->admissao);
@@ -77,6 +78,19 @@
             });
         </script>
 
+        <script>
+        $(document).ready(function () {
+            // Função para formatar o valor como "R$ 0,00"
+            function formatarSalario(salario) {
+            return 'R$ ' + parseFloat(salario).toFixed(2).replace('.', ',');
+            }
+
+            // Exemplo de uso:
+            var salario = 1234.56; // Substitua pelo valor do seu campo de salário
+            var salarioFormatado = formatarSalario(salario);
+            console.log(salarioFormatado); // Saída: R$ 1.234,56
+        });
+        </script>
 
       </footer>
 

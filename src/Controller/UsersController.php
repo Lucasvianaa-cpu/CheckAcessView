@@ -350,7 +350,7 @@ class UsersController extends AppController
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $estados = $this->Estados->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
-        $cidades = $this->Cidades->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
+        $cidades = $this->Cidades->find('list', ['keyField' => 'id', 'valueField' => 'nome', 'order' => ['Cidades.nome' => 'ASC']]);
         $categorias = $this->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $cargos = $this->Cargos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
         $veiculos = $this->Veiculos->find('list', ['keyField' => 'id', 'valueField' => 'nome']);

@@ -42,7 +42,7 @@ class CargosController extends AppController
         $this->paginate = [
             'contain' => ['Categorias'],
         ];
-        $cargos = $this->paginate($this->Cargos, ['conditions' => $conditions]);
+        $cargos = $this->paginate($this->Cargos, ['conditions' => $conditions, 'order' => ['Cargos.nome' => 'ASC']]);
 
         $this->set(compact('cargos'));
     }

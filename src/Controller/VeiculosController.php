@@ -59,7 +59,7 @@ class VeiculosController extends AppController
         $this->paginate = [
             'contain' => ['Users'],
         ];
-        $veiculos = $this->paginate($this->Veiculos, ['conditions' => $conditions]);
+        $veiculos = $this->paginate($this->Veiculos, ['conditions' => $conditions, 'order' => ['Veiculos.modelo' => 'ASC']]);
 
         $this->set(compact('veiculos'));
     }

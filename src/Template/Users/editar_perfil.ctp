@@ -166,7 +166,7 @@
                   <?= $this->Form->control('caminho_foto', ['type' => 'file', 'class' => 'form-control']) ?>
                 </div>
                 <div class="col-md-6">
-                  <?= $this->Form->control('cpf', ['type' => 'text', 'label' => 'CPF', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cpf']); ?>
+                  <?= $this->Form->control('cpf', ['type' => 'text', 'label' => 'CPF', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cpf', 'id' => 'cpf']); ?>
                 </div>
                 <div class="col-md-6">
                   <?= $this->Form->control('rg', ['type' => 'text', 'label' => 'RG', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu rg']); ?>
@@ -185,17 +185,21 @@
                   <?= $this->Form->control('enderecos.0.cidade_id', ['type' => 'select', 'label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade', 'empty' => 'Selecione']); ?>
                 </div>
                 <div class="col-md-2">
-                  <?= $this->Form->control('cidades.estado_id', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'required' => 'required', 'style' => 'pointer-events: none;', 'disabled' => true, 'placeholder' => 'Digite o Estado', 'default' => $user->enderecos[0]->cidade->estado->nome]); ?>
+                  <?php
+                    $estadoNome = isset($user->enderecos[0]->cidade->estado->nome) ? $user->enderecos[0]->cidade->estado->nome : '';
+                  ?>
+                  <?= $this->Form->control('cidades.estado_id', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'required' => 'required', 'style' => 'pointer-events: none;', 'disabled' => true, 'placeholder' => 'Digite o Estado', 'default' => $estadoNome]); ?>
                 </div>
+
 
                 <div class="col-md-6">
                   <?= $this->Form->control('enderecos.0.rua', ['type' => 'text', 'label' => 'Endereço', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o endereço']); ?>
                 </div>
-                <div class="col-md-4">
-                  <?= $this->Form->control('enderecos.0.bairro', ['type' => 'text', 'label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro']); ?>
-                </div>
                 <div class="col-md-2">
                   <?= $this->Form->control('enderecos.0.numero', ['type' => 'text', 'label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número']); ?>
+                </div>
+                <div class="col-md-4">
+                  <?= $this->Form->control('enderecos.0.bairro', ['type' => 'text', 'label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro']); ?>
                 </div>
 
                 <div class="col-md-6">
@@ -301,6 +305,23 @@
         <?= $this->Html->script('corporate-ui-dashboard.min.js?v=1.0.0'); ?>
 
         <?= $this->Html->script('sweetalert2.all.min.js'); ?>
+
+
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+        <?= $this->Html->scriptBlock('
+            $(document).ready(function(){
+                $("#cpf").mask("000.000.000-00");
+            });
+        '); ?>
+
+        <?= $this->Html->scriptBlock('
+            $(document).ready(function(){
+                $("#cep").mask("00000-000");
+            });
+        '); ?>
+
 
         <!-- Mensagens de Sucesso/Erro -->
         <?= $this->element('alertas/mensagem'); ?>

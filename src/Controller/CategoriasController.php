@@ -50,7 +50,7 @@ class CategoriasController extends AppController
         }
         
 
-        $categorias = $this->paginate($this->Categorias, ['conditions' => $conditions]);
+        $categorias = $this->paginate($this->Categorias, ['conditions' => $conditions, 'order' => ['Categorias.nome' => 'ASC']]);
 
         $this->set(compact('categorias'));
     }
