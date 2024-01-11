@@ -143,13 +143,24 @@ class FuncionariosController extends AppController
             }
     
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $data);
-    
-            if ($this->Funcionarios->save($funcionario)) {
-                $this->Flash->success(__('Funcionário adicionado com sucesso.'));
-    
-                return $this->redirect(['action' => 'index']);
+            
+            try{
+                if ($this->Funcionarios->save($funcionario)) {
+                    $this->Flash->success(__('Funcionário adicionado com sucesso.'));
+        
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O funcionário não pôde ser adicionado. Por favor, tente novamente.'));
+            } catch(\PDOException $e) {
+                $errorCode = $e->getCode();
+
+                if ($errorCode == '23000') {
+                    $this->Flash->error(('Este usuário já está registrado como funcionário.'));
+                } else {
+                    $this->Flash->error(('Erro desconhecido: ') . $e->getMessage());
+                }
             }
-            $this->Flash->error(__('O funcionário não pôde ser adicionado. Por favor, tente novamente.'));
+            
         }
         
         $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);

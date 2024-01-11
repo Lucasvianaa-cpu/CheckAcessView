@@ -24,22 +24,22 @@
                                 <?= $this->Form->control('nome_fantasia', ['type' => 'text', 'label' => 'Nome Fantasia', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o nome fantasia']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('cnpj', ['type' => 'text', 'label' => 'CNPJ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CNPJ']); ?>
+                            <?= $this->Form->control('cnpj', ['type' => 'text', 'label' => 'CNPJ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CNPJ', 'id' => 'cnpj']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('ie', ['type' => 'text', 'label' => 'IE', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Inscrição Estadual']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('cep', ['type' => 'text', 'label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CEP']); ?>
+                                <?= $this->Form->control('cep', ['type' => 'text', 'label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CEP', 'id' => 'cep']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('endereco', ['type' => 'text', 'label' => 'Rua', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Rua']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('bairro', ['type' => 'text', 'label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o Bairro']); ?>
+                                <?= $this->Form->control('numero', ['type' => 'number', 'label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o Número']); ?>
                             </div>
                             <div class="col-md-4">
-                                <?= $this->Form->control('numero', ['type' => 'number', 'label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o Número']); ?>
+                                <?= $this->Form->control('bairro', ['type' => 'text', 'label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o Bairro']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('telefone', ['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o telefone']); ?>
@@ -72,3 +72,16 @@
     </div>
 </div>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js"></script>
+
+        <?= $this->Html->scriptBlock('
+            $(document).ready(function(){
+                $("#cnpj").mask("00.000.000/0000-00");
+            });
+        '); ?>
+        <?= $this->Html->scriptBlock('
+            $(document).ready(function(){
+                $("#cep").mask("00000-000");
+            });
+        '); ?>
