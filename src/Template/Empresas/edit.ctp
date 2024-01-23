@@ -5,6 +5,14 @@
  */
 ?>
 
+<head>
+
+<?= $this->fetch('script') ?>
+
+<?= $this->Html->script('https://code.jquery.com/jquery-3.6.4.min.js', ['block' => 'script']); ?>
+<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js', ['block' => 'script']); ?>
+
+</head>
 <div class="container-fluid my-2 py-3">
     <div class="col-12 mb-4">
         <div class="card border shadow-xs h-100">
@@ -73,5 +81,16 @@
         </div>
     </div>
 </div>
+
+
+<?= $this->Html->script('https://code.jquery.com/jquery-3.6.4.min.js', ['block' => 'script']); ?>
+<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js', ['block' => 'script']); ?>
+
+
+        <?= $this->Html->scriptBlock('
+            jQuery(document).ready(function($) {
+                $("#cnpj").mask("00.000.000/0000-00");
+            });
+        '); ?>
 
 

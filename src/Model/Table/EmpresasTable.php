@@ -73,7 +73,11 @@ class EmpresasTable extends Table
             ->scalar('cnpj')
             ->maxLength('cnpj', 15)
             ->requirePresence('cnpj', 'create')
-            ->notEmptyString('cnpj');
+            ->notEmptyString('cnpj')
+            ->add('cnpj', 'custom', [
+                'rule' => [$this, 'validateCnpj'],
+                'message' => 'CNPJ inválido'
+            ]);
 
         $validator
             ->scalar('ie')
@@ -124,5 +128,49 @@ class EmpresasTable extends Table
          //$validator
         //    ->notEmptyString('is_active');
         return $validator;
+    }
+
+    public function validateCnpj($value, array $context)
+    {
+        // Remove caracteres não numéricos
+        $cnpj = preg_replace('/[^0-9]/', '', $value);
+
+        // Se o CNPJ estiver formatado, mantenha apenas os números
+        if (strlen($cnpj) == 18) {
+            $cnpj = substr($cnpj, 0, 2) . substr($cnpj, 3, 3) . substr($cnpj, 7, 3) . substr($cnpj, 11, 4) . substr($cnpj, 16, 2);
+        }
+
+        // Verifica se o CNPJ tem 14 dígitos
+        if (strlen($cnpj) != 14) {
+            return false;
+        }
+
+        // Calcula os dígitos verificadores
+        $digit1 = $digit2 = 0;
+        $multipliers = [5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+
+        // Cálculo do primeiro dígito verificador
+        for ($i = 0; $i < 12; $i++) {
+            $digit1 += $cnpj[$i] * $multipliers[$i];
+        }
+
+        $remainder = $digit1 % 11;
+        $digit1 = $remainder < 2 ? 0 : 11 - $remainder;
+
+        // Cálculo do segundo dígito verificador
+        $multipliers = [6, 5, 4, 3, 2, 9, 8, 7, 6, 5, 4, 3, 2];
+        for ($i = 0; $i < 13; $i++) {
+            $digit2 += $cnpj[$i] * $multipliers[$i];
+        }
+
+        $remainder = $digit2 % 11;
+        $digit2 = $remainder < 2 ? 0 : 11 - $remainder;
+
+        // Verifica se os dígitos calculados são iguais aos dígitos informados
+        if ($cnpj[12] != $digit1 || $cnpj[13] != $digit2) {
+            return false;
+        }
+
+        return true;
     }
 }

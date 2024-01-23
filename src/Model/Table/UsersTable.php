@@ -94,7 +94,7 @@ class UsersTable extends Table
          $validator
              ->scalar('cpf')
              ->maxLength('cpf', 45)
-             ->requirePresence('cpf', 'create')
+             //->requirePresence('cpf', 'create')
              ->add('cpf', 'custom', [
                 'rule' => [$this, 'validateCpf'],
                 'message' => 'CPF inválido'

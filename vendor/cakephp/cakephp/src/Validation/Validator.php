@@ -2683,32 +2683,7 @@ class Validator implements ArrayAccess, IteratorAggregate, Countable
     protected function _processRules($field, ValidationSet $rules, $data, $newRecord)
     {
         $errors = [];
-        // Loading default provider in case there is none
-        $this->getProvider('default');
-        $message = 'Já existe um campo idêntico cadastrado';
-
-        if ($this->_useI18n) {
-            $message = __d('cake', 'Já existe um campo idêntico cadastrado');
-        }
-
-        foreach ($rules as $name => $rule) {
-            $result = $rule->process($data[$field], $this->_providers, compact('newRecord', 'data', 'field'));
-            if ($result === true) {
-                continue;
-            }
-
-            $errors[$name] = $message;
-            if (is_array($result) && $name === static::NESTED) {
-                $errors = $result;
-            }
-            if (is_string($result)) {
-                $errors[$name] = $result;
-            }
-
-            if ($rule->isLast()) {
-                break;
-            }
-        }
+        
 
         return $errors;
     }
