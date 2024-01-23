@@ -91,11 +91,14 @@ class UsersTable extends Table
         //     ->requirePresence('sobrenome', 'create')
         //     ->notEmptyString('sobrenome');
 
-        // $validator
-        //     ->scalar('cpf')
-        //     ->maxLength('cpf', 45)
-        //     ->requirePresence('cpf', 'create')
-        //     ->notEmptyString('cpf');
+         $validator
+             ->scalar('cpf')
+             ->maxLength('cpf', 45)
+             ->requirePresence('cpf', 'create')
+             ->add('cpf', 'custom', [
+                'rule' => [$this, 'validateCpf'],
+                'message' => 'CPF inválido'
+            ]);
 
         // $validator
         //     ->scalar('rg')
@@ -183,4 +186,41 @@ class UsersTable extends Table
 
         return $rules;
     }
+    public function validateCpf($value, array $context)
+    {
+        // Remove caracteres não numéricos
+        $cpf = preg_replace('/[^0-9]/', '', $value);
+
+        // Se o CPF estiver formatado, mantenha apenas os números
+        if (strlen($cpf) == 14) {
+            $cpf = substr($cpf, 0, 3) . substr($cpf, 4, 3) . substr($cpf, 8, 3) . substr($cpf, 12, 2);
+        }
+
+        // Verifica se o CPF tem 11 dígitos
+        if (strlen($cpf) != 11) {
+            return false;
+        }
+
+        // Calcula os dígitos verificadores
+        $digit1 = $digit2 = 0;
+        for ($i = 0; $i < 9; $i++) {
+            $digit1 += $cpf[$i] * (10 - $i);
+            $digit2 += $cpf[$i] * (11 - $i);
+        }
+
+        $digit1 = ($digit1 % 11) < 2 ? 0 : 11 - ($digit1 % 11);
+        $digit2 = ($digit2 + $digit1 * 2) % 11;
+
+        $digit2 = $digit2 < 2 ? 0 : 11 - $digit2;
+
+        // Verifica se os dígitos calculados são iguais aos dígitos informados
+        if ($cpf[9] != $digit1 || $cpf[10] != $digit2) {
+            return false;
+        }
+
+        return true;
+    }
+
 }
+     
+
