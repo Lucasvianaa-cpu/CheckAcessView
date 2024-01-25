@@ -7,6 +7,15 @@
 ?><div class="container-fluid py-4 px-5">
   <div class="row">
     <div class="col-12">
+      <div class="col-12">
+        <?php
+        echo $this->Html->link('Dashboard', [
+          'controller' => 'Users',
+          'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']
+        ]);
+        ?>
+        /Meu Holerite
+      </div>
       <div class="card border shadow-xs mb-4">
         <div class="card-header border-bottom pb-0">
           <div class="d-sm-flex align-items-center justify-content-between">
