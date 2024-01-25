@@ -157,7 +157,7 @@
               <div class="">
                 <?= $this->Form->create($user, ['class' => 'row g-3', 'type' => 'file']) ?>
                 <div class="col-4">
-                  <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
+                  <?= $this->Form->control('nome', ['type' => 'text', 'label' => 'Nome * ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu nome']); ?>
                 </div>
                 <div class="col-4">
                   <?= $this->Form->control('sobrenome', ['type' => 'text', 'label' => 'Sobrenome', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu sobrenome']); ?>
@@ -166,78 +166,78 @@
                   <?= $this->Form->control('caminho_foto', ['type' => 'file', 'class' => 'form-control']) ?>
                 </div>
                 <div class="col-md-6">
-                  <?= $this->Form->control('cpf', ['type' => 'text', 'label' => 'CPF', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cpf', 'id' => 'cpf']); ?>
+                  <?= $this->Form->control('cpf', ['type' => 'text', 'label' => 'CPF *', 'class' => 'form-control', 'placeholder' => 'Digite seu cpf', 'id' => 'cpf']); ?>
                 </div>
                 <div class="col-md-6">
-                  <?= $this->Form->control('rg', ['type' => 'text', 'label' => 'RG', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu rg']); ?>
+                  <?= $this->Form->control('rg', ['type' => 'text', 'label' => 'RG', 'class' => 'form-control',  'placeholder' => 'Digite seu rg']); ?>
                 </div>
                 <div class="col-12">
-                  <?= $this->Form->control('email', ['type' => 'email', 'label' => 'E-mail Pessoal', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu e-mail']); ?>
+                  <?= $this->Form->control('email', ['type' => 'email', 'label' => 'E-mail Pessoal *', 'class' => 'form-control',  'placeholder' => 'Digite seu e-mail']); ?>
                 </div>
                 <div class="col-12">
-                  <?= $this->Form->control('email_empresarial', ['type' => 'email', 'label' => 'E-mail Empresarial', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu e-mail empresarial']); ?>
+                  <?= $this->Form->control('email_empresarial', ['type' => 'email', 'label' => 'E-mail Empresarial', 'class' => 'form-control',  'placeholder' => 'Digite seu e-mail empresarial']); ?>
                 </div>
 
                 <div class="col-md-4">
-                  <?= $this->Form->control('enderecos.0.cep', ['type' => 'text', 'label' => 'CEP', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite seu cep']); ?>
+                  <?= $this->Form->control('enderecos.0.cep', ['type' => 'text', 'label' => 'CEP *', 'class' => 'form-control',  'placeholder' => 'Digite seu cep']); ?>
                 </div>
                 <div class="col-md-6">
-                  <?= $this->Form->control('enderecos.0.cidade_id', ['type' => 'select', 'label' => 'Cidade', 'options' => $cidades, 'class' => 'form-select', 'required' => 'required', 'placeholder' => 'Digite a cidade', 'empty' => 'Selecione']); ?>
+                  <?= $this->Form->control('enderecos.0.cidade_id', ['type' => 'select', 'label' => 'Cidade *', 'options' => $cidades, 'class' => 'form-select',  'placeholder' => 'Digite a cidade', 'empty' => 'Selecione']); ?>
                 </div>
                 <div class="col-md-2">
                   <?php
                     $estadoNome = isset($user->enderecos[0]->cidade->estado->nome) ? $user->enderecos[0]->cidade->estado->nome : '';
                   ?>
-                  <?= $this->Form->control('cidades.estado_id', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'required' => 'required', 'style' => 'pointer-events: none;', 'disabled' => true, 'placeholder' => 'Digite o Estado', 'default' => $estadoNome]); ?>
+                  <?= $this->Form->control('cidades.estado_id', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'style' => 'pointer-events: none;', 'disabled' => true, 'placeholder' => 'Digite o Estado', 'default' => $estadoNome]); ?>
                 </div>
 
 
                 <div class="col-md-6">
-                  <?= $this->Form->control('enderecos.0.rua', ['type' => 'text', 'label' => 'Endereço', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o endereço']); ?>
+                  <?= $this->Form->control('enderecos.0.rua', ['type' => 'text', 'label' => 'Endereço *', 'class' => 'form-control',  'placeholder' => 'Digite o endereço']); ?>
                 </div>
                 <div class="col-md-2">
-                  <?= $this->Form->control('enderecos.0.numero', ['type' => 'text', 'label' => 'Número', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número']); ?>
+                  <?= $this->Form->control('enderecos.0.numero', ['type' => 'text', 'label' => 'Número *', 'class' => 'form-control',  'placeholder' => 'Digite o número']); ?>
                 </div>
                 <div class="col-md-4">
-                  <?= $this->Form->control('enderecos.0.bairro', ['type' => 'text', 'label' => 'Bairro', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o bairro']); ?>
+                  <?= $this->Form->control('enderecos.0.bairro', ['type' => 'text', 'label' => 'Bairro *', 'class' => 'form-control',  'placeholder' => 'Digite o bairro']); ?>
                 </div>
 
                 <div class="col-md-6">
-                  <?= $this->Form->control('telefone', ['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o telefone']); ?>
+                  <?= $this->Form->control('telefone', ['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control',  'placeholder' => 'Digite o telefone']); ?>
                 </div>
                 <div class="col-md-6"> 
-                  <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'), 'required', $user->data_nascimento); ?>
+                  <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'),'required', $user->data_nascimento); ?>
                 </div>
                 <div class="col-md-2">
-                  <?= $this->Form->control('tipo_sanguineo', ['type' => 'text', 'label' => 'Tipo Sanguíneo', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Ex: O+']); ?>
+                  <?= $this->Form->control('tipo_sanguineo', ['type' => 'text', 'label' => 'Tipo Sanguíneo', 'class' => 'form-control',  'placeholder' => 'Ex: O+']); ?>
                 </div>
 
                 <div class="col-md-10">
-                  <?= $this->Form->control('exp_profissional', ['type' => 'text', 'label' => 'Experiência profissional', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Faça um resumo de suas experiências profissionais...']); ?>
+                  <?= $this->Form->control('exp_profissional', ['type' => 'text', 'label' => 'Experiência profissional', 'class' => 'form-control',  'placeholder' => 'Faça um resumo de suas experiências profissionais...']); ?>
                 </div>
 
                 <div class="col-md-12">
-                  <?= $this->Form->control('n_carteira_trabalho', ['type' => 'text', 'label' => 'Nº Carteira de Trabalho', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número da carteira de trabalho']); ?>
+                  <?= $this->Form->control('n_carteira_trabalho', ['type' => 'text', 'label' => 'Nº Carteira de Trabalho *', 'class' => 'form-control',  'placeholder' => 'Digite o número da carteira de trabalho']); ?>
                 </div>
 
                 <div class="col-md-4">
-                  <?= $this->Form->control('agencia', ['type' => 'text', 'label' => 'Agência', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número da agência bancária']); ?>
+                  <?= $this->Form->control('agencia', ['type' => 'text', 'label' => 'Agência', 'class' => 'form-control',  'placeholder' => 'Digite o número da agência bancária']); ?>
                 </div>
 
                 <div class="col-md-4">
-                  <?= $this->Form->control('conta', ['type' => 'text', 'label' => 'Conta', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o número da conta bancária']); ?>
+                  <?= $this->Form->control('conta', ['type' => 'text', 'label' => 'Conta', 'class' => 'form-control',  'placeholder' => 'Digite o número da conta bancária']); ?>
                 </div>
 
                 <div class="col-md-4">
-                  <?= $this->Form->control('codigo_banco', ['type' => 'text', 'label' => 'Código Banco', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o código do banco']); ?>
+                  <?= $this->Form->control('codigo_banco', ['type' => 'text', 'label' => 'Código Banco', 'class' => 'form-control',  'placeholder' => 'Digite o código do banco']); ?>
                 </div>
 
                 <div class="col-md-4">
-                  <?= $this->Form->control('pix', ['type' => 'text', 'label' => 'PIX', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a sua chave PIX']); ?>
+                  <?= $this->Form->control('pix', ['type' => 'text', 'label' => 'PIX', 'class' => 'form-control', 'placeholder' => 'Digite a sua chave PIX']); ?>
                 </div>
 
                 <div class="col-md-4">
-                  <?= $this->Form->control('uid_rfid', ['type' => 'text', 'label' => 'Tag RFID', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a tag RFID']); ?>
+                  <?= $this->Form->control('uid_rfid', ['type' => 'text', 'label' => 'Tag RFID', 'class' => 'form-control', 'placeholder' => 'Digite a tag RFID']); ?>
                 </div>
 
                 <div class="col-2 checkbox-input">

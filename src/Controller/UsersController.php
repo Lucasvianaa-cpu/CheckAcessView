@@ -46,9 +46,9 @@ class UsersController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -98,9 +98,9 @@ class UsersController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -124,22 +124,22 @@ class UsersController extends AppController
         if ($this->request->is('post')) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
             $user->role_id = 4;
-            try{
+            try {
                 if ($this->Users->save($user)) {
-                $this->getMailer('User')->send('welcome', [$user]);
-                $this->Flash->success(__('Usuário adicionado com sucesso.'));
+                    $this->getMailer('User')->send('welcome', [$user]);
+                    $this->Flash->success(__('Usuário adicionado com sucesso.'));
 
-                $user = $this->Auth->identify();
-                if ($user) {
-                    $user = $this->Users->get($user['id'], [
-                        'contain' => ['Funcionarios.Empresas']
-                    ]);
-                    $this->Auth->setUser($user);
-                    return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+                    $user = $this->Auth->identify();
+                    if ($user) {
+                        $user = $this->Users->get($user['id'], [
+                            'contain' => ['Funcionarios.Empresas']
+                        ]);
+                        $this->Auth->setUser($user);
+                        return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
+                    }
                 }
-            }
-            $this->Flash->error(__('O usuário não pôde ser adicionado. Por favor, tente novamente.'));
-            }catch(\PDOException $e){
+                $this->Flash->error(__('O usuário não pôde ser adicionado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
                 $errorCode = $e->getCode();
 
                 if ($errorCode == '23000') {
@@ -148,8 +148,8 @@ class UsersController extends AppController
                     $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
                 }
             }
-            }
-            
+        }
+
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
     }
@@ -169,9 +169,9 @@ class UsersController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
@@ -182,25 +182,24 @@ class UsersController extends AppController
         if ($this->request->is(['patch', 'post', 'put'])) {
             $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            try{
+            try {
                 if ($this->Users->save($user)) {
-                $this->Flash->success(__('Usuário atualizado com sucesso.'));
+                    $this->Flash->success(__('Usuário atualizado com sucesso.'));
 
-                return $this->redirect(['action' => 'index']);
-            }
-            $this->Flash->error(__('O usuário não pôde ser atualizado. Por favor, tente novamente.'));
-            }catch(\PDOException $e){
+                    return $this->redirect(['action' => 'index']);
+                }
+                $this->Flash->error(__('O usuário não pôde ser atualizado. Por favor, tente novamente.'));
+            } catch (\PDOException $e) {
                 $errorCode = $e->getCode();
 
-            if ($errorCode == '23000') {
-                $this->Flash->error(__('Usuário não pode ser atualizado. Verifique se não está associado a outras entidades.'));
-            } else {
-                $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                if ($errorCode == '23000') {
+                    $this->Flash->error(__('Usuário não pode ser atualizado. Verifique se não está associado a outras entidades.'));
+                } else {
+                    $this->Flash->error(__('Erro desconhecido: ') . $e->getMessage());
+                }
             }
         }
 
-            }
-            
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
     }
@@ -222,13 +221,13 @@ class UsersController extends AppController
         if ($usuario_logado->role_id != 1) {
             $this->Flash->error(__('Você não tem permissão a essa página!'));
 
-            if($usuario_logado->role_id != 4) {
+            if ($usuario_logado->role_id != 4) {
                 return $this->redirect(['controller' => 'Users', 'action' => 'dashboard', $empresa_id]);
-            }  else {
+            } else {
                 return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'home']);
             }
         }
-        
+
         $this->request->allowMethod(['post', 'delete']);
         $user = $this->Users->get($id);
 
@@ -300,53 +299,55 @@ class UsersController extends AppController
         if ($usuario_logado->id != $user->id) {
             $this->Flash->error(__('Usuário não confere ao logado'));
             return $this->redirect(['action' => 'editarPerfil', $usuario_logado->id]);
-
         }
+        try {
+            if ($this->request->is(['patch', 'post', 'put'])) {
+                $endereco = $user->enderecos ? $user->enderecos[0] : $this->Enderecos->newEntity();
 
-        if ($this->request->is(['patch', 'post', 'put'])) {
-            $endereco = $user->enderecos ? $user->enderecos[0] : $this->Enderecos->newEntity();
+                $endereco->rua = $this->request->getData('enderecos.0.rua');
+                $endereco->numero = $this->request->getData('enderecos.0.numero');
+                $endereco->bairro = $this->request->getData('enderecos.0.bairro');
+                $endereco->cep = $this->request->getData('enderecos.0.cep');
+                $endereco->user_id = $this->Auth->user('id');
+                $endereco->cidade_id = $this->request->getData('enderecos.0.cidade_id');
 
-            $endereco->rua = $this->request->getData('enderecos.0.rua');
-            $endereco->numero = $this->request->getData('enderecos.0.numero');
-            $endereco->bairro = $this->request->getData('enderecos.0.bairro');
-            $endereco->cep = $this->request->getData('enderecos.0.cep');
-            $endereco->user_id = $this->Auth->user('id');
-            $endereco->cidade_id = $this->request->getData('enderecos.0.cidade_id');
-
-            $this->Enderecos->save($endereco);
-            $foto = $user->caminho_foto;
+                $this->Enderecos->save($endereco);
+                $foto = $user->caminho_foto;
 
 
-            $user = $this->Users->patchEntity($user, $this->request->getData());
+                $user = $this->Users->patchEntity($user, $this->request->getData());
 
-            if (!empty($this->request->getData()['caminho_foto']['name'])) {
-                $file = $this->request->getData()['caminho_foto'];
-                $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
-                $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
+                if (!empty($this->request->getData()['caminho_foto']['name'])) {
+                    $file = $this->request->getData()['caminho_foto'];
+                    $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
+                    $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
 
-                // Substituir caracteres inválidos no nome do arquivo
-                $nomeDoArquivo = preg_replace("/[^a-zA-Z0-9._-]/", "_", $user->caminho_foto);
+                    // Substituir caracteres inválidos no nome do arquivo
+                    $nomeDoArquivo = preg_replace("/[^a-zA-Z0-9._-]/", "_", $user->caminho_foto);
 
-                if (in_array($ext, $arr_ext)) {
-                    $numeros = rand();
-                    $filename = $nomeDoArquivo . '-' . $numeros . '.' . $ext;
-                    move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
-                    $user->caminho_foto = 'fotos/' . $filename;
-                } else {
-                    $this->Flash->error(__('Só é permitido documentos do tipo (JPG, JPEG, GIF, PNG).'));
+                    if (in_array($ext, $arr_ext)) {
+                        $numeros = rand();
+                        $filename = $nomeDoArquivo . '-' . $numeros . '.' . $ext;
+                        move_uploaded_file($file['tmp_name'], WWW_ROOT . 'img/fotos/' . $filename);
+                        $user->caminho_foto = 'fotos/' . $filename;
+                    } else {
+                        $this->Flash->error(__('Só é permitido documentos do tipo (JPG, JPEG, GIF, PNG).'));
+                    }
                 }
-            }
 
-            if (empty($this->request->getData()['caminho_foto']['name'])) {
-                $user->caminho_foto = $foto;
-            }
+                if (empty($this->request->getData()['caminho_foto']['name'])) {
+                    $user->caminho_foto = $foto;
+                }
 
-            if ($this->Users->save($user)) {
-                $this->Flash->success(__('Perfil atualizado com sucesso.'));
+                if ($this->Users->save($user)) {
+                    $this->Flash->success(__('Perfil atualizado com sucesso.'));
 
-                return $this->redirect($this->referer());
+                    return $this->redirect($this->referer());
+                }
+                $this->Flash->error(__('O perfil não pôde ser atualizado. Por favor, tente novamente.'));
             }
-            $this->Flash->error(__('O perfil não pôde ser atualizado. Por favor, tente novamente.'));
+        } catch (\Exception $e) {
+            $this->Flash->error(__('Ocorreu um erro: Já existe CPF ou RFID idêntico. '));
         }
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $estados = $this->Estados->find('list', ['keyField' => 'id', 'valueField' => 'nome']);
