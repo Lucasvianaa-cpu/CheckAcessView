@@ -10,6 +10,7 @@ use Cake\Validation\Validator;
  * Cargos Model
  *
  * @property \App\Model\Table\CategoriasTable&\Cake\ORM\Association\BelongsTo $Categorias
+ * @property \App\Model\Table\EmpresasTable&\Cake\ORM\Association\BelongsTo $Empresas
  * @property \App\Model\Table\FuncionariosTable&\Cake\ORM\Association\HasMany $Funcionarios
  *
  * @method \App\Model\Entity\Cargo get($primaryKey, $options = [])
@@ -41,6 +42,12 @@ class CargosTable extends Table
             'foreignKey' => 'categoria_id',
             'joinType' => 'INNER',
         ]);
+        
+        $this->belongsTo('Empresas', [
+            'className' => 'Empresa',
+            'foreignKey' => 'empresa_id',
+        ]);
+
         $this->hasMany('Funcionarios', [
             'foreignKey' => 'cargo_id',
         ]);

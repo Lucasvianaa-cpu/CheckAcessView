@@ -446,7 +446,7 @@ class UsersController extends AppController
 
         $quantidadeEquipamentos = $this->Equipamentos->find()->count();
         $quantidadeCategorias = $this->Categorias->find()->count();
-        $quantidadeCargos = $this->Cargos->find()->count();
+        $quantidadeCargos = $this->Cargos->find()->where(['empresa_id' => $empresa_id])->count();
         $quantidadeFuncionarios = $this->Funcionarios->find()->count();
 
         $funcionarios_grafico = $this->ListaFuncionarios->ListaFuncionariosGrafico($id);

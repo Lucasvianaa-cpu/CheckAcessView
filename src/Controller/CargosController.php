@@ -32,7 +32,7 @@ class CargosController extends AppController
             }
         }
 
-        $conditions = [];
+        $conditions = ['Cargos.empresa_id' => $empresa_id];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
@@ -106,7 +106,11 @@ class CargosController extends AppController
 
         $cargo = $this->Cargos->newEntity();
         if ($this->request->is('post')) {
+           
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
+            $cargo['empresa_id'] = $usuario_logado['funcionarios'][0]['empresa']['id'];
+           // debug($cargo);exit;
+            // debug($cargo['empresa_id']);exit;
             if ($this->Cargos->save($cargo)) {
                 $this->Flash->success(__('Cargo adicionado com sucesso.'));
 

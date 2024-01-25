@@ -10,8 +10,9 @@ use Cake\ORM\Entity;
  * @property string $nome
  * @property string|null $descricao
  * @property int $categoria_id
- *
+* @property int $empresa_id
  * @property \App\Model\Entity\Categoria $categoria
+ * @property \App\Model\Entity\Empresa $empresa
  * @property \App\Model\Entity\Funcionario[] $funcionarios
  */
 class Cargo extends Entity
@@ -29,6 +30,7 @@ class Cargo extends Entity
         'nome' => true,
         'descricao' => true,
         'categoria_id' => true,
+        'empresa_id' => true,
         'categoria' => true,
         'funcionarios' => true,
     ];
