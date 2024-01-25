@@ -32,7 +32,7 @@ class CategoriasController extends AppController
             }
         }
 
-        $conditions = ['Categorias.is_trash' => 0];
+        $conditions = ['Categorias.is_trash' => 0,'Categorias.empresa_id' => $empresa_id];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
@@ -107,6 +107,7 @@ class CategoriasController extends AppController
 
         $categoria = $this->Categorias->newEntity();
         if ($this->request->is('post')) {
+            $categoria['empresa_id'] = $usuario_logado['funcionarios'][0]['empresa']['id'];
             $categoria = $this->Categorias->patchEntity($categoria, $this->request->getData());
             
             try{

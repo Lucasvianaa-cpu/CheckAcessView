@@ -39,6 +39,11 @@ class CategoriasTable extends Table
         $this->hasMany('Cargos', [
             'foreignKey' => 'categoria_id',
         ]);
+        
+        $this->belongsTo('Empresas', [
+            'className' => 'Empresa',
+            'foreignKey' => 'empresa_id',
+        ]);
     }
 
     /**

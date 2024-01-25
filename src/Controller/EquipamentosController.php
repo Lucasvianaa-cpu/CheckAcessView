@@ -38,7 +38,7 @@ class EquipamentosController extends AppController
             }
         }
 
-        $conditions = ['Equipamentos.is_trash' => 0];
+        $conditions = ['Equipamentos.is_trash' => 0,'Equipamentos.empresa_id' => $empresa_id];
 
         if ($this->request->getQuery('num_patrimonio') != '') {
             $num_patrimonio = $this->request->getQuery('num_patrimonio');
@@ -123,6 +123,8 @@ class EquipamentosController extends AppController
         $equipamento = $this->Equipamentos->newEntity();
 
         if ($this->request->is('post')) {
+
+            $equipamento['empresa_id'] = $usuario_logado['funcionarios'][0]['empresa']['id'];
             $equipamento = $this->Equipamentos->patchEntity($equipamento, $this->request->getData());
 
             try {
@@ -147,7 +149,7 @@ class EquipamentosController extends AppController
         // Cria uma nova consulta para buscar os funcionários e incluir os usuários associados
         $func = $this->Funcionarios->find('all', [
             'limit' => 200,
-            'conditions' => ['Funcionarios.is_active' => 1, 'Funcionarios.is_trash <>' => 1],
+            'conditions' => ['Funcionarios.is_active' => 1, 'Funcionarios.is_trash <>' => 1, 'Funcionarios.empresa_id' => $empresa_id],
             'contain' => ['Users'] // Aqui você especifica as associações que deseja buscar
         ]);
 

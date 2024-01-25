@@ -35,5 +35,6 @@ class PlanosSaude extends Entity
         'created' => true,
         'is_trash' => true,
         'is_active' => true,
+        'empresa_id' => true,
     ];
 }

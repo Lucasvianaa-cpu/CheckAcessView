@@ -33,7 +33,7 @@ class PlanosSaudesController extends AppController
             }
         }
 
-        $conditions = ['PlanosSaudes.is_trash' => 0];
+        $conditions = ['PlanosSaudes.is_trash' => 0,'PlanosSaudes.empresa_id' => $empresa_id];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');
@@ -106,6 +106,8 @@ class PlanosSaudesController extends AppController
 
         $planosSaude = $this->PlanosSaudes->newEntity();
         if ($this->request->is('post')) {
+            $planosSaude['empresa_id'] = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
             $planosSaude = $this->PlanosSaudes->patchEntity($planosSaude, $this->request->getData());
 
             try {

@@ -44,6 +44,11 @@ class EquipamentosTable extends Table
             'foreignKey' => 'funcionario_id',
             'joinType' => 'INNER',
         ]);
+
+        $this->belongsTo('Empresas', [
+            'className' => 'Empresa',
+            'foreignKey' => 'empresa_id',
+        ]);
     }
 
     /**
@@ -70,6 +75,7 @@ class EquipamentosTable extends Table
             ->maxLength('descricao', 100)
             ->requirePresence('descricao', 'create')
             ->notEmptyString('descricao');
+            
             
         //$validator
         //    ->notEmptyString('is_active');

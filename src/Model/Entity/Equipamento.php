@@ -34,5 +34,6 @@ class Equipamento extends Entity
         'is_trash' => true,
         'funcionario_id' => true,
         'funcionario' => true,
+        'empresa_id' => true,
     ];
 }

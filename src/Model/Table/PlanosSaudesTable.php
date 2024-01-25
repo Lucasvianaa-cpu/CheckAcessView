@@ -37,6 +37,11 @@ class PlanosSaudesTable extends Table
         $this->setPrimaryKey('id');
 
         $this->addBehavior('Timestamp');
+
+        $this->belongsTo('Empresas', [
+            'className' => 'Empresa',
+            'foreignKey' => 'empresa_id',
+        ]);
     }
 
     /**

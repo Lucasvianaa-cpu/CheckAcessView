@@ -444,10 +444,10 @@ class UsersController extends AppController
             'contain' => [],
         ]);
 
-        $quantidadeEquipamentos = $this->Equipamentos->find()->count();
-        $quantidadeCategorias = $this->Categorias->find()->count();
+        $quantidadeEquipamentos = $this->Equipamentos->find()->where(['empresa_id' => $empresa_id])->count();
+        $quantidadeCategorias = $this->Categorias->find()->where(['empresa_id' => $empresa_id])->count();
         $quantidadeCargos = $this->Cargos->find()->where(['empresa_id' => $empresa_id])->count();
-        $quantidadeFuncionarios = $this->Funcionarios->find()->count();
+        $quantidadeFuncionarios = $this->Funcionarios->find()->where(['empresa_id' => $empresa_id])->count();
 
         $funcionarios_grafico = $this->ListaFuncionarios->ListaFuncionariosGrafico($id);
 

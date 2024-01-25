@@ -35,7 +35,7 @@ class FuncionariosController extends AppController
             }
         }
 
-        $conditions = ['Funcionarios.is_trash' => 0];
+        $conditions = ['Funcionarios.is_trash' => 0, 'Funcionarios.empresa_id' => $empresa_id];
 
         if ($this->request->getQuery('nome') != '') {
             $nome = $this->request->getQuery('nome');

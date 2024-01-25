@@ -30,5 +30,6 @@ class Categoria extends Entity
         'is_active' => true,
         'is_trash' => true,
         'cargos' => true,
+        'empresa_id' => true,
     ];
 }
