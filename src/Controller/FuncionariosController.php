@@ -225,9 +225,10 @@ class FuncionariosController extends AppController
             }
         }
 
-        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200]);
+        $cargos = $this->Funcionarios->Cargos->find('list', ['limit' => 200, 'conditions' => ['Cargos.empresa_id' => $empresa_id]]);
+        
         $roles = $this->Roles->find('list');
-        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200]);
+        $planosSaudes = $this->Funcionarios->PlanosSaudes->find('list', ['limit' => 200, 'conditions' => ['PlanosSaudes.empresa_id' => $empresa_id]]);
         $is_trash = 0;
         $empresas = $this->Funcionarios->Empresas->find('list', [
             'limit' => 200,
