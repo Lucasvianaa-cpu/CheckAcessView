@@ -177,8 +177,11 @@ class HoleritesController extends AppController
         }
         $funcionarios = $this->Funcionarios->find('all', [
             'limit' => 200,
-            'contain' => ['Users']
+            'contain' => ['Users'],
+            'conditions' => ['Funcionarios.empresa_id' => $empresa_id]
         ]);
+
+
 
 
         $funcionarios_list = [];

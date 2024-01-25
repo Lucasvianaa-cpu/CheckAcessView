@@ -37,5 +37,6 @@ class Veiculo extends Entity
         'is_trash' => true,
         'user_id' => true,
         'user' => true,
+        'empresa_id' => true,
     ];
 }

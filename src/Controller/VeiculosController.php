@@ -33,7 +33,7 @@ class VeiculosController extends AppController
             }
         }
 
-        $conditions = ['Veiculos.is_trash' => 0];
+        $conditions = ['Veiculos.is_trash' => 0,'Veiculos.empresa_id' => $empresa_id];
 
         if ($this->request->getQuery('modelo') != '') {
             $modelo = $this->request->getQuery('modelo');
@@ -115,6 +115,8 @@ class VeiculosController extends AppController
 
         $veiculo = $this->Veiculos->newEntity();
         if ($this->request->is('post')) {
+            $veiculo['empresa_id'] = $usuario_logado['funcionarios'][0]['empresa']['id'];
+
             $veiculo = $this->Veiculos->patchEntity($veiculo, $this->request->getData());
 
             try {

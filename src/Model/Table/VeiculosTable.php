@@ -44,6 +44,11 @@ class VeiculosTable extends Table
             'foreignKey' => 'user_id',
             'joinType' => 'INNER',
         ]);
+
+        $this->belongsTo('Empresas', [
+            'className' => 'Empresa',
+            'foreignKey' => 'empresa_id',
+        ]);
     }
 
     /**

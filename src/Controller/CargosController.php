@@ -118,7 +118,7 @@ class CargosController extends AppController
             }
             $this->Flash->error(__('O cargo não pôde ser adicionado. Por favor, tente novamente.'));
         }
-        $categorias = $this->Cargos->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome', 'conditions' => ['is_active' => 1, 'is_trash <>' => 1]]);
+        $categorias = $this->Cargos->Categorias->find('list', ['keyField' => 'id', 'valueField' => 'nome', 'conditions' => ['is_active' => 1, 'is_trash <>' => 1, 'Categorias.empresa_id' => $empresa_id]]);
         $this->set(compact('cargo', 'categorias'));
     }
 
