@@ -57,6 +57,7 @@ use Cake\View\Helper\HtmlHelper;
       
         <div class="card border shadow-xs h-1000 p-3 ">
             <p class="mb-0">Aguarde o RH definir suas permissões de acesso...</p>
+            <p class="mb-0">Caro usuário... após 60 segundos de conexão, você será redirecionado para a tela de login!!</p>
         </div>
       
       
@@ -84,3 +85,10 @@ use Cake\View\Helper\HtmlHelper;
 
 </html>
 <?php endif;?>
+
+<script>
+    setTimeout(function(){
+        // Redireciona para a página de login
+        window.location.href = '/login';
+    }, 60000); 
+</script> 
