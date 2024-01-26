@@ -1,4 +1,5 @@
 <?php
+
 /**
  * @var \App\View\AppView $this
  * @var \App\Model\Entity\Empresa $empresa
@@ -7,13 +8,19 @@
 
 <head>
 
-<?= $this->fetch('script') ?>
+    <?= $this->fetch('script') ?>
 
-<?= $this->Html->script('https://code.jquery.com/jquery-3.6.4.min.js', ['block' => 'script']); ?>
-<?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js', ['block' => 'script']); ?>
+    <?= $this->Html->script('https://code.jquery.com/jquery-3.6.4.min.js', ['block' => 'script']); ?>
+    <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js', ['block' => 'script']); ?>
 
 </head>
 <div class="container-fluid my-2 py-3">
+    <nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+        <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'index']); ?>">Visualizar Empresas</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Adicionar Empresa</li>
+        </ol>
+    </nav>
     <div class="col-12 mb-4">
         <div class="card border shadow-xs h-100">
             <div class="card-header pb-0 p-3">
@@ -23,7 +30,7 @@
                         <p class="text-sm mb-1">Preencha os campos abaixo</p>
                     </div>
                     <div class="">
-                        <?= $this->Form->create($empresa, ['class'=> 'row g-3']) ?>
+                        <?= $this->Form->create($empresa, ['class' => 'row g-3']) ?>
                         <form class="row g-3">
                             <div class="col-12">
                                 <?= $this->Form->control('razao_social', ['type' => 'text', 'label' => 'Razão Social', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a razão social']); ?>
@@ -32,7 +39,7 @@
                                 <?= $this->Form->control('nome_fantasia', ['type' => 'text', 'label' => 'Nome Fantasia', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o nome fantasia']); ?>
                             </div>
                             <div class="col-md-4">
-                            <?= $this->Form->control('cnpj', ['type' => 'text', 'label' => 'CNPJ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CNPJ', 'id' => 'cnpj']); ?>
+                                <?= $this->Form->control('cnpj', ['type' => 'text', 'label' => 'CNPJ', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite o CNPJ', 'id' => 'cnpj']); ?>
                             </div>
                             <div class="col-md-4">
                                 <?= $this->Form->control('ie', ['type' => 'text', 'label' => 'IE', 'class' => 'form-control', 'required' => 'required', 'placeholder' => 'Digite a Inscrição Estadual']); ?>
@@ -67,9 +74,8 @@
                             </div>
                             <div class="col-lg-4 col-md-6 my-sm-auto ms-sm-auto me-sm-0 mx-auto mt-3 text-sm-end">
 
-                                <?= $this->Form->button(__('Enviar'), ['class'=> 'btn btn-sm btn-dark']) ?>
-                                <a class="btn btn-sm btn-white"
-                                    href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
+                                <?= $this->Form->button(__('Enviar'), ['class' => 'btn btn-sm btn-dark']) ?>
+                                <a class="btn btn-sm btn-white" href="<?= $this->Url->build(['action' => 'index']); ?>">Cancelar</a>
                             </div>
                             <?= $this->Form->end() ?>
                     </div>
@@ -84,7 +90,7 @@
 <?= $this->Html->script('https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.16/jquery.mask.min.js', ['block' => 'script']); ?>
 
 
-        <?= $this->Html->scriptBlock('
+<?= $this->Html->scriptBlock('
             jQuery(document).ready(function($) {
                 $("#cnpj").mask("00.000.000/0000-00");
             });

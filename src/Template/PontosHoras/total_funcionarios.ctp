@@ -7,6 +7,12 @@
 ?>
 
 <div class="container-fluid py-4 px-5">
+    <nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+        <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">Dashboard</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Relatórios</li>
+        </ol>
+    </nav>
     <div class="row">
         <div class="col-12">
             <div class="card border shadow-xs mb-4">
@@ -49,7 +55,7 @@
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Data</th>
                                     <th class="text-secondary text-xs font-weight-semibold opacity-7">Funcionário</th>
                                     <th style="text-align: end;" class="text-secondary text-xs font-weight-semibold opacity-7">Cálculo de Hora</th>
-                                    
+
                                 </tr>
                             </thead>
                             <?php
@@ -59,33 +65,34 @@
                             <?php if (!empty($pontos_dias)) : ?>
                                 <?php foreach ($pontos_dias as $data => $pontos) : ?>
                                     <?php if (count($pontos) != 2 && count($pontos) != 4) : ?>
-                                    <tr>
-                                        <td><?= $data ?></td>
-                                        <td>
-                                            <?php if (isset($pontos[0]['nome']) && isset($pontos[0]['sobrenome'])) : ?>
-                                                <?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?>
-                                            <?php endif; ?>
-                                        </td>
-                                        <td style="text-align: end;">
-                                            <?php if (!empty($pontos)) {
-                                                $total = end($pontos);
-                                                if (isset($total['total'])) {
+                                        <tr>
+                                            <td><?= $data ?></td>
+                                            <td>
+                                                <?php if (isset($pontos[0]['nome']) && isset($pontos[0]['sobrenome'])) : ?>
+                                                    <?= $pontos[0]['nome'] ?> <?= $pontos[0]['sobrenome'] ?>
+                                                <?php endif; ?>
+                                            </td>
+                                            <td style="text-align: end;">
+                                                <?php if (!empty($pontos)) {
+                                                    $total = end($pontos);
+                                                    if (isset($total['total'])) {
 
-                                                    $total_novo = $total['total'];
-                                                    list($horas, $minutos) = explode(':', $total_novo);
-                                                    $horas = (int)$horas;
-                                                    $minutos = (int)$minutos;
-                                                    $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
-                                                    $minutos_trabalhados += $total_minutos;
-                                                    echo $total_novo;                                                   
-                                                }else {
-                                                    debug($total['total']); exit;
-                                                    $total['total'] = 0;
+                                                        $total_novo = $total['total'];
+                                                        list($horas, $minutos) = explode(':', $total_novo);
+                                                        $horas = (int)$horas;
+                                                        $minutos = (int)$minutos;
+                                                        $total_minutos = $horas * 60 + $minutos; // Converter tudo para minutos
+                                                        $minutos_trabalhados += $total_minutos;
+                                                        echo $total_novo;
+                                                    } else {
+                                                        debug($total['total']);
+                                                        exit;
+                                                        $total['total'] = 0;
+                                                    }
                                                 }
-                                            }
-                                            ?>
-                                        </td>
-                                    </tr>
+                                                ?>
+                                            </td>
+                                        </tr>
                                     <?php endif; ?>
                                 <?php endforeach; ?>
                             <?php else : ?>
@@ -94,10 +101,10 @@
                                         Busque por um funcionário
                                     </td>
                                     <td>
-                                        
+
                                     </td>
                                     <td>
-                                        
+
                                     </td>
                                 </tr>
                             <?php endif; ?>

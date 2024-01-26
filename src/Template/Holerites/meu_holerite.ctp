@@ -5,17 +5,14 @@
  * @var \App\Model\Entity\Holerite[]|\Cake\Collection\CollectionInterface $holerites
  */
 ?><div class="container-fluid py-4 px-5">
+  <nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+    <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+      <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">Dashboard</a></li>
+      <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Meu Holerite</li>
+    </ol>
+  </nav>
   <div class="row">
     <div class="col-12">
-      <div class="col-12">
-        <?php
-        echo $this->Html->link('Dashboard', [
-          'controller' => 'Users',
-          'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']
-        ]);
-        ?>
-        /Meu Holerite
-      </div>
       <div class="card border shadow-xs mb-4">
         <div class="card-header border-bottom pb-0">
           <div class="d-sm-flex align-items-center justify-content-between">

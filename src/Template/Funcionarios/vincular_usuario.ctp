@@ -8,6 +8,12 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-maskmoney/3.0.2/jquery.maskMoney.min.js"></script>
 
 <div class="container-fluid my-2 py-3">
+    <nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+        <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">Dashboard</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Vincular Usuário a Funcionário</li>
+        </ol>
+    </nav>
     <div class="col-12 mb-4">
         <div class="card border shadow-xs h-100">
             <div class="card-header pb-0 p-3">
@@ -64,4 +70,3 @@
         </div>
     </div>
 </div>
-

@@ -1,5 +1,3 @@
-
-
 <?php
 date_default_timezone_set('America/Sao_Paulo');
 ?>
@@ -14,6 +12,12 @@ if (isset($_SESSION['msg'])) {
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
 <div class="container-fluid my-2 py-3">
+    <nav aria-label="breadcrumb" style="margin-bottom: 20px; margin-top: -50px;">
+        <ol class="breadcrumb bg-transparent mb-1 pb-0 pt-1 px-0 me-sm-6 me-5">
+            <li class="breadcrumb-item text-sm"><a class="opacity-5 text-dark" href="<?= $this->Url->build(['controller' => 'Plantoes', 'action' => 'index']); ?>">Meus Plantões</a></li>
+            <li class="breadcrumb-item text-sm text-dark active" aria-current="page">Visualizar Plantões</li>
+        </ol>
+    </nav>
     <div>
         <h6 class="font-weight-semibold text-lg mb-0">Registre aqui o seu ponto</h6>
         <p class="text-sm">Pontos de Horas referente ao Plantão.</p>
@@ -75,7 +79,7 @@ if (isset($_SESSION['msg'])) {
                 </div>
             </div>
         </div>
-     
+
     </div>
 </div>
 
@@ -93,6 +97,3 @@ if (isset($_SESSION['msg'])) {
 
     setInterval(atualizarHorario, 1000);
 </script>
-
-
-
