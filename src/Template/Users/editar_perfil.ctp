@@ -170,7 +170,7 @@
                   <?= $this->Form->control('telefone', ['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control',  'placeholder' => 'Digite o telefone']); ?>
                 </div>
                 <div class="col-md-6">
-                  <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'), 'required', $user->data_nascimento); ?>
+                  <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento *', 'date', date('d/m/Y'), 'required', $user->data_nascimento); ?>
                 </div>
                 <div class="col-md-2">
                   <?= $this->Form->control('tipo_sanguineo', ['type' => 'text', 'label' => 'Tipo Sanguíneo', 'class' => 'form-control',  'placeholder' => 'Ex: O+']); ?>
