@@ -29,94 +29,58 @@
 <body class="g-sidenav-show bg-gray-100">
   <div class="main-content position-relative bg-gray-100 max-height-vh-100 h-100">
     <!-- Sidenav Top -->
-    <nav class="navbar bg-slate-900 navbar-expand-lg flex-wrap top-0 px-0 py-0">
+    <nav class="navbar bg-slate-900 navbar-expand-lg top-0 px-0 py-0">
       <div class="container py-2">
         <?php if ($current_user['role_id'] != 4) : ?>
-          <nav aria-label="breadcrumb">
-            <div class="d-flex align-items-center">
-              <span class="px-3 font-weight-bold text-lg text-white me-4">
-                <a href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>" class="nav-link text-white p-0">
-                  Voltar
-                </a>
-              </span>
-
-            </div>
-          </nav>
+          <?php $link = $this->Url->build(['controller' => 'Users', 'action' => 'dashboard', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>
+        <?php else : ?>
+          <?php $link = $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home']); ?>
         <?php endif; ?>
-        <?php if ($current_user['role_id'] == 4) : ?>
-          <nav aria-label="breadcrumb">
-            <div class="d-flex align-items-center">
-              <span class="px-3 font-weight-bold text-lg text-white me-4">
-                <a href="<?= $this->Url->build('/', ['controller' => 'Pages', 'action' => 'display', 'home']); ?>" class="nav-link text-white p-0">
-                  Voltar
-                </a>
-              </span>
 
-            </div>
-          </nav>
-        <?php endif; ?>
+        <nav aria-label="breadcrumb">
+          <div class="d-flex align-items-center">
+            <span class="px-3 font-weight-bold text-lg text-white me-4">
+              <a href="<?= $link ?>" class="nav-link text-white p-0">Voltar</a>
+            </span>
+          </div>
+        </nav>
+
+        <div class="container pb-3 pt-3">
+          <div class="p-0 d-flex">
+            <ul class="navbar-nav list-group-horizontal">
+              <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
+                <a class="nav-link text-white p-0" href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">Meu Perfil</a>
+              </li>
+              <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
+                <a class="nav-link text-white p-0" href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">Editar Perfil</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
         <div class="collapse navbar-collapse mt-sm-0 mt-2 me-md-0 me-sm-4" id="navbar">
-          <ul class="navbar-nav ms-md-auto  justify-content-end">
-
+          <ul class="navbar-nav ms-md-auto justify-content-end">
             <li class="nav-item ps-2 d-flex align-items-center">
               <div class="dropdown">
                 <button class="btn dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
-                  <?php if (!empty($current_user->caminho_foto)) : ?>
-                    <?= $this->Html->image($current_user->caminho_foto, [
-                      'width' => '50px',
-                      'height' => 'auto',
-                      'style' => 'border-radius: 25px; min-height: 50px; max-height: 50px'
-                    ]); ?>
-
-
-                  <?php else : ?>
-                    <?= $this->Html->image('perfil.png', [
-                      'width' => '40px',
-                      'height' => 'auto',
-                    ]); ?>
-                  <?php endif; ?>
+                  <?= !empty($current_user->caminho_foto) ? $this->Html->image($current_user->caminho_foto, ['width' => '50px', 'style' => 'border-radius: 25px; min-height: 50px; max-height: 50px']) : $this->Html->image('perfil.png', ['width' => '40px']) ?>
                   <span class="nav-link-text ms-1"><?= $current_user['nome'] ?></span>
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   <?php if ($current_user['role_id'] != 1) : ?>
-                    <li>
-                      <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']]); ?>">Meu Perfil</a>
-                    </li>
+                    <li><a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'editarPerfil', $current_user['id']]); ?>">Meu Perfil</a></li>
+                  <?php else : ?>
+                    <li><a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">Meu Perfil</a></li>
                   <?php endif; ?>
-
-                  <?php if ($current_user['role_id'] == 1) : ?>
-                    <li>
-                      <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Empresas', 'action' => 'editarEmpresa', $funcionario_empresa['funcionarios'][0]['empresa_id']]); ?>">Meu Perfil</a>
-                    </li>
-                  <?php endif; ?>
-
-                  <li>
-                    <a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'sair']) ?>">Sair</a>
-                  </li>
+                  <li><a class="dropdown-item" href="<?= $this->Url->build(['controller' => 'Users', 'action' => 'sair']) ?>">Sair</a></li>
                 </ul>
               </div>
             </li>
           </ul>
         </div>
       </div>
-      <hr class="horizontal w-100 my-0 dark">
-      <div class="container pb-3 pt-3">
-        <div class="p-0 d-flex">
-          <ul class="navbar-nav list-group-horizontal">
-            <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-              <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'visualizarPerfil', $current_user['id']]); ?>">
-                Meu Perfil
-              </a>
-            </li>
-            <li class="nav-item border-radius-sm px-3 py-3 me-2 bg-slate-800 d-flex align-items-center">
-              <a class="nav-link text-white p-0  " href="<?= $this->Url->build(['action' => 'editarPerfil', $current_user['id']]); ?>">
-                Editar Perfil
-              </a>
-            </li>
-          </ul>
-        </div>
-      </div>
     </nav>
+
     <!-- End Sidenav Top -->
     <div class="pt-7 pb-6 bg-cover" style="background-image: url('<?= $this->Url->image('header.png', ['controller' => 'img', 'action' => 'header.png']); ?>'); background-position: bottom;"></div>
     <div class="container">
@@ -186,7 +150,7 @@
                 </div>
                 <div class="col-md-2">
                   <?php
-                    $estadoNome = isset($user->enderecos[0]->cidade->estado->nome) ? $user->enderecos[0]->cidade->estado->nome : '';
+                  $estadoNome = isset($user->enderecos[0]->cidade->estado->nome) ? $user->enderecos[0]->cidade->estado->nome : '';
                   ?>
                   <?= $this->Form->control('cidades.estado_id', ['type' => 'text', 'label' => 'Estado', 'class' => 'form-control', 'style' => 'pointer-events: none;', 'disabled' => true, 'placeholder' => 'Digite o Estado', 'default' => $estadoNome]); ?>
                 </div>
@@ -197,7 +161,7 @@
                 </div>
                 <div class="col-md-2">
                   <?= $this->Form->control('enderecos.0.numero', ['type' => 'text', 'label' => 'Número *', 'class' => 'form-control',  'placeholder' => 'Digite o número']); ?>
-                </div>
+                            </div>
                 <div class="col-md-4">
                   <?= $this->Form->control('enderecos.0.bairro', ['type' => 'text', 'label' => 'Bairro *', 'class' => 'form-control',  'placeholder' => 'Digite o bairro']); ?>
                 </div>
@@ -205,8 +169,8 @@
                 <div class="col-md-6">
                   <?= $this->Form->control('telefone', ['type' => 'text', 'label' => 'Telefone', 'class' => 'form-control',  'placeholder' => 'Digite o telefone']); ?>
                 </div>
-                <div class="col-md-6"> 
-                  <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'),'required', $user->data_nascimento); ?>
+                <div class="col-md-6">
+                  <?= $this->Form->data_personalizada('data_nascimento', 'Data Nascimento', 'date', date('d/m/Y'), 'required', $user->data_nascimento); ?>
                 </div>
                 <div class="col-md-2">
                   <?= $this->Form->control('tipo_sanguineo', ['type' => 'text', 'label' => 'Tipo Sanguíneo', 'class' => 'form-control',  'placeholder' => 'Ex: O+']); ?>
@@ -293,7 +257,7 @@
       </div>
 
       <footer>
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
         <?= $this->Html->script('jquery.js'); ?>
         <?= $this->Html->script('popper.min.js'); ?>
         <?= $this->Html->script('bootstrap.min.js'); ?>

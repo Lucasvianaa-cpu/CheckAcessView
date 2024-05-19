@@ -272,7 +272,7 @@
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
                         </span>
-                        <span class="text-sm ms-1">Equipamentos Cadastrados</span>
+                        <span class="text-sm ms-1">Equip. Cadastrados</span>
                       </div>
                     </div>
                   </div>
@@ -393,8 +393,8 @@
                 <div class="row">
                   <div class="col-12">
                     <div class="w-100">
-                      <p class="text-sm text-secondary mb-1">Holerite</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'add']) ?>" class="btn btn-dark btn-sm">Lançar Holerite</a></h4>
+                      <p class="text-sm text-secondary mb-1">Lançamento de Holerite</p>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Holerites', 'action' => 'add']) ?>" class="btn btn-dark btn-sm">Ir para lançamento de Holerite</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -425,7 +425,7 @@
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
                         </span>
-                        <span class="text-sm ms-1">Pontos Registrados de Funcionários</span>
+                        <span class="text-sm ms-1">Pontos Registrados</span>
                       </div>
                     </div>
                   </div>
@@ -445,7 +445,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Relatórios</p>
-                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'relatorios']) ?>" class="btn btn-dark btn-sm">Visualize os relatórios disponíveis</a></h4>
+                      <h4 class="mb-2 font-weight-bold mt-4"><a href="<?= $this->Url->build(['controller' => 'Rh', 'action' => 'relatorios']) ?>" class="btn btn-dark btn-sm">Ir para relatórios</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
                           <i class="fa fa-chevron-up text-xs me-1"></i>
@@ -470,7 +470,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <p class="text-sm text-secondary mb-1">Funcionários</p>
-                      <h3 class="text-sm text-secondary mb-1">Quantidade total de funcionários cadastrados</h3>
+                      <h3 class="text-sm text-secondary mb-1">Total de Funcionários</h3>
                       <h3 class="mb-2 font-weight-bold"><?= $quantidadeFuncionarios ?></h3>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
@@ -578,7 +578,7 @@
                   <div class="col-12">
                     <div class="w-100">
                       <h5 class=" text-secondary mb-1">Registrar Ponto</h5>
-                      <p class="text-sm text-secondary mb-1">Registre o seu ponto aqui.</p>
+                      <p class="text-sm text-secondary mb-1">Clique no botão para estar registrando seu ponto.</p>
                       <h4 class="mb-2 font-weight-bold mt-6"><a href="<?= $this->Url->build(['controller' => 'PontosHoras', 'action' => 'add']) ?>" class="btn btn-dark btn-sm">Registrar Ponto</a></h4>
                       <div class="d-flex align-items-center">
                         <span class="text-sm text-success font-weight-bolder">
