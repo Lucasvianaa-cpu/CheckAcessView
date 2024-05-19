@@ -561,7 +561,6 @@ class UsersController extends AppController
 
             $this->set(compact('pontos', 'pontos_dias'));
         }
-
         $users = $this->paginate($this->Users);
         $roles = $this->Users->Roles->find('list', ['keyField' => 'id', 'valueField' => 'descricao']);
         $this->set(compact('users', 'roles', 'empresa', 'funcionarios_grafico', 'quantidadeEquipamentos', 'quantidadeCategorias', 'quantidadeCargos', 'quantidadeFuncionarios', 'descricaoRole'));

@@ -522,10 +522,10 @@
                   </li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Sobrenome:</span> &nbsp; <?= $current_user['sobrenome'] ?></li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Data de Nascimento:</span> &nbsp;
-                    
+
                     <?php $data_nascimento = $current_user['data_nascimento'];
-                      $data_formatada = date('d/m/Y', strtotime($data_nascimento));
-                      echo $data_formatada
+                    $data_formatada = date('d/m/Y', strtotime($data_nascimento));
+                    echo $data_formatada
                     ?>
                   </li>
                   <li class="list-group-item border-0 ps-0 text-dark font-weight-semibold pb-1"><span class="text-secondary">Realiza Plantão? </span> &nbsp;
@@ -690,8 +690,13 @@
 
                           </tbody>
                         </table>
-
-
+                        <div class="text-center mx-3 d-flex flex-row align-items-center justify-content-between m-2">
+                          <p class="font-weight-semibold mb-0 text-dark text-sm"><?= $this->Paginator->counter(['format' => __('Página {{page}} de {{pages}}')]) ?></p>
+                          <ul class="pagination d-flex align-items-center">
+                            <span aria-hidden="true" class="border rounded-2 p-2 mx-1 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->prev('' . __('<span class="text-white" style="font-size: 20px">&laquo;</span>'), ['escape' => false, 'class' => 'prev']) ?></span>
+                            <span aria-hidden="true" class="border rounded-2 p-2 bg-dark d-flex align-items-center" style="height: 30px"><?= $this->Paginator->next(__('<span class="text-white" style="font-size: 20px">&raquo;</span>') . ' ', ['escape' => false, 'class' => 'next']) ?></span>
+                          </ul>
+                        </div>
 
                       </div>
                     </div>
