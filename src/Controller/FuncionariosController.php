@@ -4,20 +4,9 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Funcionarios Controller
- *
- * @property \App\Model\Table\FuncionariosTable $Funcionarios
- *
- * @method \App\Model\Entity\Funcionario[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class FuncionariosController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $this->loadModel('Users');
@@ -69,13 +58,6 @@ class FuncionariosController extends AppController
         $this->set(compact('funcionarios'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Funcionario id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $this->loadModel('Funcionarios');
@@ -109,11 +91,6 @@ class FuncionariosController extends AppController
         $this->set('funcionario', $funcionario);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $usuario_logado = $this->Auth->user();
@@ -213,9 +190,9 @@ class FuncionariosController extends AppController
             $funcionario_role = $this->Users->patchEntity($funcionario_role, $data2);
             $this->Users->save($funcionario_role);
 
-            // Passo 1: Associar o usuário ao funcionário
+            // Associar o usuário ao funcionário
             $funcionario = $this->Funcionarios->patchEntity($funcionario, $data);
-            $funcionario->user = $user;  // Associa o objeto de usuário
+            $funcionario->user = $user; 
 
             if ($this->Funcionarios->save($funcionario)) {
                 $this->Flash->success(__('Funcionário vinculado com sucesso.'));
@@ -239,13 +216,7 @@ class FuncionariosController extends AppController
     }
 
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Funcionario id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -298,14 +269,6 @@ class FuncionariosController extends AppController
         
         $this->set(compact('funcionario', 'cargos', 'planosSaudes', 'empresas', 'users'));
     }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Funcionario id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
 
     public function delete($id = null)
     {

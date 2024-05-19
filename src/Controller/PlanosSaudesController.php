@@ -4,20 +4,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * PlanosSaudes Controller
- *
- * @property \App\Model\Table\PlanosSaudesTable $PlanosSaudes
- *
- * @method \App\Model\Entity\PlanosSaude[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class PlanosSaudesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $usuario_logado = $this->Auth->user();
@@ -55,13 +45,7 @@ class PlanosSaudesController extends AppController
         $this->set(compact('planosSaudes'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Planos Saude id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -84,11 +68,6 @@ class PlanosSaudesController extends AppController
         $this->set('planosSaude', $planosSaude);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $usuario_logado = $this->Auth->user();
@@ -131,13 +110,7 @@ class PlanosSaudesController extends AppController
         $this->set(compact('planosSaude'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Planos Saude id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -179,15 +152,6 @@ class PlanosSaudesController extends AppController
 
         $this->set(compact('planosSaude'));
     }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Planos Saude id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-
 
     public function delete($id = null)
     {

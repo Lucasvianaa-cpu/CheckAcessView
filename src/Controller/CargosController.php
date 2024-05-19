@@ -3,20 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Cargos Controller
- *
- * @property \App\Model\Table\CargosTable $Cargos
- *
- * @method \App\Model\Entity\Cargo[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class CargosController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+    
     public function index()
     {
         $usuario_logado = $this->Auth->user();
@@ -47,13 +37,7 @@ class CargosController extends AppController
         $this->set(compact('cargos'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Cargo id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    
     public function view($id = null)
     {
         $this->loadModel('Users');
@@ -84,11 +68,7 @@ class CargosController extends AppController
         $this->set('cargo', $cargo);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+   
     public function add()
     {
         $usuario_logado = $this->Auth->user();
@@ -109,8 +89,7 @@ class CargosController extends AppController
            
             $cargo = $this->Cargos->patchEntity($cargo, $this->request->getData());
             $cargo['empresa_id'] = $usuario_logado['funcionarios'][0]['empresa']['id'];
-           // debug($cargo);exit;
-            // debug($cargo['empresa_id']);exit;
+        
             if ($this->Cargos->save($cargo)) {
                 $this->Flash->success(__('Cargo adicionado com sucesso.'));
 
@@ -122,13 +101,7 @@ class CargosController extends AppController
         $this->set(compact('cargo', 'categorias'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Cargo id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -160,13 +133,7 @@ class CargosController extends AppController
         $this->set(compact('cargo', 'categorias'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Cargo id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function delete($id = null)
     {
         $usuario_logado = $this->Auth->user();

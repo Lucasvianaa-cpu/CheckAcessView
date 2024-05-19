@@ -3,20 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Cidades Controller
- *
- * @property \App\Model\Table\CidadesTable $Cidades
- *
- * @method \App\Model\Entity\Cidade[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class CidadesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+    
     public function index()
     {
         $usuario_logado = $this->Auth->user();
@@ -47,13 +37,7 @@ class CidadesController extends AppController
         $this->set(compact('cidades'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Cidade id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -76,11 +60,7 @@ class CidadesController extends AppController
         $this->set('cidade', $cidade);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+   
     public function add()
     {
         $usuario_logado = $this->Auth->user();
@@ -121,13 +101,7 @@ class CidadesController extends AppController
         $this->set(compact('cidade', 'estados'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Cidade id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+  
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -171,13 +145,7 @@ class CidadesController extends AppController
         $this->set(compact('cidade', 'estados'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Cidade id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function delete($id = null)
     {
         $usuario_logado = $this->Auth->user();

@@ -3,39 +3,9 @@ namespace App\Model\Entity;
 
 use Cake\ORM\Entity;
 
-/**
- * Holerite Entity
- *
- * @property int $id
- * @property \Cake\I18n\FrozenDate $data_holerite
- * @property string $descricao
- * @property string $mes
- * @property float $salario_base
- * @property float|null $inss
- * @property float|null $fgts
- * @property float|null $ir
- * @property float $base_fgts
- * @property float|null $base_inss
- * @property float $liquido
- * @property float $total_vencimentos
- * @property float $total_descontos
-
- * @property int $funcionario_id
- * @property \Cake\I18n\FrozenTime $created
- *
- * @property \App\Model\Entity\Funcionario $funcionario
- */
 class Holerite extends Entity
 {
-    /**
-     * Fields that can be mass assigned using newEntity() or patchEntity().
-     *
-     * Note that when '*' is set to true, this allows all unspecified fields to
-     * be mass assigned. For security purposes, it is advised to set '*' to false
-     * (or remove it), and explicitly make individual fields accessible as needed.
-     *
-     * @var array
-     */
+
     protected $_accessible = [
         'data_holerite' => true,
         'mes' => true,

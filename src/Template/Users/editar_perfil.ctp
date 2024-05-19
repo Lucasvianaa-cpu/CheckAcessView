@@ -197,7 +197,7 @@
                 </div>
                 <div class="col-md-2">
                   <?= $this->Form->control('enderecos.0.numero', ['type' => 'text', 'label' => 'Número *', 'class' => 'form-control',  'placeholder' => 'Digite o número']); ?>
-                </div>
+                </div>
                 <div class="col-md-4">
                   <?= $this->Form->control('enderecos.0.bairro', ['type' => 'text', 'label' => 'Bairro *', 'class' => 'form-control',  'placeholder' => 'Digite o bairro']); ?>
                 </div>

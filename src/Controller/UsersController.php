@@ -7,20 +7,9 @@ use DateTime;
 use App\Controller\AppController;
 use Cake\Mailer\MailerAwareTrait;
 
-/**
- * Users Controller
- *
- * @property \App\Model\Table\UsersTable $Users
- *
- * @method \App\Model\Entity\User[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class UsersController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
 
     use MailerAwareTrait;
 
@@ -83,13 +72,6 @@ class UsersController extends AppController
         $this->set(compact('users'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -112,11 +94,6 @@ class UsersController extends AppController
         $this->set('user', $user);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function adicionar()
     {
 
@@ -154,13 +131,6 @@ class UsersController extends AppController
         $this->set(compact('user', 'roles'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -203,15 +173,6 @@ class UsersController extends AppController
         $roles = $this->Users->Roles->find('list', ['limit' => 200]);
         $this->set(compact('user', 'roles'));
     }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id User id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
-
 
     public function delete($id = null)
     {
@@ -271,9 +232,6 @@ class UsersController extends AppController
                         // Caso não haja funcionários associados, redirecionar para uma página de erro ou página inicial
                         return $this->redirect(['controller' => 'Pages', 'action' => 'display', 'no_funcionarios']);
                     }
-
-                    //if ($user['role_id'] == 1)
-                    // Entrar em dashboard (mas sem vinculo com funcionario ou se necessario ate sem empresa... n sei)
                 }
             } else {
                 $this->Flash->error(__('E-mail ou senha incorretas! Por favor, tente novamente.'));
@@ -322,7 +280,6 @@ class UsersController extends AppController
                     $ext = substr(strtolower(strrchr($file['name'], '.')), 1);
                     $arr_ext = array('jpg', 'jpeg', 'gif', 'png');
 
-                    // Substituir caracteres inválidos no nome do arquivo
                     $nomeDoArquivo = preg_replace("/[^a-zA-Z0-9._-]/", "_", $user->caminho_foto);
 
                     if (in_array($ext, $arr_ext)) {
@@ -452,11 +409,10 @@ class UsersController extends AppController
         $funcionarios_grafico = $this->ListaFuncionarios->ListaFuncionariosGrafico($id);
 
         $current_user = $this->Users->get($this->current_user['id'], [
-            'contain' => ['Roles'] // Inclua a tabela "Roles" como uma tabela associada
+            'contain' => ['Roles'] 
         ]);
 
         $descricaoRole = $current_user->role->descricao;
-        // debug( $descricaoRole ); exit;
 
         if ($this->current_user['role_id'] == 2) {
             $this->paginate = [
@@ -471,7 +427,6 @@ class UsersController extends AppController
             ];
         }
 
-        //teste
         if ($this->current_user['role_id'] == 3) {
             $conditions = [];
 
@@ -492,9 +447,6 @@ class UsersController extends AppController
                 }
             }
 
-
-
-
             $funcionario = $this->Funcionarios->find('all', ['conditions' => ['user_id' => $this->Auth->user('id')], 'limit' => 1])->first();
 
             if ($funcionario) {
@@ -514,7 +466,7 @@ class UsersController extends AppController
             }
 
             if (!empty($pontos_dias)) {
-                foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
+                foreach ($pontos_dias as &$pontos) { 
                     sort($pontos);
                     $contagem = count($pontos);
                     if ($contagem == 2) {
@@ -555,9 +507,6 @@ class UsersController extends AppController
             } else {
                 $pontos_dias = '';
             }
-
-
-
 
             $this->set(compact('pontos', 'pontos_dias'));
         }

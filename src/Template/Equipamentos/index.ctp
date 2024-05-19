@@ -118,7 +118,7 @@
                           'confirm' => __('Tem certeza que deseja deletar o equipamento: {0}?', $equipamento->descricao),
                           'escapeTitle' => false,
                           'escape' => false,
-                          'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
+                          'form' => ['style' => 'display:inline'],
                         ]
                       ) ?>
                     </td>
