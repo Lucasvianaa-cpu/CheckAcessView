@@ -122,7 +122,7 @@
                           'confirm' => __('Tem certeza que deseja deletar plano de saúde: {0}?', $planosSaude->nome),
                           'escapeTitle' => false,
                           'escape' => false,
-                          'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
+                          'form' => ['style' => 'display:inline'], 
                         ]
                       ) ?>
                     </td>

@@ -22,8 +22,8 @@
               <h6 class="font-weight-semibold text-lg mb-0">Cargos</h6>
               <p class="text-sm">Estes são os cargos registrados em sua empresa...</p>
             </div>
-            <!-- Botão de adicionar-->
-            <div style="text-align: right;"> <!-- quero deixar a direita-->
+
+            <div style="text-align: right;"> 
               <a class="nav-link " href="<?= $this->Url->build(['controller' => 'Cargos', 'action' => 'add']) ?>" role="button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="16px" height="16px" class="ionicon" viewBox="0 0 512 512">
                   <path d="M448 256c0-106-86-192-192-192S64 150 64 256s86 192 192 192 192-86 192-192z" fill="none" stroke="currentColor" stroke-miterlimit="10" stroke-width="32" />
@@ -103,7 +103,7 @@
                           'confirm' => __('Tem certeza que deseja deletar o cargo: {0}?', $cargo->nome),
                           'escapeTitle' => false,
                           'escape' => false,
-                          'form' => ['style' => 'display:inline'], // Para manter o botão dentro da mesma linha
+                          'form' => ['style' => 'display:inline'],
                         ]
                       ) ?>
                     </td>

@@ -4,20 +4,9 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Empresas Controller
- *
- * @property \App\Model\Table\EmpresasTable $Empresas
- *
- * @method \App\Model\Entity\Empresa[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class EmpresasController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+    
     public function index()
     {
 
@@ -57,13 +46,7 @@ class EmpresasController extends AppController
         $this->set(compact('empresas'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Empresa id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -81,11 +64,7 @@ class EmpresasController extends AppController
         $this->set('empresa', $empresa);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+   
     public function add()
     {
         $usuario_logado = $this->Auth->user();
@@ -122,13 +101,7 @@ class EmpresasController extends AppController
         $this->set(compact('empresa'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Empresa id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+  
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -166,13 +139,7 @@ class EmpresasController extends AppController
         $this->set(compact('empresa'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Empresa id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
 
     public function delete($id = null)
     {

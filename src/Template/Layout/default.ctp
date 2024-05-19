@@ -33,7 +33,6 @@
             width: 100%;
             height: 100%;
             background-color: white;
-            /* Fundo branco */
             display: flex;
             justify-content: center;
             align-items: center;
@@ -44,29 +43,23 @@
             text-align: center;
         }
 
-        /* Estilize o botão de dropdown quando o mouse passar sobre ele */
         .dropdown-toggle:hover {
             box-shadow: none;
-            /* Remove a sombra */
             border: none;
-            /* Adicione mais estilos aqui, se necessário */
         }
 
         .dropdown-toggle:not(:focus) {
             outline: none;
-            /* Remove o destaque */
             border: none;
         }
 
         .dropdown-toggle:not(:hover) {
             outline: none;
-            /* Remove o destaque */
             border: none;
         }
 
         .dropdown-toggle:focus {
             box-shadow: none;
-            /* Remove a sombra */
             border: none;
         }
 

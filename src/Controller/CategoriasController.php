@@ -3,20 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Categorias Controller
- *
- * @property \App\Model\Table\CategoriasTable $Categorias
- *
- * @method \App\Model\Entity\Categoria[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class CategoriasController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+   
     public function index()
     {
         $usuario_logado = $this->Auth->user();
@@ -55,13 +45,7 @@ class CategoriasController extends AppController
         $this->set(compact('categorias'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Categoria id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+    
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -84,11 +68,7 @@ class CategoriasController extends AppController
         $this->set('categoria', $categoria);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+    
     public function add()
     {
 
@@ -132,13 +112,7 @@ class CategoriasController extends AppController
         $this->set(compact('categoria'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Categoria id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -188,13 +162,7 @@ class CategoriasController extends AppController
         $this->set(compact('categoria'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Categoria id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
 
      /**Função de Deletar, mas ao invés de deletar irá inativar */
     public function delete($id = null)

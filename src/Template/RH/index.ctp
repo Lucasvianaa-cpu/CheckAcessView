@@ -77,8 +77,6 @@
                       <?php
                       $url = $this->Url->build(['controller' => 'Funcionarios', 'action' => 'vincularUsuario',  $user->id]);
 
-                      // Aplicar o str_replace para modificar a URL
-                      // $url = str_replace('/admin', '', $url);
                       ?>
 
                       <?= $this->Html->link(__('Vincular Funcionário'), $url, ['class' => 'btn btn-dark btn-sm']) ?>

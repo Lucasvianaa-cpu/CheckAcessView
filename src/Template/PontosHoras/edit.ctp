@@ -29,9 +29,9 @@
                                     <div class="col-md-4">
                                         <?= $this->Form->control('data_ponto', [
                                             'type' => 'text',
-                                            'label' => ['text' => 'Data do Ponto', 'class' => 'form-label'], // Adiciona a classe 'form-label' ao rótulo
+                                            'label' => ['text' => 'Data do Ponto', 'class' => 'form-label'], 
                                             'value' => $pontosHora->data_ponto->format('d/m/Y'),
-                                            'class' => 'form-control', // Adiciona a classe 'form-control' ao campo
+                                            'class' => 'form-control', 
                                         ]);
                                         ?>
                                     </div>
@@ -39,9 +39,9 @@
                                     <div class="col-md-4">
                                         <?= $this->Form->control('hora', [
                                             'type' => 'text',
-                                            'label' => ['text' => 'Hora', 'class' => 'form-label'], // Adiciona a classe 'form-label' ao rótulo
+                                            'label' => ['text' => 'Hora', 'class' => 'form-label'], 
                                             'value' => $pontosHora->hora->format('H:i:s'),
-                                            'class' => 'form-control', // Adiciona a classe 'form-control' ao campo
+                                            'class' => 'form-control', 
                                         ]);
                                         ?>
                                     </div>

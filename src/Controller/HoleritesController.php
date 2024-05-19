@@ -3,20 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Holerites Controller
- *
- * @property \App\Model\Table\HoleritesTable $Holerites
- *
- * @method \App\Model\Entity\Holerite[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class HoleritesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $this->loadModel('Users');
@@ -95,13 +85,7 @@ class HoleritesController extends AppController
         $this->set(compact('holerites'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Holerite id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function view($id = null)
     {
 
@@ -138,11 +122,6 @@ class HoleritesController extends AppController
         $this->set('holerite', $holerite);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $this->loadModel('Funcionarios');
@@ -166,7 +145,6 @@ class HoleritesController extends AppController
             $holerite = $this->Holerites->patchEntity($holerite, $this->request->getData());
             
             if ($this->Holerites->save($holerite)) {
-                // debug($holerite->created);exit;
                 $this->Flash->success(__('Holerite adicionado com sucesso.'));
 
                 return $this->redirect(['action' => 'index']);
@@ -181,9 +159,6 @@ class HoleritesController extends AppController
             'conditions' => ['Funcionarios.empresa_id' => $empresa_id]
         ]);
 
-
-
-
         $funcionarios_list = [];
         foreach ($funcionarios as $funcionario)
         {
@@ -196,13 +171,7 @@ class HoleritesController extends AppController
         $this->set(compact('holerite', 'funcionarios_list'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Holerite id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function edit($id = null)
     {
         $this->loadModel('Funcionarios');
@@ -246,13 +215,6 @@ class HoleritesController extends AppController
         $this->set(compact('holerite', 'funcionarios_list'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Holerite id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $usuario_logado = $this->Auth->user();

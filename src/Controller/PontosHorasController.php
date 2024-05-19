@@ -8,20 +8,9 @@ use DateTime;
 
 use App\Controller\AppController;
 
-/**
- * PontosHoras Controller
- *
- * @property \App\Model\Table\PontosHorasTable $PontosHoras
- *
- * @method \App\Model\Entity\PontosHora[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class PontosHorasController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function initialize()
     {
         parent::initialize();
@@ -125,7 +114,7 @@ class PontosHorasController extends AppController
                     // Formate o total em horas, minutos e segundos
                     $total = sprintf("%02d:%02d:%02d", $horas, $minutos, $segundos);
 
-                    // Adicione o total ao array atual em $pontos
+                    // total ao array atual em $pontos
                     $pontos[] = ['total' => $total];
                 } else if ($contagem == 4) {
                     $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
@@ -139,7 +128,7 @@ class PontosHorasController extends AppController
 
                     $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
 
-                    // Adicione o total ao array atual em $pontos
+                    // total ao array atual em $pontos
                     $pontos[] = ['total' => $total];
                 } else if ($contagem == 1 || $contagem == 3) {
                     $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
@@ -201,7 +190,7 @@ class PontosHorasController extends AppController
             ];
         }
 
-        foreach ($pontos_dias as &$pontos) { // Use &$pontos para alterar o array original
+        foreach ($pontos_dias as &$pontos) { 
             sort($pontos);
             $contagem = count($pontos);
             if ($contagem == 2) {
@@ -209,16 +198,12 @@ class PontosHorasController extends AppController
                 $saida = strtotime(substr($pontos[1]['hora'], 0, 5));
         
                 $diferenca_em_segundos = $saida - $entrada;
-        
-                // Calcular horas e minutos
-                $horas = floor($diferenca_em_segundos / 3600); // 3600 segundos em uma hora
-                $minutos = floor(($diferenca_em_segundos % 3600) / 60); // minutos restantes após calcular as horas
-        
-                // Formate o total em horas e minutos
+
+                $horas = floor($diferenca_em_segundos / 3600); 
+                $minutos = floor(($diferenca_em_segundos % 3600) / 60); 
                 $total = sprintf("%02d:%02d", $horas, $minutos);
-        
-                // Adicione o total ao array atual em $pontos
                 $pontos[] = ['total' => $total];
+
             } else if ($contagem == 4) {
                 $entrada = strtotime(substr($pontos[0]['hora'], 0, 5));
                 $saida_intervalo = strtotime(substr($pontos[1]['hora'], 0, 5));
@@ -231,7 +216,6 @@ class PontosHorasController extends AppController
 
                 $total = date("H:i", strtotime("00:00") + strtotime($total_primeiro_periodo) + strtotime($total_segundo_periodo));
 
-                // Adicione o total ao array atual em $pontos
                 $pontos[] = ['total' => $total];
             } else if ($contagem == 1 || $contagem == 3) {
                 $pontos[] = ['total' => 'Registre 2 ou 4 pontos para definir o total de horas'];
@@ -289,13 +273,6 @@ class PontosHorasController extends AppController
         $this->set(compact('pontos'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Pontos Hora id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $this->loadModel('Funcionarios');
@@ -331,13 +308,6 @@ class PontosHorasController extends AppController
         $this->set(compact('pontosHora', 'funcionario'));
     }
 
-
-
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $this->loadModel('Funcionarios');
@@ -405,13 +375,6 @@ class PontosHorasController extends AppController
         $this->set(compact('pontosHora', 'funcionario'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Pontos Hora id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
 
@@ -458,13 +421,6 @@ class PontosHorasController extends AppController
         $this->set(compact('pontosHora', 'funcionario'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Pontos Hora id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $usuario_logado = $this->Auth->user();

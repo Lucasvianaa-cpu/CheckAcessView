@@ -73,8 +73,6 @@ class PlantoesController extends AppController
         
     }
 
-
-
     public function index()
     {
 
@@ -119,29 +117,9 @@ class PlantoesController extends AppController
 
         $plantoes = $this->paginate($this->Plantoes, ['conditions' => $conditions]);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
         $this->set(compact('plantoes'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Planto id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -252,8 +230,6 @@ class PlantoesController extends AppController
         }
     }
 
-
-
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -285,13 +261,6 @@ class PlantoesController extends AppController
         $this->set(compact('planto', 'funcionarios'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Planto id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $usuario_logado = $this->Auth->user();

@@ -4,20 +4,9 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * Veiculos Controller
- *
- * @property \App\Model\Table\VeiculosTable $Veiculos
- *
- * @method \App\Model\Entity\Veiculo[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
 class VeiculosController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $usuario_logado = $this->Auth->user();
@@ -64,13 +53,7 @@ class VeiculosController extends AppController
         $this->set(compact('veiculos'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Veiculo id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -93,11 +76,6 @@ class VeiculosController extends AppController
         $this->set('veiculo', $veiculo);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $usuario_logado = $this->Auth->user();
@@ -142,13 +120,6 @@ class VeiculosController extends AppController
         $this->set(compact('veiculo', 'users'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Veiculo id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -192,14 +163,6 @@ class VeiculosController extends AppController
         $users = $this->Veiculos->Users->find('list', ['limit' => 200]);
         $this->set(compact('veiculo', 'users'));
     }
-
-    /**
-     * Delete method
-     *
-     * @param string|null $id Veiculo id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
 
     /**Função de Deletar, mas ao invés de deletar irá inativar */
     public function delete($id = null)

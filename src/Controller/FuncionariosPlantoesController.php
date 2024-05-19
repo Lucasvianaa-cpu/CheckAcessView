@@ -3,20 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * FuncionariosPlantoes Controller
- *
- * @property \App\Model\Table\FuncionariosPlantoesTable $FuncionariosPlantoes
- *
- * @method \App\Model\Entity\FuncionariosPlanto[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class FuncionariosPlantoesController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $this->paginate = [
@@ -27,13 +17,7 @@ class FuncionariosPlantoesController extends AppController
         $this->set(compact('funcionariosPlantoes'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Funcionarios Planto id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function view($id = null)
     {
         $funcionariosPlanto = $this->FuncionariosPlantoes->get($id, [
@@ -43,11 +27,7 @@ class FuncionariosPlantoesController extends AppController
         $this->set('funcionariosPlanto', $funcionariosPlanto);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
+
     public function add()
     {
         $funcionariosPlanto = $this->FuncionariosPlantoes->newEntity();
@@ -65,13 +45,6 @@ class FuncionariosPlantoesController extends AppController
         $this->set(compact('funcionariosPlanto', 'funcionarios', 'plantoes'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Funcionarios Planto id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function edit($id = null)
     {
         $funcionariosPlanto = $this->FuncionariosPlantoes->get($id, [
@@ -91,13 +64,6 @@ class FuncionariosPlantoesController extends AppController
         $this->set(compact('funcionariosPlanto', 'funcionarios', 'plantoes'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Funcionarios Planto id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);

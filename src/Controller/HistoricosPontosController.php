@@ -3,20 +3,10 @@ namespace App\Controller;
 
 use App\Controller\AppController;
 
-/**
- * HistoricosPontos Controller
- *
- * @property \App\Model\Table\HistoricosPontosTable $HistoricosPontos
- *
- * @method \App\Model\Entity\HistoricosPonto[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class HistoricosPontosController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $this->paginate = [
@@ -27,13 +17,6 @@ class HistoricosPontosController extends AppController
         $this->set(compact('historicosPontos'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Historicos Ponto id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function view($id = null)
     {
         $historicosPonto = $this->HistoricosPontos->get($id, [
@@ -43,11 +26,6 @@ class HistoricosPontosController extends AppController
         $this->set('historicosPonto', $historicosPonto);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $historicosPonto = $this->HistoricosPontos->newEntity();
@@ -64,13 +42,7 @@ class HistoricosPontosController extends AppController
         $this->set(compact('historicosPonto', 'funcionarios'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Historicos Ponto id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function edit($id = null)
     {
         $historicosPonto = $this->HistoricosPontos->get($id, [
@@ -89,13 +61,6 @@ class HistoricosPontosController extends AppController
         $this->set(compact('historicosPonto', 'funcionarios'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Historicos Ponto id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
     public function delete($id = null)
     {
         $this->request->allowMethod(['post', 'delete']);

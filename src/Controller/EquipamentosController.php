@@ -6,20 +6,10 @@ use App\Controller\AppController;
 use Cake\I18n\FrozenTime;
 use Cake\I18n\Time;
 
-/**
- * Equipamentos Controller
- *
- * @property \App\Model\Table\EquipamentosTable $Equipamentos
- *
- * @method \App\Model\Entity\Equipamento[]|\Cake\Datasource\ResultSetInterface paginate($object = null, array $settings = [])
- */
+
 class EquipamentosController extends AppController
 {
-    /**
-     * Index method
-     *
-     * @return \Cake\Http\Response|null
-     */
+
     public function index()
     {
         $this->loadModel('Users');
@@ -68,13 +58,7 @@ class EquipamentosController extends AppController
         $this->set(compact('equipamentos'));
     }
 
-    /**
-     * View method
-     *
-     * @param string|null $id Equipamento id.
-     * @return \Cake\Http\Response|null
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function view($id = null)
     {
         $usuario_logado = $this->Auth->user();
@@ -97,11 +81,6 @@ class EquipamentosController extends AppController
         $this->set('equipamento', $equipamento);
     }
 
-    /**
-     * Add method
-     *
-     * @return \Cake\Http\Response|null Redirects on successful add, renders view otherwise.
-     */
     public function add()
     {
         $this->loadModel('Users');
@@ -150,10 +129,10 @@ class EquipamentosController extends AppController
         $func = $this->Funcionarios->find('all', [
             'limit' => 200,
             'conditions' => ['Funcionarios.is_active' => 1, 'Funcionarios.is_trash <>' => 1, 'Funcionarios.empresa_id' => $empresa_id],
-            'contain' => ['Users'] // Aqui você especifica as associações que deseja buscar
+            'contain' => ['Users'] 
         ]);
 
-        // No seu controller, onde você busca os funcionários ajustados
+        // onde busca os funcionários ajustados
         $funcionarios = [];
         foreach ($func as $funcionario) {
             $funcionarios[$funcionario->id] = $funcionario->user->nome;
@@ -162,13 +141,7 @@ class EquipamentosController extends AppController
         $this->set(compact('equipamento', 'funcionarios'));
     }
 
-    /**
-     * Edit method
-     *
-     * @param string|null $id Equipamento id.
-     * @return \Cake\Http\Response|null Redirects on successful edit, renders view otherwise.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+
     public function edit($id = null)
     {
 
@@ -213,10 +186,10 @@ class EquipamentosController extends AppController
         }
         $func = $this->Funcionarios->find('all', [
             'limit' => 200,
-            'contain' => ['Users'] // Aqui você especifica as associações que deseja buscar
+            'contain' => ['Users'] 
         ]);
 
-        // No seu controller, onde você busca os funcionários ajustados
+        //onde você busca os funcionários ajustados
         $funcionarios = [];
         foreach ($func as $funcionario) {
             $funcionarios[$funcionario->id] = $funcionario->user->nome;
@@ -225,13 +198,7 @@ class EquipamentosController extends AppController
         $this->set(compact('equipamento', 'funcionarios'));
     }
 
-    /**
-     * Delete method
-     *
-     * @param string|null $id Equipamento id.
-     * @return \Cake\Http\Response|null Redirects to index.
-     * @throws \Cake\Datasource\Exception\RecordNotFoundException When record not found.
-     */
+   
 
     public function delete($id = null)
     {
