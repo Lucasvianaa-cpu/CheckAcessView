@@ -81,13 +81,12 @@ class AppController extends Controller
 
 
         if ($funcionario_empresa) {
-            // Carrega o modelo User
             $this->loadModel('Users');
 
             // Cria uma nova query contendo os dados do usuário e a tabela funcionarios
             $query = $this->Users->find('all')
                 ->where(['Users.id' => $funcionario_empresa['id']])
-                ->contain(['Funcionarios']); // Aqui você especifica o nome da associação com a tabela funcionarios
+                ->contain(['Funcionarios']);
 
             // Executa a consulta e obtém os dados do usuário e a tabela funcionarios
             $userWithFuncionarios = $query->first();
