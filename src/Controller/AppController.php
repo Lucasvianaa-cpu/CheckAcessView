@@ -88,7 +88,7 @@ class AppController extends Controller
                 ->where(['Users.id' => $funcionario_empresa['id']])
                 ->contain(['Funcionarios']);
 
-            // Executa a consulta e obtém os dados do usuário e a tabela funcionarios
+            // obtém os dados do usuário e a tabela funcionarios
             $userWithFuncionarios = $query->first();
 
             // Define o resultado na view para acessá-lo na view
