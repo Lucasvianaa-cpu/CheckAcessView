@@ -44,7 +44,7 @@ class EmpresasTable extends Table
 
         $validator
             ->scalar('cnpj')
-            ->maxLength('cnpj', 15)
+            ->maxLength('cnpj', 20)
             ->requirePresence('cnpj', 'create')
             ->notEmptyString('cnpj')
             ->add('cnpj', 'custom', [
